@@ -1,0 +1,24 @@
+{
+  "name": "dishonored2-calculator",
+  "version": "1.0.0",
+  "description": "Power calculator for Dishonored 2.",
+  "main": "scripts/index.js",
+  "scripts": {
+    "build": "npm run html && npm run webpack",
+    "html": "copyfiles -f ./html/*.html ./dist/",
+    "webpack": "webpack"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "immutable": "3.8.1",
+    "redux": "3.6.0",
+    "reselect": "2.5.4",
+    "underscore": "1.8.3"
+  },
+  "devDependencies": {
+    "copyfiles": "1.0.0",
+    "webpack": "2.2.0",
+    "webpack-dev-server": "2.2.0"
+  }
+}
