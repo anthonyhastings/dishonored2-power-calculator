@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const distPath = path.join(__dirname, '../dist');
 
 module.exports = function() {
   return {
@@ -8,7 +9,7 @@ module.exports = function() {
       vendor: ['underscore', 'immutable', 'redux', 'reselect']
     },
     output: {
-      path: './dist/',
+      path: distPath,
       filename: 'js/[name].js'
     },
     module: {
@@ -32,7 +33,7 @@ module.exports = function() {
     },
     devServer: {
       port: 8080,
-      contentBase: path.join(__dirname, 'dist'),
+      contentBase: distPath,
       publicPath: '/',
       historyApiFallback: true,
       compress: true,

@@ -9,7 +9,7 @@
   "scripts": {
     "build": "npm run html && npm run webpack",
     "html": "copyfiles -f ./html/*.html ./dist/",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --env=development --config=webpack/webpack.config.js",
     "webpack:development": "webpack --env=development --config=webpack/webpack.config.js --colors --progress",
     "webpack:production": "webpack --env=production --config=webpack/webpack.config.js --colors --progress"
   },
