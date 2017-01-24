@@ -12,8 +12,14 @@ module.exports = function() {
       filename: 'js/[name].js'
     },
     module: {
-      // TODO: What libraries being used can be put under `noParse`???
-
+      //noParse: /underscore|immutable|redux|reselect/
+      rules: [
+        {
+          loader: 'babel-loader',
+          test: /\.jsx?$/,
+          exclude: /(node_modules|bower_components)/
+        }
+      ]
     },
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({

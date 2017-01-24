@@ -2,6 +2,7 @@ import store from './store';
 
 class Person {
   constructor(name = '') {
+    this.name = name
   }
 
   greet() {
