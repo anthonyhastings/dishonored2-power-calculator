@@ -7,7 +7,7 @@
   "private": true,
   "main": "scripts/index.js",
   "scripts": {
-    "build": "npm run html && npm run webpack",
+    "build": "npm run html && npm run webpack:production",
     "html": "copyfiles -f ./html/*.html ./dist/",
     "start": "webpack-dev-server --env=development --config=webpack/webpack.config.js",
     "webpack:development": "webpack --env=development --config=webpack/webpack.config.js --colors --progress",

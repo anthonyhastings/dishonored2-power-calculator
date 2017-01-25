@@ -13,7 +13,7 @@ module.exports = function() {
       filename: 'js/[name].js'
     },
     module: {
-      //noParse: /underscore|immutable|redux|reselect/
+      noParse: /immutable|reselect|underscore/,
       rules: [
         {
           loader: 'babel-loader',
