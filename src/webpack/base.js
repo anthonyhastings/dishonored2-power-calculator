@@ -1,9 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
-const htmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const distPath = path.join(__dirname, '../dist');
 
-module.exports = function() {
+module.exports = function () {
   return {
     entry: {
       app: './scripts/index.js',
@@ -25,10 +25,10 @@ module.exports = function() {
     },
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({
-          name: 'vendor',
-          minChunks: Infinity
+        name: 'vendor',
+        minChunks: Infinity
       }),
-      new htmlWebpackPlugin({
+      new HtmlWebpackPlugin({
         filename: 'index.html',
         template: 'html/index.html',
         inject: false,
