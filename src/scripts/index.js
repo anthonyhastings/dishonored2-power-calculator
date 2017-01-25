@@ -6,7 +6,7 @@ class Person {
   }
 
   greet() {
-    console.info('Hello ${this.name}.');
+    console.info(`Hello ${this.name}.`);
   }
 }
 

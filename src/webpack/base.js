@@ -5,7 +5,7 @@ const distPath = path.join(__dirname, '../dist');
 module.exports = function() {
   return {
     entry: {
-      bundle: './scripts/index.js',
+      app: './scripts/index.js',
       vendor: ['underscore', 'immutable', 'redux', 'reselect']
     },
     output: {
