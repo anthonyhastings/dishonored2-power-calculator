@@ -1,3 +1,21 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const HelloWorld = function () {
+  return (
+    <div class="hello-world">
+      <h1>Hello World</h1>
+    </div>
+  );
+};
+
+ReactDOM.render((
+  <HelloWorld />
+), document.querySelector('#application'));
+
+
+
+
 import store from './store';
 
 class Person {
