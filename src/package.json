@@ -7,8 +7,7 @@
   "private": true,
   "main": "scripts/index.js",
   "scripts": {
-    "build": "npm run html && npm run webpack:production",
-    "html": "copyfiles -f ./html/*.html ./dist/",
+    "build": "npm run webpack:production",
     "start": "webpack-dev-server --env=development --config=webpack/webpack.config.js",
     "webpack:development": "webpack --env=development --config=webpack/webpack.config.js --colors --progress",
     "webpack:production": "webpack --env=production --config=webpack/webpack.config.js --colors --progress"
@@ -24,7 +23,7 @@
     "babel-loader": "6.2.10",
     "babel-preset-es2015": "6.22.0",
     "babel-preset-react": "6.22.0",
-    "copyfiles": "1.0.0",
+    "html-webpack-plugin": "2.26.0",
     "webpack": "2.2.0",
     "webpack-dev-server": "2.2.0",
     "webpack-merge": "2.4.0"

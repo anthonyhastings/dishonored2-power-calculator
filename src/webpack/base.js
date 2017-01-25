@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 const distPath = path.join(__dirname, '../dist');
 
 module.exports = function() {
@@ -26,6 +27,13 @@ module.exports = function() {
       new webpack.optimize.CommonsChunkPlugin({
           name: 'vendor',
           minChunks: Infinity
+      }),
+      new htmlWebpackPlugin({
+        filename: 'index.html',
+        template: 'html/index.html',
+        inject: false,
+        hash: false,
+        minify: false
       })
     ],
     resolve: {
