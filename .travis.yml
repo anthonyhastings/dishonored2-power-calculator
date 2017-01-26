@@ -1,10 +1,8 @@
 sudo: required
 services:
 - docker
-before_install:
-- docker build -t $DOCKER_REGISTRY/dishonored2-power-calculator/web ./
 script:
 - docker-compose run --rm express npm test
 after_success:
-- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" $DOCKER_REGISTRY
-- docker push $DOCKER_REGISTRY/dishonored2-power-calculator/web
+- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" registry.heroku.com
+- docker push registry.heroku.com/dishonored2-power-calculator/web
