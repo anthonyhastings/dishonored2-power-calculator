@@ -9,8 +9,8 @@
   "scripts": {
     "build": "npm run webpack:production",
     "lint": "eslint --ext .js --ext .jsx scripts/ webpack/",
-    "pretest": "npm run lint",
     "prestart": "npm run webpack:production",
+    "pretest": "npm run lint",
     "start": "node scripts/server.js",
     "webpack:dev-server": "webpack-dev-server --env=development --config=webpack/webpack.config.js",
     "webpack:development": "webpack --env=development --config=webpack/webpack.config.js --colors --progress",
