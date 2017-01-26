@@ -1,0 +1,8 @@
+.DS_Store
+.dockerignore
+.editorconfig
+node_modules
+Dockerfile
+Makefile
+LICENSE
+README.md

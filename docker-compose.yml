@@ -1,0 +1,11 @@
+version: '2'
+services:
+    express:
+        build: ./
+        image: anthonyhastings:dishonored2-express
+        container_name: dishonored2-express
+        ports:
+            - 8080:8080
+        volumes:
+            - ./src:/src
+            - /src/node_modules
