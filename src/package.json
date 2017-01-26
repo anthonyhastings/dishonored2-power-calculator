@@ -9,11 +9,14 @@
   "scripts": {
     "build": "npm run webpack:production",
     "lint": "eslint --ext .js --ext .jsx scripts/ webpack/",
-    "start": "webpack-dev-server --env=development --config=webpack/webpack.config.js",
+    "pretest": "npm run lint",
+    "start": "node scripts/server.js",
+    "webpack:dev-server": "webpack-dev-server --env=development --config=webpack/webpack.config.js",
     "webpack:development": "webpack --env=development --config=webpack/webpack.config.js --colors --progress",
     "webpack:production": "webpack --env=production --config=webpack/webpack.config.js --colors --progress"
   },
   "dependencies": {
+    "express": "4.14.0",
     "immutable": "3.8.1",
     "react": "15.4.2",
     "react-dom": "15.4.2",
