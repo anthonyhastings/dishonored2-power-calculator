@@ -1,11 +1,13 @@
-version: '2'
+version: '2.1'
 services:
     express:
         build: ./
         image: registry.heroku.com/dishonored2-power-calculator/web:latest
         container_name: dishonored2-express
+        environment:
+            - PORT=${PORT:-8080}
         ports:
-            - 8080:8080
+            - ${PORT:-8080}:${PORT:-8080}
         volumes:
             - ./src:/src
             - /src/node_modules
