@@ -9,7 +9,7 @@ before_install:
 - chmod +x docker-compose
 - sudo mv docker-compose /usr/local/bin
 script:
-- docker-compose run --rm express npm test
+- make start-tests
 after_success:
 - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" registry.heroku.com
 - docker push registry.heroku.com/dishonored2-power-calculator/web

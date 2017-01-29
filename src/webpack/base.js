@@ -40,7 +40,8 @@ module.exports = function () {
       extensions: ['*', '.js', '.jsx', '.json']
     },
     devServer: {
-      port: 8080,
+      host: '0.0.0.0',
+      port: Number(process.env.PORT),
       contentBase: distPath,
       publicPath: '/',
       historyApiFallback: true,
