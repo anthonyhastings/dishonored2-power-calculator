@@ -7,7 +7,7 @@ module.exports = function () {
   return {
     entry: {
       app: './scripts/index.js',
-      vendor: ['immutable', 'react', 'react-dom', 'redux', 'reselect', 'underscore']
+      vendor: ['immutable', 'react', 'react-dom', 'react-redux', 'redux', 'reselect', 'underscore']
     },
     output: {
       path: distPath,
