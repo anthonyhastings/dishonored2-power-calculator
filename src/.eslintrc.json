@@ -37,7 +37,7 @@
     "key-spacing": 2,
     "keyword-spacing": [2, {"before": true, "after": true}],
     "max-len": [2, {"code": 120, "ignoreComments": true, "ignoreUrls": true}],
-    "new-cap": 2,
+    "new-cap": [2, {"capIsNewExceptions": ["Immutable.List", "Immutable.Map", "Immutable.Set", "Immutable.OrderedMap"]}],
     "newline-after-var": 2,
     "no-caller": 2,
     "no-mixed-spaces-and-tabs": 2,
