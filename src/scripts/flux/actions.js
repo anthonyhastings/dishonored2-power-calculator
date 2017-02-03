@@ -1,4 +1,4 @@
-export function setCharacter(character) {
+export function setCharacter (character) {
   return {
     type: 'SET_CHARACTER',
     character
