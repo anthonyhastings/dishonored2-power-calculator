@@ -5,7 +5,9 @@ describe('selectors', function () {
   describe('characterSelector', function () {
     beforeEach(function () {
       this.state = Immutable.fromJS({
-        user: {character: 'anthony'}
+        user: {
+          character: 'anthony'
+        }
       });
     });
 
