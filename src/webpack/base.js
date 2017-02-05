@@ -7,14 +7,14 @@ module.exports = function () {
   return {
     entry: {
       app: './scripts/index.js',
-      vendor: ['immutable', 'react', 'react-dom', 'react-redux', 'redux', 'reselect', 'underscore']
+      vendor: ['immutable', 'react', 'react-dom', 'react-redux', 'redux', 'redux-immutable', 'reselect', 'underscore']
     },
     output: {
       path: distPath,
       filename: 'js/[name].js'
     },
     module: {
-      noParse: /immutable|reselect|underscore/,
+      noParse: /immutable\.js|reselect|underscore/,
       rules: [
         {
           loader: 'babel-loader',

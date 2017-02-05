@@ -23,6 +23,7 @@
     "react-dom": "15.4.2",
     "react-redux": "5.0.2",
     "redux": "3.6.0",
+    "redux-immutable": "3.0.11",
     "reselect": "2.5.4",
     "underscore": "1.8.3"
   },
