@@ -6,7 +6,12 @@ import * as selectors from '../selectors';
 
 const mapStateToProps = function (state) {
   return {
-    character: selectors.characterSelector(state)
+    character: selectors.characterSelector(state),
+    totalRunes: selectors.totalRunesSelector(state),
+    spentRunes: selectors.spentRunesSelector(state),
+    remainingRunes: selectors.remainingRunesSelector(state),
+    topLevelPowers: selectors.topLevelPowersByCharacterSelector(state),
+    topLevelEnhancements: selectors.topLevelEnhancementsByCharacterSelector(state)
   };
 };
 

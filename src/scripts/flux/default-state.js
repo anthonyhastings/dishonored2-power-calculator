@@ -2,8 +2,8 @@ import Immutable from 'immutable';
 import powers from '../data/powers';
 
 export default Immutable.fromJS({
-  character: undefined,
+  character: 'corvo',
   totalRunes: 30,
-  purchases: Immutable.Map(),
+  purchases: Immutable.List(),
   powers
 });

@@ -1,17 +1,38 @@
+import {createSelector} from 'reselect';
+import * as transforms from './transforms';
+
 export const characterSelector = (state) => state.get('character');
 
 export const totalRunesSelector = (state) => state.get('totalRunes');
 
-// TODO: Create topLevelPowers and topLevelEnhancements selectors.
-// Read that redux "composed selectors" page for ideas on how to conjoin them.
-//
-// const topLevelPowers = selectorFunction(
-//   characterSelector,
-//   function(character) {
-//     if (_.isUndefined(character)) {
-//       return undefined;
-//     }
-//
-//    GET POWERS AND FILTER.
-//   }
-// )
+export const purchasesSelector = (state) => state.get('purchases');
+
+export const powersSelector = (state) => state.get('powers');
+
+export const powersByCharacterSelector = createSelector(
+  powersSelector,
+  characterSelector,
+  transforms.powersByCharacter
+);
+
+export const spentRunesSelector = createSelector(
+  powersByCharacterSelector,
+  purchasesSelector,
+  transforms.spentRunes
+);
+
+export const remainingRunesSelector = createSelector(
+  totalRunesSelector,
+  spentRunesSelector,
+  transforms.remainingRunes
+);
+
+export const topLevelPowersByCharacterSelector = createSelector(
+  powersByCharacterSelector,
+  transforms.topLevelPowers
+);
+
+export const topLevelEnhancementsByCharacterSelector = createSelector(
+  powersByCharacterSelector,
+  transforms.topLevelEnhancements
+);
