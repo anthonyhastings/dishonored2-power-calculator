@@ -1,11 +1,11 @@
 import {createSelector} from 'reselect';
 import * as transforms from './transforms';
 
-export const characterSelector = (state) => state.get('character');
+export const characterSelector = (state) => state.getIn(['user', 'character']);
 
 export const totalRunesSelector = (state) => state.get('totalRunes');
 
-export const purchasesSelector = (state) => state.get('purchases');
+export const purchasesSelector = (state) => state.getIn(['user', 'purchases']);
 
 export const powersSelector = (state) => state.get('powers');
 

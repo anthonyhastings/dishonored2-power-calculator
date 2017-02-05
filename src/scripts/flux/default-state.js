@@ -1,9 +1,15 @@
 import Immutable from 'immutable';
-import powers from '../data/powers';
+import corvo from '../data/corvo';
+import emily from '../data/emily';
 
 export default Immutable.fromJS({
-  character: 'corvo',
   totalRunes: 30,
-  purchases: Immutable.List(),
-  powers
+  powers: {
+    corvo,
+    emily
+  },
+  user: {
+    character: 'corvo',
+    purchases: Immutable.List()
+  }
 });
