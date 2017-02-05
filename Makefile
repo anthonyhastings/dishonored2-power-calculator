@@ -1,13 +1,17 @@
 help:
-	@echo "start-dev - Starts webpack-dev-server for local development."
 	@echo "start-production - Starts serving production assets via Express.js."
-	@echo "start-tests - Starts the test suite (primarily used by TravisCI)."
-
-start-dev:
-	docker-compose run --rm --service-ports express npm run webpack:dev-server
+	@echo "start-dev - Starts webpack-dev-server for local development."
+	@echo "start-tests - Starts the test suite."
+	@echo "start-tests-watch - Starts the test suite in watch mode."
 
 start-production:
 	docker-compose up
 
+start-dev:
+	docker-compose run --rm --service-ports express npm run webpack:dev-server
+
 start-tests:
-	docker-compose run --rm --service-ports express npm test
+	docker-compose run --rm express npm run test
+
+start-tests-watch:
+	docker-compose run --rm express npm run test:watch
