@@ -11,5 +11,9 @@ before_install:
 script:
 - make start-tests
 after_success:
+- ls -al ./src/node_modules/.bin/
+- ls -al ./src/node_modules/coveralls/
+- ls -al ./src/node_modules/coveralls/bin/
+- cat ./src/coverage/lcov.info | ./src/node_modules/coveralls/bin/coveralls.js
 - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" registry.heroku.com
 - docker push registry.heroku.com/dishonored2-power-calculator/web

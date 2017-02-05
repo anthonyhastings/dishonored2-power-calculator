@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import App from '../components/app';
 import * as Actions from '../flux/actions';
-import * as selectors from '../selectors';
+import * as selectors from '../flux/selectors';
 
 const mapStateToProps = function (state) {
   return {
