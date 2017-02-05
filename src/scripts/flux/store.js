@@ -1,13 +1,18 @@
 import {createStore} from 'redux';
-import mainReducer from './reducers';
+import {combineReducers} from 'redux-immutable';
+import {userReducer as user, powersReducer as powers} from './reducers';
 
-const isProduction = process.env.NODE_ENV;
 let store;
+const isProduction = process.env.NODE_ENV;
+const rootReducer = combineReducers({
+  user,
+  powers
+});
 
 if (isProduction) {
-  store = createStore(mainReducer);
+  store = createStore(rootReducer);
 } else {
-  store = createStore(mainReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+  store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 }
 
 export default store;

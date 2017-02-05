@@ -3,7 +3,7 @@ import * as transforms from './transforms';
 
 export const characterSelector = (state) => state.getIn(['user', 'character']);
 
-export const totalRunesSelector = (state) => state.get('totalRunes');
+export const totalRunesSelector = (state) => state.getIn(['user', 'totalRunes']);
 
 export const purchasesSelector = (state) => state.getIn(['user', 'purchases']);
 
