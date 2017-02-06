@@ -3,7 +3,8 @@ import {
   characterSelector,
   totalRunesSelector,
   purchasesSelector,
-  powersSelector
+  powersSelector,
+  isPowerPurchasedSelector
 } from '../';
 
 describe('input/simple selectors', function () {
@@ -67,6 +68,40 @@ describe('input/simple selectors', function () {
         corvo: {},
         emily: {}
       }));
+    });
+  });
+
+  describe('isPowerPurchasedSelector', function () {
+    describe('when a particular power has not been purchased', function () {
+      beforeEach(function () {
+        this.state = Immutable.fromJS({
+          user: {
+            purchases: []
+          }
+        });
+
+        this.result = isPowerPurchasedSelector(this.state, 'uuid-01');
+      });
+
+      it('should return false', function () {
+        expect(this.result).toEqual(false);
+      });
+    });
+
+    describe('when a particular power has been purchased', function () {
+      beforeEach(function () {
+        this.state = Immutable.fromJS({
+          user: {
+            purchases: ['uuid-01']
+          }
+        });
+
+        this.result = isPowerPurchasedSelector(this.state, 'uuid-01');
+      });
+
+      it('should return true', function () {
+        expect(this.result).toEqual(true);
+      });
     });
   });
 });

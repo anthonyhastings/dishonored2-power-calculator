@@ -9,6 +9,12 @@ export const purchasesSelector = (state) => state.getIn(['user', 'purchases']);
 
 export const powersSelector = (state) => state.get('powers');
 
+export const isPowerPurchasedSelector = (state, powerId) => {
+  const purchases = purchasesSelector(state);
+
+  return purchases.includes(powerId);
+};
+
 export const powersByCharacterSelector = createSelector(
   powersSelector,
   characterSelector,
