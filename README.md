@@ -8,3 +8,9 @@ Interact via Makefile commands; see list by executing the following:
 ```
 make
 ```
+
+
+## TODO
+- Integration testing with Capybara and PhantomJS.
+- Webpack static assets (images / stylesheets).
+- Postgres container / Rails container for CMS to power "powers".
