@@ -9,8 +9,7 @@ before_install:
 - chmod +x docker-compose
 - sudo mv docker-compose /usr/local/bin
 script:
-- make start-tests
+- make start-tests-upload-coverage
 after_success:
-- cat ./src/coverage/lcov.info | ./src/node_modules/coveralls/bin/coveralls.js
 - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" registry.heroku.com
 - docker push registry.heroku.com/dishonored2-power-calculator/web

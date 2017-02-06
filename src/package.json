@@ -13,6 +13,7 @@
     "pretest": "npm run lint",
     "start": "node scripts/server.js",
     "test": "jest --setupTestFrameworkScriptFile=scripts/test-support/index.js --coverage --verbose",
+    "test:upload-coverage": "npm test && cat coverage/lcov.info | coveralls",
     "test:watch": "npm test -- --watch",
     "webpack:dev-server": "webpack-dev-server --env=development --config=webpack/webpack.config.js",
     "webpack:development": "webpack --env=development --config=webpack/webpack.config.js --colors --progress",

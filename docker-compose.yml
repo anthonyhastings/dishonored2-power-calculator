@@ -6,6 +6,8 @@ services:
         container_name: dishonored2-express
         environment:
             - PORT=${PORT:-8080}
+            - COVERALLS_SERVICE_NAME=${COVERALLS_SERVICE_NAME:-missing}
+            - COVERALLS_REPO_TOKEN=${COVERALLS_REPO_TOKEN:-missing}
         ports:
             - ${PORT:-8080}:${PORT:-8080}
         volumes:
