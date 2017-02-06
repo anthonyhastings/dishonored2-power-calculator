@@ -1,5 +1,5 @@
-import powersReducer from './powers-reducer';
-import userReducer from './user-reducer';
+import {reducer as powersReducer} from './powers-reducer';
+import {reducer as userReducer} from './user-reducer';
 
 export {
   powersReducer,
