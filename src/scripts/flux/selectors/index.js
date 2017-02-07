@@ -9,6 +9,8 @@ export const purchasesSelector = (state) => state.getIn(['user', 'purchases']);
 
 export const powersSelector = (state) => state.getIn(['powers', 'powers']);
 
+export const enhancementsSelector = (state) => state.getIn(['powers', 'enhancements']);
+
 export const isPowerPurchasedSelector = (state, powerId) => {
   const purchases = purchasesSelector(state);
 
