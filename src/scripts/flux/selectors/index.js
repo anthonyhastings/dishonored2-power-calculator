@@ -17,6 +17,12 @@ export const isPowerPurchasedSelector = (state, powerId) => {
   return purchases.includes(powerId);
 };
 
+export const powersAndEnhancementsSelector = createSelector(
+  powersSelector,
+  enhancementsSelector,
+  transforms.powersAndEnhancements
+);
+
 export const powersByCharacterSelector = createSelector(
   powersSelector,
   characterSelector,
