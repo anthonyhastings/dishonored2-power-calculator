@@ -1,5 +1,5 @@
-import filterTopLevel from '../utils/filter-top-level';
-
-export default function (powers) {
-  return filterTopLevel(powers, 'enhancement');
-}
+export default function (enhancements) {
+  return enhancements.filter((enhancement) => {
+    return (enhancement.get('parentPowerId') === null);
+  });
+};

@@ -46,7 +46,7 @@ export const topLevelPowersByCharacterSelector = createSelector(
   transforms.topLevelPowers
 );
 
-export const topLevelEnhancementsByCharacterSelector = createSelector(
-  powersByCharacterSelector,
+export const topLevelEnhancementsSelector = createSelector(
+  enhancementsSelector,
   transforms.topLevelEnhancements
 );

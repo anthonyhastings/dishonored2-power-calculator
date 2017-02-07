@@ -1,5 +1,5 @@
-import filterTopLevel from '../utils/filter-top-level';
-
 export default function (powers) {
-  return filterTopLevel(powers, 'power');
-}
+  return powers.filter((power) => {
+    return (power.get('parentPowerId') === null);
+  });
+};

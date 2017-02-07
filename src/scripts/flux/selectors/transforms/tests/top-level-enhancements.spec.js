@@ -1,27 +1,44 @@
 import Immutable from 'immutable';
-import filterTopLevel from '../../utils/filter-top-level';
 import topLevelEnhancements from '../top-level-enhancements';
-
-jest.mock('../../utils/filter-top-level');
 
 describe('Top level enhancements', function () {
   beforeEach(function () {
-    this.powers = Immutable.fromJS({
+    this.enhancements = Immutable.fromJS({
       'uuid-01': {
-        name: 'Power #01'
+        parentPowerId: null,
+        name: 'Enhancement #01'
       },
       'uuid-02': {
-        name: 'Power #02'
+        parentPowerId: null,
+        name: 'Enhancement #02'
+      },
+      'uuid-03': {
+        parentPowerId: 'uuid-01',
+        name: 'Enhancement #03'
+      },
+      'uuid-04': {
+        parentPowerId: null,
+        name: 'Enhancement #04'
       }
     });
   });
 
-  describe('when called with powers', function () {
-    it('should trigger filterTopLevel with correct arguments', function () {
-      topLevelEnhancements(this.powers);
-      expect(filterTopLevel.mock.calls.length).toEqual(1);
-      expect(filterTopLevel.mock.calls[0][0]).toEqualImmutable(this.powers);
-      expect(filterTopLevel.mock.calls[0][1]).toEqual('enhancement');
+  describe('when called with enhancements', function () {
+    it('returns only top level enhancements', function () {
+      expect(topLevelEnhancements(this.enhancements)).toEqualImmutable(Immutable.fromJS({
+        'uuid-01': {
+          parentPowerId: null,
+          name: 'Enhancement #01'
+        },
+        'uuid-02': {
+          parentPowerId: null,
+          name: 'Enhancement #02'
+        },
+        'uuid-04': {
+          parentPowerId: null,
+          name: 'Enhancement #04'
+        }
+      }));
     });
   });
 });
