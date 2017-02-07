@@ -4,6 +4,7 @@ import {
   totalRunesSelector,
   purchasesSelector,
   powersSelector,
+  powerSelector,
   enhancementsSelector,
   isPowerPurchasedSelector
 } from '../';
@@ -54,6 +55,27 @@ describe('input/simple selectors', function () {
     });
   });
 
+  describe('enhancementsSelector', function () {
+    beforeEach(function () {
+      this.state = Immutable.fromJS({
+        powers: {
+          powers: {
+            'uuid-01': 'hello'
+          },
+          enhancements: {
+            'uuid-02': 'world'
+          }
+        }
+      });
+    });
+
+    it('should return appropriate value', function () {
+      expect(enhancementsSelector(this.state)).toEqualImmutable(Immutable.fromJS({
+        'uuid-02': 'world'
+      }));
+    });
+  });
+
   describe('powersSelector', function () {
     beforeEach(function () {
       this.state = Immutable.fromJS({
@@ -75,7 +97,7 @@ describe('input/simple selectors', function () {
     });
   });
 
-  describe('enhancementsSelector', function () {
+  describe('powerSelector', function () {
     beforeEach(function () {
       this.state = Immutable.fromJS({
         powers: {
@@ -90,9 +112,7 @@ describe('input/simple selectors', function () {
     });
 
     it('should return appropriate value', function () {
-      expect(enhancementsSelector(this.state)).toEqualImmutable(Immutable.fromJS({
-        'uuid-02': 'world'
-      }));
+      expect(powerSelector(this.state, 'uuid-02')).toEqual('world');
     });
   });
 
