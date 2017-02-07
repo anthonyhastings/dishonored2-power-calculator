@@ -4,19 +4,32 @@ import {powersByCharacter} from '../';
 describe('Powers by character', function () {
   beforeEach(function () {
     this.powers = Immutable.fromJS({
-      corvo: {
-        name: 'Foo'
+      'uuid-01': {
+        character: 'corvo',
+        name: 'Power #01'
       },
-      emily: {
-        name: 'Bar'
+      'uuid-02': {
+        character: 'emily',
+        name: 'Power #02'
+      },
+      'uuid-03': {
+        character: 'corvo',
+        name: 'Power #03'
       }
     });
   });
 
   describe('when supplied a character', function () {
     it('should return that characters powers', function () {
-      expect(powersByCharacter(this.powers, 'corvo')).toEqualImmutable(Immutable.Map({
-        name: 'Foo'
+      expect(powersByCharacter(this.powers, 'corvo')).toEqualImmutable(Immutable.fromJS({
+        'uuid-01': {
+          character: 'corvo',
+          name: 'Power #01'
+        },
+        'uuid-03': {
+          character: 'corvo',
+          name: 'Power #03'
+        }
       }));
     });
   });

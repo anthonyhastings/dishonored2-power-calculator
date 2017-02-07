@@ -57,16 +57,19 @@ describe('input/simple selectors', function () {
     beforeEach(function () {
       this.state = Immutable.fromJS({
         powers: {
-          corvo: {},
-          emily: {}
+          powers: {
+            'uuid-01': 'hello'
+          },
+          enhancements: {
+            'uuid-02': 'world'
+          }
         }
       });
     });
 
     it('should return appropriate value', function () {
       expect(powersSelector(this.state)).toEqualImmutable(Immutable.fromJS({
-        corvo: {},
-        emily: {}
+        'uuid-01': 'hello'
       }));
     });
   });

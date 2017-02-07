@@ -7,7 +7,7 @@ export const totalRunesSelector = (state) => state.getIn(['user', 'totalRunes'])
 
 export const purchasesSelector = (state) => state.getIn(['user', 'purchases']);
 
-export const powersSelector = (state) => state.get('powers');
+export const powersSelector = (state) => state.getIn(['powers', 'powers']);
 
 export const isPowerPurchasedSelector = (state, powerId) => {
   const purchases = purchasesSelector(state);
