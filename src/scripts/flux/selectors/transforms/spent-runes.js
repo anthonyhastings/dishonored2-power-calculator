@@ -1,5 +1,5 @@
-export default function (powers, purchases) {
+export default function (powersAndEnhancements, purchases) {
   return purchases.reduce((memo, purchase) => {
-    return memo + powers.getIn([purchase, 'cost']);
+    return memo + powersAndEnhancements.getIn([purchase, 'cost']);
   }, 0);
 };

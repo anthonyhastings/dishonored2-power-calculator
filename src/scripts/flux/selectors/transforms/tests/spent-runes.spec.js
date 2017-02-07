@@ -3,7 +3,7 @@ import {spentRunes} from '../';
 
 describe('Spent runes', function () {
   beforeEach(function () {
-    this.powers = Immutable.fromJS({
+    this.powersAndEnhancements = Immutable.fromJS({
       'uuid-01': {
         name: 'Power #01',
         cost: 3
@@ -15,6 +15,10 @@ describe('Spent runes', function () {
       'uuid-03': {
         name: 'Power #03',
         cost: 5
+      },
+      'uuid-04': {
+        name: 'Enhancement #04',
+        cost: 2
       }
     });
   });
@@ -25,17 +29,17 @@ describe('Spent runes', function () {
     });
 
     it('should return zero', function () {
-      expect(spentRunes(this.powers, this.purchases)).toEqual(0);
+      expect(spentRunes(this.powersAndEnhancements, this.purchases)).toEqual(0);
     });
   });
 
   describe('when given purchases', function () {
     beforeEach(function () {
-      this.purchases = Immutable.fromJS(['uuid-01', 'uuid-03']);
+      this.purchases = Immutable.fromJS(['uuid-01', 'uuid-03', 'uuid-04']);
     });
 
     it('should return the correct amount spent', function () {
-      expect(spentRunes(this.powers, this.purchases)).toEqual(8);
+      expect(spentRunes(this.powersAndEnhancements, this.purchases)).toEqual(10);
     });
   });
 });

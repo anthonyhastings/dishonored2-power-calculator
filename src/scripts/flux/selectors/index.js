@@ -30,7 +30,7 @@ export const powersByCharacterSelector = createSelector(
 );
 
 export const spentRunesSelector = createSelector(
-  powersByCharacterSelector,
+  powersAndEnhancementsSelector,
   purchasesSelector,
   transforms.spentRunes
 );
