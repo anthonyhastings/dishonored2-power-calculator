@@ -23,6 +23,31 @@ export const isPowerPurchasedSelector = (state, powerId) => {
   return purchases.includes(powerId);
 };
 
+export const isPowerPurchasableSelector = (state, powerId) => {
+  const isPowerPurchased = isPowerPurchasedSelector(state, powerId);
+
+  if (isPowerPurchased) {
+    return false;
+  }
+
+  const power = powerSelector(state, powerId);
+  const remainingRunes = remainingRunesSelector(state);
+  const cantAffordPower = (power.get('cost') > remainingRunes);
+
+  if (cantAffordPower) {
+    return false;
+  }
+
+  const parentPowerId = power.get('parentPowerId');
+  const hasUnboughtParent = (parentPowerId) ? !isPowerPurchasedSelector(state, parentPowerId) : false;
+
+  if (hasUnboughtParent) {
+    return false;
+  }
+
+  return true;
+};
+
 export const powersAndEnhancementsSelector = createSelector(
   powersSelector,
   enhancementsSelector,
