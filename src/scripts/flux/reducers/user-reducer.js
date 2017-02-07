@@ -19,4 +19,4 @@ export function reducer (state = defaultState, action) {
   }
 
   return reducedState;
-}
+};
