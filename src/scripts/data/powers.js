@@ -249,6 +249,35 @@ export default {
     cost: 3
   },
 
+  // Domino powers.
+  '63b89a2d-0cf7-4243-9f3a-89b8906846c1': {
+    id: '63b89a2d-0cf7-4243-9f3a-89b8906846c1',
+    parentPowerId: null,
+    character: 'emily',
+    type: 'power',
+    name: 'Domino',
+    description: 'Link human targets so they die or fall unconscious together.',
+    cost: 4
+  },
+  'f1b6a61f-8556-4774-b49d-cd418d459229': {
+    id: 'f1b6a61f-8556-4774-b49d-cd418d459229',
+    parentPowerId: '63b89a2d-0cf7-4243-9f3a-89b8906846c1',
+    character: 'emily',
+    type: 'power',
+    name: 'Link Three',
+    description: 'Link up to 3 enemies.',
+    cost: 3
+  },
+  '4ed7aa33-c6f8-4600-91c9-8e69501fe6cb': {
+    id: '4ed7aa33-c6f8-4600-91c9-8e69501fe6cb',
+    parentPowerId: 'f1b6a61f-8556-4774-b49d-cd418d459229',
+    character: 'emily',
+    type: 'power',
+    name: 'Link Four',
+    description: 'Link up to 4 enemies.',
+    cost: 3
+  },
+
   // Doppelgänger powers.
   '549c5a0d-16c1-44c9-aef6-57a12e082145': {
     id: '549c5a0d-16c1-44c9-aef6-57a12e082145',
@@ -293,6 +322,44 @@ export default {
     type: 'power',
     name: 'Transposition',
     description: 'Swap places with your summoned Doppelgänger.',
+    cost: 2
+  },
+
+  // Far reach powers.
+  '8c45a602-aa8f-4f74-bb68-620cc9af9694': {
+    id: '8c45a602-aa8f-4f74-bb68-620cc9af9694',
+    parentPowerId: null,
+    character: 'emily',
+    type: 'power',
+    name: 'Far Reach',
+    description: 'Pull yourself rapidly across a distance.',
+    cost: 0
+  },
+  'd41e809b-899b-4038-be80-51ed65b2a44c': {
+    id: 'd41e809b-899b-4038-be80-51ed65b2a44c',
+    parentPowerId: '8c45a602-aa8f-4f74-bb68-620cc9af9694',
+    character: 'emily',
+    type: 'power',
+    name: 'Pull Objects',
+    description: 'Pull objects toward you and catch them in midair. Includes corpses and unconscious bodies.',
+    cost: 2
+  },
+  '819019ab-9bc0-4d17-901e-01085fa68a17': {
+    id: '819019ab-9bc0-4d17-901e-01085fa68a17',
+    parentPowerId: 'd41e809b-899b-4038-be80-51ed65b2a44c',
+    character: 'emily',
+    type: 'power',
+    name: 'Pull Enemies',
+    description: 'Pull enemies toward you, and kill or incapacitate them in midair. Not stealthy.',
+    cost: 4
+  },
+  'da241db7-768f-451d-8c25-978d0ad5033d': {
+    id: 'da241db7-768f-451d-8c25-978d0ad5033d',
+    parentPowerId: '8c45a602-aa8f-4f74-bb68-620cc9af9694',
+    character: 'emily',
+    type: 'power',
+    name: 'Decelerate',
+    description: 'If you are falling, time is briefly slowed as you aim Far Reach.',
     cost: 2
   },
 
