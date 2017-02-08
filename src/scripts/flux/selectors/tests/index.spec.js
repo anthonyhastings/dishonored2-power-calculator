@@ -3,14 +3,13 @@ import {
   characterSelector,
   totalRunesSelector,
   purchasesSelector,
-  powersSelector,
+  powersAndEnhancementsSelector,
   powerSelector,
-  enhancementsSelector,
   isPowerPurchasedSelector,
   isPowerPurchasableSelector
 } from '../';
 
-describe('input/simple selectors', function () {
+describe('selectors', function () {
   describe('characterSelector', function () {
     beforeEach(function () {
       this.state = Immutable.fromJS({
@@ -56,44 +55,20 @@ describe('input/simple selectors', function () {
     });
   });
 
-  describe('enhancementsSelector', function () {
+  describe('powersAndEnhancementsSelector', function () {
     beforeEach(function () {
       this.state = Immutable.fromJS({
         powers: {
-          powers: {
-            'uuid-01': 'hello'
-          },
-          enhancements: {
-            'uuid-02': 'world'
-          }
+          'uuid-01': 'hello',
+          'uuid-02': 'world'
         }
       });
     });
 
     it('should return appropriate value', function () {
-      expect(enhancementsSelector(this.state)).toEqualImmutable(Immutable.fromJS({
+      expect(powersAndEnhancementsSelector(this.state)).toEqualImmutable(Immutable.fromJS({
+        'uuid-01': 'hello',
         'uuid-02': 'world'
-      }));
-    });
-  });
-
-  describe('powersSelector', function () {
-    beforeEach(function () {
-      this.state = Immutable.fromJS({
-        powers: {
-          powers: {
-            'uuid-01': 'hello'
-          },
-          enhancements: {
-            'uuid-02': 'world'
-          }
-        }
-      });
-    });
-
-    it('should return appropriate value', function () {
-      expect(powersSelector(this.state)).toEqualImmutable(Immutable.fromJS({
-        'uuid-01': 'hello'
       }));
     });
   });
@@ -102,12 +77,8 @@ describe('input/simple selectors', function () {
     beforeEach(function () {
       this.state = Immutable.fromJS({
         powers: {
-          powers: {
-            'uuid-01': 'hello'
-          },
-          enhancements: {
-            'uuid-02': 'world'
-          }
+          'uuid-01': 'hello',
+          'uuid-02': 'world'
         }
       });
     });
@@ -159,21 +130,17 @@ describe('input/simple selectors', function () {
           totalRunes: 7
         },
         powers: {
-          enhancements: {
+          'uuid-01': {
+            id: 'uuid-01',
+            parentPowerId: null,
+            name: 'Power #01',
+            cost: 2
           },
-          powers: {
-            'uuid-01': {
-              id: 'uuid-01',
-              parentPowerId: null,
-              name: 'Power #01',
-              cost: 2
-            },
-            'uuid-02': {
-              id: 'uuid-02',
-              parentPowerId: 'uuid-01',
-              name: 'Power #01',
-              cost: 5
-            }
+          'uuid-02': {
+            id: 'uuid-02',
+            parentPowerId: 'uuid-01',
+            name: 'Power #01',
+            cost: 5
           }
         }
       });
@@ -197,7 +164,7 @@ describe('input/simple selectors', function () {
     describe('when the power cannot be afforded', function () {
       beforeEach(function () {
         this.state = this.defaultState.withMutations((map) => {
-          map.setIn(['powers', 'powers', 'uuid-01', 'cost'], 500);
+          map.setIn(['powers', 'uuid-01', 'cost'], 500);
         });
       });
 

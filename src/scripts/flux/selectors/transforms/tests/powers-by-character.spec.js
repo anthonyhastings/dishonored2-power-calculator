@@ -15,6 +15,10 @@ describe('Powers by character', function () {
       'uuid-03': {
         character: 'corvo',
         name: 'Power #03'
+      },
+      'uuid-04': {
+        character: null,
+        name: 'Power #04'
       }
     });
   });
@@ -29,6 +33,10 @@ describe('Powers by character', function () {
         'uuid-03': {
           character: 'corvo',
           name: 'Power #03'
+        },
+        'uuid-04': {
+          character: null,
+          name: 'Power #04'
         }
       }));
     });

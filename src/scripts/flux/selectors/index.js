@@ -7,9 +7,22 @@ export const totalRunesSelector = (state) => state.getIn(['user', 'totalRunes'])
 
 export const purchasesSelector = (state) => state.getIn(['user', 'purchases']);
 
-export const enhancementsSelector = (state) => state.getIn(['powers', 'enhancements']);
+export const powersAndEnhancementsSelector = (state) => state.get('powers');
 
-export const powersSelector = (state) => state.getIn(['powers', 'powers']);
+export const enhancementsSelector = createSelector(
+  powersAndEnhancementsSelector,
+  transforms.filterEnhancements
+);
+
+export const topLevelEnhancementsSelector = createSelector(
+  enhancementsSelector,
+  transforms.topLevelEnhancements
+);
+
+export const powersSelector = createSelector(
+  powersAndEnhancementsSelector,
+  transforms.filterPowers
+);
 
 export const powerSelector = (state, powerId) => {
   const powersAndEnhancements = powersAndEnhancementsSelector(state);
@@ -48,18 +61,6 @@ export const isPowerPurchasableSelector = (state, powerId) => {
   return true;
 };
 
-export const powersAndEnhancementsSelector = createSelector(
-  powersSelector,
-  enhancementsSelector,
-  transforms.powersAndEnhancements
-);
-
-export const powersByCharacterSelector = createSelector(
-  powersSelector,
-  characterSelector,
-  transforms.powersByCharacter
-);
-
 export const spentRunesSelector = createSelector(
   powersAndEnhancementsSelector,
   purchasesSelector,
@@ -72,9 +73,10 @@ export const remainingRunesSelector = createSelector(
   transforms.remainingRunes
 );
 
-export const topLevelEnhancementsSelector = createSelector(
-  enhancementsSelector,
-  transforms.topLevelEnhancements
+export const powersByCharacterSelector = createSelector(
+  powersSelector,
+  characterSelector,
+  transforms.powersByCharacter
 );
 
 export const topLevelPowersByCharacterSelector = createSelector(
