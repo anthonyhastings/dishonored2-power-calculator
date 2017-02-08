@@ -129,6 +129,82 @@ export default {
     cost: 3
   },
 
+  // Doppelgänger powers.
+  '549c5a0d-16c1-44c9-aef6-57a12e082145': {
+    id: '549c5a0d-16c1-44c9-aef6-57a12e082145',
+    parentPowerId: null,
+    character: 'emily',
+    name: 'Doppelgänger',
+    description: 'Summon a shade of yourself that attracts enemies.',
+    cost: 4
+  },
+  '5de51786-b0a9-472f-8004-d1180cb582c2': {
+    id: '5de51786-b0a9-472f-8004-d1180cb582c2',
+    parentPowerId: '549c5a0d-16c1-44c9-aef6-57a12e082145',
+    character: 'emily',
+    name: 'Baffling Shade',
+    description: 'Your Doppelgänger will confuse enemies as it fades away.',
+    cost: 1
+  },
+  '8f5cbc1e-86be-41df-85fe-82434ebcdc69': {
+    id: '8f5cbc1e-86be-41df-85fe-82434ebcdc69',
+    parentPowerId: '549c5a0d-16c1-44c9-aef6-57a12e082145',
+    character: 'emily',
+    name: 'Deadly Shade',
+    description: 'Summon a Doppelgänger that can fight enemies and assassinate when undetected.',
+    cost: 3
+  },
+  '54188b40-c014-4bd8-aa89-5453301240a2': {
+    id: '54188b40-c014-4bd8-aa89-5453301240a2',
+    parentPowerId: '8f5cbc1e-86be-41df-85fe-82434ebcdc69',
+    character: 'emily',
+    name: 'Twin Shades',
+    description: 'Summon two Doppelgängers who act independently of each other.',
+    cost: 3
+  },
+  '2cb21cff-edc5-4a9a-bc03-1fef643e6931': {
+    id: '2cb21cff-edc5-4a9a-bc03-1fef643e6931',
+    parentPowerId: '549c5a0d-16c1-44c9-aef6-57a12e082145',
+    character: 'emily',
+    name: 'Transposition',
+    description: 'Swap places with your summoned Doppelgänger.',
+    cost: 2
+  },
+
+  // Mesmerize powers.
+  '3d1ef033-1e9e-437b-b994-da2848368eb5': {
+    id: '3d1ef033-1e9e-437b-b994-da2848368eb5',
+    parentPowerId: null,
+    character: 'emily',
+    name: 'Mesmerize',
+    description: 'Summon a Void spirit to enthrall humans or hounds.',
+    cost: 6
+  },
+  '341f8206-e5cf-4d20-94d4-3ef88ff81b1d': {
+    id: '341f8206-e5cf-4d20-94d4-3ef88ff81b1d',
+    parentPowerId: '3d1ef033-1e9e-437b-b994-da2848368eb5',
+    character: 'emily',
+    name: 'Mesmerize Three',
+    description: 'Enthrall up to 3 human or canine targets.',
+    cost: 3
+  },
+  '9ab61f4c-b5dd-43a5-b412-455855e81469': {
+    id: '9ab61f4c-b5dd-43a5-b412-455855e81469',
+    parentPowerId: '341f8206-e5cf-4d20-94d4-3ef88ff81b1d',
+    character: 'emily',
+    name: 'Mesmerize Four',
+    description: 'Enthrall up to 4 human or canine targets.',
+    cost: 3
+  },
+  '47f9050a-1906-459b-843b-0ba4619e9abf': {
+    id: '47f9050a-1906-459b-843b-0ba4619e9abf',
+    parentPowerId: '3d1ef033-1e9e-437b-b994-da2848368eb5',
+    character: 'emily',
+    name: 'Lasting Mesmerize',
+    description: 'Extend duration.',
+    cost: 2
+  },
+
   // Windblast powers.
   'b3d3e62b-bd8c-4ebf-9057-a7f42eb3c8be': {
     id: 'b3d3e62b-bd8c-4ebf-9057-a7f42eb3c8be',
@@ -195,5 +271,47 @@ export default {
     name: 'Lasting Posession',
     description: 'Extend duration.',
     cost: 1
+  },
+
+  // Shadow walk powers.
+  'e336ff67-6676-4ace-89c1-9f6dbc53e265': {
+    id: 'e336ff67-6676-4ace-89c1-9f6dbc53e265',
+    parentPowerId: null,
+    character: 'emily',
+    name: 'Shadow Walk',
+    description: 'Assume a stealthier form for a short time.',
+    cost: 4
+  },
+  'eae318de-9173-4fef-b023-53a4098e366a': {
+    id: 'eae318de-9173-4fef-b023-53a4098e366a',
+    parentPowerId: 'e336ff67-6676-4ace-89c1-9f6dbc53e265',
+    character: 'emily',
+    name: 'Rat Shadows',
+    description: 'Move through rat tunnels in your stealthier form.',
+    cost: 1
+  },
+  '5d4a2356-fe27-469e-9ab4-25c0e3d06e6d': {
+    id: '5d4a2356-fe27-469e-9ab4-25c0e3d06e6d',
+    parentPowerId: 'e336ff67-6676-4ace-89c1-9f6dbc53e265',
+    character: 'emily',
+    name: 'Improved Shadow Attack',
+    description: 'Assassinate or incapacitate up to 2 enemies during Shadow Walk.',
+    cost: 2
+  },
+  '7c2e2dbf-b1a8-4320-aeba-0a717a7602fc': {
+    id: '7c2e2dbf-b1a8-4320-aeba-0a717a7602fc',
+    parentPowerId: '5d4a2356-fe27-469e-9ab4-25c0e3d06e6d',
+    character: 'emily',
+    name: 'Greater Shadow Attack',
+    description: 'Assassinate or incapacitate up to 3 enemies during Shadow Walk.',
+    cost: 2
+  },
+  '1f5a35f4-5c15-43fd-b8fd-9592e4d0942b': {
+    id: '1f5a35f4-5c15-43fd-b8fd-9592e4d0942b',
+    parentPowerId: 'e336ff67-6676-4ace-89c1-9f6dbc53e265',
+    character: 'emily',
+    name: 'Shadow Run',
+    description: 'Move faster while in your stealthier form.',
+    cost: 2
   }
 };
