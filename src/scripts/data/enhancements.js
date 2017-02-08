@@ -114,9 +114,65 @@ export default {
     name: 'Greater Blood Thirst',
     description: 'Kill multiple enemies within range.',
     cost: 3
-  }
+  },
 
   // Bonecharm crafting enhancements.
+  '0dc9ca43-a526-4536-b202-0215e8579807': {
+    id: '0dc9ca43-a526-4536-b202-0215e8579807',
+    parentPowerId: null,
+    name: 'Bonecharm Crafting',
+    description: 'Craft your own unique Bonecharms, with some chance of corruption.',
+    cost: 1
+  },
+  '2109302a-7dc1-4356-80e9-43b9d72bc63e': {
+    id: '2109302a-7dc1-4356-80e9-43b9d72bc63e',
+    parentPowerId: '0dc9ca43-a526-4536-b202-0215e8579807',
+    name: 'Witch Crafting',
+    description: 'Lower chance of corruption for Bonecharms with 3 or 4 traits.',
+    cost: 2
+  },
+  '6a493c37-f714-4586-9b2e-b5cc43b5b2cc': {
+    id: '6a493c37-f714-4586-9b2e-b5cc43b5b2cc',
+    parentPowerId: '2109302a-7dc1-4356-80e9-43b9d72bc63e',
+    name: 'Master Crafting',
+    description: 'No chance of corruption when crafting Bonecharms with 3 Traits.',
+    cost: 2
+  },
+  '1bdc0e0d-b188-4f19-b556-8be7762deee6': {
+    id: '1bdc0e0d-b188-4f19-b556-8be7762deee6',
+    parentPowerId: '6a493c37-f714-4586-9b2e-b5cc43b5b2cc',
+    name: 'Craft Runes',
+    description: 'Craft Runes by expending Raw Whalebone, or sacrifice existing Runes to accumulate Raw Whalebone for crafting.',
+    cost: 4
+  },
+  'ed159c65-4b65-4dd5-be35-d9e633d0df62': {
+    id: 'ed159c65-4b65-4dd5-be35-d9e633d0df62',
+    parentPowerId: '0dc9ca43-a526-4536-b202-0215e8579807',
+    name: 'Trait Synergy',
+    description: 'Use the same trait up to four times across your crafted Bonecharms.',
+    cost: 3
+  },
 
   // Shadow kill enhancements.
+  'fb909e60-c319-4133-9716-bc4a15c645a7': {
+    id: 'fb909e60-c319-4133-9716-bc4a15c645a7',
+    parentPowerId: null,
+    name: 'Shadow Kill',
+    description: 'Turn unaware enemies to ash as they die.',
+    cost: 2
+  },
+  '96558f9c-ee1d-4443-9076-786f42784f09': {
+    id: '96558f9c-ee1d-4443-9076-786f42784f09',
+    parentPowerId: 'fb909e60-c319-4133-9716-bc4a15c645a7',
+    name: 'Greater Shadow Kill',
+    description: 'Turn all enemies to ash as they die.',
+    cost: 2
+  },
+  '6d4aac82-45ec-4bad-b135-4ec67ac8ef67': {
+    id: '6d4aac82-45ec-4bad-b135-4ec67ac8ef67',
+    parentPowerId: '96558f9c-ee1d-4443-9076-786f42784f09',
+    name: 'Bloodfly Swarm',
+    description: 'Transform enemies killed in combat into bloodflies as they die.',
+    cost: 3
+  }
 };
