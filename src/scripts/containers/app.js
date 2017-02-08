@@ -11,7 +11,7 @@ const mapStateToProps = function (state) {
     spentRunes: selectors.spentRunesSelector(state),
     remainingRunes: selectors.remainingRunesSelector(state),
     topLevelPowers: selectors.topLevelPowersByCharacterSelector(state),
-    topLevelEnhancements: selectors.topLevelEnhancementsByCharacterSelector(state)
+    topLevelEnhancements: selectors.topLevelEnhancementsSelector(state)
   };
 };
 
