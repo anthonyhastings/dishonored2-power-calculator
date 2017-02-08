@@ -24,6 +24,12 @@ export const powersSelector = createSelector(
   transforms.filterPowers
 );
 
+export const topLevelPowersByCharacterSelector = createSelector(
+  powersSelector,
+  characterSelector,
+  transforms.topLevelPowersByCharacter
+);
+
 export const powerSelector = (state, powerId) => {
   const powersAndEnhancements = powersAndEnhancementsSelector(state);
 
@@ -71,15 +77,4 @@ export const remainingRunesSelector = createSelector(
   totalRunesSelector,
   spentRunesSelector,
   transforms.remainingRunes
-);
-
-export const powersByCharacterSelector = createSelector(
-  powersSelector,
-  characterSelector,
-  transforms.powersByCharacter
-);
-
-export const topLevelPowersByCharacterSelector = createSelector(
-  powersByCharacterSelector,
-  transforms.topLevelPowers
 );
