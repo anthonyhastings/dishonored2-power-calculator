@@ -11,6 +11,9 @@ make
 
 
 ## TODO
+- Ensure that I have a good split of "Container" components and presentational "dumb" components.
+- Use a multitude of intermediate "container" components to stop the flood of props. See: https://egghead.io/lessons/javascript-redux-extracting-container-components-filterlink
+- Use React-Router with Redux and have character-selection, powers-selection screens.
 - Integration testing with Capybara and PhantomJS.
 - Webpack static assets (images / stylesheets).
 - Postgres container / Rails container for CMS to power "powers".
