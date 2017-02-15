@@ -1,4 +1,3 @@
-import Immutable from 'immutable';
 import {createSelector} from 'reselect';
 import * as transforms from './transforms';
 
@@ -61,11 +60,7 @@ export const isPowerPurchasableSelector = (state, powerId) => {
   const parentPowerId = power.get('parentPowerId');
   const hasUnboughtParent = (parentPowerId) ? !isPowerPurchasedSelector(state, parentPowerId) : false;
 
-  if (hasUnboughtParent) {
-    return false;
-  }
-
-  return true;
+  return (hasUnboughtParent) ? false : true;
 };
 
 export const spentRunesSelector = createSelector(
@@ -82,26 +77,8 @@ export const remainingRunesSelector = createSelector(
 
 export const powerTreeSelector = (state, powerId) => {
   const powersAndEnhancements = powersAndEnhancementsSelector(state);
+  const childPowers = transforms.createPowerTree(powersAndEnhancements, powerId);
   let power = powerSelector(state, powerId);
 
-  power = power.set('children', getChildPowers(powersAndEnhancements, powerId));
-
-  return power;
-};
-
-// TODO: WHERE SHOULD THIS BE PUT / TESTED? UTILS?
-function getChildPowers (powers, parentId) {
-  let childPowers = Immutable.List();
-
-  powers.forEach((power) => {
-    if (power.get('parentPowerId') === parentId) {
-      let currentPower = power;
-      let children = getChildPowers(powers, power.get('id'));
-
-      currentPower = power.set('children', children);
-      childPowers = childPowers.push(currentPower);
-    }
-  });
-
-  return childPowers;
+  return power.set('children', childPowers);
 };
