@@ -401,35 +401,6 @@ export default {
     cost: 2
   },
 
-  // Windblast powers.
-  'b3d3e62b-bd8c-4ebf-9057-a7f42eb3c8be': {
-    id: 'b3d3e62b-bd8c-4ebf-9057-a7f42eb3c8be',
-    parentPowerId: null,
-    character: 'corvo',
-    type: 'power',
-    name: 'Windblast',
-    description: 'Gust of wind that shatters doors and deflects projectiles.',
-    cost: 4
-  },
-  '3c78851c-dd0d-402f-b6d5-b06a85cbbe12': {
-    id: '3c78851c-dd0d-402f-b6d5-b06a85cbbe12',
-    parentPowerId: 'b3d3e62b-bd8c-4ebf-9057-a7f42eb3c8be',
-    character: 'corvo',
-    type: 'power',
-    name: 'Greater Windblast',
-    description: 'Summon a more powerful wind that kills enemies thrown into walls, and deflects projectiles with more accuracy.',
-    cost: 3
-  },
-  'af21681f-71c1-4e87-a23b-42e792c45f75': {
-    id: 'af21681f-71c1-4e87-a23b-42e792c45f75',
-    parentPowerId: 'b3d3e62b-bd8c-4ebf-9057-a7f42eb3c8be',
-    character: 'corvo',
-    type: 'power',
-    name: 'Shockwave',
-    description: 'Release a secondary blast of wind in a short radius around you.',
-    cost: 3
-  },
-
   // Posession powers.
   'e2b274c4-d727-44a7-a4ef-32da487bb4b6': {
     id: 'e2b274c4-d727-44a7-a4ef-32da487bb4b6',
@@ -638,5 +609,34 @@ export default {
     name: 'Greater Vitality',
     description: 'Health regeneration is improved.',
     cost: 2
+  },
+
+  // Windblast powers.
+  'b3d3e62b-bd8c-4ebf-9057-a7f42eb3c8be': {
+    id: 'b3d3e62b-bd8c-4ebf-9057-a7f42eb3c8be',
+    parentPowerId: null,
+    character: 'corvo',
+    type: 'power',
+    name: 'Windblast',
+    description: 'Gust of wind that shatters doors and deflects projectiles.',
+    cost: 4
+  },
+  '3c78851c-dd0d-402f-b6d5-b06a85cbbe12': {
+    id: '3c78851c-dd0d-402f-b6d5-b06a85cbbe12',
+    parentPowerId: 'b3d3e62b-bd8c-4ebf-9057-a7f42eb3c8be',
+    character: 'corvo',
+    type: 'power',
+    name: 'Greater Windblast',
+    description: 'Summon a more powerful wind that kills enemies thrown into walls, and deflects projectiles with more accuracy.',
+    cost: 3
+  },
+  'af21681f-71c1-4e87-a23b-42e792c45f75': {
+    id: 'af21681f-71c1-4e87-a23b-42e792c45f75',
+    parentPowerId: 'b3d3e62b-bd8c-4ebf-9057-a7f42eb3c8be',
+    character: 'corvo',
+    type: 'power',
+    name: 'Shockwave',
+    description: 'Release a secondary blast of wind in a short radius around you.',
+    cost: 3
   }
 };
