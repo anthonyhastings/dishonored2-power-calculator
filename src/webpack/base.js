@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const StatsPlugin = require('stats-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const distPath = path.join(__dirname, '../dist');
 
@@ -23,6 +24,7 @@ module.exports = function () {
         }
       ]
     },
+    profile: true,
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
@@ -34,6 +36,10 @@ module.exports = function () {
         inject: false,
         hash: false,
         minify: false
+      }),
+      new StatsPlugin('stats.json', {
+        chunkModules: true,
+        exclude: [/node_modules[\\\/]react/]
       })
     ],
     resolve: {
