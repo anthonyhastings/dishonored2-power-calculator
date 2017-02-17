@@ -15,12 +15,16 @@ module.exports = function () {
       filename: 'js/[name].js'
     },
     module: {
-      noParse: /immutable\.js|reselect|underscore/,
+      noParse: [
+        /node_modules\/immutable/,
+        /node_modules\/reselect/,
+        /node_modules\/underscore/
+      ],
       rules: [
         {
           loader: 'babel-loader',
           test: /\.jsx?$/,
-          exclude: /(node_modules|bower_components)/
+          exclude: /node_modules/
         }
       ]
     },
