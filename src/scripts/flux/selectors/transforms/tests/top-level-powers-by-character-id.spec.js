@@ -6,23 +6,23 @@ describe('Top level powers', function () {
     this.powers = Immutable.fromJS({
       'uuid-01': {
         parentPowerId: null,
-        name: 'Power #01',
-        character: 'corvo'
+        characterId: 'corvo',
+        name: 'Power #01'
       },
       'uuid-02': {
         parentPowerId: null,
-        name: 'Power #02',
-        character: 'corvo'
+        characterId: 'corvo',
+        name: 'Power #02'
       },
       'uuid-03': {
         parentPowerId: 'uuid-01',
-        name: 'Power #03',
-        character: 'emily'
+        characterId: 'emily',
+        name: 'Power #03'
       },
       'uuid-04': {
         parentPowerId: null,
-        name: 'Power #04',
-        character: 'emily'
+        characterId: 'emily',
+        name: 'Power #04'
       }
     });
   });
@@ -32,13 +32,13 @@ describe('Top level powers', function () {
       expect(topLevelPowersByCharacterId(this.powers, 'corvo')).toEqualImmutable(Immutable.fromJS({
         'uuid-01': {
           parentPowerId: null,
-          name: 'Power #01',
-          character: 'corvo'
+          characterId: 'corvo',
+          name: 'Power #01'
         },
         'uuid-02': {
           parentPowerId: null,
-          name: 'Power #02',
-          character: 'corvo'
+          characterId: 'corvo',
+          name: 'Power #02'
         }
       }));
     });

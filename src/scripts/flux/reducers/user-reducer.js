@@ -2,7 +2,7 @@ import Immutable from 'immutable';
 
 export const defaultState = Immutable.fromJS({
   totalRunes: 30,
-  character: 'corvo',
+  character: undefined,
   purchases: Immutable.List()
 });
 
