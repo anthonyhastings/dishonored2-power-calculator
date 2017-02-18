@@ -1,7 +1,11 @@
 import {createSelector} from 'reselect';
 import * as transforms from './transforms';
 
-export const characterSelector = (state) => state.getIn(['user', 'character']);
+export const charactersSelector = (state) => state.get('characters');
+
+export const characterByIdSelector = (state, characterId) => state.getIn(['characters', characterId]);
+
+export const usersCharacterSelector = (state) => state.getIn(['user', 'character']);
 
 export const totalRunesSelector = (state) => state.getIn(['user', 'totalRunes']);
 
@@ -24,10 +28,10 @@ export const powersSelector = createSelector(
   transforms.filterPowers
 );
 
-export const topLevelPowersByCharacterSelector = createSelector(
+export const topLevelPowersByCharacterIdSelector = createSelector(
   powersSelector,
-  characterSelector,
-  transforms.topLevelPowersByCharacter
+  usersCharacterSelector,
+  transforms.topLevelPowersByCharacterId
 );
 
 export const powerSelector = (state, powerId) => {

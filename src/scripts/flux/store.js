@@ -1,12 +1,17 @@
 import {createStore} from 'redux';
 import {combineReducers} from 'redux-immutable';
-import {userReducer as user, powersReducer as powers} from './reducers';
+import {
+  charactersReducer as characters,
+  powersReducer as powers,
+  userReducer as user
+} from './reducers';
 
 let store;
 const isProduction = process.env.NODE_ENV;
 const rootReducer = combineReducers({
-  user,
-  powers
+  characters,
+  powers,
+  user
 });
 
 if (isProduction) {

@@ -1,7 +1,8 @@
 import Immutable from 'immutable';
 import {defaultState as powersAndEnhancements} from '../../reducers/powers-reducer';
 import {
-  characterSelector,
+  charactersSelector,
+  usersCharacterSelector,
   totalRunesSelector,
   purchasesSelector,
   powersAndEnhancementsSelector,
@@ -12,7 +13,22 @@ import {
 } from '../';
 
 describe('selectors', function () {
-  describe('characterSelector', function () {
+  describe('charactersSelector', function () {
+    beforeEach(function () {
+      this.state = Immutable.fromJS({
+        characters: {
+          hello: 'world',
+          foo: 'bar'
+        }
+      });
+    });
+
+    it('returns all characters', function () {
+      expect(charactersSelector(this.state)).toEqualImmutable(this.state.get('characters'));
+    });
+  });
+
+  describe('usersCharacterSelector', function () {
     beforeEach(function () {
       this.state = Immutable.fromJS({
         user: {
@@ -22,7 +38,7 @@ describe('selectors', function () {
     });
 
     it('should return appropriate value', function () {
-      expect(characterSelector(this.state)).toEqual('anthony');
+      expect(usersCharacterSelector(this.state)).toEqual('anthony');
     });
   });
 
