@@ -5,8 +5,8 @@
     "commonjs": true,
     "es6": true,
     "node": true,
-    "jest": true,
-    "jasmine": true
+    "jasmine": true,
+    "jest/globals": true
   },
   "globals": {
   },
@@ -18,10 +18,12 @@
     }
   },
   "plugins": [
-    "react"
+    "react",
+    "jest"
   ],
   "extends": [
-      "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:jest/recommended"
   ],
   "rules": {
     "array-bracket-spacing": [2, "never"],
@@ -61,9 +63,9 @@
     "space-infix-ops": 2,
     "strict": [2, "global"],
     "valid-jsdoc": [2, {
-        "requireParamDescription": false,
-        "requireReturn": false,
-        "requireReturnDescription": false
+      "requireParamDescription": false,
+      "requireReturn": false,
+      "requireReturnDescription": false
     }],
     "wrap-iife": [2, "inside"]
   }

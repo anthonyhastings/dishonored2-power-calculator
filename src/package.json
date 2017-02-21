@@ -39,6 +39,7 @@
     "coveralls": "2.11.16",
     "eslint": "3.14.1",
     "eslint-plugin-react": "6.9.0",
+    "eslint-plugin-jest": "19.0.0",
     "html-webpack-plugin": "2.26.0",
     "jest": "18.1.0",
     "jest-immutable-matchers": "1.4.0",
