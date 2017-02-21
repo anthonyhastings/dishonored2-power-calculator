@@ -1,6 +1,6 @@
 node_modules/
 dist/
-coverage/
 jest/
+jest-coverage/
 npm-debug.log
 .DS_Store

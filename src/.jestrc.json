@@ -1,0 +1,6 @@
+{
+  "collectCoverage": true,
+  "coverageDirectory": "./jest-coverage",
+  "setupTestFrameworkScriptFile": "./scripts/test-support/index.js",
+  "verbose": true
+}
