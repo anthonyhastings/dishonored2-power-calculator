@@ -3,6 +3,4 @@ import characters from '../../data/characters';
 
 export const defaultState = Immutable.fromJS(characters);
 
-export function reducer (state = defaultState) {
-  return state;
-};
+export const reducer = (state = defaultState) => state;

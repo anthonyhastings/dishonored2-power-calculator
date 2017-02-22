@@ -1,3 +1,1 @@
-export default function (totalRunes, spentRunes) {
-  return totalRunes - spentRunes;
-}
+export default (totalRunes, spentRunes) => (totalRunes - spentRunes);

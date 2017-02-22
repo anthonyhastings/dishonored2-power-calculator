@@ -1,6 +1,4 @@
-export function setCharacter (character) {
-  return {
-    type: 'SET_CHARACTER',
-    character
-  };
-};
+export const setCharacter = (character) => ({
+  type: 'SET_CHARACTER',
+  character
+});
