@@ -13,7 +13,7 @@
     "pretest": "npm run lint",
     "start": "node scripts/server.js",
     "test": "jest --config=.jestrc.json",
-    "test:upload-coverage": "npm test && cat coverage/lcov.info | coveralls",
+    "test:upload-coverage": "npm test && cat jest-coverage/lcov.info | coveralls",
     "test:watch": "npm test -- --watch",
     "webpack:dev-server": "webpack-dev-server --env=development --config=webpack/webpack.config.js",
     "webpack:development": "webpack --env=development --config=webpack/webpack.config.js --colors --progress",
