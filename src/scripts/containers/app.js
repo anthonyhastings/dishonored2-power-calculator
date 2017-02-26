@@ -11,12 +11,10 @@ const mapStateToProps = function (state) {
   console.info('Shadow Kill:', selectors.powerTreeSelector(state, 'fb909e60-c319-4133-9716-bc4a15c645a7'));
 
   return {
-    character: selectors.characterSelector(state),
+    characters: selectors.charactersSelector(state),
     totalRunes: selectors.totalRunesSelector(state),
     spentRunes: selectors.spentRunesSelector(state),
-    remainingRunes: selectors.remainingRunesSelector(state),
-    topLevelPowers: selectors.topLevelPowersByCharacterSelector(state),
-    topLevelEnhancements: selectors.topLevelEnhancementsSelector(state)
+    remainingRunes: selectors.remainingRunesSelector(state)
   };
 };
 

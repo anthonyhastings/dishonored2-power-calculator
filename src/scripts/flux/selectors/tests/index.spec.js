@@ -1,14 +1,14 @@
 import Immutable from 'immutable';
-import {defaultState as powersAndEnhancements} from '../../reducers/powers-reducer';
+import {defaultState as powersAndEnhancementsDefaultState} from '../../reducers/powers-reducer';
+import {defaultState as userDefaultState} from '../../reducers/user-reducer';
 import {
   charactersSelector,
   usersCharacterSelector,
+  characterByIdSelector,
   totalRunesSelector,
   purchasesSelector,
   powersAndEnhancementsSelector,
   powerSelector,
-  isPowerPurchasedSelector,
-  isPowerPurchasableSelector,
   powerTreeSelector
 } from '../';
 
@@ -42,34 +42,29 @@ describe('selectors', function () {
     });
   });
 
-  describe('totalRunesSelector', function () {
+  describe('characterByIdSelector', function () {
     beforeEach(function () {
       this.state = Immutable.fromJS({
+        characters: {
+          'uuid-01': {
+            id: 'uuid-01',
+            name: 'Corvo'
+          },
+          'uuid-02': {
+            id: 'uuid-02',
+            name: 'Emily'
+          }
+        },
         user: {
-          totalRunes: 30
+          character: 'uuid-02'
         }
       });
+
+      this.expectedCharacter = this.state.getIn(['characters', 'uuid-02']);
     });
 
     it('should return appropriate value', function () {
-      expect(totalRunesSelector(this.state)).toEqual(30);
-    });
-  });
-
-  describe('purchasesSelector', function () {
-    beforeEach(function () {
-      this.state = Immutable.fromJS({
-        user: {
-          purchases: ['uuid-01', 'uuid-02']
-        }
-      });
-    });
-
-    it('should return appropriate value', function () {
-      expect(purchasesSelector(this.state)).toEqualImmutable(Immutable.fromJS([
-        'uuid-01',
-        'uuid-02'
-      ]));
+      expect(characterByIdSelector(this.state, 'uuid-02')).toEqualImmutable(this.expectedCharacter);
     });
   });
 
@@ -94,120 +89,42 @@ describe('selectors', function () {
   describe('powerSelector', function () {
     beforeEach(function () {
       this.state = Immutable.fromJS({
-        powers: {
-          'uuid-01': 'hello',
-          'uuid-02': 'world'
-        }
-      });
-    });
-
-    it('should return appropriate value', function () {
-      expect(powerSelector(this.state, 'uuid-02')).toEqual('world');
-    });
-  });
-
-  describe('isPowerPurchasedSelector', function () {
-    describe('when a particular power has not been purchased', function () {
-      beforeEach(function () {
-        this.state = Immutable.fromJS({
-          user: {
-            purchases: []
-          }
-        });
-
-        this.result = isPowerPurchasedSelector(this.state, 'uuid-01');
-      });
-
-      it('should return false', function () {
-        expect(this.result).toEqual(false);
-      });
-    });
-
-    describe('when a particular power has been purchased', function () {
-      beforeEach(function () {
-        this.state = Immutable.fromJS({
-          user: {
-            purchases: ['uuid-01']
-          }
-        });
-
-        this.result = isPowerPurchasedSelector(this.state, 'uuid-01');
-      });
-
-      it('should return true', function () {
-        expect(this.result).toEqual(true);
-      });
-    });
-  });
-
-  describe('isPowerPurchasableSelector', function () {
-    beforeEach(function () {
-      this.defaultState = Immutable.fromJS({
         user: {
-          purchases: [],
-          totalRunes: 7
+          totalRunes: 30,
+          purchases: Immutable.List()
         },
         powers: {
           'uuid-01': {
             id: 'uuid-01',
             parentPowerId: null,
-            name: 'Power #01',
-            cost: 2
+            cost: 2,
+            name: 'Power #01'
           },
           'uuid-02': {
             id: 'uuid-02',
-            parentPowerId: 'uuid-01',
-            name: 'Power #01',
-            cost: 5
+            parentPowerId: null,
+            cost: 2,
+            name: 'Power #02'
           }
         }
       });
-    });
 
-    describe('when the power has already been purchased', function () {
-      beforeEach(function () {
-        this.state = this.defaultState.withMutations((map) => {
-          const purchasePath = ['user', 'purchases'];
-          const updatedPurchases = map.getIn(purchasePath).push('uuid-01');
-
-          map.setIn(purchasePath, updatedPurchases);
-        });
-      });
-
-      it('returns false', function () {
-        expect(isPowerPurchasableSelector(this.state, 'uuid-01')).toEqual(false);
+      this.expectedPower = this.state.getIn(['powers', 'uuid-02']).mergeDeep({
+        purchasable: true,
+        purchased: false
       });
     });
 
-    describe('when the power cannot be afforded', function () {
-      beforeEach(function () {
-        this.state = this.defaultState.withMutations((map) => {
-          map.setIn(['powers', 'uuid-01', 'cost'], 500);
-        });
-      });
-
-      it('returns false', function () {
-        expect(isPowerPurchasableSelector(this.state, 'uuid-01')).toEqual(false);
-      });
-    });
-
-    describe('when the powers parent has not been purchased', function () {
-      it('returns false', function () {
-        expect(isPowerPurchasableSelector(this.defaultState, 'uuid-02')).toEqual(false);
-      });
-    });
-
-    describe('when the power is eligible for purchase', function () {
-      it('returns true', function () {
-        expect(isPowerPurchasableSelector(this.defaultState, 'uuid-01')).toEqual(true);
-      });
+    it('should return appropriate value', function () {
+      expect(powerSelector(this.state, 'uuid-02')).toEqual(this.expectedPower);
     });
   });
 
   describe('powerTreeSelector', function () {
     beforeEach(function () {
       this.state = Immutable.fromJS({
-        powers: powersAndEnhancements
+        powers: powersAndEnhancementsDefaultState,
+        user: userDefaultState
       });
     });
 
@@ -305,6 +222,37 @@ describe('selectors', function () {
         expect(powerTreeSelector(this.state, 'e2b274c4-d727-44a7-a4ef-32da487bb4b6'))
           .toEqualImmutable(this.expectedResult);
       });
+    });
+  });
+
+  describe('purchasesSelector', function () {
+    beforeEach(function () {
+      this.state = Immutable.fromJS({
+        user: {
+          purchases: ['uuid-01', 'uuid-02']
+        }
+      });
+    });
+
+    it('should return appropriate value', function () {
+      expect(purchasesSelector(this.state)).toEqualImmutable(Immutable.fromJS([
+        'uuid-01',
+        'uuid-02'
+      ]));
+    });
+  });
+
+  describe('totalRunesSelector', function () {
+    beforeEach(function () {
+      this.state = Immutable.fromJS({
+        user: {
+          totalRunes: 30
+        }
+      });
+    });
+
+    it('should return appropriate value', function () {
+      expect(totalRunesSelector(this.state)).toEqual(30);
     });
   });
 });
