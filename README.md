@@ -17,3 +17,10 @@ make
 - Integration testing with Capybara and PhantomJS.
 - Webpack static assets (images / stylesheets).
 - Postgres container / Rails container for CMS to power "powers".
+
+
+
+- [ ] Baseline MVP redux application.
+- [ ] Capybara integration tests using PhantomJS (Poltergeist).
+- [ ] Redux requesting powers information via API action creators.
+- [ ] Hot Module Reloading for JS/SCSS on development environment.
