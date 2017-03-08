@@ -20,13 +20,15 @@ class App extends React.Component {
         <h1>Hello World</h1>
         <button data-character="emily" onClick={this.chooseEmily}>Choose Emily</button>
         <button data-character="corvo" onClick={this.chooseCorvo}>Choose Corvo</button>
+        <button onClick={this.props.removePurchase.bind(this, '0dc9ca43-a526-4536-b202-0215e8579807')}>DUMMY REMOVE BUTTON TO TEST THUNK</button>
       </div>
     );
   }
 };
 
 App.propTypes = {
-  setCharacter: React.PropTypes.func.isRequired
+  setCharacter: React.PropTypes.func.isRequired,
+  removePurchase: React.PropTypes.func.isRequired
 };
 
 export default App;

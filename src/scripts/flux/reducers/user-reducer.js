@@ -13,6 +13,15 @@ export function reducer (state = defaultState, action) {
     case 'SET_CHARACTER':
       reducedState = state.set('character', action.character);
       break;
+    case 'ADD_PURCHASE':
+      reducedState = state.updateIn(['purchases'], (purchases) => {
+        return (purchases.includes(action.powerId)) ? purchases : purchases.push(action.powerId);
+      });
+      break;
+    case 'REMOVE_PURCHASES':
+      console.info('REMOVE_PURCHASES', action);
+      reducedState = state;
+      break;
     default:
       reducedState = state;
       break;

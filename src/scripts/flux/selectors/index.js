@@ -1,3 +1,4 @@
+import Immutable from 'immutable';
 import {createSelector} from 'reselect';
 import * as transforms from './transforms';
 
@@ -65,4 +66,18 @@ export const powerTreeSelector = (state, powerId) => {
   let power = powerSelector(state, powerId);
 
   return power.set('children', childPowers);
+};
+
+export const flattenedPowerTreeIdsSelector = (state, powerId) => {
+  const power = powerTreeSelector(state, powerId);
+  const childPowers = power.get('children');
+  let powerList = Immutable.List().push(power.get('id'));
+
+  if (!childPowers.isEmpty()) {
+    childPowers.forEach((childPower) => {
+      powerList = powerList.concat(flattenedPowerTreeIdsSelector(state, childPower.get('id')));
+    });
+  }
+
+  return powerList;
 };
