@@ -1,5 +1,6 @@
-import {createStore} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import {combineReducers} from 'redux-immutable';
+import thunk from 'redux-thunk';
 import {
   charactersReducer as characters,
   powersReducer as powers,
@@ -15,9 +16,11 @@ const rootReducer = combineReducers({
 });
 
 if (isProduction) {
-  store = createStore(rootReducer);
+  store = createStore(rootReducer, applyMiddleware(thunk));
 } else {
-  store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+  store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 }
 
 export default store;
