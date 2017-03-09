@@ -1,5 +1,7 @@
-import Immutable from 'immutable';
-import {purchasesSelector, powerTreeSelector} from './selectors';
+import {
+  purchasesSelector,
+  flattenedPowerTreeIdsSelector
+} from './selectors';
 
 export const setCharacter = (character) => ({
   type: 'SET_CHARACTER',
@@ -11,45 +13,19 @@ export const addPurchase = (powerId) => ({
   powerId
 });
 
-export const removePurchases = (powers) => ({
+export const removePurchases = (powerIds) => ({
   type: 'REMOVE_PURCHASES',
-  powers
+  powerIds
 });
 
 export const removePurchase = (powerId) => {
   return function (dispatch, getState) {
     const state = getState();
     const purchases = purchasesSelector(state);
-    const power = powerTreeSelector(state, powerId);
+    const powerIds = flattenedPowerTreeIdsSelector(state, powerId);
+    const purchasedPowerIds = powerIds.filter((powerId) => purchases.includes(powerId));
 
-// TODO: STICK IN UTILS FOLDER.
-const getPowerIdsTree = function (power) {
-  const childPowers = power.get('children');
-  let powerList = Immutable.List().push(power.get('id'));
-
-  if (!childPowers.isEmpty()) {
-    childPowers.forEach((childPower) => {
-      powerList = powerList.concat(getPowerIdsTree(childPower));
-    });
-  }
-
-  return powerList;
-};
-
-
-
-console.time('test');
-const powerIDsNeedingFilteredAgainstPurchases = getPowerIdsTree(power);
-console.timeEnd('test');
-console.log('Did it work?', powerIDsNeedingFilteredAgainstPurchases);
-
-    console.info('Power ID:', powerId);
-    console.info('Dispatch:', dispatch);
-    console.info('State:', state);
-    console.info('Purchases:', purchases);
-    console.info('Power:', power);
-
-    dispatch(removePurchases(Immutable.List(['uuid-01', 'uuid-02', 'uuid-03'])));
+    dispatch(removePurchases(purchasedPowerIds));
     return Promise.resolve();
   };
 };
