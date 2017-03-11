@@ -1,7 +1,5 @@
-import {
-  purchasesSelector,
-  flattenedPowerTreeIdsSelector
-} from './selectors';
+import Immutable from 'immutable';
+import {flattenedPowerTreeIdsSelector} from './selectors';
 
 export const setCharacter = (character) => ({
   type: 'SET_CHARACTER',
@@ -13,7 +11,7 @@ export const addPurchase = (powerId) => ({
   powerId
 });
 
-export const removePurchases = (powerIds) => ({
+export const removePurchases = (powerIds = Immutable.List()) => ({
   type: 'REMOVE_PURCHASES',
   powerIds
 });
@@ -21,11 +19,9 @@ export const removePurchases = (powerIds) => ({
 export const removePurchase = (powerId) => {
   return function (dispatch, getState) {
     const state = getState();
-    const purchases = purchasesSelector(state);
     const powerIds = flattenedPowerTreeIdsSelector(state, powerId);
-    const purchasedPowerIds = powerIds.filter((powerId) => purchases.includes(powerId));
 
-    dispatch(removePurchases(purchasedPowerIds));
+    dispatch(removePurchases(powerIds));
     return Promise.resolve();
   };
 };
