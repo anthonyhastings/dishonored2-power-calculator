@@ -1,4 +1,5 @@
 import Immutable from 'immutable';
+import {purchasesSelector} from '../selectors';
 
 export const defaultState = Immutable.fromJS({
   totalRunes: 30,
@@ -19,8 +20,11 @@ export function reducer (state = defaultState, action) {
       });
       break;
     case 'REMOVE_PURCHASES':
-      console.info('REMOVE_PURCHASES', action);
-      reducedState = state;
+      const filteredPurchases = state.get('purchases').filterNot((powerId) => {
+        return action.powerIds.includes(powerId);
+      });
+
+      reducedState = state.set('purchases', filteredPurchases);
       break;
     default:
       reducedState = state;

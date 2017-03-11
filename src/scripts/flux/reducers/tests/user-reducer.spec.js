@@ -26,7 +26,7 @@ describe('userReducer', function () {
     });
   });
 
-  describe('when given ADD_PURCHASE', function () {
+  describe('when given ADD_PURCHASE action', function () {
     beforeEach(function () {
       this.addPurchaseAction = actions.addPurchase('power-id-01');
       this.inputState = defaultState;
@@ -50,26 +50,40 @@ describe('userReducer', function () {
     });
   });
 
-  describe('when given REMOVE_PURCHASE', function () {
-    beforeEach(function () {
-      this.removePurchaseAction = actions.removePurchase('power-id-01');
-    });
+  describe('when given REMOVE_PURCHASES action', function () {
+    describe('with a blank list', function () {
+      beforeEach(function () {
+        this.removePurchasesAction = actions.removePurchases();
+        this.inputState = defaultState;
+        this.outputState = defaultState;
+      });
 
-    describe('with a power id that is not present in the purchases list', function () {
       it('does nothing', function () {
-        expect(true).toEqual(false);
+        expect(reducer(this.inputState, this.removePurchasesAction)).toEqualImmutable(this.outputState);
       });
     });
 
-    describe('with a power id that has no children', function () {
-      it('removes that power id from the purchases list', function () {
-        expect(true).toEqual(false);
+    describe('with a list containing powers that are not purchased', function () {
+      beforeEach(function () {
+        this.removePurchasesAction = actions.removePurchases(Immutable.List(['uuid-02', 'uuid-03']));
+        this.inputState = defaultState.set('purchases', Immutable.List(['uuid-01']));
+        this.outputState = this.inputState;
+      });
+
+      it('does nothing', function () {
+        expect(reducer(this.inputState, this.removePurchasesAction)).toEqualImmutable(this.outputState);
       });
     });
 
-    describe('with a power id that has children', function () {
-      it('removes that power id along with any child id\'s found', function () {
-        expect(true).toEqual(false);
+    describe('with a list containing powers that are purchased', function () {
+      beforeEach(function () {
+        this.removePurchasesAction = actions.removePurchases(Immutable.List(['uuid-01', 'uuid-02']));
+        this.inputState = defaultState.set('purchases', Immutable.List(['uuid-01', 'uuid-02', 'uuid-03']));
+        this.outputState = defaultState.set('purchases', Immutable.List(['uuid-03']));
+      });
+
+      it('removes that powers from the purchases list', function () {
+        expect(reducer(this.inputState, this.removePurchasesAction)).toEqualImmutable(this.outputState);
       });
     });
   });
