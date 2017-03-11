@@ -28,8 +28,7 @@
     "redux": "3.6.0",
     "redux-immutable": "3.0.11",
     "redux-thunk": "2.2.0",
-    "reselect": "2.5.4",
-    "underscore": "1.8.3"
+    "reselect": "2.5.4"
   },
   "devDependencies": {
     "babel-core": "6.22.1",

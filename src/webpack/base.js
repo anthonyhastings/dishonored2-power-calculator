@@ -3,12 +3,14 @@ const webpack = require('webpack');
 const StatsPlugin = require('stats-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const distPath = path.join(__dirname, '../dist');
+const dependencies = require('../package').dependencies;
+const vendorDependencies = Object.keys(dependencies).filter((dependency) => !dependency.includes('express'));
 
 module.exports = function () {
   return {
     entry: {
       app: './scripts/index.js',
-      vendor: ['immutable', 'react', 'react-dom', 'react-redux', 'redux', 'redux-immutable', 'reselect', 'underscore']
+      vendor: vendorDependencies
     },
     output: {
       path: distPath,
