@@ -1,5 +1,4 @@
 import Immutable from 'immutable';
-import {purchasesSelector} from '../selectors';
 
 export const defaultState = Immutable.fromJS({
   totalRunes: 30,
