@@ -43,9 +43,9 @@ module.exports = function () {
         hash: false,
         minify: false
       }),
-      new StatsPlugin('stats.json', {
+      new StatsPlugin('js/bundle-stats.json', {
         chunkModules: true,
-        exclude: [/node_modules[\\\/]react/]
+        exclude: [/node_modules/]
       })
     ],
     resolve: {
