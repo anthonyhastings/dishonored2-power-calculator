@@ -2,15 +2,15 @@ import Immutable from 'immutable';
 import {createSelector} from 'reselect';
 import * as transforms from './transforms';
 
+export const charactersSelector = (state) => state.get('characters');
+
+export const characterByIdSelector = (state, characterId) => state.getIn(['characters', characterId]);
+
 export const powersAndEnhancementsSelector = (state) => state.get('powers');
 
 export const purchasesSelector = (state) => state.getIn(['user', 'purchases']);
 
-export const charactersSelector = (state) => state.get('characters');
-
 export const usersCharacterSelector = (state) => state.getIn(['user', 'character']);
-
-export const characterByIdSelector = (state, characterId) => state.getIn(['characters', characterId]);
 
 export const totalRunesSelector = (state) => state.getIn(['user', 'totalRunes']);
 
