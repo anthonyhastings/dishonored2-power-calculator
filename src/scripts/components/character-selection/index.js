@@ -1,10 +1,15 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const CharacterSelection = (props) => {
   const characterElements = props.characters.map((character) => {
+    const characterURL = `/${character.id}/powers`;
+
     return (
-      <div className="character__container" key="{character.id}">
-        <h2>{character.name}</h2>
+      <div className="character__container" key={character.id}>
+        <h2 className="character__name">{character.name}</h2>
+        <p className="character__description">{character.description}</p>
+        <Link to={characterURL}>Choose {character.name}</Link>
       </div>
     );
   });

@@ -11,16 +11,15 @@ make
 
 
 ## TODO
-- Ensure that I have a good split of "Container" components and presentational "dumb" components.
+- [X] Use Jest for code coverage, mocks, stubs to implement unit tests.
+- [X] Implement CI flow via Docker, TravisCI, Coveralls and Heroku.
+- [X] Use Redux to manage application state.
+- [X] Use React-Router to manage the URL within the application.
+- [ ] Redux requesting powers information via `redux-thunk` and `fetch` API.
+- [ ] Use `validateUUID` to check a valid character uuid has been supplied in the URL.
+- [ ] Hot Module Reloading for JS/SCSS on development environment.
+- [ ] Capybara integration tests using PhantomJS (Poltergeist).
 - Use a multitude of intermediate "container" components to stop the flood of props. See: https://egghead.io/lessons/javascript-redux-extracting-container-components-filterlink
-- Use React-Router with Redux and have character-selection, powers-selection screens.
 - Integration testing with Capybara and PhantomJS.
 - Webpack static assets (images / stylesheets).
 - Postgres container / Rails container for CMS to power "powers".
-
-
-
-- [ ] Baseline MVP redux application.
-- [ ] Capybara integration tests using PhantomJS (Poltergeist).
-- [ ] Redux requesting powers information via API action creators.
-- [ ] Hot Module Reloading for JS/SCSS on development environment.
