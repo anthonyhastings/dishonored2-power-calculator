@@ -6,7 +6,7 @@ import * as selectors from '../../../flux/selectors';
 
 const mapStateToProps = function (state) {
   return {
-    characters: selectors.charactersSelector(state).toList().toJS()
+    characters: selectors.charactersSelector(state)
   };
 };
 

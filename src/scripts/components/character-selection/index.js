@@ -1,15 +1,16 @@
 import React from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import {Link} from 'react-router-dom';
 
 const CharacterSelection = (props) => {
-  const characterElements = props.characters.map((character) => {
-    const characterURL = `/${character.id}/powers`;
+  const characterElements = props.characters.valueSeq().map((character) => {
+    const characterURL = `/${character.get('id')}/powers`;
 
     return (
-      <div className="character__container" key={character.id}>
-        <h2 className="character__name">{character.name}</h2>
-        <p className="character__description">{character.description}</p>
-        <Link to={characterURL}>Choose {character.name}</Link>
+      <div className="character__container" key={character.get('id')}>
+        <h2 className="character__name">{character.get('name')}</h2>
+        <p className="character__description">{character.get('description')}</p>
+        <Link to={characterURL}>Choose {character.get('name')}</Link>
       </div>
     );
   });
@@ -23,7 +24,7 @@ const CharacterSelection = (props) => {
 };
 
 CharacterSelection.propTypes = {
-  characters: React.PropTypes.array.isRequired
+  characters: ImmutablePropTypes.map.isRequired
 };
 
 export default CharacterSelection;
