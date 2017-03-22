@@ -1,7 +1,5 @@
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import Component from '../';
-import * as Actions from '../../../flux/actions';
 import * as selectors from '../../../flux/selectors';
 
 const mapStateToProps = function (state) {
@@ -10,8 +8,8 @@ const mapStateToProps = function (state) {
   };
 };
 
-const mapDispatchToProps = function (dispatch) {
-  return bindActionCreators(Actions, dispatch);
+const mapDispatchToProps = function () {
+  return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);
