@@ -1,11 +1,6 @@
 import Immutable from 'immutable';
 import {flattenedPowerTreeIdsSelector} from './selectors';
 
-export const setCharacter = (character) => ({
-  type: 'SET_CHARACTER',
-  character
-});
-
 export const addPurchase = (powerId) => ({
   type: 'ADD_PURCHASE',
   powerId

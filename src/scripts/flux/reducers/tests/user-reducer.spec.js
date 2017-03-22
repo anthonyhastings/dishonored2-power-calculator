@@ -13,19 +13,6 @@ describe('userReducer', function () {
     });
   });
 
-  describe('when given SET_CHARACTER action', function () {
-    beforeEach(function () {
-      this.characterAction = actions.setCharacter('emily');
-      this.initialState = defaultState;
-      this.expectedState = this.initialState.set('character', 'emily');
-      this.result = reducer(this.initialState, this.characterAction);
-    });
-
-    it('should update the character', function () {
-      expect(this.result).toEqualImmutable(this.expectedState);
-    });
-  });
-
   describe('when given ADD_PURCHASE action', function () {
     beforeEach(function () {
       this.addPurchaseAction = actions.addPurchase('power-id-01');

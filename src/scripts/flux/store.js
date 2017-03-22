@@ -1,6 +1,10 @@
-import {createStore, applyMiddleware, compose} from 'redux';
 import {combineReducers} from 'redux-immutable';
 import thunk from 'redux-thunk';
+import {
+  createStore,
+  applyMiddleware,
+  compose
+} from 'redux';
 import {
   charactersReducer as characters,
   powersReducer as powers,

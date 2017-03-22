@@ -3,7 +3,6 @@ import {defaultState as powersAndEnhancementsDefaultState} from '../../reducers/
 import {defaultState as userDefaultState} from '../../reducers/user-reducer';
 import {
   charactersSelector,
-  usersCharacterSelector,
   characterByIdSelector,
   totalRunesSelector,
   purchasesSelector,
@@ -26,20 +25,6 @@ describe('selectors', function () {
 
     it('returns all characters', function () {
       expect(charactersSelector(this.state)).toEqualImmutable(this.state.get('characters'));
-    });
-  });
-
-  describe('usersCharacterSelector', function () {
-    beforeEach(function () {
-      this.state = Immutable.fromJS({
-        user: {
-          character: 'anthony'
-        }
-      });
-    });
-
-    it('should return appropriate value', function () {
-      expect(usersCharacterSelector(this.state)).toEqual('anthony');
     });
   });
 
