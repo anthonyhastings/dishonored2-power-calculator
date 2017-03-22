@@ -4,6 +4,18 @@ import {defaultState as userDefaultState} from '../reducers/user-reducer';
 import * as actions from '../actions';
 
 describe('flux action creators', function () {
+  describe('clearPurchases', function () {
+    describe('creates an action', function () {
+      beforeEach(function () {
+        this.action = actions.clearPurchases();
+      });
+
+      it('with the correct type', function () {
+        expect(this.action.type).toEqual('CLEAR_PURCHASES');
+      });
+    });
+  });
+
   describe('addPurchase', function () {
     describe('creates an action', function () {
       beforeEach(function () {

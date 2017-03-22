@@ -13,6 +13,18 @@ describe('userReducer', function () {
     });
   });
 
+  describe('when given CLEAR_PURCHASES action', function () {
+    beforeEach(function () {
+      this.clearPurchasesAction = actions.clearPurchases();
+      this.inputState = defaultState.set('purchases', Immutable.List(['power-id-01']));
+      this.outputState = defaultState;
+    });
+
+    it('resets the purchases list back to default state', function () {
+      expect(reducer(this.inputState, this.clearPurchasesAction)).toEqualImmutable(this.outputState);
+    });
+  });
+
   describe('when given ADD_PURCHASE action', function () {
     beforeEach(function () {
       this.addPurchaseAction = actions.addPurchase('power-id-01');

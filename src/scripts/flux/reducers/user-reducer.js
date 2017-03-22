@@ -9,6 +9,9 @@ export function reducer (state = defaultState, action) {
   let reducedState;
 
   switch (action.type) {
+    case 'CLEAR_PURCHASES':
+      reducedState = state.set('purchases', defaultState.get('purchases'));
+      break;
     case 'ADD_PURCHASE':
       reducedState = state.updateIn(['purchases'], (purchases) => {
         return (purchases.includes(action.powerId)) ? purchases : purchases.push(action.powerId);

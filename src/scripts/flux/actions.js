@@ -1,6 +1,10 @@
 import Immutable from 'immutable';
 import {flattenedPowerTreeIdsSelector} from './selectors';
 
+export const clearPurchases = () => ({
+  type: 'CLEAR_PURCHASES'
+});
+
 export const addPurchase = (powerId) => ({
   type: 'ADD_PURCHASE',
   powerId
