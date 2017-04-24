@@ -16,7 +16,6 @@
     "test:upload-coverage": "npm test && cat jest-coverage/lcov.info | coveralls",
     "test:watch": "npm test -- --watch",
     "webpack:dev-server": "webpack-dev-server --env=development --config=webpack/webpack.config.js",
-    "webpack:development": "webpack --env=development --config=webpack/webpack.config.js --colors --progress",
     "webpack:production": "webpack --env=production --config=webpack/webpack.config.js --colors --progress"
   },
   "dependencies": {
@@ -25,6 +24,7 @@
     "prop-types": "15.5.8",
     "react": "15.5.4",
     "react-dom": "15.5.4",
+    "react-hot-loader": "3.0.0-beta.6",
     "react-immutable-proptypes": "2.1.0",
     "react-redux": "5.0.4",
     "react-router-dom": "4.1.1",
