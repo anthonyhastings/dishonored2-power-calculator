@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 class PowerSelection extends React.Component {
@@ -23,7 +24,7 @@ class PowerSelection extends React.Component {
 };
 
 PowerSelection.propTypes = {
-  clearPurchases: React.PropTypes.func.isRequired
+  clearPurchases: PropTypes.func.isRequired
 };
 
 export default PowerSelection;
