@@ -2,51 +2,47 @@
 
 exports[`CharacterSelection component renders correctly 1`] = `
 <section
-  className="characterSelection__container"
+  class="characterSelection__container"
 >
   <h1>
     Character Selection
   </h1>
   <div
-    className="character__container"
+    class="character__container"
   >
     <h2
-      className="character__name"
+      class="character__name"
     >
       Adam Jensen
     </h2>
     <p
-      className="character__description"
+      class="character__description"
     >
       Task Force 29 operative.
     </p>
     <a
       href="/aj/powers"
-      onClick={[Function]}
     >
-      Choose 
-      Adam Jensen
+      Choose Adam Jensen
     </a>
   </div>
   <div
-    className="character__container"
+    class="character__container"
   >
     <h2
-      className="character__name"
+      class="character__name"
     >
       Scott Ryder
     </h2>
     <p
-      className="character__description"
+      class="character__description"
     >
       The pathfinder.
     </p>
     <a
       href="/sr/powers"
-      onClick={[Function]}
     >
-      Choose 
-      Scott Ryder
+      Choose Scott Ryder
     </a>
   </div>
 </section>

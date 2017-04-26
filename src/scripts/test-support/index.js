@@ -1,3 +1,6 @@
-import applyImmutableMatchers from './immutable-matchers';
+import 'jest-enzyme';
+import * as matchers from 'jest-immutable-matchers';
 
-applyImmutableMatchers();
+beforeEach(function () {
+  jasmine.addMatchers(matchers);
+});

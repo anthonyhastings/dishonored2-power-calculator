@@ -1,6 +1,6 @@
 import React from 'react';
 import Immutable from 'immutable';
-import ReactTestRenderer from 'react-test-renderer';
+import {render} from 'enzyme';
 import {MemoryRouter} from 'react-router-dom';
 import CharacterSelection from '../';
 
@@ -11,7 +11,7 @@ const characters = Immutable.fromJS({
 
 describe('CharacterSelection component', function () {
   beforeEach(function () {
-    this.component = ReactTestRenderer.create(
+    this.wrapper = render(
       <MemoryRouter>
         <CharacterSelection characters={characters}></CharacterSelection>
       </MemoryRouter>
@@ -19,6 +19,6 @@ describe('CharacterSelection component', function () {
   });
 
   it('renders correctly', function () {
-    expect(this.component.toJSON()).toMatchSnapshot();
+    expect(this.wrapper).toMatchSnapshot();
   });
 });
