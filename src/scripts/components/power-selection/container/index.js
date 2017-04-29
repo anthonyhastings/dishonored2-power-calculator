@@ -1,5 +1,6 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {withRouter} from 'react-router-dom';
 import Component from '../';
 import * as Actions from '../../../flux/actions';
 import * as selectors from '../../../flux/selectors';
@@ -22,4 +23,4 @@ export const mapDispatchToProps = function (dispatch) {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Component);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Component));
