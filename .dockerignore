@@ -3,6 +3,8 @@
 .editorconfig
 .env
 node_modules
+jest-coverage
+jest
 Dockerfile
 Makefile
 LICENSE

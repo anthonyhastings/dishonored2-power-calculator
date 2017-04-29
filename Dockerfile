@@ -13,5 +13,5 @@ RUN npm install
 # Copy everything in the host folder into the working folder of the container.
 COPY ./src/ /src/
 
-# Run the express server.
+# Run the express server when creating/starting a container.
 CMD ["npm", "start"]
