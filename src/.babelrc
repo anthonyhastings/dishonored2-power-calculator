@@ -12,7 +12,8 @@
   ],
   "plugins": [
     "react-hot-loader/babel",
-    "transform-runtime"
+    "transform-runtime",
+    "transform-object-rest-spread"
   ],
   "env": {
     "test": {
