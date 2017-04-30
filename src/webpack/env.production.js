@@ -3,7 +3,9 @@ const webpackMerge = require('webpack-merge');
 const StatsPlugin = require('stats-webpack-plugin');
 const commonConfig = require('./base.js');
 const dependencies = require('../package').dependencies;
-const vendorDependencies = Object.keys(dependencies).filter((dependency) => !dependency.includes('express'));
+const vendorDependencies = Object.keys(dependencies).filter((dependency) => {
+  return dependency !== 'express' && dependency !== 'babel-runtime';
+});
 
 module.exports = function () {
   return webpackMerge(commonConfig(), {
