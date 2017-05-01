@@ -1,9 +1,9 @@
 import Immutable from 'immutable';
-import {defaultState as powersAndEnhancementsDefaultState} from '../reducers/powers-reducer';
-import {defaultState as userDefaultState} from '../reducers/user-reducer';
-import * as actions from '../actions';
+import {defaultState as powersAndEnhancementsDefaultState} from '../../reducers/powers';
+import {defaultState as userDefaultState} from '../../reducers/user';
+import * as actions from '../user';
 
-describe('flux action creators', function () {
+describe('user action creators', function () {
   describe('clearPurchases', function () {
     describe('creates an action', function () {
       beforeEach(function () {

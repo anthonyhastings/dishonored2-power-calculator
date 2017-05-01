@@ -1,4 +1,4 @@
-import {reducer, defaultState} from '../powers-reducer';
+import {reducer, defaultState} from '../powers';
 
 describe('powersReducer', function () {
   describe('when given no action', function () {

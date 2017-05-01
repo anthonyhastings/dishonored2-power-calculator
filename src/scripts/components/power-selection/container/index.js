@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {withRouter} from 'react-router-dom';
 import Component from '../';
-import * as Actions from '../../../flux/actions';
+import * as Actions from '../../../flux/actions/user';
 import * as selectors from '../../../flux/selectors';
 
 export const mapStateToProps = function (state, ownProps) {

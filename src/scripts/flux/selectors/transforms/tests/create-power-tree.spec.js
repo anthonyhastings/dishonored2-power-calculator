@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import {defaultState as powersAndEnhancements} from '../../../reducers/powers-reducer';
+import {defaultState as powersAndEnhancements} from '../../../reducers/powers';
 import createPowerTree from '../create-power-tree';
 
 describe('Create power tree', function () {

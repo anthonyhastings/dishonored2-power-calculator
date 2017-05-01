@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
-import {reducer, defaultState} from '../user-reducer';
-import * as actions from '../../actions';
+import {reducer, defaultState} from '../user';
+import * as actions from '../../actions/user';
 
 describe('userReducer', function () {
   describe('when given no action', function () {

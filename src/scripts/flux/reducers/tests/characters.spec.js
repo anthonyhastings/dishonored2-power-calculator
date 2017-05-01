@@ -1,4 +1,4 @@
-import {reducer, defaultState} from '../characters-reducer';
+import {reducer, defaultState} from '../characters';
 
 describe('charactersReducer', function () {
   describe('when given no action', function () {

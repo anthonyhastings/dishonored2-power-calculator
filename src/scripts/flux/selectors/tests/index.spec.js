@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
-import {defaultState as powersAndEnhancementsDefaultState} from '../../reducers/powers-reducer';
-import {defaultState as userDefaultState} from '../../reducers/user-reducer';
+import {defaultState as powersAndEnhancementsDefaultState} from '../../reducers/powers';
+import {defaultState as userDefaultState} from '../../reducers/user';
 import {
   charactersSelector,
   characterByIdSelector,

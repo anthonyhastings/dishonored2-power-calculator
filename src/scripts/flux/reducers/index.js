@@ -1,6 +1,6 @@
-import {reducer as charactersReducer} from './characters-reducer';
-import {reducer as powersReducer} from './powers-reducer';
-import {reducer as userReducer} from './user-reducer';
+import {reducer as charactersReducer} from './characters';
+import {reducer as powersReducer} from './powers';
+import {reducer as userReducer} from './user';
 
 export {
   charactersReducer,

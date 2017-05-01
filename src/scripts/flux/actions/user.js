@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import {flattenedPowerTreeIdsSelector} from './selectors';
+import {flattenedPowerTreeIdsSelector} from '../selectors';
 
 export const clearPurchases = () => ({
   type: 'CLEAR_PURCHASES'
