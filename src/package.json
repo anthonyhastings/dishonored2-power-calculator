@@ -11,7 +11,7 @@
     "lint": "eslint --ext .js --ext .jsx scripts/ webpack/",
     "prestart": "npm run build",
     "pretest": "npm run lint",
-    "start": "node scripts/server.js",
+    "start": "node server/index.js",
     "test": "jest --config=.jestrc.json",
     "test:upload-coverage": "npm test && cat jest-coverage/lcov.info | coveralls",
     "test:watch": "npm test -- --watch",
