@@ -17,14 +17,16 @@ describe('selectors', function () {
     beforeEach(function () {
       this.state = Immutable.fromJS({
         characters: {
-          hello: 'world',
-          foo: 'bar'
+          data: {
+            hello: 'world',
+            foo: 'bar'
+          }
         }
       });
     });
 
     it('returns all characters', function () {
-      expect(charactersSelector(this.state)).toEqualImmutable(this.state.get('characters'));
+      expect(charactersSelector(this.state)).toEqualImmutable(this.state.getIn(['characters', 'data']));
     });
   });
 
@@ -32,13 +34,15 @@ describe('selectors', function () {
     beforeEach(function () {
       this.state = Immutable.fromJS({
         characters: {
-          'uuid-01': {
-            id: 'uuid-01',
-            name: 'Corvo'
-          },
-          'uuid-02': {
-            id: 'uuid-02',
-            name: 'Emily'
+          data: {
+            'uuid-01': {
+              id: 'uuid-01',
+              name: 'Corvo'
+            },
+            'uuid-02': {
+              id: 'uuid-02',
+              name: 'Emily'
+            }
           }
         },
         user: {
@@ -46,7 +50,7 @@ describe('selectors', function () {
         }
       });
 
-      this.expectedCharacter = this.state.getIn(['characters', 'uuid-02']);
+      this.expectedCharacter = this.state.getIn(['characters', 'data', 'uuid-02']);
     });
 
     it('should return appropriate value', function () {

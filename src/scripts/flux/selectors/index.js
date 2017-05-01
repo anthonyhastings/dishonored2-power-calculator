@@ -2,9 +2,9 @@ import Immutable from 'immutable';
 import {createSelector} from 'reselect';
 import * as transforms from './transforms';
 
-export const charactersSelector = (state) => state.get('characters');
+export const charactersSelector = (state) => state.getIn(['characters', 'data']);
 
-export const characterByIdSelector = (state, characterId) => state.getIn(['characters', characterId]);
+export const characterByIdSelector = (state, characterId) => charactersSelector(state).get(characterId);
 
 export const powersAndEnhancementsSelector = (state) => state.get('powers');
 
