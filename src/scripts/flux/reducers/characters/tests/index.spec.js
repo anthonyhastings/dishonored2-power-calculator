@@ -1,6 +1,7 @@
-import {reducer, defaultState} from '../characters';
+import reducer from '../';
+import {defaultState} from '../';
 
-describe('charactersReducer', function () {
+describe('characters reducer', function () {
   describe('when given no action', function () {
     beforeEach(function () {
       this.result = reducer();
