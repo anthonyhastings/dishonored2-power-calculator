@@ -1,10 +1,10 @@
 import {connect} from 'react-redux';
 import Component from '../';
-import * as selectors from '../../../flux/selectors';
+import charactersSelector from '../../../reducers/characters/selectors/characters';
 
 const mapStateToProps = function (state) {
   return {
-    characters: selectors.charactersSelector(state)
+    characters: charactersSelector(state)
   };
 };
 

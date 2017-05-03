@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
-import {defaultState as powersAndEnhancementsDefaultState} from '../../../../flux/reducers/powers';
-import {defaultState as userDefaultState} from '../../../../flux/reducers/user';
+import {defaultState as powersAndEnhancementsDefaultState} from '../../../../reducers/powers';
+import {defaultState as userDefaultState} from '../../../../reducers/user';
 import {mapStateToProps, mapDispatchToProps} from '../';
 
 describe('Power selection container', function () {
