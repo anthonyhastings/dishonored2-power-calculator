@@ -1,6 +1,6 @@
 import isPowerPurchased from '../is-power-purchased';
 
-describe('isPowerPurchased', function () {
+describe('#isPowerPurchased', function () {
   describe('when a particular power has not been purchased', function () {
     beforeEach(function () {
       this.purchases = [];

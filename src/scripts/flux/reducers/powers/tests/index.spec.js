@@ -1,6 +1,7 @@
-import {reducer, defaultState} from '../powers';
+import reducer from '../';
+import {defaultState} from '../';
 
-describe('powersReducer', function () {
+describe('powers reducer', function () {
   describe('when given no action', function () {
     beforeEach(function () {
       this.result = reducer();

@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 import isPowerPurchasable from '../is-power-purchasable';
 
-describe('isPowerPurchasable', function () {
+describe('#isPowerPurchasable', function () {
   beforeEach(function () {
     this.remainingRunes = 7;
     this.purchases = Immutable.List();

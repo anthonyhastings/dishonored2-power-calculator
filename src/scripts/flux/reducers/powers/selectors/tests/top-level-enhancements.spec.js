@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
-import topLevelEnhancements from '../top-level-enhancements';
+import {transform} from '../top-level-enhancements';
 
-describe('Top level enhancements', function () {
+describe('#topLevelEnhancementsTransform', function () {
   beforeEach(function () {
     this.enhancements = Immutable.fromJS({
       'uuid-01': {
@@ -25,7 +25,7 @@ describe('Top level enhancements', function () {
 
   describe('when called with enhancements', function () {
     it('returns only top level enhancements', function () {
-      expect(topLevelEnhancements(this.enhancements)).toEqualImmutable(Immutable.fromJS({
+      expect(transform(this.enhancements)).toEqualImmutable(Immutable.fromJS({
         'uuid-01': {
           parentPowerId: null,
           name: 'Enhancement #01'

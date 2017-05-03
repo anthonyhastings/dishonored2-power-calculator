@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
-import filterPowers from '../filter-powers';
+import {transform} from '../enhancements';
 
-describe('Filter powers', function () {
+describe('#enhancementsTransform', function () {
   beforeEach(function () {
     this.powersAndEnhancements = Immutable.fromJS({
       'uuid-01': {
@@ -24,15 +24,15 @@ describe('Filter powers', function () {
   });
 
   describe('when called with powers and enhancements', function () {
-    it('returns only powers', function () {
-      expect(filterPowers(this.powersAndEnhancements)).toEqualImmutable(Immutable.fromJS({
-        'uuid-03': {
-          type: 'power',
-          name: 'Power #01'
+    it('returns only enhancements', function () {
+      expect(transform(this.powersAndEnhancements)).toEqualImmutable(Immutable.fromJS({
+        'uuid-01': {
+          type: 'enhancement',
+          name: 'Enhancement #01'
         },
-        'uuid-04': {
-          type: 'power',
-          name: 'Power #02'
+        'uuid-02': {
+          type: 'enhancement',
+          name: 'Enhancement #02'
         }
       }));
     });

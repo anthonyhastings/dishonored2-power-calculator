@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
-import topLevelPowersByCharacterId from '../top-level-powers-by-character-id';
+import {transform} from '../top-level-powers-by-character-id';
 
-describe('Top level powers', function () {
+describe('#topLevelPowersByCharacterId', function () {
   beforeEach(function () {
     this.powers = Immutable.fromJS({
       'uuid-01': {
@@ -29,7 +29,7 @@ describe('Top level powers', function () {
 
   describe('when called with powers', function () {
     it('returns only top level powers for corvo', function () {
-      expect(topLevelPowersByCharacterId(this.powers, 'corvo')).toEqualImmutable(Immutable.fromJS({
+      expect(transform(this.powers, 'corvo')).toEqualImmutable(Immutable.fromJS({
         'uuid-01': {
           parentPowerId: null,
           characterId: 'corvo',
