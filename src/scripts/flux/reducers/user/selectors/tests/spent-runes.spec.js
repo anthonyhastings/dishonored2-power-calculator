@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
-import {spentRunes} from '../';
+import {transform} from '../spent-runes';
 
-describe('Spent runes', function () {
+describe('#spentRunesTransform', function () {
   beforeEach(function () {
     this.powersAndEnhancements = Immutable.fromJS({
       'uuid-01': {
@@ -29,7 +29,7 @@ describe('Spent runes', function () {
     });
 
     it('should return zero', function () {
-      expect(spentRunes(this.powersAndEnhancements, this.purchases)).toEqual(0);
+      expect(transform(this.powersAndEnhancements, this.purchases)).toEqual(0);
     });
   });
 
@@ -39,7 +39,7 @@ describe('Spent runes', function () {
     });
 
     it('should return the correct amount spent', function () {
-      expect(spentRunes(this.powersAndEnhancements, this.purchases)).toEqual(10);
+      expect(transform(this.powersAndEnhancements, this.purchases)).toEqual(10);
     });
   });
 });

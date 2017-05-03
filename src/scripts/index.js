@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import {AppContainer} from 'react-hot-loader';
-import store from './flux/store';
+import store from './store';
 import App from './components/app';
 
 const render = (Component) => {

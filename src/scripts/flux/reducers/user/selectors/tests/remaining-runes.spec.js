@@ -1,6 +1,6 @@
-import {remainingRunes} from '../';
+import {transform} from '../remaining-runes';
 
-describe('Remaining runes', function () {
+describe('#remainingRunesTransform', function () {
   beforeEach(function () {
     this.totalRunes = 30;
     this.remainingRunes = 10;
@@ -8,7 +8,7 @@ describe('Remaining runes', function () {
 
   describe('when given total and spent runes', function () {
     it('should return the remainder', function () {
-      expect(remainingRunes(this.totalRunes, this.remainingRunes)).toEqual(20);
+      expect(transform(this.totalRunes, this.remainingRunes)).toEqual(20);
     });
   });
 });

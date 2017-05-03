@@ -1,15 +1,9 @@
+import {createStore, applyMiddleware, compose} from 'redux';
 import {combineReducers} from 'redux-immutable';
 import thunk from 'redux-thunk';
-import {
-  createStore,
-  applyMiddleware,
-  compose
-} from 'redux';
-import {
-  charactersReducer as characters,
-  powersReducer as powers,
-  userReducer as user
-} from './reducers';
+import characters from './reducers/characters';
+import powers from './reducers/powers';
+import user from './reducers/user';
 
 let store;
 const isProduction = process.env.NODE_ENV;
