@@ -7,6 +7,8 @@ app.use(cors());
 
 app.get('/characters', function (request, response) {
   setTimeout(function () {
+    // response.status(500).send({errorMsg: 'Generic error... Who even knows what went wrong!!!'});
+
     response.set('Content-Type', 'application/vnd.api+json');
     response.send({
       links: {

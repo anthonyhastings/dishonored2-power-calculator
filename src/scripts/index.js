@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import {AppContainer} from 'react-hot-loader';
 import store from './store';
-import App from './components/app';
+import App from './components/app/container';
 
 const render = (Component) => {
   ReactDOM.render((
@@ -21,7 +21,7 @@ const render = (Component) => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept('./components/app', () => {
+  module.hot.accept('./components/app/container', () => {
     render(App);
   });
 }
