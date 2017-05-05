@@ -12,7 +12,7 @@ export const defaultState = Immutable.fromJS({
   }
 });
 
-export default function (state = defaultState, action) {
+export default function (state = defaultState, action = {}) {
   let reducedState;
 
   switch (action.type) {
@@ -34,7 +34,12 @@ export default function (state = defaultState, action) {
         return memo.set(character.get('id'), character);
       }, Immutable.Map());
 
-      reducedState = state.set('data', charactersMap);
+      reducedState = state
+        .set('data', charactersMap)
+        .set('request', Immutable.fromJS({
+          inFlight: false,
+          hasErrored: false
+        }));
       break;
     default:
       reducedState = state;
