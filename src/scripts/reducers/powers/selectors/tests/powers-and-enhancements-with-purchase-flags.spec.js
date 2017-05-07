@@ -4,6 +4,7 @@ import {transform} from '../powers-and-enhancements-with-purchase-flags';
 describe('#powersAndEnhancementsWithPurchaseFlagsSelector', function () {
   beforeEach(function () {
     this.remainingRunes = 2;
+
     this.purchases = Immutable.List(['uuid-01']);
 
     this.powers = Immutable.fromJS({

@@ -9,22 +9,28 @@ describe('#powerSelector', function () {
         purchases: Immutable.List()
       },
       powers: {
-        'uuid-01': {
-          id: 'uuid-01',
-          parentPowerId: null,
-          cost: 2,
-          name: 'Power #01'
-        },
-        'uuid-02': {
-          id: 'uuid-02',
-          parentPowerId: null,
-          cost: 2,
-          name: 'Power #02'
+        data: {
+          'uuid-01': {
+            id: 'uuid-01',
+            parentPowerId: null,
+            cost: 2,
+            name: 'Power #01'
+          },
+          'uuid-02': {
+            id: 'uuid-02',
+            parentPowerId: null,
+            cost: 2,
+            name: 'Power #02'
+          }
         }
       }
     });
 
-    this.expectedPower = this.state.getIn(['powers', 'uuid-02']).mergeDeep({
+    this.expectedPower = Immutable.fromJS({
+      id: 'uuid-02',
+      parentPowerId: null,
+      cost: 2,
+      name: 'Power #02',
       purchasable: true,
       purchased: false
     });

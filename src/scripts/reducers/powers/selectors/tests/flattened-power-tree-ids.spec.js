@@ -1,20 +1,28 @@
 import Immutable from 'immutable';
-import {defaultState as powersAndEnhancementsDefaultState} from '../../';
-import {defaultState as userDefaultState} from '../../../user';
 import flattenedPowerTreeIdsSelector from '../flattened-power-tree-ids';
 
 describe('#flattenedPowerTreeIdsSelector', function () {
   beforeEach(function () {
     this.state = Immutable.fromJS({
-      powers: powersAndEnhancementsDefaultState,
-      user: userDefaultState
+      powers: {
+        data: {
+          abc: {id: 'abc', parentPowerId: null, name: 'Power #01'},
+          def: {id: 'def', parentPowerId: 'abc', name: 'Power #02'},
+          ghi: {id: 'ghi', parentPowerId: 'abc', name: 'Power #03'},
+          jkl: {id: 'jkl', parentPowerId: 'def', name: 'Power #04'}
+        }
+      },
+      user: {
+        totalRunes: 30,
+        purchases: []
+      }
     });
   });
 
   describe('when using a power with no children', function () {
     beforeEach(function () {
-      this.selectorReturnValue = flattenedPowerTreeIdsSelector(this.state, '6229d272-6b03-467a-82ec-00993c642570');
-      this.expectedResponse = Immutable.fromJS(['6229d272-6b03-467a-82ec-00993c642570']);
+      this.selectorReturnValue = flattenedPowerTreeIdsSelector(this.state, 'jkl');
+      this.expectedResponse = Immutable.fromJS(['jkl']);
     });
 
     it('returns list with original power id', function () {
@@ -24,12 +32,13 @@ describe('#flattenedPowerTreeIdsSelector', function () {
 
   describe('when using a power with children', function () {
     beforeEach(function () {
-      this.selectorReturnValue = flattenedPowerTreeIdsSelector(this.state, '39334a1e-2883-4722-af71-d3286d94b6e7');
+      this.selectorReturnValue = flattenedPowerTreeIdsSelector(this.state, 'abc');
 
       this.expectedResponse = Immutable.fromJS([
-        '39334a1e-2883-4722-af71-d3286d94b6e7',
-        '4499082e-9cdc-4828-8d18-40aea0b2970b',
-        '6229d272-6b03-467a-82ec-00993c642570'
+        'abc',
+        'def',
+        'jkl',
+        'ghi'
       ]);
     });
 

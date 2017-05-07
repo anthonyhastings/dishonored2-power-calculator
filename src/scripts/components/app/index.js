@@ -7,6 +7,7 @@ import PowerSelection from '../power-selection/container';
 class App extends React.Component {
   componentDidMount () {
     this.props.fetchCharacters();
+    this.props.fetchPowers();
   }
 
   render () {
@@ -26,7 +27,8 @@ class App extends React.Component {
 };
 
 App.propTypes = {
-  fetchCharacters: PropTypes.func.isRequired
+  fetchCharacters: PropTypes.func.isRequired,
+  fetchPowers: PropTypes.func.isRequired
 };
 
 export default App;

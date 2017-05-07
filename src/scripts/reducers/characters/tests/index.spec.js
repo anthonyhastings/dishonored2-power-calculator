@@ -88,7 +88,7 @@ describe('characters reducer', function () {
 });
 
 describe('characters action creators', function () {
-  describe('fetchCharacters', function () {
+  describe('#fetchCharacters', function () {
     beforeEach(function () {
       this.mockStore = configureMockStore([thunk])();
       this.charactersEndpoint = 'http://localhost:4321/characters';
@@ -164,7 +164,7 @@ describe('characters action creators', function () {
     });
   });
 
-  describe('fetchCharactersRequested', function () {
+  describe('#fetchCharactersRequested', function () {
     describe('creates an action', function () {
       beforeEach(function () {
         this.action = fetchCharactersRequested();
@@ -176,7 +176,7 @@ describe('characters action creators', function () {
     });
   });
 
-  describe('fetchCharactersFailure', function () {
+  describe('#fetchCharactersFailure', function () {
     describe('creates an action', function () {
       beforeEach(function () {
         this.action = fetchCharactersFailure();
@@ -188,7 +188,7 @@ describe('characters action creators', function () {
     });
   });
 
-  describe('fetchCharactersSuccess', function () {
+  describe('#fetchCharactersSuccess', function () {
     describe('creates an action', function () {
       beforeEach(function () {
         this.response = {

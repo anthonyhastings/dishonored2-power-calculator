@@ -1,6 +1,4 @@
 import Immutable from 'immutable';
-import {defaultState as powersAndEnhancementsDefaultState} from '../../powers';
-import {defaultState as userDefaultState} from '../';
 import reducer from '../';
 import {
   defaultState,
@@ -158,24 +156,30 @@ describe('user action creators', function () {
     describe('creates an action', function () {
       beforeEach(function () {
         this.state = Immutable.fromJS({
-          powers: powersAndEnhancementsDefaultState,
-          user: userDefaultState
-        });
-
-        this.stateWithPurchases = this.state.updateIn(['user', 'purchases'], (purchases) => {
-          return purchases.push('39334a1e-2883-4722-af71-d3286d94b6e7', '6229d272-6b03-467a-82ec-00993c642570');
+          powers: {
+            data: {
+              abc: {id: 'abc', parentPowerId: null, name: 'Power with no children'},
+              def: {id: 'def', parentPowerId: null, name: 'Power with one child'},
+              ghi: {id: 'ghi', parentPowerId: 'def', name: 'Power with a parent'},
+              jkl: {id: 'jkl', parentPowerId: 'ghi', name: 'Power with multiple children'}
+            }
+          },
+          user: {
+            totalRunes: 30,
+            purchases: ['abc', 'def']
+          }
         });
 
         this.dispatchFunc = jest.fn();
-        this.getStateFunc = jest.fn(() => this.stateWithPurchases);
+        this.getStateFunc = jest.fn(() => this.state);
       });
 
       describe('that when given a power id with no child powers', function () {
         beforeEach(function () {
-          this.thunkFunction = removePurchase('6229d272-6b03-467a-82ec-00993c642570');
+          this.thunkFunction = removePurchase('abc');
           this.thunkFunction(this.dispatchFunc, this.getStateFunc);
           this.dispatchCall = this.dispatchFunc.mock.calls[0][0];
-          this.expectedPowers = Immutable.fromJS(['6229d272-6b03-467a-82ec-00993c642570']);
+          this.expectedPowers = Immutable.fromJS(['abc']);
         });
 
         it('triggers dispatch with a REMOVE_PURCHASES action', function () {
@@ -189,13 +193,13 @@ describe('user action creators', function () {
 
       describe('that when given a power id with child powers', function () {
         beforeEach(function () {
-          this.thunkFunction = removePurchase('39334a1e-2883-4722-af71-d3286d94b6e7');
+          this.thunkFunction = removePurchase('def');
           this.thunkFunction(this.dispatchFunc, this.getStateFunc);
           this.dispatchCall = this.dispatchFunc.mock.calls[0][0];
           this.expectedPowers = Immutable.fromJS([
-            '39334a1e-2883-4722-af71-d3286d94b6e7',
-            '4499082e-9cdc-4828-8d18-40aea0b2970b',
-            '6229d272-6b03-467a-82ec-00993c642570'
+            'def',
+            'ghi',
+            'jkl'
           ]);
         });
 

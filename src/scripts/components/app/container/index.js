@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchCharacters} from '../../../reducers/characters';
+import {fetchPowers} from '../../../reducers/powers';
 import Component from '../';
 
 const mapStateToProps = function () {
@@ -10,7 +11,8 @@ const mapStateToProps = function () {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    fetchCharacters: bindActionCreators(fetchCharacters, dispatch)
+    fetchCharacters: bindActionCreators(fetchCharacters, dispatch),
+    fetchPowers: bindActionCreators(fetchPowers, dispatch)
   };
 };
 

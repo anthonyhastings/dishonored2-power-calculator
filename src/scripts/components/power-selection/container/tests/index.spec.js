@@ -1,13 +1,18 @@
 import Immutable from 'immutable';
-import {defaultState as powersAndEnhancementsDefaultState} from '../../../../reducers/powers';
-import {defaultState as userDefaultState} from '../../../../reducers/user';
 import {mapStateToProps, mapDispatchToProps} from '../';
 
 describe('Power selection container', function () {
   beforeEach(function () {
     this.state = Immutable.fromJS({
-      powers: powersAndEnhancementsDefaultState,
-      user: userDefaultState
+      powers: {
+        data: {
+          abc: {id: 'abc', parentPowerId: null, name: 'Power #01'}
+        }
+      },
+      user: {
+        totalRunes: 30,
+        purchases: []
+      }
     });
   });
 
@@ -45,7 +50,7 @@ describe('Power selection container', function () {
 
     describe('has an addPurchase prop', function () {
       beforeEach(function () {
-        this.dispatchProps.addPurchase('power-uuid-01');
+        this.dispatchProps.addPurchase();
       });
 
       it('triggers an ADD_PURCHASE action', function () {
@@ -65,7 +70,7 @@ describe('Power selection container', function () {
 
     describe('has a removePurchase prop', function () {
       beforeEach(function () {
-        this.dispatchProps.removePurchase('39334a1e-2883-4722-af71-d3286d94b6e7');
+        this.dispatchProps.removePurchase('abc');
         this.thunkFunc = this.dispatch.mock.calls[0][0];
 
         this.thunkDispatchFunc = jest.fn();

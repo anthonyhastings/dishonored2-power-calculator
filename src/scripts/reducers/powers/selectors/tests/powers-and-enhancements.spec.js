@@ -5,8 +5,10 @@ describe('#powersAndEnhancementsSelector', function () {
   beforeEach(function () {
     this.state = Immutable.fromJS({
       powers: {
-        'uuid-01': 'hello',
-        'uuid-02': 'world'
+        data: {
+          'uuid-01': 'hello',
+          'uuid-02': 'world'
+        }
       }
     });
   });
