@@ -2,10 +2,12 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchCharacters} from '../../../reducers/characters';
 import {fetchPowers} from '../../../reducers/powers';
+import dataLoadedSelector from '../../../reducers/selectors/data-loaded';
 import Component from '../';
 
-const mapStateToProps = function () {
+const mapStateToProps = function (state) {
   return {
+    dataLoaded: dataLoadedSelector(state)
   };
 };
 
