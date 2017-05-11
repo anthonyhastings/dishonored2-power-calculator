@@ -17,16 +17,20 @@ export default function (state = defaultState, action = {}) {
 
   switch (action.type) {
     case FETCH_POWERS_REQUESTED:
-      reducedState = state.set('request', Immutable.Map({
-        inFlight: true,
-        hasErrored: false
-      }));
+      reducedState = state
+        .set('data', undefined)
+        .set('request', Immutable.Map({
+          inFlight: true,
+          hasErrored: false
+        }));
       break;
     case FETCH_POWERS_FAILURE:
-      reducedState = state.set('request', Immutable.Map({
-        inFlight: false,
-        hasErrored: true
-      }));
+      reducedState = state
+        .set('data', undefined)
+        .set('request', Immutable.Map({
+          inFlight: false,
+          hasErrored: true
+        }));
       break;
     case FETCH_POWERS_SUCCESS:
       const powersList = Immutable.fromJS(action.response.data);
