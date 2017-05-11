@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader component when loading has errored renders the loaders error children 1`] = `
+<h1>
+  ERROR. TRY AGAIN LATER.
+</h1>
+`;
+
+exports[`Loader component when loading is complete renders the loaders children 1`] = `
+<p>
+  Hello World
+</p>
+`;
+
+exports[`Loader component when loading is incomplete renders the loaders default content 1`] = `
+<h1>
+  Loading
+</h1>
+`;
