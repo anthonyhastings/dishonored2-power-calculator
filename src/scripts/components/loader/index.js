@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-const Loader = function ({children, loaded = false}) {
+const Loader = function ({children, loaded}) {
   if (loaded === true) {
     return children;
   } else if (_.isError(loaded)) {
@@ -21,7 +21,7 @@ Loader.propTypes = {
   loaded: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.instanceOf(Error)
-  ])
+  ]).isRequired
 };
 
 export default Loader;

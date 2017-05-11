@@ -13,7 +13,7 @@ const renderLoader = function (props) {
 describe('Loader component', function () {
   describe('when loading is incomplete', function () {
     beforeEach(function () {
-      const loader = renderLoader();
+      const loader = renderLoader({loaded: false});
 
       this.wrapper = render(loader);
     });
