@@ -31,6 +31,7 @@ describe('characters reducer', function () {
       });
 
       this.outputState = Immutable.fromJS({
+        data: undefined,
         request: {inFlight: true, hasErrored: false}
       });
     });
@@ -49,6 +50,7 @@ describe('characters reducer', function () {
       });
 
       this.outputState = Immutable.fromJS({
+        data: undefined,
         request: {inFlight: false, hasErrored: true}
       });
     });

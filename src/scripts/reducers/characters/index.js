@@ -17,16 +17,20 @@ export default function (state = defaultState, action = {}) {
 
   switch (action.type) {
     case FETCH_CHARACTERS_REQUESTED:
-      reducedState = state.set('request', Immutable.Map({
-        inFlight: true,
-        hasErrored: false
-      }));
+      reducedState = state
+        .set('data', undefined)
+        .set('request', Immutable.Map({
+          inFlight: true,
+          hasErrored: false
+        }));
       break;
     case FETCH_CHARACTERS_FAILURE:
-      reducedState = state.set('request', Immutable.Map({
-        inFlight: false,
-        hasErrored: true
-      }));
+      reducedState = state
+        .set('data', undefined)
+        .set('request', Immutable.Map({
+          inFlight: false,
+          hasErrored: true
+        }));
       break;
     case FETCH_CHARACTERS_SUCCESS:
       const charactersList = Immutable.fromJS(action.response.data);
@@ -36,7 +40,7 @@ export default function (state = defaultState, action = {}) {
 
       reducedState = state
         .set('data', charactersMap)
-        .set('request', Immutable.fromJS({
+        .set('request', Immutable.Map({
           inFlight: false,
           hasErrored: false
         }));
