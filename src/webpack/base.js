@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const distPath = path.join(__dirname, '../dist');
@@ -23,6 +24,7 @@ module.exports = function () {
       ]
     },
     plugins: [
+      new webpack.optimize.ModuleConcatenationPlugin(),
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: 'html/index.html',
