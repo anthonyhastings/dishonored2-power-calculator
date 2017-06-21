@@ -10,40 +10,46 @@ const renderLoader = function (props) {
   );
 };
 
-describe('Loader component', function () {
-  describe('when loading is incomplete', function () {
-    beforeEach(function () {
+describe('Loader component', () => {
+  describe('when loading is incomplete', () => {
+    let wrapper;
+
+    beforeEach(() => {
       const loader = renderLoader({loaded: false});
 
-      this.wrapper = render(loader);
+      wrapper = render(loader);
     });
 
-    it('renders the loaders default content', function () {
-      expect(this.wrapper).toMatchSnapshot();
+    it('renders the loaders default content', () => {
+      expect(wrapper).toMatchSnapshot();
     });
   });
 
-  describe('when loading is complete', function () {
-    beforeEach(function () {
+  describe('when loading is complete', () => {
+    let wrapper;
+
+    beforeEach(() => {
       const loader = renderLoader({loaded: true});
 
-      this.wrapper = render(loader);
+      wrapper = render(loader);
     });
 
-    it('renders the loaders children', function () {
-      expect(this.wrapper).toMatchSnapshot();
+    it('renders the loaders children', () => {
+      expect(wrapper).toMatchSnapshot();
     });
   });
 
-  describe('when loading has errored', function () {
-    beforeEach(function () {
+  describe('when loading has errored', () => {
+    let wrapper;
+
+    beforeEach(() => {
       const loader = renderLoader({loaded: new Error()});
 
-      this.wrapper = render(loader);
+      wrapper = render(loader);
     });
 
-    it('renders the loaders error children', function () {
-      expect(this.wrapper).toMatchSnapshot();
+    it('renders the loaders error children', () => {
+      expect(wrapper).toMatchSnapshot();
     });
   });
 });

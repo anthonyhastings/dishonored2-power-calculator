@@ -11,70 +11,84 @@ import {
   fetchCharactersSuccess
 } from '../';
 
-describe('characters reducer', function () {
-  describe('when given no action', function () {
-    beforeEach(function () {
-      this.result = reducer();
+describe('characters reducer', () => {
+  describe('when given no action', () => {
+    let result;
+
+    beforeEach(() => {
+      result = reducer();
     });
 
-    it('should return default state', function () {
-      expect(this.result).toEqualImmutable(defaultState);
+    it('should return default state', () => {
+      expect(result).toEqualImmutable(defaultState);
     });
   });
 
-  describe('when given FETCH_CHARACTERS_REQUESTED action', function () {
-    beforeEach(function () {
-      this.action = fetchCharactersRequested();
+  describe('when given FETCH_CHARACTERS_REQUESTED action', () => {
+    let action;
+    let inputState;
+    let outputState;
 
-      this.inputState = Immutable.fromJS({
+    beforeEach(() => {
+      action = fetchCharactersRequested();
+
+      inputState = Immutable.fromJS({
         request: {inFlight: false, hasErrored: true}
       });
 
-      this.outputState = Immutable.fromJS({
+      outputState = Immutable.fromJS({
         data: undefined,
         request: {inFlight: true, hasErrored: false}
       });
     });
 
-    it('resets any errors and denotes the request as being in flight', function () {
-      expect(reducer(this.inputState, this.action)).toEqualImmutable(this.outputState);
+    it('resets any errors and denotes the request as being in flight', () => {
+      expect(reducer(inputState, action)).toEqualImmutable(outputState);
     });
   });
 
-  describe('when given FETCH_CHARACTERS_FAILURE action', function () {
-    beforeEach(function () {
-      this.action = fetchCharactersFailure();
+  describe('when given FETCH_CHARACTERS_FAILURE action', () => {
+    let action;
+    let inputState;
+    let outputState;
 
-      this.inputState = Immutable.fromJS({
+    beforeEach(() => {
+      action = fetchCharactersFailure();
+
+      inputState = Immutable.fromJS({
         request: {inFlight: true, hasErrored: false}
       });
 
-      this.outputState = Immutable.fromJS({
+      outputState = Immutable.fromJS({
         data: undefined,
         request: {inFlight: false, hasErrored: true}
       });
     });
 
-    it('sets an error in the state and unsets the request from being in flight', function () {
-      expect(reducer(this.inputState, this.action)).toEqualImmutable(this.outputState);
+    it('sets an error in the state and unsets the request from being in flight', () => {
+      expect(reducer(inputState, action)).toEqualImmutable(outputState);
     });
   });
 
-  describe('when given FETCH_CHARACTERS_SUCCESS action', function () {
-    beforeEach(function () {
-      this.action = fetchCharactersSuccess({
+  describe('when given FETCH_CHARACTERS_SUCCESS action', () => {
+    let action;
+    let inputState;
+    let outputState;
+
+    beforeEach(() => {
+      action = fetchCharactersSuccess({
         data: [
           {id: 'abc', key: 'value'},
           {id: 'def', key: 'secret'}
         ]
       });
 
-      this.inputState = Immutable.fromJS({
+      inputState = Immutable.fromJS({
         data: undefined,
         request: {inFlight: true, hasErrored: false}
       });
 
-      this.outputState = Immutable.fromJS({
+      outputState = Immutable.fromJS({
         data: {
           abc: {id: 'abc', key: 'value'},
           def: {id: 'def', key: 'secret'}
@@ -83,18 +97,22 @@ describe('characters reducer', function () {
       });
     });
 
-    it('stores data after normalising and unsets the request as being in flight', function () {
-      expect(reducer(this.inputState, this.action)).toEqualImmutable(this.outputState);
+    it('stores data after normalising and unsets the request as being in flight', () => {
+      expect(reducer(inputState, action)).toEqualImmutable(outputState);
     });
   });
 });
 
-describe('characters action creators', function () {
-  describe('#fetchCharacters', function () {
-    beforeEach(function () {
-      this.mockStore = configureMockStore([thunk])();
-      this.charactersEndpoint = 'http://localhost:4321/characters';
-      this.charactersResponse = {
+describe('characters action creators', () => {
+  describe('#fetchCharacters', () => {
+    let mockStore;
+    let charactersEndpoint;
+    let charactersResponse;
+
+    beforeEach(() => {
+      mockStore = configureMockStore([thunk])();
+      charactersEndpoint = 'http://localhost:4321/characters';
+      charactersResponse = {
         data: [
           {id: 'abc', key: 'value'},
           {id: 'def', key: 'secret'}
@@ -102,46 +120,46 @@ describe('characters action creators', function () {
       };
     });
 
-    afterEach(function () {
+    afterEach(() => {
       fetchMock.restore();
     });
 
-    describe('initially', function () {
-      beforeEach(function () {
-        fetchMock.get(this.charactersEndpoint, this.charactersResponse);
+    describe('initially', () => {
+      beforeEach(() => {
+        fetchMock.get(charactersEndpoint, charactersResponse);
       });
 
-      it('fires a requested action', function () {
-        return this.mockStore.dispatch(fetchCharacters()).then(() => {
-          expect(this.mockStore.getActions()[0]).toEqual(fetchCharactersRequested());
+      it('fires a requested action', () => {
+        return mockStore.dispatch(fetchCharacters()).then(() => {
+          expect(mockStore.getActions()[0]).toEqual(fetchCharactersRequested());
         });
       });
     });
 
-    describe('upon completed request', function () {
-      describe('with an OK response', function () {
-        beforeEach(function () {
-          fetchMock.get(this.charactersEndpoint, this.charactersResponse);
+    describe('upon completed request', () => {
+      describe('with an OK response', () => {
+        beforeEach(() => {
+          fetchMock.get(charactersEndpoint, charactersResponse);
         });
 
-        it('fires a requested action, then a success action which includes response', function () {
-          return this.mockStore.dispatch(fetchCharacters()).then(() => {
-            expect(this.mockStore.getActions()).toEqual([
+        it('fires a requested action, then a success action which includes response', () => {
+          return mockStore.dispatch(fetchCharacters()).then(() => {
+            expect(mockStore.getActions()).toEqual([
               {type: 'FETCH_CHARACTERS_REQUESTED'},
-              {type: 'FETCH_CHARACTERS_SUCCESS', response: this.charactersResponse}
+              {type: 'FETCH_CHARACTERS_SUCCESS', response: charactersResponse}
             ]);
           });
         });
       });
 
-      describe('with a response that is not OK', function () {
-        beforeEach(function () {
-          fetchMock.get(this.charactersEndpoint, 500);
+      describe('with a response that is not OK', () => {
+        beforeEach(() => {
+          fetchMock.get(charactersEndpoint, 500);
         });
 
-        it('fires a requested action, then a failure action', function () {
-          return this.mockStore.dispatch(fetchCharacters()).then(() => {
-            expect(this.mockStore.getActions()).toEqual([
+        it('fires a requested action, then a failure action', () => {
+          return mockStore.dispatch(fetchCharacters()).then(() => {
+            expect(mockStore.getActions()).toEqual([
               {type: 'FETCH_CHARACTERS_REQUESTED'},
               {type: 'FETCH_CHARACTERS_FAILURE'}
             ]);
@@ -150,14 +168,14 @@ describe('characters action creators', function () {
       });
     });
 
-    describe('upon complete failure', function () {
-      beforeEach(function () {
-        fetchMock.get(this.charactersEndpoint, Promise.reject());
+    describe('upon complete failure', () => {
+      beforeEach(() => {
+        fetchMock.get(charactersEndpoint, Promise.reject());
       });
 
-      it('fires a requested action, then a failure action', function () {
-        return this.mockStore.dispatch(fetchCharacters()).then(() => {
-          expect(this.mockStore.getActions()).toEqual([
+      it('fires a requested action, then a failure action', () => {
+        return mockStore.dispatch(fetchCharacters()).then(() => {
+          expect(mockStore.getActions()).toEqual([
             {type: 'FETCH_CHARACTERS_REQUESTED'},
             {type: 'FETCH_CHARACTERS_FAILURE'}
           ]);
@@ -166,49 +184,56 @@ describe('characters action creators', function () {
     });
   });
 
-  describe('#fetchCharactersRequested', function () {
-    describe('creates an action', function () {
-      beforeEach(function () {
-        this.action = fetchCharactersRequested();
+  describe('#fetchCharactersRequested', () => {
+    describe('creates an action', () => {
+      let action;
+
+      beforeEach(() => {
+        action = fetchCharactersRequested();
       });
 
-      it('with the correct type', function () {
-        expect(this.action.type).toEqual('FETCH_CHARACTERS_REQUESTED');
-      });
-    });
-  });
-
-  describe('#fetchCharactersFailure', function () {
-    describe('creates an action', function () {
-      beforeEach(function () {
-        this.action = fetchCharactersFailure();
-      });
-
-      it('with the correct type', function () {
-        expect(this.action.type).toEqual('FETCH_CHARACTERS_FAILURE');
+      it('with the correct type', () => {
+        expect(action.type).toEqual('FETCH_CHARACTERS_REQUESTED');
       });
     });
   });
 
-  describe('#fetchCharactersSuccess', function () {
-    describe('creates an action', function () {
-      beforeEach(function () {
-        this.response = {
+  describe('#fetchCharactersFailure', () => {
+    describe('creates an action', () => {
+      let action;
+
+      beforeEach(() => {
+        action = fetchCharactersFailure();
+      });
+
+      it('with the correct type', () => {
+        expect(action.type).toEqual('FETCH_CHARACTERS_FAILURE');
+      });
+    });
+  });
+
+  describe('#fetchCharactersSuccess', () => {
+    describe('creates an action', () => {
+      let response;
+      let action;
+
+      beforeEach(() => {
+        response = {
           data: [
             {id: 'abc', key: 'value'},
             {id: 'def', key: 'secret'}
           ]
         };
 
-        this.action = fetchCharactersSuccess(this.response);
+        action = fetchCharactersSuccess(response);
       });
 
-      it('with the correct type', function () {
-        expect(this.action.type).toEqual('FETCH_CHARACTERS_SUCCESS');
+      it('with the correct type', () => {
+        expect(action.type).toEqual('FETCH_CHARACTERS_SUCCESS');
       });
 
-      it('with the correct power', function () {
-        expect(this.action.response).toEqual(this.response);
+      it('with the correct power', () => {
+        expect(action.response).toEqual(response);
       });
     });
   });

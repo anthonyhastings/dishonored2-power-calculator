@@ -1,13 +1,18 @@
 import Immutable from 'immutable';
 import {transform} from '../powers-and-enhancements-with-purchase-flags';
 
-describe('#powersAndEnhancementsWithPurchaseFlagsSelector', function () {
-  beforeEach(function () {
-    this.remainingRunes = 2;
+describe('#powersAndEnhancementsWithPurchaseFlagsSelector', () => {
+  let remainingRunes;
+  let purchases;
+  let powers;
+  let expectedPowers;
 
-    this.purchases = Immutable.List(['uuid-01']);
+  beforeEach(() => {
+    remainingRunes = 2;
 
-    this.powers = Immutable.fromJS({
+    purchases = Immutable.List(['uuid-01']);
+
+    powers = Immutable.fromJS({
       'uuid-01': {
         id: 'uuid-01',
         parentPowerId: null,
@@ -25,14 +30,14 @@ describe('#powersAndEnhancementsWithPurchaseFlagsSelector', function () {
       }
     });
 
-    this.expectedPowers = this.powers.mergeDeep({
+    expectedPowers = powers.mergeDeep({
       'uuid-01': {purchasable: false, purchased: true},
       'uuid-02': {purchasable: true, purchased: false},
       'uuid-03': {purchasable: false, purchased: false}
     });
   });
 
-  it('returns expected structure', function () {
-    expect(transform(this.powers, this.purchases, this.remainingRunes)).toEqualImmutable(this.expectedPowers);
+  it('returns expected structure', () => {
+    expect(transform(powers, purchases, remainingRunes)).toEqualImmutable(expectedPowers);
   });
 });

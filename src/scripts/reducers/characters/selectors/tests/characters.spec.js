@@ -1,9 +1,11 @@
 import Immutable from 'immutable';
 import charactersSelector from '../characters';
 
-describe('#charactersSelector', function () {
-  beforeEach(function () {
-    this.state = Immutable.fromJS({
+describe('#charactersSelector', () => {
+  let state;
+
+  beforeEach(() => {
+    state = Immutable.fromJS({
       characters: {
         data: {
           hello: 'world',
@@ -13,7 +15,7 @@ describe('#charactersSelector', function () {
     });
   });
 
-  it('returns all characters', function () {
-    expect(charactersSelector(this.state)).toEqualImmutable(this.state.getIn(['characters', 'data']));
+  it('returns all characters', () => {
+    expect(charactersSelector(state)).toEqualImmutable(state.getIn(['characters', 'data']));
   });
 });

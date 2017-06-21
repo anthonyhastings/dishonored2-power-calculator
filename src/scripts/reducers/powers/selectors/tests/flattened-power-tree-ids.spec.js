@@ -1,9 +1,11 @@
 import Immutable from 'immutable';
 import flattenedPowerTreeIdsSelector from '../flattened-power-tree-ids';
 
-describe('#flattenedPowerTreeIdsSelector', function () {
-  beforeEach(function () {
-    this.state = Immutable.fromJS({
+describe('#flattenedPowerTreeIdsSelector', () => {
+  let state;
+
+  beforeEach(() => {
+    state = Immutable.fromJS({
       powers: {
         data: {
           abc: {id: 'abc', parentPowerId: null, name: 'Power #01'},
@@ -19,22 +21,28 @@ describe('#flattenedPowerTreeIdsSelector', function () {
     });
   });
 
-  describe('when using a power with no children', function () {
-    beforeEach(function () {
-      this.selectorReturnValue = flattenedPowerTreeIdsSelector(this.state, 'jkl');
-      this.expectedResponse = Immutable.fromJS(['jkl']);
+  describe('when using a power with no children', () => {
+    let selectorReturnValue;
+    let expectedResponse;
+
+    beforeEach(() => {
+      selectorReturnValue = flattenedPowerTreeIdsSelector(state, 'jkl');
+      expectedResponse = Immutable.fromJS(['jkl']);
     });
 
-    it('returns list with original power id', function () {
-      expect(this.selectorReturnValue).toEqualImmutable(this.expectedResponse);
+    it('returns list with original power id', () => {
+      expect(selectorReturnValue).toEqualImmutable(expectedResponse);
     });
   });
 
-  describe('when using a power with children', function () {
-    beforeEach(function () {
-      this.selectorReturnValue = flattenedPowerTreeIdsSelector(this.state, 'abc');
+  describe('when using a power with children', () => {
+    let selectorReturnValue;
+    let expectedResponse;
 
-      this.expectedResponse = Immutable.fromJS([
+    beforeEach(() => {
+      selectorReturnValue = flattenedPowerTreeIdsSelector(state, 'abc');
+
+      expectedResponse = Immutable.fromJS([
         'abc',
         'def',
         'jkl',
@@ -42,8 +50,8 @@ describe('#flattenedPowerTreeIdsSelector', function () {
       ]);
     });
 
-    it('returns list with original power id and child power id\'s', function () {
-      expect(this.selectorReturnValue).toEqualImmutable(this.expectedResponse);
+    it('returns list with original power id and child power id\'s', () => {
+      expect(selectorReturnValue).toEqualImmutable(expectedResponse);
     });
   });
 });

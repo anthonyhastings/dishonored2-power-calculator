@@ -1,9 +1,12 @@
 import Immutable from 'immutable';
 import characterByIdSelector from '../character-by-id';
 
-describe('#characterByIdSelector', function () {
-  beforeEach(function () {
-    this.state = Immutable.fromJS({
+describe('#characterByIdSelector', () => {
+  let state;
+  let expectedCharacter;
+
+  beforeEach(() => {
+    state = Immutable.fromJS({
       characters: {
         data: {
           'uuid-01': {
@@ -21,10 +24,10 @@ describe('#characterByIdSelector', function () {
       }
     });
 
-    this.expectedCharacter = this.state.getIn(['characters', 'data', 'uuid-02']);
+    expectedCharacter = state.getIn(['characters', 'data', 'uuid-02']);
   });
 
-  it('should return appropriate value', function () {
-    expect(characterByIdSelector(this.state, 'uuid-02')).toEqualImmutable(this.expectedCharacter);
+  it('should return appropriate value', () => {
+    expect(characterByIdSelector(state, 'uuid-02')).toEqualImmutable(expectedCharacter);
   });
 });

@@ -1,16 +1,18 @@
 import Immutable from 'immutable';
 import totalRunesSelector from '../total-runes';
 
-describe('#totalRunesSelector', function () {
-  beforeEach(function () {
-    this.state = Immutable.fromJS({
+describe('#totalRunesSelector', () => {
+  let state;
+
+  beforeEach(() => {
+    state = Immutable.fromJS({
       user: {
         totalRunes: 30
       }
     });
   });
 
-  it('should return appropriate value', function () {
-    expect(totalRunesSelector(this.state)).toEqual(30);
+  it('should return appropriate value', () => {
+    expect(totalRunesSelector(state)).toEqual(30);
   });
 });

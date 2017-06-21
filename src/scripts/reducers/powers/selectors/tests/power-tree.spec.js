@@ -2,9 +2,11 @@ import Immutable from 'immutable';
 import powerTreeSelector from '../power-tree';
 import {transform} from '../power-tree';
 
-describe('#powerTreeSelector', function () {
-  beforeEach(function () {
-    this.state = Immutable.fromJS({
+describe('#powerTreeSelector', () => {
+  let state;
+
+  beforeEach(() => {
+    state = Immutable.fromJS({
       powers: {
         data: {
           abc: {id: 'abc', parentPowerId: null, name: 'Power with no children'},
@@ -25,9 +27,11 @@ describe('#powerTreeSelector', function () {
     });
   });
 
-  describe('when using a power with no children', function () {
-    beforeEach(function () {
-      this.expectedResult = Immutable.fromJS({
+  describe('when using a power with no children', () => {
+    let expectedResult;
+
+    beforeEach(() => {
+      expectedResult = Immutable.fromJS({
         id: 'abc',
         parentPowerId: null,
         name: 'Power with no children',
@@ -37,14 +41,16 @@ describe('#powerTreeSelector', function () {
       });
     });
 
-    it('returns the power with an empty children list', function () {
-      expect(powerTreeSelector(this.state, 'abc')).toEqualImmutable(this.expectedResult);
+    it('returns the power with an empty children list', () => {
+      expect(powerTreeSelector(state, 'abc')).toEqualImmutable(expectedResult);
     });
   });
 
-  describe('when using a power with one child', function () {
-    beforeEach(function () {
-      this.expectedResult = Immutable.fromJS({
+  describe('when using a power with one child', () => {
+    let expectedResult;
+
+    beforeEach(() => {
+      expectedResult = Immutable.fromJS({
         id: 'def',
         parentPowerId: null,
         name: 'Power with one child',
@@ -63,14 +69,16 @@ describe('#powerTreeSelector', function () {
       });
     });
 
-    it('returns the power with a single child', function () {
-      expect(powerTreeSelector(this.state, 'def')).toEqualImmutable(this.expectedResult);
+    it('returns the power with a single child', () => {
+      expect(powerTreeSelector(state, 'def')).toEqualImmutable(expectedResult);
     });
   });
 
-  describe('when using a power with multiple children', function () {
-    beforeEach(function () {
-      this.expectedResult = Immutable.fromJS({
+  describe('when using a power with multiple children', () => {
+    let expectedResult;
+
+    beforeEach(() => {
+      expectedResult = Immutable.fromJS({
         id: 'jkl',
         parentPowerId: null,
         name: 'Power with multiple children',
@@ -97,14 +105,16 @@ describe('#powerTreeSelector', function () {
       });
     });
 
-    it('returns the power with all the children', function () {
-      expect(powerTreeSelector(this.state, 'jkl')).toEqualImmutable(this.expectedResult);
+    it('returns the power with all the children', () => {
+      expect(powerTreeSelector(state, 'jkl')).toEqualImmutable(expectedResult);
     });
   });
 
-  describe('when using a power with multiple tiers of children', function () {
-    beforeEach(function () {
-      this.expectedResult = Immutable.fromJS({
+  describe('when using a power with multiple tiers of children', () => {
+    let expectedResult;
+
+    beforeEach(() => {
+      expectedResult = Immutable.fromJS({
         id: 'stu',
         parentPowerId: null,
         name: 'Power with deeply nested children',
@@ -132,15 +142,15 @@ describe('#powerTreeSelector', function () {
       });
     });
 
-    it('returns the power with nested children', function () {
-      expect(powerTreeSelector(this.state, 'stu')).toEqualImmutable(this.expectedResult);
+    it('returns the power with nested children', () => {
+      expect(powerTreeSelector(state, 'stu')).toEqualImmutable(expectedResult);
     });
   });
 });
 
-describe('#powerTreeTransform', function () {
-  describe('when given a non-existent power', function () {
-    it('returns an empty list', function () {
+describe('#powerTreeTransform', () => {
+  describe('when given a non-existent power', () => {
+    it('returns an empty list', () => {
       expect(transform(
         Immutable.fromJS({}),
         'abcdef'
@@ -148,8 +158,8 @@ describe('#powerTreeTransform', function () {
     });
   });
 
-  describe('when a power has no children', function () {
-    it('returns an empty list', function () {
+  describe('when a power has no children', () => {
+    it('returns an empty list', () => {
       expect(transform(
         Immutable.fromJS({
           abc: {}
@@ -159,25 +169,28 @@ describe('#powerTreeTransform', function () {
     });
   });
 
-  describe('when a power has children', function () {
-    beforeEach(function () {
-      this.inputState = Immutable.fromJS({
+  describe('when a power has children', () => {
+    let inputState;
+    let expectedResponse;
+
+    beforeEach(() => {
+      inputState = Immutable.fromJS({
         abc: {parentPowerId: null, name: 'Parent Power'},
         def: {parentPowerId: 'abc', name: 'Child Power #01'},
         ghi: {parentPowerId: 'abc', name: 'Child Power #02'}
       });
 
-      this.expectedResponse = Immutable.fromJS([
+      expectedResponse = Immutable.fromJS([
         {parentPowerId: 'abc', name: 'Child Power #01', children: []},
         {parentPowerId: 'abc', name: 'Child Power #02', children: []}
       ]);
     });
 
-    it('returns them in a list', function () {
+    it('returns them in a list', () => {
       expect(transform(
-        this.inputState,
+        inputState,
         'abc'
-      )).toEqualImmutable(this.expectedResponse);
+      )).toEqualImmutable(expectedResponse);
     });
   });
 });

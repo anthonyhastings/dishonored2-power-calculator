@@ -1,9 +1,12 @@
 import Immutable from 'immutable';
 import powerSelector from '../power';
 
-describe('#powerSelector', function () {
-  beforeEach(function () {
-    this.state = Immutable.fromJS({
+describe('#powerSelector', () => {
+  let state;
+  let expectedPower;
+
+  beforeEach(() => {
+    state = Immutable.fromJS({
       user: {
         totalRunes: 30,
         purchases: Immutable.List()
@@ -26,7 +29,7 @@ describe('#powerSelector', function () {
       }
     });
 
-    this.expectedPower = Immutable.fromJS({
+    expectedPower = Immutable.fromJS({
       id: 'uuid-02',
       parentPowerId: null,
       cost: 2,
@@ -36,7 +39,7 @@ describe('#powerSelector', function () {
     });
   });
 
-  it('should return appropriate value', function () {
-    expect(powerSelector(this.state, 'uuid-02')).toEqual(this.expectedPower);
+  it('should return appropriate value', () => {
+    expect(powerSelector(state, 'uuid-02')).toEqual(expectedPower);
   });
 });

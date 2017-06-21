@@ -1,23 +1,25 @@
 import isPowerPurchased from '../is-power-purchased';
 
-describe('#isPowerPurchased', function () {
-  describe('when a particular power has not been purchased', function () {
-    beforeEach(function () {
-      this.purchases = [];
+describe('#isPowerPurchased', () => {
+  let purchases;
+
+  describe('when a particular power has not been purchased', () => {
+    beforeEach(() => {
+      purchases = [];
     });
 
-    it('should return false', function () {
-      expect(isPowerPurchased(this.purchases, 'uuid-01')).toEqual(false);
+    it('should return false', () => {
+      expect(isPowerPurchased(purchases, 'uuid-01')).toEqual(false);
     });
   });
 
-  describe('when a particular power has been purchased', function () {
-    beforeEach(function () {
-      this.purchases = ['uuid-01'];
+  describe('when a particular power has been purchased', () => {
+    beforeEach(() => {
+      purchases = ['uuid-01'];
     });
 
-    it('should return true', function () {
-      expect(isPowerPurchased(this.purchases, 'uuid-01')).toEqual(true);
+    it('should return true', () => {
+      expect(isPowerPurchased(purchases, 'uuid-01')).toEqual(true);
     });
   });
 });

@@ -1,9 +1,11 @@
 import Immutable from 'immutable';
 import powersRequestSelector from '../powers-request';
 
-describe('#powersRequestSelector', function () {
-  beforeEach(function () {
-    this.state = Immutable.fromJS({
+describe('#powersRequestSelector', () => {
+  let state;
+
+  beforeEach(() => {
+    state = Immutable.fromJS({
       powers: {
         request: {
           inFlight: true,
@@ -13,8 +15,8 @@ describe('#powersRequestSelector', function () {
     });
   });
 
-  it('returns request node', function () {
-    expect(powersRequestSelector(this.state)).toEqualImmutable(Immutable.fromJS({
+  it('returns request node', () => {
+    expect(powersRequestSelector(state)).toEqualImmutable(Immutable.fromJS({
       inFlight: true,
       hasErrored: false
     }));

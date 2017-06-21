@@ -1,9 +1,11 @@
 import Immutable from 'immutable';
 import {transform} from '../enhancements';
 
-describe('#enhancementsTransform', function () {
-  beforeEach(function () {
-    this.powersAndEnhancements = Immutable.fromJS({
+describe('#enhancementsTransform', () => {
+  let powersAndEnhancements;
+
+  beforeEach(() => {
+    powersAndEnhancements = Immutable.fromJS({
       'uuid-01': {
         type: 'enhancement',
         name: 'Enhancement #01'
@@ -23,9 +25,9 @@ describe('#enhancementsTransform', function () {
     });
   });
 
-  describe('when called with powers and enhancements', function () {
-    it('returns only enhancements', function () {
-      expect(transform(this.powersAndEnhancements)).toEqualImmutable(Immutable.fromJS({
+  describe('when called with powers and enhancements', () => {
+    it('returns only enhancements', () => {
+      expect(transform(powersAndEnhancements)).toEqualImmutable(Immutable.fromJS({
         'uuid-01': {
           type: 'enhancement',
           name: 'Enhancement #01'

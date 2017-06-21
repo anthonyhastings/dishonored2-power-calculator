@@ -1,9 +1,11 @@
 import Immutable from 'immutable';
 import charactersRequestSelector from '../characters-request';
 
-describe('#charactersRequestSelector', function () {
-  beforeEach(function () {
-    this.state = Immutable.fromJS({
+describe('#charactersRequestSelector', () => {
+  let state;
+
+  beforeEach(() => {
+    state = Immutable.fromJS({
       characters: {
         request: {
           inFlight: false,
@@ -13,8 +15,8 @@ describe('#charactersRequestSelector', function () {
     });
   });
 
-  it('returns request node', function () {
-    expect(charactersRequestSelector(this.state)).toEqualImmutable(Immutable.fromJS({
+  it('returns request node', () => {
+    expect(charactersRequestSelector(state)).toEqualImmutable(Immutable.fromJS({
       inFlight: false,
       hasErrored: true
     }));

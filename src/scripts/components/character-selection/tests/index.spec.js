@@ -9,16 +9,18 @@ const characters = Immutable.fromJS({
   def: {id: 'sr', name: 'Scott Ryder', description: 'The pathfinder.'}
 });
 
-describe('CharacterSelection component', function () {
-  beforeEach(function () {
-    this.wrapper = render(
+describe('CharacterSelection component', () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = render(
       <MemoryRouter>
         <CharacterSelection characters={characters}></CharacterSelection>
       </MemoryRouter>
     );
   });
 
-  it('renders correctly', function () {
-    expect(this.wrapper).toMatchSnapshot();
+  it('renders correctly', () => {
+    expect(wrapper).toMatchSnapshot();
   });
 });
