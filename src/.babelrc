@@ -12,6 +12,7 @@
   ],
   "plugins": [
     "react-hot-loader/babel",
+    "syntax-dynamic-import",
     "transform-runtime",
     "transform-object-rest-spread"
   ],

@@ -1,9 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Switch, Route} from 'react-router-dom';
-import CharacterSelection from '../character-selection/container';
-import PowerSelection from '../power-selection/container';
+import Async from 'react-code-splitting';
 import Loader from '../loader';
+
+const CharacterSelection = (props) => (
+  <Async
+    componentProps={props}
+    load={import(
+      /* webpackChunkName: "character-selection" */
+      '../character-selection/container'
+    )}
+  />
+);
+
+const PowerSelection = (props) => (
+  <Async
+    componentProps={props}
+    load={import(
+      /* webpackChunkName: "power-selection" */
+      '../power-selection/container'
+    )}
+  />
+);
 
 class App extends React.Component {
   componentDidMount () {

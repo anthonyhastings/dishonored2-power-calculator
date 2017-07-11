@@ -6,8 +6,10 @@ const distPath = path.join(__dirname, '../dist');
 module.exports = function () {
   return {
     output: {
+      chunkFilename: 'js/[name].js',
+      filename: 'js/[name].js',
       path: distPath,
-      filename: 'js/[name].js'
+      publicPath: '/'
     },
     module: {
       noParse: [
