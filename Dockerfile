@@ -1,6 +1,15 @@
 FROM mhart/alpine-node:8.1.4
 MAINTAINER Anthony Hastings <ar.hastings@gmail.com>
 
+# Adding image optimization binaries needed for imagemin.
+RUN apk add --update autoconf \
+                     automake \
+                     g++ \
+                     libpng-dev \
+                     libtool \
+                     make \
+                     nasm
+
 # Create a directory (to house our source files) and navigate to it.
 WORKDIR /src
 

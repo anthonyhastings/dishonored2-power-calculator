@@ -22,6 +22,27 @@ module.exports = function () {
           loader: 'babel-loader',
           test: /\.jsx?$/,
           exclude: /node_modules/
+        },
+        {
+          test: /\.(png|jpg|gif)$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                outputPath: 'images/'
+              }
+            },
+            {
+              loader: 'image-webpack-loader',
+              options: {
+                pngquant: {
+                  quality: '75-90',
+                  speed: 4,
+                  verbose: true
+                }
+              }
+            }
+          ]
         }
       ]
     },
