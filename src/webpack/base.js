@@ -43,6 +43,7 @@ module.exports = function () {
       host: '0.0.0.0',
       port: Number(process.env.PORT),
       contentBase: distPath,
+      disableHostCheck: true,
       publicPath: '/',
       historyApiFallback: true,
       compress: true,
