@@ -1,14 +1,18 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const distPath = path.join(__dirname, '../dist');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const paths = {
+  root: path.join(__dirname, '../'),
+  dist: path.join(__dirname, '../dist')
+};
 
 module.exports = function () {
   return {
     output: {
       chunkFilename: 'js/[name].js',
       filename: 'js/[name].js',
-      path: distPath,
+      path: paths.dist,
       publicPath: '/'
     },
     module: {
@@ -54,6 +58,11 @@ module.exports = function () {
         inject: false,
         hash: false,
         minify: false
+      }),
+      new CleanWebpackPlugin([paths.dist], {
+        root: paths.root,
+        verbose: true,
+        dry: false
       })
     ],
     resolve: {
@@ -63,7 +72,7 @@ module.exports = function () {
       hot: true,
       host: '0.0.0.0',
       port: Number(process.env.PORT),
-      contentBase: distPath,
+      contentBase: paths.dist,
       disableHostCheck: true,
       publicPath: '/',
       historyApiFallback: true,
