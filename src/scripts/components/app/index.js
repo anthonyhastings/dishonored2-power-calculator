@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Switch, Route} from 'react-router-dom';
 import Async from 'react-code-splitting';
 import Loader from '../loader';
+import gameLogo from '../../../images/game-logo.png';
 
 const CharacterSelection = (props) => (
   <Async
@@ -36,6 +37,7 @@ class App extends React.Component {
         <h1>App</h1>
         <header>
           <h1>Dishonored 2: Power Calculator</h1>
+          <img src={gameLogo} alt='Dishonored 2' />
         </header>
         <Loader loaded={this.props.dataLoaded}>
           <Switch>
