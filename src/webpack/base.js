@@ -2,9 +2,16 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const paths = {
   root: path.join(__dirname, '../'),
-  dist: path.join(__dirname, '../dist')
+  dist: path.join(__dirname, '../dist'),
+  get powersSrc () {
+    return path.join(this.root, 'images/powers');
+  },
+  get powersDist () {
+    return path.join(this.dist, 'images/powers');
+  }
 };
 
 module.exports = function () {
@@ -59,6 +66,9 @@ module.exports = function () {
         hash: false,
         minify: false
       }),
+      new CopyWebpackPlugin([
+        {from: paths.powersSrc, to: paths.powersDist}
+      ]),
       new CleanWebpackPlugin([paths.dist], {
         root: paths.root,
         verbose: true,
