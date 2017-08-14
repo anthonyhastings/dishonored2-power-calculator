@@ -9,13 +9,13 @@ start-production:
 	docker-compose up
 
 start-dev:
-	docker-compose run --rm --service-ports express npm run webpack:dev-server
+	docker-compose run --rm --service-ports web npm run webpack:dev-server
 
 start-tests:
-	docker-compose run --rm express npm run test
+	docker-compose run --rm web npm run test
 
 start-tests-upload-coverage:
-	docker-compose run --rm express npm run test:upload-coverage
+	docker-compose run --rm web npm run test:upload-coverage
 
 start-tests-watch:
-	docker-compose run --rm express npm run test:watch
+	docker-compose run --rm web npm run test:watch

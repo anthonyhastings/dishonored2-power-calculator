@@ -5,7 +5,7 @@ volumes:
     driver: local
 
 services:
-    express:
+    web:
         build: ./
         image: registry.heroku.com/dishonored2-power-calculator/web:latest
         container_name: dishonored2-express
