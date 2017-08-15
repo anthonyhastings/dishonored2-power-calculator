@@ -1,6 +1,9 @@
 {
   "collectCoverage": true,
   "coverageDirectory": "./jest-coverage",
+  "moduleNameMapper": {
+    "\\.(css|scss|sass)$": "<rootDir>/scripts/test-support/style-mock.js"
+  },
   "setupTestFrameworkScriptFile": "./scripts/test-support/index.js",
   "verbose": true
 }
