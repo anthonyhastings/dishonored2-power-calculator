@@ -317,13 +317,13 @@ app.get('/powers', function (request, response) {
           cost: 3
         },
 
-        // Doppelgänger powers.
+        // Doppelganger powers.
         {
           id: '549c5a0d-16c1-44c9-aef6-57a12e082145',
           parentPowerId: null,
           characterId: 'eb903f97-3dcb-44a5-ba95-d4b277d8c55a',
           type: 'power',
-          name: 'Doppelgänger',
+          name: 'Doppelganger',
           description: 'Summon a shade of yourself that attracts enemies.',
           cost: 4
         },
