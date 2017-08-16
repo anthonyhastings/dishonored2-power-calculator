@@ -1,0 +1,12 @@
+@import 'base.scss';
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+
+.app__content {
+  flex: 1;
+}

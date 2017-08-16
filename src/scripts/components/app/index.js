@@ -4,6 +4,7 @@ import {Switch, Route} from 'react-router-dom';
 import Async from 'react-code-splitting';
 import Loader from '../loader';
 import gameLogo from '../../../images/game-logo.png';
+import './stylesheets/index.scss';
 
 const CharacterSelection = (props) => (
   <Async
@@ -33,23 +34,25 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
-        <h1>App</h1>
+      <div className={App.namespace}>
         <header>
-          <h1>Dishonored 2: Power Calculator</h1>
           <img src={gameLogo} alt='Dishonored 2' />
+          <h1>Power Calculator</h1>
         </header>
-        <Loader loaded={this.props.dataLoaded}>
-          <Switch>
-            <Route exact path="/" component={CharacterSelection} />
-            <Route path="/:characterId/powers" component={PowerSelection} />
-          </Switch>
-        </Loader>
+        <div className={`${App.namespace}__content`}>
+          <Loader loadingState={this.props.dataLoaded}>
+            <Switch>
+              <Route exact path="/" component={CharacterSelection} />
+              <Route path="/:characterId/powers" component={PowerSelection} />
+            </Switch>
+          </Loader>
+        </div>
       </div>
     );
   }
 };
 
+App.namespace = 'app';
 App.propTypes = {
   fetchCharacters: PropTypes.func.isRequired,
   fetchPowers: PropTypes.func.isRequired,
