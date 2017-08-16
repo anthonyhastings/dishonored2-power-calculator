@@ -5,7 +5,9 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const paths = {
   root: path.join(__dirname, '../'),
-  dist: path.join(__dirname, '../dist')
+  dist: path.join(__dirname, '../dist'),
+  images: path.join(__dirname, '../images/'),
+  powerImages: path.join(__dirname, '../images/powers')
 };
 
 module.exports = function () {
@@ -82,7 +84,8 @@ module.exports = function () {
     ],
     resolve: {
       alias: {
-        powerImages: path.join(__dirname, '../images/powers')
+        imagesRoot: paths.images,
+        powerImages: paths.powerImages
       },
       extensions: ['*', '.js', '.jsx', '.json']
     },
