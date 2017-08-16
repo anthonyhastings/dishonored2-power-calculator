@@ -1,24 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import classNames from 'classnames';
+import './stylesheets/index.scss';
 
-const Loader = function ({children, loaded}) {
-  if (loaded === true) {
+const Loader = function ({children, loadingState}) {
+  if (loadingState === true) {
     return children;
-  } else if (_.isError(loaded)) {
-    return (
-      <h1>ERROR. TRY AGAIN LATER.</h1>
-    );
   }
 
+  const hasErrored = _.isError(loadingState);
+  const headingText = (hasErrored) ? 'Error while loading.' : 'Loading';
+  const classes = classNames(`${Loader.namespace}__container`, {
+    [`${Loader.namespace}__container--is-loading`]: !hasErrored
+  });
+
   return (
-    <h1>Loading</h1>
+    <div className={classes}>
+      {headingText}
+    </div>
   );
 };
 
+Loader.namespace = 'app-loader';
 Loader.propTypes = {
   children: PropTypes.element,
-  loaded: PropTypes.oneOfType([
+  loadingState: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.instanceOf(Error)
   ]).isRequired
