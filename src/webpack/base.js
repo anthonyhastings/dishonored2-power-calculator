@@ -38,7 +38,7 @@ module.exports = function () {
           ]
         },
         {
-          test: /\.(png|jpg|gif)$/,
+          test: /\.(svg|png|jpg|gif)$/,
           use: [
             {
               loader: 'file-loader',
@@ -53,6 +53,11 @@ module.exports = function () {
                   quality: '75-90',
                   speed: 4,
                   verbose: true
+                },
+                svgo: {
+                  plugins: [
+                    {removeDimensions: true}
+                  ]
                 }
               }
             }
