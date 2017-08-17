@@ -1,0 +1,27 @@
+{
+  "background_color": "#000000",
+  "description": "Determine the perfect build for your Dishonored 2 character before spending runes.",
+  "display": "standalone",
+  "icons": [
+    {
+        "src": "../images/manifest/192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    },
+    {
+        "src": "../images/manifest/256x256.png",
+        "sizes": "256x256",
+        "type": "image/png"
+    },
+    {
+        "src": "../images/manifest/512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }
+  ],
+  "lang": "en-GB",
+  "name": "Dishonored 2: Talent Calculator",
+  "short_name": "D2:TC",
+  "start_url": "/?utm_source=web_app_manifest",
+  "theme_color": "#000000"
+}

@@ -71,6 +71,18 @@ module.exports = function () {
               }
             }
           ]
+        },
+        {
+          test: /web-manifest\.json$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                outputPath: 'manifests/'
+              }
+            },
+            {loader: 'webmanifest-loader'}
+          ]
         }
       ]
     },
