@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const BundleAnalyzerPlugin =  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const commonConfig = require('./base.js');
+const commonConfig = require('./base');
 const dependencies = require('../package').dependencies;
 const vendorDependencies = Object.keys(dependencies).filter((dependency) => {
   return dependency !== 'express' && dependency !== 'babel-runtime';
