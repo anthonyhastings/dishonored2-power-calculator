@@ -13,6 +13,10 @@ module.exports = function (env) {
       app: './scripts/index.js',
       vendor: vendorDependencies
     },
+    output: {
+      chunkFilename: 'js/[name].[chunkhash].js',
+      filename: 'js/[name].[chunkhash].js'
+    },
     profile: true,
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({

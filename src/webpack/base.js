@@ -13,8 +13,6 @@ const paths = {
 module.exports = function () {
   return {
     output: {
-      chunkFilename: 'js/[name].js',
-      filename: 'js/[name].js',
       path: paths.dist,
       publicPath: '/'
     },

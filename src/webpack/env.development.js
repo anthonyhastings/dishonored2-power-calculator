@@ -10,6 +10,10 @@ module.exports = function () {
       'webpack/hot/only-dev-server',
       './scripts/index.js'
     ],
+    output: {
+      chunkFilename: 'js/[name].js',
+      filename: 'js/[name].js'
+    },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NamedModulesPlugin()
