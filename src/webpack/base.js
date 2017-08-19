@@ -87,6 +87,7 @@ module.exports = function () {
       ]
     },
     plugins: [
+      new webpack.HashedModuleIdsPlugin(),
       new webpack.optimize.ModuleConcatenationPlugin(),
       new HtmlWebpackPlugin({
         filename: 'index.html',
