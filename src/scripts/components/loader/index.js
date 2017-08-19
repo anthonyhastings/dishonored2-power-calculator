@@ -10,14 +10,15 @@ const Loader = function ({children, loadingState}) {
   }
 
   const hasErrored = _.isError(loadingState);
-  const headingText = (hasErrored) ? 'Error while loading.' : 'Loading';
-  const classes = classNames(`${Loader.namespace}__container`, {
-    [`${Loader.namespace}__container--is-loading`]: !hasErrored
+  const headingText = (hasErrored) ? 'Error while loading' : 'Loading';
+  const classes = classNames(Loader.namespace, {
+    [`${Loader.namespace}--is-loading`]: !hasErrored
   });
 
   return (
     <div className={classes}>
-      {headingText}
+      <h2 className={`${Loader.namespace}__message`}>{headingText}</h2>
+      <div className={`${Loader.namespace}__icon-container`} />
     </div>
   );
 };

@@ -15,7 +15,7 @@ describe('Loader component', () => {
     let wrapper;
 
     beforeEach(() => {
-      const loader = renderLoader({loaded: false});
+      const loader = renderLoader({loadingState: false});
 
       wrapper = render(loader);
     });
@@ -29,7 +29,7 @@ describe('Loader component', () => {
     let wrapper;
 
     beforeEach(() => {
-      const loader = renderLoader({loaded: true});
+      const loader = renderLoader({loadingState: true});
 
       wrapper = render(loader);
     });
@@ -43,7 +43,7 @@ describe('Loader component', () => {
     let wrapper;
 
     beforeEach(() => {
-      const loader = renderLoader({loaded: new Error()});
+      const loader = renderLoader({loadingState: new Error()});
 
       wrapper = render(loader);
     });

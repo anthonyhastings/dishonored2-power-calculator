@@ -1,23 +1,37 @@
-.app-loader__container {
+.app-loader {
   $image-height: 480px;
   $image-width: 488px;
 
+  display: flex;
+  flex-direction: column-reverse;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 
-  &::before {
-    background: url('~imagesRoot/outsiders-mark.svg') no-repeat 0 0;
-    content: '';
-    display: block;
-    height: 0;
-    padding-bottom: percentage($image-height / $image-width);
-    width: 100%;
-    will-change: transform, opacity;
+  &__message {
+    font-size: 2rem;
+    margin-top: 2.5rem;
   }
 
-  &--is-loading {
+  &__icon-container {
+    margin: 0 auto;
+    width: 50%;
+    max-width: 13rem;
+
     &::before {
-      animation: 1750ms loader-pulsing-fading ease-in-out infinite;
+      background: url('~imagesRoot/outsiders-mark.svg') no-repeat 0 0;
+      content: '';
+      display: block;
+      height: 0;
+      padding-bottom: percentage($image-height / $image-width);
+      width: 100%;
+      will-change: transform, opacity;
     }
+  }
+
+  &--is-loading &__icon-container::before {
+    animation: 1750ms loader-pulsing-fading ease-in-out infinite;
   }
 }
 

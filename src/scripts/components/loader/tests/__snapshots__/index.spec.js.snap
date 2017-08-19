@@ -1,9 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Loader component when loading has errored renders the loaders error children 1`] = `
-<h1>
-  ERROR. TRY AGAIN LATER.
-</h1>
+<div
+  class="app-loader"
+>
+  <h2
+    class="app-loader__message"
+  >
+    Error while loading
+  </h2>
+  <div
+    class="app-loader__icon-container"
+  />
+</div>
 `;
 
 exports[`Loader component when loading is complete renders the loaders children 1`] = `
@@ -13,7 +22,16 @@ exports[`Loader component when loading is complete renders the loaders children 
 `;
 
 exports[`Loader component when loading is incomplete renders the loaders default content 1`] = `
-<h1>
-  Loading
-</h1>
+<div
+  class="app-loader app-loader--is-loading"
+>
+  <h2
+    class="app-loader__message"
+  >
+    Loading
+  </h2>
+  <div
+    class="app-loader__icon-container"
+  />
+</div>
 `;
