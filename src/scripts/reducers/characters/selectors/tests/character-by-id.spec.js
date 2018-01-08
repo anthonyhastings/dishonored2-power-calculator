@@ -28,6 +28,6 @@ describe('#characterByIdSelector', () => {
   });
 
   it('should return appropriate value', () => {
-    expect(characterByIdSelector(state, 'uuid-02')).toEqualImmutable(expectedCharacter);
+    expect(characterByIdSelector(state, 'uuid-02')).toEqual(expectedCharacter);
   });
 });

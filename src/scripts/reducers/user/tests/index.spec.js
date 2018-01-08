@@ -17,7 +17,7 @@ describe('user reducer', () => {
     });
 
     it('should return default state', () => {
-      expect(result).toEqualImmutable(defaultState);
+      expect(result).toEqual(defaultState);
     });
   });
 
@@ -33,7 +33,7 @@ describe('user reducer', () => {
     });
 
     it('resets the purchases list back to default state', () => {
-      expect(reducer(inputState, clearPurchasesAction)).toEqualImmutable(outputState);
+      expect(reducer(inputState, clearPurchasesAction)).toEqual(outputState);
     });
   });
 
@@ -50,7 +50,7 @@ describe('user reducer', () => {
 
     describe('with an id that is not present in the purchases list', () => {
       it('updates the purchases list with the new power id', () => {
-        expect(reducer(inputState, addPurchaseAction)).toEqualImmutable(outputState);
+        expect(reducer(inputState, addPurchaseAction)).toEqual(outputState);
       });
     });
 
@@ -60,7 +60,7 @@ describe('user reducer', () => {
       });
 
       it('does nothing', () => {
-        expect(reducer(inputState, addPurchaseAction)).toEqualImmutable(inputState);
+        expect(reducer(inputState, addPurchaseAction)).toEqual(inputState);
       });
     });
   });
@@ -78,7 +78,7 @@ describe('user reducer', () => {
       });
 
       it('does nothing', () => {
-        expect(reducer(inputState, removePurchasesAction)).toEqualImmutable(outputState);
+        expect(reducer(inputState, removePurchasesAction)).toEqual(outputState);
       });
     });
 
@@ -94,7 +94,7 @@ describe('user reducer', () => {
       });
 
       it('does nothing', () => {
-        expect(reducer(inputState, removePurchasesAction)).toEqualImmutable(outputState);
+        expect(reducer(inputState, removePurchasesAction)).toEqual(outputState);
       });
     });
 
@@ -110,7 +110,7 @@ describe('user reducer', () => {
       });
 
       it('removes that powers from the purchases list', () => {
-        expect(reducer(inputState, removePurchasesAction)).toEqualImmutable(outputState);
+        expect(reducer(inputState, removePurchasesAction)).toEqual(outputState);
       });
     });
   });
@@ -159,7 +159,7 @@ describe('user action creators', () => {
         });
 
         it('creates an action with a blank immutable list', () => {
-          expect(action.powerIds).toEqualImmutable(Immutable.List());
+          expect(action.powerIds).toEqual(Immutable.List());
         });
       });
 
@@ -226,7 +226,7 @@ describe('user action creators', () => {
         });
 
         it('triggers dispatch with a REMOVE_PURCHASES action containing correct powers', () => {
-          expect(dispatchCall.powerIds).toEqualImmutable(expectedPowers);
+          expect(dispatchCall.powerIds).toEqual(expectedPowers);
         });
       });
 
@@ -251,7 +251,7 @@ describe('user action creators', () => {
         });
 
         it('triggers dispatch with a REMOVE_PURCHASES action containing correct powers', () => {
-          expect(dispatchCall.powerIds).toEqualImmutable(expectedPowers);
+          expect(dispatchCall.powerIds).toEqual(expectedPowers);
         });
       });
     });

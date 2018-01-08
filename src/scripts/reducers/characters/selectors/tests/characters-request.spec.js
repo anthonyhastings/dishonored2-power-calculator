@@ -16,7 +16,7 @@ describe('#charactersRequestSelector', () => {
   });
 
   it('returns request node', () => {
-    expect(charactersRequestSelector(state)).toEqualImmutable(Immutable.fromJS({
+    expect(charactersRequestSelector(state)).toEqual(Immutable.fromJS({
       inFlight: false,
       hasErrored: true
     }));

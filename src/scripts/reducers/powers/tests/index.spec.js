@@ -20,7 +20,7 @@ describe('powers reducer', () => {
     });
 
     it('should return default state', () => {
-      expect(result).toEqualImmutable(defaultState);
+      expect(result).toEqual(defaultState);
     });
   });
 
@@ -37,13 +37,13 @@ describe('powers reducer', () => {
       });
 
       outputState = Immutable.fromJS({
-        data: undefined,
-        request: {inFlight: true, hasErrored: false}
+        request: {inFlight: true, hasErrored: false},
+        data: undefined
       });
     });
 
     it('resets any errors and denotes the request as being in flight', () => {
-      expect(reducer(inputState, action)).toEqualImmutable(outputState);
+      expect(reducer(inputState, action)).toEqual(outputState);
     });
   });
 
@@ -60,13 +60,13 @@ describe('powers reducer', () => {
       });
 
       outputState = Immutable.fromJS({
-        data: undefined,
-        request: {inFlight: false, hasErrored: true}
+        request: {inFlight: false, hasErrored: true},
+        data: undefined
       });
     });
 
     it('sets an error in the state and unsets the request from being in flight', () => {
-      expect(reducer(inputState, action)).toEqualImmutable(outputState);
+      expect(reducer(inputState, action)).toEqual(outputState);
     });
   });
 
@@ -98,7 +98,7 @@ describe('powers reducer', () => {
     });
 
     it('stores data after normalising and unsets the request as being in flight', () => {
-      expect(reducer(inputState, action)).toEqualImmutable(outputState);
+      expect(reducer(inputState, action)).toEqual(outputState);
     });
   });
 });

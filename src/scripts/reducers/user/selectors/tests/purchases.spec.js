@@ -13,7 +13,7 @@ describe('#purchasesSelector', () => {
   });
 
   it('should return appropriate value', () => {
-    expect(purchasesSelector(state)).toEqualImmutable(Immutable.fromJS([
+    expect(purchasesSelector(state)).toEqual(Immutable.fromJS([
       'uuid-01',
       'uuid-02'
     ]));

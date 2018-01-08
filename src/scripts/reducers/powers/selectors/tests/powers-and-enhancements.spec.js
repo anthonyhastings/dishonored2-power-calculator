@@ -16,7 +16,7 @@ describe('#powersAndEnhancementsSelector', () => {
   });
 
   it('should return appropriate value', () => {
-    expect(powersAndEnhancementsSelector(state)).toEqualImmutable(Immutable.fromJS({
+    expect(powersAndEnhancementsSelector(state)).toEqual(Immutable.fromJS({
       'uuid-01': 'hello',
       'uuid-02': 'world'
     }));

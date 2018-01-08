@@ -27,7 +27,7 @@ describe('#powersSelector', () => {
 
   describe('when called with powers and enhancements', () => {
     it('returns only powers', () => {
-      expect(transform(powersAndEnhancements)).toEqualImmutable(Immutable.fromJS({
+      expect(transform(powersAndEnhancements)).toEqual(Immutable.fromJS({
         'uuid-03': {
           type: 'power',
           name: 'Power #01'

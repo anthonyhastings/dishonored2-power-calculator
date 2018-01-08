@@ -31,7 +31,7 @@ describe('#flattenedPowerTreeIdsSelector', () => {
     });
 
     it('returns list with original power id', () => {
-      expect(selectorReturnValue).toEqualImmutable(expectedResponse);
+      expect(selectorReturnValue).toEqual(expectedResponse);
     });
   });
 
@@ -51,7 +51,7 @@ describe('#flattenedPowerTreeIdsSelector', () => {
     });
 
     it('returns list with original power id and child power id\'s', () => {
-      expect(selectorReturnValue).toEqualImmutable(expectedResponse);
+      expect(selectorReturnValue).toEqual(expectedResponse);
     });
   });
 });

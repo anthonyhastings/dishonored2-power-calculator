@@ -38,6 +38,6 @@ describe('#powersAndEnhancementsWithPurchaseFlagsSelector', () => {
   });
 
   it('returns expected structure', () => {
-    expect(transform(powers, purchases, remainingRunes)).toEqualImmutable(expectedPowers);
+    expect(transform(powers, purchases, remainingRunes)).toEqual(expectedPowers);
   });
 });

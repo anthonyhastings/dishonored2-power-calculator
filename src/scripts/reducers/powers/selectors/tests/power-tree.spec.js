@@ -35,14 +35,14 @@ describe('#powerTreeSelector', () => {
         id: 'abc',
         parentPowerId: null,
         name: 'Power with no children',
-        children: [],
         purchasable: true,
-        purchased: false
+        purchased: false,
+        children: []
       });
     });
 
     it('returns the power with an empty children list', () => {
-      expect(powerTreeSelector(state, 'abc')).toEqualImmutable(expectedResult);
+      expect(powerTreeSelector(state, 'abc')).toEqual(expectedResult);
     });
   });
 
@@ -54,6 +54,8 @@ describe('#powerTreeSelector', () => {
         id: 'def',
         parentPowerId: null,
         name: 'Power with one child',
+        purchasable: true,
+        purchased: false,
         children: [
           {
             id: 'ghi',
@@ -63,14 +65,12 @@ describe('#powerTreeSelector', () => {
             purchased: false,
             children: []
           }
-        ],
-        purchasable: true,
-        purchased: false
+        ]
       });
     });
 
     it('returns the power with a single child', () => {
-      expect(powerTreeSelector(state, 'def')).toEqualImmutable(expectedResult);
+      expect(powerTreeSelector(state, 'def')).toEqual(expectedResult);
     });
   });
 
@@ -106,7 +106,7 @@ describe('#powerTreeSelector', () => {
     });
 
     it('returns the power with all the children', () => {
-      expect(powerTreeSelector(state, 'jkl')).toEqualImmutable(expectedResult);
+      expect(powerTreeSelector(state, 'jkl')).toEqual(expectedResult);
     });
   });
 
@@ -143,7 +143,7 @@ describe('#powerTreeSelector', () => {
     });
 
     it('returns the power with nested children', () => {
-      expect(powerTreeSelector(state, 'stu')).toEqualImmutable(expectedResult);
+      expect(powerTreeSelector(state, 'stu')).toEqual(expectedResult);
     });
   });
 });
@@ -154,7 +154,7 @@ describe('#powerTreeTransform', () => {
       expect(transform(
         Immutable.fromJS({}),
         'abcdef'
-      )).toEqualImmutable(Immutable.List([]));
+      )).toEqual(Immutable.List([]));
     });
   });
 
@@ -165,7 +165,7 @@ describe('#powerTreeTransform', () => {
           abc: {}
         }),
         'abc'
-      )).toEqualImmutable(Immutable.List([]));
+      )).toEqual(Immutable.List([]));
     });
   });
 
@@ -190,7 +190,7 @@ describe('#powerTreeTransform', () => {
       expect(transform(
         inputState,
         'abc'
-      )).toEqualImmutable(expectedResponse);
+      )).toEqual(expectedResponse);
     });
   });
 });

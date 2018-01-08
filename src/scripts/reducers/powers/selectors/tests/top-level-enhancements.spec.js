@@ -27,7 +27,7 @@ describe('#topLevelEnhancementsTransform', () => {
 
   describe('when called with enhancements', () => {
     it('returns only top level enhancements', () => {
-      expect(transform(enhancements)).toEqualImmutable(Immutable.fromJS({
+      expect(transform(enhancements)).toEqual(Immutable.fromJS({
         'uuid-01': {
           parentPowerId: null,
           name: 'Enhancement #01'

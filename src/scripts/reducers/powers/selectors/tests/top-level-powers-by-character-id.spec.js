@@ -31,7 +31,7 @@ describe('#topLevelPowersByCharacterId', () => {
 
   describe('when called with powers', () => {
     it('returns only top level powers for corvo', () => {
-      expect(transform(powers, 'corvo')).toEqualImmutable(Immutable.fromJS({
+      expect(transform(powers, 'corvo')).toEqual(Immutable.fromJS({
         'uuid-01': {
           parentPowerId: null,
           characterId: 'corvo',

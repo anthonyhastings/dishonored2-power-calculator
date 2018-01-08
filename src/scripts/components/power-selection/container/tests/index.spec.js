@@ -28,11 +28,11 @@ describe('Power selection container', () => {
     });
 
     it('has a topLevelEnhancements prop', () => {
-      expect(stateProps.topLevelEnhancements).toBeImmutable();
+      expect(stateProps.topLevelEnhancements).toBeDefined();
     });
 
     it('has a topLevelPowers prop', () => {
-      expect(stateProps.topLevelPowers).toBeImmutable();
+      expect(stateProps.topLevelPowers).toBeDefined();
     });
   });
 

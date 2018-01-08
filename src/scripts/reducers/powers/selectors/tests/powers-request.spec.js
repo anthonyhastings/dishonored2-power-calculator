@@ -16,7 +16,7 @@ describe('#powersRequestSelector', () => {
   });
 
   it('returns request node', () => {
-    expect(powersRequestSelector(state)).toEqualImmutable(Immutable.fromJS({
+    expect(powersRequestSelector(state)).toEqual(Immutable.fromJS({
       inFlight: true,
       hasErrored: false
     }));
