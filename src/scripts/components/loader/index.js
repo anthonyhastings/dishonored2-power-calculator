@@ -18,7 +18,7 @@ const Loader = function ({children, loadingState}) {
   return (
     <div className={classes}>
       <h2 className={`${Loader.namespace}__message`}>{headingText}</h2>
-      <div className={`${Loader.namespace}__icon-container`} />
+      <div className={`${Loader.namespace}__icon-container`}></div>
     </div>
   );
 };

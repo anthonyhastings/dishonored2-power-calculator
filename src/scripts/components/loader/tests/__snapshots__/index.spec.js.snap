@@ -11,7 +11,9 @@ exports[`Loader component when loading has errored renders the loaders error chi
   </h2>
   <div
     class="app-loader__icon-container"
-  />
+  >
+    
+  </div>
 </div>
 `;
 
@@ -32,6 +34,8 @@ exports[`Loader component when loading is incomplete renders the loaders default
   </h2>
   <div
     class="app-loader__icon-container"
-  />
+  >
+    
+  </div>
 </div>
 `;
