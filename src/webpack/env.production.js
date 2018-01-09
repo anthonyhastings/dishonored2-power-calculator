@@ -3,8 +3,10 @@ const webpackMerge = require('webpack-merge');
 const BundleAnalyzerPlugin =  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const commonConfig = require('./base');
 const dependencies = require('../package').dependencies;
+
+const vendorBlacklist = ['babel-runtime', 'cors', 'express'];
 const vendorDependencies = Object.keys(dependencies).filter((dependency) => {
-  return dependency !== 'express' && dependency !== 'babel-runtime';
+  return vendorBlacklist.includes(dependency) === false;
 });
 
 module.exports = function (env) {
