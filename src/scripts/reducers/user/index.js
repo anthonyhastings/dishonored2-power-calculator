@@ -5,6 +5,29 @@ const CLEAR_PURCHASES = 'CLEAR_PURCHASES';
 const ADD_PURCHASE = 'ADD_PURCHASE';
 const REMOVE_PURCHASES = 'REMOVE_PURCHASES';
 
+export const clearPurchases = () => ({
+  type: CLEAR_PURCHASES
+});
+
+export const addPurchase = (powerId) => ({
+  type: ADD_PURCHASE,
+  powerId
+});
+
+export const removePurchases = (powerIds = Immutable.List()) => ({
+  type: REMOVE_PURCHASES,
+  powerIds
+});
+
+export const removePurchase = (powerId) => {
+  return function (dispatch, getState) {
+    const state = getState();
+    const powerIds = flattenedPowerTreeIdsSelector(state, powerId);
+
+    dispatch(removePurchases(powerIds));
+  };
+};
+
 export const defaultState = Immutable.fromJS({
   totalRunes: 30,
   purchases: Immutable.List()
@@ -35,27 +58,4 @@ export default function (state = defaultState, action) {
   }
 
   return reducedState;
-};
-
-export const clearPurchases = () => ({
-  type: CLEAR_PURCHASES
-});
-
-export const addPurchase = (powerId) => ({
-  type: ADD_PURCHASE,
-  powerId
-});
-
-export const removePurchases = (powerIds = Immutable.List()) => ({
-  type: REMOVE_PURCHASES,
-  powerIds
-});
-
-export const removePurchase = (powerId) => {
-  return function (dispatch, getState) {
-    const state = getState();
-    const powerIds = flattenedPowerTreeIdsSelector(state, powerId);
-
-    dispatch(removePurchases(powerIds));
-  };
 };

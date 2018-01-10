@@ -1,258 +1,273 @@
 import Immutable from 'immutable';
+import configureMockStore from 'redux-mock-store';
+import {middleware} from '../../../store';
 import reducer from '../';
 import {
-  defaultState,
   clearPurchases,
   addPurchase,
   removePurchases,
   removePurchase
 } from '../';
 
-describe('user reducer', () => {
-  describe('when given no action', () => {
-    let result;
+const mockStore = configureMockStore(middleware);
 
-    beforeEach(() => {
-      result = reducer(undefined, {});
-    });
-
-    it('should return default state', () => {
-      expect(result).toEqual(defaultState);
-    });
-  });
-
-  describe('when given CLEAR_PURCHASES action', () => {
-    let clearPurchasesAction;
-    let inputState;
-    let outputState;
-
-    beforeEach(() => {
-      clearPurchasesAction = clearPurchases();
-      inputState = defaultState.set('purchases', Immutable.List(['power-id-01']));
-      outputState = defaultState;
-    });
-
-    it('resets the purchases list back to default state', () => {
-      expect(reducer(inputState, clearPurchasesAction)).toEqual(outputState);
-    });
-  });
-
-  describe('when given ADD_PURCHASE action', () => {
-    let addPurchaseAction;
-    let inputState;
-    let outputState;
-
-    beforeEach(() => {
-      addPurchaseAction = addPurchase('power-id-01');
-      inputState = defaultState;
-      outputState = defaultState.set('purchases', Immutable.List(['power-id-01']));
-    });
-
-    describe('with an id that is not present in the purchases list', () => {
-      it('updates the purchases list with the new power id', () => {
-        expect(reducer(inputState, addPurchaseAction)).toEqual(outputState);
-      });
-    });
-
-    describe('with an id that is already present in the purchases list', () => {
-      beforeEach(() => {
-        inputState = defaultState.set('purchases', Immutable.List(['power-id-01']));
-      });
-
-      it('does nothing', () => {
-        expect(reducer(inputState, addPurchaseAction)).toEqual(inputState);
-      });
-    });
-  });
-
-  describe('when given REMOVE_PURCHASES action', () => {
-    describe('with a blank list', () => {
-      let removePurchasesAction;
-      let inputState;
-      let outputState;
-
-      beforeEach(() => {
-        removePurchasesAction = removePurchases();
-        inputState = defaultState;
-        outputState = defaultState;
-      });
-
-      it('does nothing', () => {
-        expect(reducer(inputState, removePurchasesAction)).toEqual(outputState);
-      });
-    });
-
-    describe('with a list containing powers that are not purchased', () => {
-      let removePurchasesAction;
-      let inputState;
-      let outputState;
-
-      beforeEach(() => {
-        removePurchasesAction = removePurchases(Immutable.List(['uuid-02', 'uuid-03']));
-        inputState = defaultState.set('purchases', Immutable.List(['uuid-01']));
-        outputState = inputState;
-      });
-
-      it('does nothing', () => {
-        expect(reducer(inputState, removePurchasesAction)).toEqual(outputState);
-      });
-    });
-
-    describe('with a list containing powers that are purchased', () => {
-      let removePurchasesAction;
-      let inputState;
-      let outputState;
-
-      beforeEach(() => {
-        removePurchasesAction = removePurchases(Immutable.List(['uuid-01', 'uuid-02']));
-        inputState = defaultState.set('purchases', Immutable.List(['uuid-01', 'uuid-02', 'uuid-03']));
-        outputState = defaultState.set('purchases', Immutable.List(['uuid-03']));
-      });
-
-      it('removes that powers from the purchases list', () => {
-        expect(reducer(inputState, removePurchasesAction)).toEqual(outputState);
-      });
-    });
-  });
-});
-
-describe('user action creators', () => {
+describe('user actions', () => {
   describe('clearPurchases', () => {
-    describe('creates an action', () => {
-      let action;
+    let action;
 
-      beforeEach(() => {
-        action = clearPurchases();
-      });
+    beforeEach(() => {
+      action = clearPurchases();
+    });
 
-      it('with the correct type', () => {
-        expect(action.type).toEqual('CLEAR_PURCHASES');
+    it('creates an action with the correct data', () => {
+      expect(action).toEqual({
+        type: 'CLEAR_PURCHASES'
       });
     });
   });
 
   describe('addPurchase', () => {
-    describe('creates an action', () => {
-      let action;
+    let action;
 
-      beforeEach(() => {
-        action = addPurchase('power-uuid-01');
-      });
+    beforeEach(() => {
+      action = addPurchase('example-power-id');
+    });
 
-      it('with the correct type', () => {
-        expect(action.type).toEqual('ADD_PURCHASE');
-      });
-
-      it('with the correct power', () => {
-        expect(action.powerId).toEqual('power-uuid-01');
+    it('creates an action with the correct data', () => {
+      expect(action).toEqual({
+        type: 'ADD_PURCHASE',
+        powerId: 'example-power-id'
       });
     });
   });
 
   describe('removePurchases', () => {
-    describe('creates an action', () => {
-      describe('that when given no data', () => {
-        let action;
+    describe('when given no power ids', () => {
+      let action;
 
-        beforeEach(() => {
-          action = removePurchases();
-        });
-
-        it('creates an action with a blank immutable list', () => {
-          expect(action.powerIds).toEqual(Immutable.List());
-        });
+      beforeEach(() => {
+        action = removePurchases();
       });
 
-      describe('that when given data', () => {
-        let uuids;
-        let action;
-
-        beforeEach(() => {
-          uuids = Immutable.List(['power-uuid-01', 'power-uuid-02']);
-          action = removePurchases(uuids);
+      it('creates an action with the correct data', () => {
+        expect(action).toEqual({
+          type: 'REMOVE_PURCHASES',
+          powerIds: Immutable.List()
         });
+      });
+    });
 
-        it('creates an action with the correct type', () => {
-          expect(action.type).toEqual('REMOVE_PURCHASES');
-        });
+    describe('when given power ids', () => {
+      let uuids;
+      let action;
 
-        it('creates an action with the correct power ids', () => {
-          expect(action.powerIds).toEqual(uuids);
+      beforeEach(() => {
+        uuids = Immutable.List(['power-id-01', 'power-id-02']);
+        action = removePurchases(uuids);
+      });
+
+      it('creates an action with the correct data', () => {
+        expect(action).toEqual({
+          type: 'REMOVE_PURCHASES',
+          powerIds: uuids
         });
       });
     });
   });
 
   describe('removePurchase', () => {
-    describe('creates an action', () => {
-      let state;
-      let dispatchFunc;
-      let getStateFunc;
+    let store;
+
+    beforeEach(() => {
+      store = mockStore(Immutable.fromJS({
+        powers: {
+          data: {
+            abc: {id: 'abc', parentPowerId: null, name: 'Power with no children'},
+            def: {id: 'def', parentPowerId: null, name: 'Power with one child'},
+            ghi: {id: 'ghi', parentPowerId: 'def', name: 'Power with a parent'},
+            jkl: {id: 'jkl', parentPowerId: 'ghi', name: 'Power with multiple children'}
+          }
+        },
+        user: {
+          totalRunes: 30,
+          purchases: ['abc', 'def']
+        }
+      }));
+    });
+
+    describe('when given a power id with no child powers', () => {
+      let actions;
 
       beforeEach(() => {
-        state = Immutable.fromJS({
-          powers: {
-            data: {
-              abc: {id: 'abc', parentPowerId: null, name: 'Power with no children'},
-              def: {id: 'def', parentPowerId: null, name: 'Power with one child'},
-              ghi: {id: 'ghi', parentPowerId: 'def', name: 'Power with a parent'},
-              jkl: {id: 'jkl', parentPowerId: 'ghi', name: 'Power with multiple children'}
-            }
-          },
-          user: {
-            totalRunes: 30,
-            purchases: ['abc', 'def']
+        store.dispatch(removePurchase('abc'));
+        actions = store.getActions();
+      });
+
+      it('creates an action with the correct data', () => {
+        expect(actions).toEqual([
+          {
+            type: 'REMOVE_PURCHASES',
+            powerIds: Immutable.fromJS(['abc'])
           }
-        });
+        ]);
+      });
+    });
 
-        dispatchFunc = jest.fn();
-        getStateFunc = jest.fn(() => state);
+    describe('when given a power id with child powers', () => {
+      let actions;
+
+      beforeEach(() => {
+        store.dispatch(removePurchase('def'));
+        actions = store.getActions();
       });
 
-      describe('that when given a power id with no child powers', () => {
-        let thunkFunction;
-        let dispatchCall;
-        let expectedPowers;
+      it('creates an action with the correct data', () => {
+        expect(actions).toEqual([
+          {
+            type: 'REMOVE_PURCHASES',
+            powerIds: Immutable.fromJS([
+              'def',
+              'ghi',
+              'jkl'
+            ])
+          }
+        ]);
+      });
+    });
+  });
+});
 
-        beforeEach(() => {
-          thunkFunction = removePurchase('abc');
-          thunkFunction(dispatchFunc, getStateFunc);
-          dispatchCall = dispatchFunc.mock.calls[0][0];
-          expectedPowers = Immutable.fromJS(['abc']);
-        });
+describe('user reducer', () => {
+  describe('when given no action', () => {
+    let state;
 
-        it('triggers dispatch with a REMOVE_PURCHASES action', () => {
-          expect(dispatchCall.type).toEqual('REMOVE_PURCHASES');
-        });
+    beforeEach(() => {
+      state = reducer(undefined, {});
+    });
 
-        it('triggers dispatch with a REMOVE_PURCHASES action containing correct powers', () => {
-          expect(dispatchCall.powerIds).toEqual(expectedPowers);
-        });
+    it('sets default state', () => {
+      expect(state).toEqual(Immutable.fromJS({
+        totalRunes: 30,
+        purchases: Immutable.List()
+      }));
+    });
+  });
+
+  describe('when given CLEAR_PURCHASES action', () => {
+    let state;
+
+    beforeEach(() => {
+      const action = clearPurchases();
+      const startingState = Immutable.fromJS({
+        purchases: ['example-power-id']
       });
 
-      describe('that when given a power id with child powers', () => {
-        let thunkFunction;
-        let dispatchCall;
-        let expectedPowers;
+      state = reducer(startingState, action);
+    });
 
-        beforeEach(() => {
-          thunkFunction = removePurchase('def');
-          thunkFunction(dispatchFunc, getStateFunc);
-          dispatchCall = dispatchFunc.mock.calls[0][0];
-          expectedPowers = Immutable.fromJS([
-            'def',
-            'ghi',
-            'jkl'
-          ]);
+    it('sets purchases to a blank immutable list', () => {
+      expect(state).toEqual(Immutable.fromJS({
+        purchases: []
+      }));
+    });
+  });
+
+  describe('when given ADD_PURCHASE action', () => {
+    let state;
+    let action;
+
+    beforeEach(() => {
+      action = addPurchase('another-power-id');
+    });
+
+    describe('with an id that is not present in the purchases list', () => {
+      beforeEach(() => {
+        const startingState = Immutable.fromJS({
+          purchases: ['example-power-id']
         });
 
-        it('triggers dispatch with a REMOVE_PURCHASES action', () => {
-          expect(dispatchCall.type).toEqual('REMOVE_PURCHASES');
+        state = reducer(startingState, action);
+      });
+
+      it('updates the purchases list with the new power id', () => {
+        expect(state).toEqual(Immutable.fromJS({
+          purchases: Immutable.List(['example-power-id', 'another-power-id'])
+        }));
+      });
+    });
+
+    describe('with an id that is already present in the purchases list', () => {
+      beforeEach(() => {
+        const startingState = Immutable.fromJS({
+          purchases: ['example-power-id', 'another-power-id']
         });
 
-        it('triggers dispatch with a REMOVE_PURCHASES action containing correct powers', () => {
-          expect(dispatchCall.powerIds).toEqual(expectedPowers);
+        state = reducer(startingState, action);
+      });
+
+      it('does not update the puchases list', () => {
+        expect(state).toEqual(Immutable.fromJS({
+          purchases: Immutable.List(['example-power-id', 'another-power-id'])
+        }));
+      });
+    });
+  });
+
+  describe('when given REMOVE_PURCHASES action', () => {
+    describe('with a blank list', () => {
+      let state;
+
+      beforeEach(() => {
+        const action = removePurchases();
+        const startingState = Immutable.fromJS({
+          purchases: ['example-power-id']
         });
+
+        state = reducer(startingState, action);
+      });
+
+      it('does nothing', () => {
+        expect(state).toEqual(Immutable.fromJS({
+          purchases: ['example-power-id']
+        }));
+      });
+    });
+
+    describe('with a list containing powers that are not purchased', () => {
+      let state;
+
+      beforeEach(() => {
+        const action = removePurchases(Immutable.List(['another-power-id']));
+        const startingState = Immutable.fromJS({
+          purchases: ['example-power-id']
+        });
+
+        state = reducer(startingState, action);
+      });
+
+      it('does nothing', () => {
+        expect(state).toEqual(Immutable.fromJS({
+          purchases: ['example-power-id']
+        }));
+      });
+    });
+
+    describe('with a list containing powers that are purchased', () => {
+      let state;
+
+      beforeEach(() => {
+        const action = removePurchases(Immutable.List(['example-power-id', 'another-power-id']));
+        const startingState = Immutable.fromJS({
+          purchases: ['example-power-id', 'another-power-id', 'super-power-id']
+        });
+
+        state = reducer(startingState, action);
+      });
+
+      it('removes that powers from the purchases list', () => {
+        expect(state).toEqual(Immutable.fromJS({
+          purchases: ['super-power-id']
+        }));
       });
     });
   });
