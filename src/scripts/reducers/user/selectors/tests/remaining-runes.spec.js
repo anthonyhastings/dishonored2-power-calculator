@@ -1,17 +1,60 @@
-import {transform} from '../remaining-runes';
+import Immutable from 'immutable';
+import remainingRunesSelector from '../remaining-runes';
 
 describe('#remainingRunesTransform', () => {
-  let totalRunes;
-  let remainingRunes;
+  let state;
 
-  beforeEach(() => {
-    totalRunes = 30;
-    remainingRunes = 10;
+  const powersAndEnhancements = Immutable.fromJS({
+    'uuid-01': {
+      name: 'Power #01',
+      cost: 10
+    },
+    'uuid-02': {
+      name: 'Power #02',
+      cost: 15
+    },
+    'uuid-03': {
+      name: 'Power #03',
+      cost: 10
+    }
   });
 
-  describe('when given total and spent runes', () => {
-    it('should return the remainder', () => {
-      expect(transform(totalRunes, remainingRunes)).toEqual(20);
+  beforeEach(() => {
+    remainingRunesSelector.resetRecomputations();
+
+    state = Immutable.fromJS({
+      powers: {
+        data: powersAndEnhancements
+      },
+      user: {
+        purchases: ['uuid-01', 'uuid-02'],
+        totalRunes: 30
+      }
+    });
+  });
+
+  it('should return the remainder', () => {
+    expect(remainingRunesSelector(state)).toEqual(5);
+  });
+
+  describe('when called multiple times with same input', () => {
+    beforeEach(() => {
+      state = Immutable.fromJS({
+        powers: {
+          data: powersAndEnhancements
+        },
+        user: {
+          purchases: ['uuid-03'],
+          totalRunes: 30
+        }
+      });
+
+      remainingRunesSelector(state);
+      remainingRunesSelector(state);
+    });
+
+    it('is memoized and only called once', () => {
+      expect(remainingRunesSelector.recomputations()).toEqual(1);
     });
   });
 });

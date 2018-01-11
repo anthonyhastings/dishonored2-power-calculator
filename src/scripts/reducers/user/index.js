@@ -34,28 +34,21 @@ export const defaultState = Immutable.fromJS({
 });
 
 export default function (state = defaultState, action) {
-  let reducedState;
-
   switch (action.type) {
     case CLEAR_PURCHASES:
-      reducedState = state.set('purchases', defaultState.get('purchases'));
-      break;
+      return state.set('purchases', defaultState.get('purchases'));
+
     case ADD_PURCHASE:
-      reducedState = state.updateIn(['purchases'], (purchases) => {
+      return state.updateIn(['purchases'], (purchases) => {
         return (purchases.includes(action.powerId)) ? purchases : purchases.push(action.powerId);
       });
-      break;
+
     case REMOVE_PURCHASES:
-      const filteredPurchases = state.get('purchases').filterNot((powerId) => {
+      return state.set('purchases', state.get('purchases').filterNot((powerId) => {
         return action.powerIds.includes(powerId);
-      });
+      }));
 
-      reducedState = state.set('purchases', filteredPurchases);
-      break;
     default:
-      reducedState = state;
-      break;
+      return state;
   }
-
-  return reducedState;
 };
