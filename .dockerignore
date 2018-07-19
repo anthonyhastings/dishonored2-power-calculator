@@ -1,12 +1,16 @@
-.DS_Store
-.dockerignore
-.editorconfig
-.env
-node_modules
-jest-coverage
-jest
-Dockerfile
-Makefile
-LICENSE
-README.md
-npm-debug.log
+# Ignore all files by default.
+*
+
+# White list only the required files and folders.
+!src/html/
+!src/images/
+!src/manifests/
+!src/scripts/
+!src/server/
+!src/webpack/
+!src/.babelrc
+!src/.eslintrc.json
+!src/.jestrc.json
+!src/package-lock.json
+!src/package.json
+!src/postcss.config.js

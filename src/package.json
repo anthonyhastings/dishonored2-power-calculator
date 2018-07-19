@@ -14,7 +14,7 @@
     "start": "node server/index.js",
     "test": "jest --config=.jestrc.json",
     "test:upload-coverage": "npm test && cat jest-coverage/lcov.info | coveralls",
-    "test:watch": "npm test -- --watch",
+    "test:watch": "npm test -- --watchAll",
     "webpack:dev-server": "webpack-dev-server --env.target=development --config=webpack/webpack.config.js",
     "webpack:production": "webpack --env.target=production --config=webpack/webpack.config.js --colors --progress",
     "webpack:stats": "webpack --env.target=production --env.stats=true --config=webpack/webpack.config.js --colors --progress"

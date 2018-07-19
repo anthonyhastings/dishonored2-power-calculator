@@ -1,20 +1,31 @@
-version: '2.1'
-
+version: "3"
 volumes:
-  apps_node_modules:
-    driver: local
-
+  node_modules:
 services:
-    web:
-        build: ./
-        image: registry.heroku.com/dishonored2-power-calculator/web:latest
-        container_name: dishonored2-express
-        environment:
-            - PORT=${PORT:-8080}
-            - COVERALLS_SERVICE_NAME=${COVERALLS_SERVICE_NAME:-missing}
-            - COVERALLS_REPO_TOKEN=${COVERALLS_REPO_TOKEN:-missing}
-        ports:
-            - ${PORT:-8080}:${PORT:-8080}
-        volumes:
-            - ./src:/src
-            - apps_node_modules:/src/node_modules
+  web:
+    build: ./
+    command: sh -c "npm start"
+    container_name: dishonored2-web
+    image: registry.heroku.com/dishonored2-power-calculator/web:latest
+    environment:
+      - PORT=${PORT}
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      # Mounts the source directory at runtime, so our container has the latest source files.
+      - ./src:/src
+      # Ensures that the previous mount doesn't override the containers node modules, by pointing them at a named volume.
+      - node_modules:/src/node_modules
+  test:
+    build: ./
+    command: sh -c "npm test"
+    container_name: dishonored2-test
+    image: registry.heroku.com/dishonored2-power-calculator/web:latest
+    environment:
+      - COVERALLS_REPO_TOKEN=${COVERALLS_REPO_TOKEN}
+      - COVERALLS_SERVICE_NAME=${COVERALLS_SERVICE_NAME}
+    volumes:
+      # Mounts the source directory at runtime, so our container has the latest source files.
+      - ./src:/src
+      # Ensures that the previous mount doesn't override the containers node modules, by pointing them at a named volume.
+      - node_modules:/src/node_modules

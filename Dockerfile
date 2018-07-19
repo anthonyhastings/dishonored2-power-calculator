@@ -1,26 +1,28 @@
-FROM mhart/alpine-node:8.1.4
+FROM node:8.11.3-alpine
 MAINTAINER Anthony Hastings <ar.hastings@gmail.com>
 
-# Adding image optimization binaries needed for imagemin.
-RUN apk add --update autoconf \
-                     automake \
-                     g++ \
-                     libpng-dev \
-                     libtool \
-                     make \
-                     nasm
+# Installing bash.
+RUN apk add --no-cache bash bash-doc bash-completion
 
 # Create a directory (to house our source files) and navigate to it.
 WORKDIR /src
 
-# Copy over the package.json file to the containers working directory.
+# Copy over the package.json and lock file to the containers working directory.
 COPY ./src/package.json ./src/package-lock.json /src/
 
-# Install our desired node packages.
-RUN npm install
+# Install build dependencies (required for imagemin), install packages then delete build dependencies.
+# This is all done in the same command / layer so when it caches, it won't bloat the image size.
+RUN apk add --no-cache --virtual image-build-deps \
+    autoconf \
+    automake \
+    g++ \
+    libpng-dev \
+    libtool \
+    make \
+    python \
+    nasm \
+    && npm install \
+    && apk del image-build-deps
 
 # Copy everything in the host folder into the working folder of the container.
-COPY ./src/ /src/
-
-# Run the express server when creating/starting a container.
-CMD ["npm", "start"]
+COPY ./src /src/
