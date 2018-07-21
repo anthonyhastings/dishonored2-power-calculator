@@ -15,7 +15,9 @@ COPY ./src/package.json ./src/package-lock.json /src/
 RUN apk add --no-cache --virtual image-build-deps \
     autoconf \
     automake \
+    gcc \
     g++ \
+    libc-dev \
     libpng-dev \
     libtool \
     make \

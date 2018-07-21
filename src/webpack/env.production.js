@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const BundleAnalyzerPlugin =  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const commonConfig = require('./base');
 const dependencies = require('../package').dependencies;
 
@@ -33,6 +34,18 @@ module.exports = function (env) {
           'drop_console': false,
           'drop_debugger': false,
           'warnings': false
+        }
+      }),
+      new ImageminPlugin({
+        pngquant: {
+          quality: '75-90',
+          speed: 4,
+          verbose: true
+        },
+        svgo: {
+          plugins: [
+            {removeDimensions: true}
+          ]
         }
       })
     ]

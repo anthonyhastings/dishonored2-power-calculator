@@ -52,21 +52,6 @@ module.exports = function () {
               options: {
                 outputPath: 'images/'
               }
-            },
-            {
-              loader: 'image-webpack-loader',
-              options: {
-                pngquant: {
-                  quality: '75-90',
-                  speed: 4,
-                  verbose: true
-                },
-                svgo: {
-                  plugins: [
-                    {removeDimensions: true}
-                  ]
-                }
-              }
             }
           ]
         },
@@ -85,6 +70,11 @@ module.exports = function () {
       ]
     },
     plugins: [
+      new CleanWebpackPlugin([paths.dist], {
+        root: paths.root,
+        verbose: true,
+        dry: false
+      }),
       new webpack.HashedModuleIdsPlugin(),
       new webpack.optimize.ModuleConcatenationPlugin(),
       new HtmlWebpackPlugin({
@@ -93,11 +83,6 @@ module.exports = function () {
         inject: false,
         hash: false,
         minify: false
-      }),
-      new CleanWebpackPlugin([paths.dist], {
-        root: paths.root,
-        verbose: true,
-        dry: false
       })
     ],
     resolve: {
