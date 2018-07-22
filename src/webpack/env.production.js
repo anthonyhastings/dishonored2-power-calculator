@@ -13,7 +13,7 @@ const vendorDependencies = Object.keys(dependencies).filter((dependency) => {
 module.exports = function (env) {
   const productionConfig = webpackMerge(commonConfig(), {
     entry: {
-      app: './scripts/index.js',
+      app: ['babel-polyfill', './scripts/index.js'],
       vendor: vendorDependencies
     },
     output: {
