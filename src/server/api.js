@@ -208,7 +208,8 @@ app.get('/powers', function (request, response) {
           characterId: null,
           type: 'enhancement',
           name: 'Craft Runes',
-          description: 'Craft Runes by expending Raw Whalebone, or sacrifice existing Runes to accumulate Raw Whalebone for crafting.',
+          description: 'Craft Runes by expending Raw Whalebone, or sacrifice existing Runes ' +
+                       'to accumulate Raw Whalebone for crafting.',
           cost: 4
         },
         {
@@ -666,7 +667,8 @@ app.get('/powers', function (request, response) {
           characterId: 'de2351c7-f1c3-409d-8973-414d5c37364c',
           type: 'power',
           name: 'Greater Windblast',
-          description: 'Summon a more powerful wind that kills enemies thrown into walls, and deflects projectiles with more accuracy.',
+          description: 'Summon a more powerful wind that kills enemies thrown into walls, ' +
+                       'and deflects projectiles with more accuracy.',
           cost: 3
         },
         {

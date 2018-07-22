@@ -8,7 +8,7 @@
   "main": "scripts/index.js",
   "scripts": {
     "build": "npm run webpack:production",
-    "lint": "eslint --ext .js scripts/ webpack/",
+    "lint": "eslint --ext .js scripts/ server/ webpack/",
     "prestart": "npm run build",
     "pretest": "npm run lint",
     "start": "node server/index.js",
