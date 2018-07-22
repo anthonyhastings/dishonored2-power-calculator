@@ -2,11 +2,13 @@
   "presets" : [
     ["env", {
       "targets": {
-        "browsers": ["last 2 versions"],
-        "uglify": true
+        "browsers": [
+          "last 2 versions",
+          "not Android <= 4.4.3"
+        ]
       },
       "modules": false,
-      "debug": false
+      "debug": true
     }],
     "react"
   ],
