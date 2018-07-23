@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const BundleAnalyzerPlugin =  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
@@ -12,30 +11,29 @@ const vendorDependencies = Object.keys(dependencies).filter((dependency) => {
 
 module.exports = function (env) {
   const productionConfig = webpackMerge(commonConfig(), {
+    mode: 'production',
     entry: {
-      app: ['babel-polyfill', './scripts/index.js'],
+      app: './scripts/index.js',
       vendor: vendorDependencies
+    },
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          default: false,
+          vendor: {
+            chunks: 'all',
+            enforce: true,
+            name: 'vendor',
+            test: 'vendor'
+          }
+        }
+      }
     },
     output: {
       chunkFilename: 'js/[name].[chunkhash].js',
       filename: 'js/[name].[chunkhash].js'
     },
-    profile: true,
     plugins: [
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        minChunks: Infinity
-      }),
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('production')
-      }),
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          'drop_console': false,
-          'drop_debugger': false,
-          'warnings': false
-        }
-      }),
       new ImageminPlugin({
         pngquant: {
           quality: '75-90',
@@ -44,7 +42,9 @@ module.exports = function (env) {
         },
         svgo: {
           plugins: [
-            {removeDimensions: true}
+            {
+              removeDimensions: true
+            }
           ]
         }
       })

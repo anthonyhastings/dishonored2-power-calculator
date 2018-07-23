@@ -12,6 +12,8 @@ const paths = {
 
 module.exports = function () {
   return {
+    mode: 'none',
+    entry: null,
     output: {
       path: paths.dist,
       publicPath: '/'
@@ -24,47 +26,63 @@ module.exports = function () {
       ],
       rules: [
         {
-          loader: 'babel-loader',
           test: /\.jsx?$/,
-          exclude: /node_modules/
+          exclude: /node_modules/,
+          loader: 'babel-loader'
         },
         {
           test: /\.css$/,
           use: [
-            {loader: 'style-loader'},
-            {loader: 'css-loader'}
+            {
+              loader: 'style-loader'
+            },
+            {
+              loader: 'css-loader'
+            }
           ]
         },
         {
           test: /\.(sass|scss)$/,
           use: [
-            {loader: 'style-loader'},
-            {loader: 'css-loader'},
-            {loader: 'postcss-loader'},
-            {loader: 'sass-loader'}
+            {
+              loader: 'style-loader'
+            },
+            {
+              loader: 'css-loader'
+            },
+            {
+              loader: 'postcss-loader'
+            },
+            {
+              loader: 'sass-loader'
+            }
           ]
         },
         {
-          test: /\.(svg|png|jpg|gif)$/,
+          test: /\.(svg|png|jpg|jpeg|gif)$/,
           use: [
             {
               loader: 'file-loader',
               options: {
-                outputPath: 'images/'
+                outputPath: 'images/',
+                name: '[name].[hash].[ext]'
               }
             }
           ]
         },
         {
-          test: /web-manifest\.json$/,
+          test: /\.webmanifest$/,
           use: [
             {
               loader: 'file-loader',
               options: {
-                outputPath: 'manifests/'
+                outputPath: 'manifests/',
+                name: '[name].[hash].[ext]'
               }
             },
-            {loader: 'webmanifest-loader'}
+            {
+              loader: 'webmanifest-loader'
+            }
           ]
         }
       ]
@@ -76,33 +94,37 @@ module.exports = function () {
         dry: false
       }),
       new webpack.HashedModuleIdsPlugin(),
-      new webpack.optimize.ModuleConcatenationPlugin(),
       new HtmlWebpackPlugin({
         filename: 'index.html',
-        template: 'html/index.html',
-        inject: false,
         hash: false,
-        minify: false
+        inject: false,
+        meta: [
+          {
+            name: 'google-site-verification',
+            content: process.env.GOOGLE_SITE_VERIFICATION_TOKEN
+          }
+        ],
+        minify: false,
+        template: 'html/index.html'
       })
     ],
     resolve: {
       alias: {
         imagesRoot: paths.images,
         powerImages: paths.powerImages
-      },
-      extensions: ['*', '.js', '.jsx', '.json']
+      }
     },
     devServer: {
-      hot: true,
-      host: '0.0.0.0',
-      port: Number(process.env.PORT),
+      compress: true,
       contentBase: paths.dist,
       disableHostCheck: true,
-      publicPath: '/',
       historyApiFallback: true,
-      compress: true,
+      host: '0.0.0.0',
+      hot: true,
       inline: true,
       noInfo: false,
+      port: Number(process.env.PORT),
+      publicPath: '/',
       quiet: false
     }
   };

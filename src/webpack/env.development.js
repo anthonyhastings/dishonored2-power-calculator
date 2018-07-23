@@ -4,6 +4,7 @@ const commonConfig = require('./base');
 
 module.exports = function () {
   return webpackMerge(commonConfig(), {
+    mode: 'development',
     entry: [
       'react-hot-loader/patch',
       `webpack-dev-server/client?http://localhost:${Number(process.env.PORT)}`,
@@ -16,8 +17,7 @@ module.exports = function () {
       filename: 'js/[name].js'
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NamedModulesPlugin()
+      new webpack.HotModuleReplacementPlugin()
     ]
   });
 };
