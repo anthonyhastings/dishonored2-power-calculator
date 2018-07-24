@@ -27,6 +27,9 @@ module.exports = function (env) {
             test: 'vendor'
           }
         }
+      },
+      runtimeChunk: {
+        name: 'manifest'
       }
     },
     output: {
