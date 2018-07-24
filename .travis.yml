@@ -21,5 +21,6 @@ before_deploy:
 deploy:
   provider: script
   script: docker push registry.heroku.com/dishonored2-power-calculator/web
+  skip_cleanup: true
   on:
     branch: master
