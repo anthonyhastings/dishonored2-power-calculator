@@ -1,15 +1,25 @@
 sudo: required
+
 services:
-- docker
+  - docker
+
 env:
-  DOCKER_COMPOSE_VERSION: 1.10.0
+  - DOCKER_COMPOSE_VERSION=1.21.2
+
 before_install:
-- sudo rm /usr/local/bin/docker-compose
-- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-- chmod +x docker-compose
-- sudo mv docker-compose /usr/local/bin
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
 script:
-- make start-tests-upload-coverage
-after_success:
-- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" registry.heroku.com
-- docker push registry.heroku.com/dishonored2-power-calculator/web
+  - make start-tests-upload-coverage
+
+before_deploy:
+  - docker login --username=_ --password=${HEROKU_TOKEN} registry.heroku.com
+
+deploy:
+  provider: script
+  script: docker push registry.heroku.com/dishonored2-power-calculator/web
+  on:
+    branch: master
