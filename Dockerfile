@@ -18,11 +18,11 @@ RUN apk add --no-cache --virtual image-build-deps \
     gcc \
     g++ \
     libc-dev \
-    libpng-dev \
     libtool \
     make \
     python \
     nasm \
+    && apk add --no-cache libpng-dev \
     && npm install \
     && apk del image-build-deps
 
