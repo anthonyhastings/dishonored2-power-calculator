@@ -29,5 +29,8 @@ RUN apk add --no-cache --virtual image-build-deps \
 # Copy everything in the host folder into the working folder of the container.
 COPY ./src /src/
 
-# Build production assets and run the express server.
-CMD ["npm", "start"]
+# Build assets for production.
+RUN npm run build
+
+# Run the express server.
+CMD npm start

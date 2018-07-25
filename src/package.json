@@ -9,7 +9,6 @@
   "scripts": {
     "build": "npm run webpack:production",
     "lint": "eslint --ext .js scripts/ server/ webpack/",
-    "prestart": "npm run build",
     "pretest": "npm run lint",
     "start": "node server/index.js",
     "test": "jest",
