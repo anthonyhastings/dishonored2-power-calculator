@@ -3,11 +3,16 @@ volumes:
   node_modules:
 services:
   web:
-    build: ./
+    build:
+      context: ./
+      args:
+        - GOOGLE_SITE_VERIFICATION_TOKEN
     command: sh -c "npm start"
     container_name: dishonored2-web
     image: registry.heroku.com/dishonored2-power-calculator/web:latest
     environment:
+      - COVERALLS_REPO_TOKEN
+      - COVERALLS_SERVICE_NAME
       - GOOGLE_SITE_VERIFICATION_TOKEN
       - PORT
     ports:
@@ -18,13 +23,18 @@ services:
       # Ensures that the previous mount doesn't override the containers node modules, by pointing them at a named volume.
       - node_modules:/src/node_modules
   test:
-    build: ./
+    build:
+      context: ./
+      args:
+        - GOOGLE_SITE_VERIFICATION_TOKEN
     command: sh -c "npm test"
     container_name: dishonored2-test
     image: registry.heroku.com/dishonored2-power-calculator/web:latest
     environment:
       - COVERALLS_REPO_TOKEN
       - COVERALLS_SERVICE_NAME
+      - GOOGLE_SITE_VERIFICATION_TOKEN
+      - PORT
     volumes:
       # Mounts the source directory at runtime, so our container has the latest source files.
       - ./src:/src

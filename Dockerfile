@@ -1,6 +1,9 @@
 FROM node:8.11.3-alpine
 MAINTAINER Anthony Hastings <ar.hastings@gmail.com>
 
+# Specifying build arguments (only available during image creation).
+ARG GOOGLE_SITE_VERIFICATION_TOKEN
+
 # Installing bash.
 RUN apk add --no-cache bash bash-doc bash-completion
 
