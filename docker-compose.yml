@@ -19,9 +19,9 @@ services:
       - ${PORT}:${PORT}
     volumes:
       # Mounts the source directory at runtime, so our container has the latest source files.
-      - ./src:/src
+      - ./src:/dishonored2-power-calculator/src
       # Ensures that the previous mount doesn't override the containers node modules, by pointing them at a named volume.
-      - node_modules:/src/node_modules
+      - node_modules:/dishonored2-power-calculator/src/node_modules
   test:
     build:
       context: ./
@@ -37,6 +37,6 @@ services:
       - PORT
     volumes:
       # Mounts the source directory at runtime, so our container has the latest source files.
-      - ./src:/src
+      - ./src:/dishonored2-power-calculator/src
       # Ensures that the previous mount doesn't override the containers node modules, by pointing them at a named volume.
-      - node_modules:/src/node_modules
+      - node_modules:/dishonored2-power-calculator/src/node_modules

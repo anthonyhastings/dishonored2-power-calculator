@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const app = express();
 
-const indexFilePath = path.resolve('dist/index.html');
+const indexFilePath = path.resolve('../dist/index.html');
 
 if (typeof process.env.PORT === 'undefined') {
   throw new Error('Server.js: PORT environment variable not defined.');
@@ -13,7 +13,7 @@ app.use(function (request, response, next) {
   next();
 });
 
-app.use(express.static('dist'));
+app.use(express.static('../dist'));
 
 app.get('*', function (request, response) {
   response.sendFile(indexFilePath);
