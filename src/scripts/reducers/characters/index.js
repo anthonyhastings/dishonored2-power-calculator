@@ -1,8 +1,9 @@
 import Immutable from 'immutable';
+import axios from 'axios';
 
-const FETCH_CHARACTERS_REQUESTED = 'FETCH_CHARACTERS_REQUESTED';
-const FETCH_CHARACTERS_FAILURE = 'FETCH_CHARACTERS_FAILURE';
-const FETCH_CHARACTERS_SUCCESS = 'FETCH_CHARACTERS_SUCCESS';
+export const FETCH_CHARACTERS_REQUESTED = 'FETCH_CHARACTERS_REQUESTED';
+export const FETCH_CHARACTERS_FAILURE = 'FETCH_CHARACTERS_FAILURE';
+export const FETCH_CHARACTERS_SUCCESS = 'FETCH_CHARACTERS_SUCCESS';
 
 export const defaultState = Immutable.fromJS({
   data: undefined,
@@ -53,21 +54,16 @@ export default function (state = defaultState, action = {}) {
   return reducedState;
 };
 
-export const fetchCharacters = () => {
-  return function (dispatch) {
+export const fetchCharacters = function () {
+  return async function (dispatch) {
     dispatch(fetchCharactersRequested());
+    try {
+      const response = await axios.get('http://localhost:4321/characters');
 
-    return fetch('http://localhost:4321/characters')
-      .then((response) => {
-        if (response.ok === false) {
-          return dispatch(fetchCharactersFailure());
-        }
-
-        return response.json().then((response) => {
-          dispatch(fetchCharactersSuccess(response));
-        });
-      })
-      .catch(() => dispatch(fetchCharactersFailure()));
+      dispatch(fetchCharactersSuccess(response.data));
+    } catch (e) {
+      dispatch(fetchCharactersFailure());
+    }
   };
 };
 

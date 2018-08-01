@@ -1,8 +1,9 @@
 import Immutable from 'immutable';
+import axios from 'axios';
 
-const FETCH_POWERS_REQUESTED = 'FETCH_POWERS_REQUESTED';
-const FETCH_POWERS_FAILURE = 'FETCH_POWERS_FAILURE';
-const FETCH_POWERS_SUCCESS = 'FETCH_POWERS_SUCCESS';
+export const FETCH_POWERS_REQUESTED = 'FETCH_POWERS_REQUESTED';
+export const FETCH_POWERS_FAILURE = 'FETCH_POWERS_FAILURE';
+export const FETCH_POWERS_SUCCESS = 'FETCH_POWERS_SUCCESS';
 
 export const defaultState = Immutable.fromJS({
   data: undefined,
@@ -53,21 +54,16 @@ export default function (state = defaultState, action = {}) {
   return reducedState;
 };
 
-export const fetchPowers = () => {
-  return function (dispatch) {
+export const fetchPowers = function () {
+  return async function (dispatch) {
     dispatch(fetchPowersRequested());
+    try {
+      const response = await axios.get('http://localhost:4321/powers');
 
-    return fetch('http://localhost:4321/powers')
-      .then((response) => {
-        if (response.ok === false) {
-          return dispatch(fetchPowersFailure());
-        }
-
-        return response.json().then((response) => {
-          dispatch(fetchPowersSuccess(response));
-        });
-      })
-      .catch(() => dispatch(fetchPowersFailure()));
+      dispatch(fetchPowersSuccess(response.data));
+    } catch (e) {
+      dispatch(fetchPowersFailure());
+    }
   };
 };
 

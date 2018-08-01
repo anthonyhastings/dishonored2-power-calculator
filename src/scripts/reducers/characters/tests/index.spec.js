@@ -1,10 +1,12 @@
 import Immutable from 'immutable';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import fetchMock from 'fetch-mock';
-import reducer from '../';
-import {
+import moxios from 'moxios';
+import reducer, {
   defaultState,
+  FETCH_CHARACTERS_REQUESTED,
+  FETCH_CHARACTERS_FAILURE,
+  FETCH_CHARACTERS_SUCCESS,
   fetchCharacters,
   fetchCharactersRequested,
   fetchCharactersFailure,
@@ -33,12 +35,13 @@ describe('characters reducer', () => {
       action = fetchCharactersRequested();
 
       inputState = Immutable.fromJS({
+        data: 'hello world',
         request: {inFlight: false, hasErrored: true}
       });
 
       outputState = Immutable.fromJS({
-        request: {inFlight: true, hasErrored: false},
-        data: undefined
+        data: undefined,
+        request: {inFlight: true, hasErrored: false}
       });
     });
 
@@ -56,12 +59,13 @@ describe('characters reducer', () => {
       action = fetchCharactersFailure();
 
       inputState = Immutable.fromJS({
+        data: 'hello world',
         request: {inFlight: true, hasErrored: false}
       });
 
       outputState = Immutable.fromJS({
-        request: {inFlight: false, hasErrored: true},
-        data: undefined
+        data: undefined,
+        request: {inFlight: false, hasErrored: true}
       });
     });
 
@@ -107,12 +111,13 @@ describe('characters action creators', () => {
   describe('#fetchCharacters', () => {
     let mockStore;
     let charactersEndpoint;
-    let charactersResponse;
+    let charactersSuccessResponse;
 
     beforeEach(() => {
+      moxios.install();
       mockStore = configureMockStore([thunk])();
       charactersEndpoint = 'http://localhost:4321/characters';
-      charactersResponse = {
+      charactersSuccessResponse = {
         data: [
           {id: 'abc', key: 'value'},
           {id: 'def', key: 'secret'}
@@ -121,119 +126,109 @@ describe('characters action creators', () => {
     });
 
     afterEach(() => {
-      fetchMock.restore();
+      moxios.uninstall();
     });
 
-    describe('initially', () => {
+    describe('when triggered', () => {
       beforeEach(() => {
-        fetchMock.get(charactersEndpoint, charactersResponse);
+        moxios.stubRequest(charactersEndpoint, {
+          status: 200,
+          response: charactersSuccessResponse
+        });
       });
 
       it('fires a requested action', () => {
         return mockStore.dispatch(fetchCharacters()).then(() => {
-          expect(mockStore.getActions()[0]).toEqual(fetchCharactersRequested());
+          expect(mockStore.getActions()[0]).toEqual({type: FETCH_CHARACTERS_REQUESTED});
         });
       });
     });
 
-    describe('upon completed request', () => {
-      describe('with an OK response', () => {
+    describe('when request completes', () => {
+      describe('and is successful', () => {
         beforeEach(() => {
-          fetchMock.get(charactersEndpoint, charactersResponse);
+          moxios.stubRequest(charactersEndpoint, {
+            status: 200,
+            response: charactersSuccessResponse
+          });
         });
 
-        it('fires a requested action, then a success action which includes response', () => {
+        it('fires a requested action and a success action', () => {
           return mockStore.dispatch(fetchCharacters()).then(() => {
             expect(mockStore.getActions()).toEqual([
-              {type: 'FETCH_CHARACTERS_REQUESTED'},
-              {type: 'FETCH_CHARACTERS_SUCCESS', response: charactersResponse}
+              {type: FETCH_CHARACTERS_REQUESTED},
+              {type: FETCH_CHARACTERS_SUCCESS, response: charactersSuccessResponse}
             ]);
           });
         });
       });
 
-      describe('with a response that is not OK', () => {
+      describe('and fails', () => {
         beforeEach(() => {
-          fetchMock.get(charactersEndpoint, 500);
-        });
-
-        it('fires a requested action, then a failure action', () => {
-          return mockStore.dispatch(fetchCharacters()).then(() => {
-            expect(mockStore.getActions()).toEqual([
-              {type: 'FETCH_CHARACTERS_REQUESTED'},
-              {type: 'FETCH_CHARACTERS_FAILURE'}
-            ]);
+          moxios.stubRequest(charactersEndpoint, {
+            status: 500
           });
         });
-      });
-    });
 
-    describe('upon complete failure', () => {
-      beforeEach(() => {
-        fetchMock.get(charactersEndpoint, Promise.reject());
-      });
-
-      it('fires a requested action, then a failure action', () => {
-        return mockStore.dispatch(fetchCharacters()).then(() => {
-          expect(mockStore.getActions()).toEqual([
-            {type: 'FETCH_CHARACTERS_REQUESTED'},
-            {type: 'FETCH_CHARACTERS_FAILURE'}
-          ]);
+        it('fires a requested action and a failure action', () => {
+          return mockStore.dispatch(fetchCharacters()).then(() => {
+            expect(mockStore.getActions()).toEqual([
+              {type: FETCH_CHARACTERS_REQUESTED},
+              {type: FETCH_CHARACTERS_FAILURE}
+            ]);
+          });
         });
       });
     });
   });
 
   describe('#fetchCharactersRequested', () => {
-    describe('creates an action', () => {
-      let action;
+    let action;
 
-      beforeEach(() => {
-        action = fetchCharactersRequested();
-      });
+    beforeEach(() => {
+      action = fetchCharactersRequested();
+    });
 
-      it('with the correct type', () => {
-        expect(action.type).toEqual('FETCH_CHARACTERS_REQUESTED');
+    it('creates an action', () => {
+      expect(action).toEqual({
+        type: FETCH_CHARACTERS_REQUESTED
       });
     });
   });
 
   describe('#fetchCharactersFailure', () => {
-    describe('creates an action', () => {
-      let action;
+    let action;
 
-      beforeEach(() => {
-        action = fetchCharactersFailure();
-      });
+    beforeEach(() => {
+      action = fetchCharactersFailure();
+    });
 
-      it('with the correct type', () => {
-        expect(action.type).toEqual('FETCH_CHARACTERS_FAILURE');
+    it('creates an action', () => {
+      expect(action).toEqual({
+        type: FETCH_CHARACTERS_FAILURE
       });
     });
   });
 
   describe('#fetchCharactersSuccess', () => {
-    describe('creates an action', () => {
-      let response;
-      let action;
+    let response;
+    let action;
 
-      beforeEach(() => {
-        response = {
-          data: [
-            {id: 'abc', key: 'value'},
-            {id: 'def', key: 'secret'}
-          ]
-        };
+    beforeEach(() => {
+      response = {
+        data: [
+          {id: 'abc', key: 'value'},
+          {id: 'def', key: 'secret'}
+        ]
+      };
 
-        action = fetchCharactersSuccess(response);
-      });
+      action = fetchCharactersSuccess(response);
+    });
 
-      it('with the correct type', () => {
-        expect(action.type).toEqual('FETCH_CHARACTERS_SUCCESS');
-      });
-
-      it('with the correct power', () => {
-        expect(action.response).toEqual(response);
+    it('creates an action', () => {
+      expect(action).toEqual({
+        type: FETCH_CHARACTERS_SUCCESS,
+        response
       });
     });
   });

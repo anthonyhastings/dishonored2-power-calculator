@@ -1,10 +1,12 @@
 import Immutable from 'immutable';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import fetchMock from 'fetch-mock';
-import reducer from '../';
-import {
+import moxios from 'moxios';
+import reducer, {
   defaultState,
+  FETCH_POWERS_REQUESTED,
+  FETCH_POWERS_FAILURE,
+  FETCH_POWERS_SUCCESS,
   fetchPowers,
   fetchPowersRequested,
   fetchPowersFailure,
@@ -33,12 +35,13 @@ describe('powers reducer', () => {
       action = fetchPowersRequested();
 
       inputState = Immutable.fromJS({
+        data: 'hello world',
         request: {inFlight: false, hasErrored: true}
       });
 
       outputState = Immutable.fromJS({
-        request: {inFlight: true, hasErrored: false},
-        data: undefined
+        data: undefined,
+        request: {inFlight: true, hasErrored: false}
       });
     });
 
@@ -56,12 +59,13 @@ describe('powers reducer', () => {
       action = fetchPowersFailure();
 
       inputState = Immutable.fromJS({
+        data: 'hello world',
         request: {inFlight: true, hasErrored: false}
       });
 
       outputState = Immutable.fromJS({
-        request: {inFlight: false, hasErrored: true},
-        data: undefined
+        data: undefined,
+        request: {inFlight: false, hasErrored: true}
       });
     });
 
@@ -107,12 +111,13 @@ describe('powers action creators', () => {
   describe('#fetchPowers', () => {
     let mockStore;
     let powersEndpoint;
-    let powersResponse;
+    let powersSuccessResponse;
 
     beforeEach(() => {
+      moxios.install();
       mockStore = configureMockStore([thunk])();
       powersEndpoint = 'http://localhost:4321/powers';
-      powersResponse = {
+      powersSuccessResponse = {
         data: [
           {id: 'abc', key: 'value'},
           {id: 'def', key: 'secret'}
@@ -121,119 +126,109 @@ describe('powers action creators', () => {
     });
 
     afterEach(() => {
-      fetchMock.restore();
+      moxios.uninstall();
     });
 
-    describe('initially', () => {
+    describe('when triggered', () => {
       beforeEach(() => {
-        fetchMock.get(powersEndpoint, powersResponse);
+        moxios.stubRequest(powersEndpoint, {
+          status: 200,
+          response: powersSuccessResponse
+        });
       });
 
       it('fires a requested action', () => {
         return mockStore.dispatch(fetchPowers()).then(() => {
-          expect(mockStore.getActions()[0]).toEqual(fetchPowersRequested());
+          expect(mockStore.getActions()[0]).toEqual({type: FETCH_POWERS_REQUESTED});
         });
       });
     });
 
-    describe('upon completed request', () => {
-      describe('with an OK response', () => {
+    describe('when request completes', () => {
+      describe('and is successful', () => {
         beforeEach(() => {
-          fetchMock.get(powersEndpoint, powersResponse);
+          moxios.stubRequest(powersEndpoint, {
+            status: 200,
+            response: powersSuccessResponse
+          });
         });
 
-        it('fires a requested action, then a success action which includes response', () => {
+        it('fires a requested action and a success action', () => {
           return mockStore.dispatch(fetchPowers()).then(() => {
             expect(mockStore.getActions()).toEqual([
-              {type: 'FETCH_POWERS_REQUESTED'},
-              {type: 'FETCH_POWERS_SUCCESS', response: powersResponse}
+              {type: FETCH_POWERS_REQUESTED},
+              {type: FETCH_POWERS_SUCCESS, response: powersSuccessResponse}
             ]);
           });
         });
       });
 
-      describe('with a response that is not OK', () => {
+      describe('and fails', () => {
         beforeEach(() => {
-          fetchMock.get(powersEndpoint, 500);
-        });
-
-        it('fires a requested action, then a failure action', () => {
-          return mockStore.dispatch(fetchPowers()).then(() => {
-            expect(mockStore.getActions()).toEqual([
-              {type: 'FETCH_POWERS_REQUESTED'},
-              {type: 'FETCH_POWERS_FAILURE'}
-            ]);
+          moxios.stubRequest(powersEndpoint, {
+            status: 500
           });
         });
-      });
-    });
 
-    describe('upon complete failure', () => {
-      beforeEach(() => {
-        fetchMock.get(powersEndpoint, Promise.reject());
-      });
-
-      it('fires a requested action, then a failure action', () => {
-        return mockStore.dispatch(fetchPowers()).then(() => {
-          expect(mockStore.getActions()).toEqual([
-            {type: 'FETCH_POWERS_REQUESTED'},
-            {type: 'FETCH_POWERS_FAILURE'}
-          ]);
+        it('fires a requested action and a failure action', () => {
+          return mockStore.dispatch(fetchPowers()).then(() => {
+            expect(mockStore.getActions()).toEqual([
+              {type: FETCH_POWERS_REQUESTED},
+              {type: FETCH_POWERS_FAILURE}
+            ]);
+          });
         });
       });
     });
   });
 
   describe('#fetchPowersRequested', () => {
-    describe('creates an action', () => {
-      let action;
+    let action;
 
-      beforeEach(() => {
-        action = fetchPowersRequested();
-      });
+    beforeEach(() => {
+      action = fetchPowersRequested();
+    });
 
-      it('with the correct type', () => {
-        expect(action.type).toEqual('FETCH_POWERS_REQUESTED');
+    it('creates an action', () => {
+      expect(action).toEqual({
+        type: FETCH_POWERS_REQUESTED
       });
     });
   });
 
   describe('#fetchPowersFailure', () => {
-    describe('creates an action', () => {
-      let action;
+    let action;
 
-      beforeEach(() => {
-        action = fetchPowersFailure();
-      });
+    beforeEach(() => {
+      action = fetchPowersFailure();
+    });
 
-      it('with the correct type', () => {
-        expect(action.type).toEqual('FETCH_POWERS_FAILURE');
+    it('creates an action', () => {
+      expect(action).toEqual({
+        type: FETCH_POWERS_FAILURE
       });
     });
   });
 
   describe('#fetchPowersSuccess', () => {
-    describe('creates an action', () => {
-      let action;
-      let response;
+    let action;
+    let response;
 
-      beforeEach(() => {
-        response = {
-          data: [
-            {id: 'abc', key: 'value'},
-            {id: 'def', key: 'secret'}
-          ]
-        };
+    beforeEach(() => {
+      response = {
+        data: [
+          {id: 'abc', key: 'value'},
+          {id: 'def', key: 'secret'}
+        ]
+      };
 
-        action = fetchPowersSuccess(response);
-      });
+      action = fetchPowersSuccess(response);
+    });
 
-      it('with the correct type', () => {
-        expect(action.type).toEqual('FETCH_POWERS_SUCCESS');
-      });
-
-      it('with the correct power', () => {
-        expect(action.response).toEqual(response);
+    it('creates an action', () => {
+      expect(action).toEqual({
+        type: FETCH_POWERS_SUCCESS,
+        response
       });
     });
   });
