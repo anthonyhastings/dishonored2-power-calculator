@@ -1,9 +1,9 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
-const commonConfig = require('./base');
+const baseConfig = require('./base');
 
 module.exports = function () {
-  return webpackMerge(commonConfig(), {
+  return webpackMerge(baseConfig(), {
     mode: 'development',
     entry: [
       'react-hot-loader/patch',
@@ -15,6 +15,27 @@ module.exports = function () {
     output: {
       chunkFilename: 'js/[name].js',
       filename: 'js/[name].js'
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(sa|sc|c)ss$/,
+          use: [
+            {
+              loader: 'style-loader'
+            },
+            {
+              loader: 'css-loader'
+            },
+            {
+              loader: 'postcss-loader'
+            },
+            {
+              loader: 'sass-loader'
+            }
+          ]
+        }
+      ]
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin()
