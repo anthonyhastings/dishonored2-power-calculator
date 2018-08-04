@@ -16,12 +16,15 @@
     <link rel="icon" type="image/png" href="<%= require('../images/favicons/192x192.png') %>" sizes="192x192" />
     <link rel="manifest" href="<%= require('../manifests/manifest.webmanifest') %>" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Carrois+Gothic" />
+    <% for (var stylesheet of htmlWebpackPlugin.files.css) { %>
+      <link rel="stylesheet" href="<%= stylesheet %>" />
+    <% } %>
   </head>
   <body>
     <div id="application"></div>
 
-    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-      <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+    <% for (var script of htmlWebpackPlugin.files.js) { %>
+      <script src="<%= script %>"></script>
     <% } %>
   </body>
 </html>

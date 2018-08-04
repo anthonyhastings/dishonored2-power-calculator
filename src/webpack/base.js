@@ -31,34 +31,6 @@ module.exports = function () {
           loader: 'babel-loader'
         },
         {
-          test: /\.css$/,
-          use: [
-            {
-              loader: 'style-loader'
-            },
-            {
-              loader: 'css-loader'
-            }
-          ]
-        },
-        {
-          test: /\.(sass|scss)$/,
-          use: [
-            {
-              loader: 'style-loader'
-            },
-            {
-              loader: 'css-loader'
-            },
-            {
-              loader: 'postcss-loader'
-            },
-            {
-              loader: 'sass-loader'
-            }
-          ]
-        },
-        {
           test: /\.(svg|png|jpg|jpeg|gif)$/,
           use: [
             {

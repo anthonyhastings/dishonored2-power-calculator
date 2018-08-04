@@ -1,16 +1,17 @@
 const webpackMerge = require('webpack-merge');
 const BundleAnalyzerPlugin =  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
-const commonConfig = require('./base');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const baseConfig = require('./base');
 const dependencies = require('../package').dependencies;
 
-const vendorBlacklist = ['babel-runtime', 'cors', 'express'];
+const vendorBlacklist = ['babel-runtime', 'cors', 'express', 'normalize.css'];
 const vendorDependencies = Object.keys(dependencies).filter((dependency) => {
   return vendorBlacklist.includes(dependency) === false;
 });
 
 module.exports = function (env) {
-  const productionConfig = webpackMerge(commonConfig(), {
+  const productionConfig = webpackMerge(baseConfig(), {
     mode: 'production',
     entry: {
       app: './scripts/index.js',
@@ -36,6 +37,27 @@ module.exports = function (env) {
       chunkFilename: 'js/[name].[chunkhash].js',
       filename: 'js/[name].[chunkhash].js'
     },
+    module: {
+      rules: [
+        {
+          test: /\.(sa|sc|c)ss$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader
+            },
+            {
+              loader: 'css-loader'
+            },
+            {
+              loader: 'postcss-loader'
+            },
+            {
+              loader: 'sass-loader'
+            }
+          ]
+        }
+      ]
+    },
     plugins: [
       new ImageminPlugin({
         pngquant: {
@@ -50,6 +72,10 @@ module.exports = function (env) {
             }
           ]
         }
+      }),
+      new MiniCssExtractPlugin({
+        chunkFilename: 'css/[name].[chunkhash].css',
+        filename: 'css/[name].[chunkhash].css'
       })
     ]
   });

@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Switch, Route} from 'react-router-dom';
 import Async from 'react-code-splitting';
+import 'normalize.css';
+import './stylesheets/index.scss';
 import Loader from '../loader';
 import gameLogo from '../../../images/game-logo.png';
-import './stylesheets/index.scss';
 
 const CharacterSelection = (props) => (
   <Async
