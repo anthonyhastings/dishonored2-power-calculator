@@ -2,6 +2,8 @@ const webpackMerge = require('webpack-merge');
 const BundleAnalyzerPlugin =  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const baseConfig = require('./base');
 const dependencies = require('../package').dependencies;
 
@@ -18,6 +20,27 @@ module.exports = function (env) {
       vendor: vendorDependencies
     },
     optimization: {
+      minimizer: [
+        new ImageminPlugin({
+          pngquant: {
+            quality: '75-90',
+            speed: 4,
+            verbose: true
+          },
+          svgo: {
+            plugins: [
+              {
+                removeDimensions: true
+              }
+            ]
+          }
+        }),
+        new OptimizeCSSAssetsPlugin(),
+        new UglifyJsPlugin({
+          cache: true,
+          parallel: true
+        })
+      ],
       splitChunks: {
         cacheGroups: {
           default: false,
@@ -59,20 +82,6 @@ module.exports = function (env) {
       ]
     },
     plugins: [
-      new ImageminPlugin({
-        pngquant: {
-          quality: '75-90',
-          speed: 4,
-          verbose: true
-        },
-        svgo: {
-          plugins: [
-            {
-              removeDimensions: true
-            }
-          ]
-        }
-      }),
       new MiniCssExtractPlugin({
         chunkFilename: 'css/[name].[chunkhash].css',
         filename: 'css/[name].[chunkhash].css'
