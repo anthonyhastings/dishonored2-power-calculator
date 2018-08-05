@@ -21,6 +21,20 @@ module.exports = function (env) {
     },
     optimization: {
       minimizer: [
+        new ImageminPlugin({
+          pngquant: {
+            quality: '75-90',
+            speed: 4,
+            verbose: true
+          },
+          svgo: {
+            plugins: [
+              {
+                removeDimensions: true
+              }
+            ]
+          }
+        }),
         new OptimizeCSSAssetsPlugin(),
         new UglifyJsPlugin({
           cache: true,
@@ -68,20 +82,6 @@ module.exports = function (env) {
       ]
     },
     plugins: [
-      new ImageminPlugin({
-        pngquant: {
-          quality: '75-90',
-          speed: 4,
-          verbose: true
-        },
-        svgo: {
-          plugins: [
-            {
-              removeDimensions: true
-            }
-          ]
-        }
-      }),
       new MiniCssExtractPlugin({
         chunkFilename: 'css/[name].[chunkhash].css',
         filename: 'css/[name].[chunkhash].css'
