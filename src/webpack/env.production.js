@@ -15,6 +15,7 @@ const vendorDependencies = Object.keys(dependencies).filter((dependency) => {
 module.exports = function (env) {
   const productionConfig = webpackMerge(baseConfig(), {
     mode: 'production',
+    devtool: 'source-map',
     entry: {
       app: './scripts/index.js',
       vendor: vendorDependencies
@@ -35,10 +36,18 @@ module.exports = function (env) {
             ]
           }
         }),
-        new OptimizeCSSAssetsPlugin(),
+        new OptimizeCSSAssetsPlugin({
+          cssProcessorOptions: {
+            map: {
+              annotation: true,
+              inline: false
+            }
+          }
+        }),
         new UglifyJsPlugin({
           cache: true,
-          parallel: true
+          parallel: true,
+          sourceMap: true
         })
       ],
       splitChunks: {
