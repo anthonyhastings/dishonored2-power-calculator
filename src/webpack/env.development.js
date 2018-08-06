@@ -1,5 +1,7 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const paths = require('./paths');
 const baseConfig = require('./base');
 
 module.exports = function () {
@@ -38,7 +40,27 @@ module.exports = function () {
       ]
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin()
-    ]
+      new webpack.HotModuleReplacementPlugin(),
+      new CopyWebpackPlugin([
+        {
+          from: paths.server,
+          test: /\.json$/,
+          to: './'
+        }
+      ])
+    ],
+    devServer: {
+      compress: true,
+      contentBase: paths.dist,
+      disableHostCheck: true,
+      historyApiFallback: true,
+      host: '0.0.0.0',
+      hot: true,
+      inline: true,
+      noInfo: false,
+      port: Number(process.env.PORT),
+      publicPath: '/',
+      quiet: false
+    }
   });
 };

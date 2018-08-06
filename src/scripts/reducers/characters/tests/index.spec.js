@@ -116,7 +116,7 @@ describe('characters action creators', () => {
     beforeEach(() => {
       moxios.install();
       mockStore = configureMockStore([thunk])();
-      charactersEndpoint = 'http://localhost:4321/characters';
+      charactersEndpoint = '/characters.json';
       charactersSuccessResponse = {
         data: [
           {id: 'abc', key: 'value'},

@@ -1,14 +1,7 @@
 const webpack = require('webpack');
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-
-const paths = {
-  root: path.join(__dirname, '../../'),
-  dist: path.join(__dirname, '../../dist'),
-  images: path.join(__dirname, '../images/'),
-  powerImages: path.join(__dirname, '../images/powers')
-};
+const paths = require('./paths');
 
 module.exports = function () {
   return {
@@ -85,19 +78,6 @@ module.exports = function () {
         imagesRoot: paths.images,
         powerImages: paths.powerImages
       }
-    },
-    devServer: {
-      compress: true,
-      contentBase: paths.dist,
-      disableHostCheck: true,
-      historyApiFallback: true,
-      host: '0.0.0.0',
-      hot: true,
-      inline: true,
-      noInfo: false,
-      port: Number(process.env.PORT),
-      publicPath: '/',
-      quiet: false
     }
   };
 };

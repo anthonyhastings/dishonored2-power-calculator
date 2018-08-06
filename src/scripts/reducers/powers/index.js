@@ -58,7 +58,7 @@ export const fetchPowers = function () {
   return async function (dispatch) {
     dispatch(fetchPowersRequested());
     try {
-      const response = await axios.get('http://localhost:4321/powers');
+      const response = await axios.get('/powers.json');
 
       dispatch(fetchPowersSuccess(response.data));
     } catch (e) {

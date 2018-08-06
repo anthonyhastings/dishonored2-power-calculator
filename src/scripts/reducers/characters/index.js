@@ -58,7 +58,7 @@ export const fetchCharacters = function () {
   return async function (dispatch) {
     dispatch(fetchCharactersRequested());
     try {
-      const response = await axios.get('http://localhost:4321/characters');
+      const response = await axios.get('/characters.json');
 
       dispatch(fetchCharactersSuccess(response.data));
     } catch (e) {
