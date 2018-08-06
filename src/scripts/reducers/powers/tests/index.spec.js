@@ -116,7 +116,7 @@ describe('powers action creators', () => {
     beforeEach(() => {
       moxios.install();
       mockStore = configureMockStore([thunk])();
-      powersEndpoint = 'http://localhost:4321/powers';
+      powersEndpoint = '/powers.json';
       powersSuccessResponse = {
         data: [
           {id: 'abc', key: 'value'},

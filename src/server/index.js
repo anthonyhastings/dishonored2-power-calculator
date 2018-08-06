@@ -1,6 +1,8 @@
 const path = require('path');
 const express = require('express');
 const app = express();
+const characters = require('./characters');
+const powers = require('./powers');
 
 const indexFilePath = path.resolve('../dist/index.html');
 
@@ -15,7 +17,17 @@ app.use(function (request, response, next) {
 
 app.use(express.static('../dist'));
 
-app.get('*', function (request, response) {
+app.get('/characters.json', function (request, response) {
+  response.set('Content-Type', 'application/vnd.api+json');
+  response.send(characters);
+});
+
+app.get('/powers.json', function (request, response) {
+  response.set('Content-Type', 'application/vnd.api+json');
+  response.send(powers);
+});
+
+app.get('/*', function (request, response) {
   response.sendFile(indexFilePath);
 });
 
