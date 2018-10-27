@@ -11,7 +11,6 @@ module.exports = function () {
       'react-hot-loader/patch',
       `webpack-dev-server/client?http://localhost:${Number(process.env.PORT)}`,
       'webpack/hot/only-dev-server',
-      'babel-polyfill',
       './scripts/index.js'
     ],
     output: {

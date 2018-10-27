@@ -1,26 +1,29 @@
 {
-  "presets" : [
-    ["env", {
-      "targets": {
-        "browsers": [
-          "last 2 versions",
-          "not Android <= 4.4.3"
-        ]
-      },
-      "modules": false,
-      "debug": true
-    }],
-    "react"
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "debug": true,
+        "modules": false
+      }
+    ],
+    "@babel/preset-react"
   ],
   "plugins": [
     "react-hot-loader/babel",
-    "syntax-dynamic-import",
-    "transform-runtime",
-    "transform-object-rest-spread"
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-transform-regenerator",
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-object-rest-spread"
   ],
   "env": {
     "test": {
-      "plugins": ["transform-es2015-modules-commonjs"]
+      "presets": [
+        [
+          "@babel/preset-env"
+        ],
+        "@babel/preset-react"
+      ]
     }
   }
 }
