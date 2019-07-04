@@ -15,11 +15,10 @@ make
 - [X] Implement CI flow via Docker, TravisCI, Coveralls and Heroku.
 - [X] Use Redux to manage application state.
 - [X] Use React-Router to manage the URL within the application.
-- [ ] Redux requesting powers information via `redux-thunk` and `fetch` API.
+- [ ] Replace enzyme usage with Jest snapshotting.
+- [ ] Redux requesting powers information via `redux-thunk` and Axios.
 - [ ] Use `validateUUID` to check a valid character uuid has been supplied in the URL.
 - [ ] Hot Module Reloading for JS/SCSS on development environment.
-- [ ] Capybara integration tests using PhantomJS (Poltergeist).
+- [ ] Automation suite using Webdriver.io and Cucumber: https://webdriver.io/docs/frameworks.html#using-cucumber
 - Use a multitude of intermediate "container" components to stop the flood of props. See: https://egghead.io/lessons/javascript-redux-extracting-container-components-filterlink
-- Integration testing with Capybara and PhantomJS.
 - Webpack static assets (images / stylesheets).
-- Postgres container / Rails container for CMS to power "powers".

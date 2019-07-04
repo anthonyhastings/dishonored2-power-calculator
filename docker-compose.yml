@@ -1,6 +1,4 @@
 version: "3"
-volumes:
-  node_modules:
 services:
   web:
     build:
@@ -18,25 +16,8 @@ services:
     ports:
       - ${PORT}:${PORT}
     volumes:
-      # Mounts the source directory at runtime, so our container has the latest source files.
+      - ./html:/dishonored2-power-calculator/html
+      - ./images:/dishonored2-power-calculator/images
+      - ./manifests:/dishonored2-power-calculator/manifests
+      - ./server:/dishonored2-power-calculator/server
       - ./src:/dishonored2-power-calculator/src
-      # Ensures that the previous mount doesn't override the containers node modules, by pointing them at a named volume.
-      - node_modules:/dishonored2-power-calculator/src/node_modules
-  test:
-    build:
-      context: ./
-      args:
-        - GOOGLE_SITE_VERIFICATION_TOKEN
-    command: sh -c "npm test"
-    container_name: dishonored2-test
-    image: registry.heroku.com/dishonored2-power-calculator/web:latest
-    environment:
-      - COVERALLS_REPO_TOKEN
-      - COVERALLS_SERVICE_NAME
-      - GOOGLE_SITE_VERIFICATION_TOKEN
-      - PORT
-    volumes:
-      # Mounts the source directory at runtime, so our container has the latest source files.
-      - ./src:/dishonored2-power-calculator/src
-      # Ensures that the previous mount doesn't override the containers node modules, by pointing them at a named volume.
-      - node_modules:/dishonored2-power-calculator/src/node_modules
