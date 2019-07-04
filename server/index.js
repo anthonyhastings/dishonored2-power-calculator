@@ -4,7 +4,7 @@ const app = express();
 const characters = require('./characters');
 const powers = require('./powers');
 
-const indexFilePath = path.resolve('../dist/index.html');
+const indexFilePath = path.resolve('./dist/index.html');
 
 if (typeof process.env.PORT === 'undefined') {
   throw new Error('Server.js: PORT environment variable not defined.');
@@ -15,7 +15,7 @@ app.use(function (request, response, next) {
   next();
 });
 
-app.use(express.static('../dist'));
+app.use(express.static('./dist'));
 
 app.get('/characters.json', function (request, response) {
   response.set('Content-Type', 'application/vnd.api+json');

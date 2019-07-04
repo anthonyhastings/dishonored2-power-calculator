@@ -17,7 +17,7 @@ module.exports = function (env) {
     mode: 'production',
     devtool: 'source-map',
     entry: {
-      app: './scripts/index.js',
+      app: './src/index.js',
       vendor: vendorDependencies
     },
     optimization: {

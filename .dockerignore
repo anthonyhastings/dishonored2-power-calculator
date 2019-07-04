@@ -2,15 +2,17 @@
 *
 
 # White list only the required files and folders.
-!src/html/
-!src/images/
-!src/manifests/
-!src/scripts/
-!src/server/
-!src/webpack/
-!src/.babelrc
-!src/.eslintrc.json
-!src/.jestrc.json
-!src/package-lock.json
-!src/package.json
-!src/postcss.config.js
+!html/
+!images/
+!manifests/
+!server/
+!src/
+!webpack/
+!.babelrc
+!.browserslistrc
+!.editorconfig
+!.eslintrc.json
+!jest.config.js
+!package-lock.json
+!package.json
+!postcss.config.js
