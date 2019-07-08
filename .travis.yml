@@ -1,12 +1,12 @@
-sudo: required
+language: minimal
 
 services:
   - docker
 
 env:
-  - DOCKER_COMPOSE_VERSION=1.21.2
+  - DOCKER_COMPOSE_VERSION=1.24.0
 
-before_install:
+before_script:
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
@@ -16,11 +16,12 @@ script:
   - make start-tests-upload-coverage
 
 before_deploy:
-  - docker login --username=_ --password=${HEROKU_TOKEN} registry.heroku.com
+  - echo "$HEROKU_TOKEN" | docker login --username=_ --password-stdin registry.heroku.com
+  - docker build -t registry.heroku.com/dishonored2-power-calculator/web:latest .
 
 deploy:
   provider: script
-  script: docker push registry.heroku.com/dishonored2-power-calculator/web
+  script: docker push registry.heroku.com/dishonored2-power-calculator/web:latest
   skip_cleanup: true
   on:
     branch: master
