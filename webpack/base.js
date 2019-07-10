@@ -14,7 +14,6 @@ module.exports = function () {
     module: {
       noParse: [
         /node_modules\/immutable/,
-        /node_modules\/reselect/,
         /node_modules\/underscore/
       ],
       rules: [
