@@ -7,7 +7,6 @@ services:
         - GOOGLE_SITE_VERIFICATION_TOKEN
     command: sh -c "npm start"
     container_name: dishonored2-web
-    image: registry.heroku.com/dishonored2-power-calculator/web:latest
     environment:
       - COVERALLS_REPO_TOKEN
       - COVERALLS_SERVICE_NAME
