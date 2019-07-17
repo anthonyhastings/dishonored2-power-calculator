@@ -7,7 +7,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const baseConfig = require('./base');
 const dependencies = require('../package').dependencies;
 
-const vendorBlacklist = ['@babel/runtime', 'cors', 'express', 'normalize.css'];
+const vendorBlacklist = ['@babel/runtime', 'compression', 'cors', 'express', 'normalize.css'];
 const vendorDependencies = Object.keys(dependencies).filter((dependency) => {
   return vendorBlacklist.includes(dependency) === false;
 });
