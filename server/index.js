@@ -1,8 +1,10 @@
 const path = require('path');
 const express = require('express');
-const app = express();
+const compression = require('compression');
 const characters = require('./characters');
 const powers = require('./powers');
+
+const app = express();
 
 const indexFilePath = path.resolve('./dist/index.html');
 
@@ -14,6 +16,8 @@ app.use(function (request, response, next) {
   console.log(`Express - Request: ${request.url}`);
   next();
 });
+
+app.use(compression());
 
 app.use(express.static('./dist'));
 
