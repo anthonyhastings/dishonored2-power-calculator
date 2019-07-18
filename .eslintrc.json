@@ -20,12 +20,14 @@
     }
   },
   "plugins": [
-    "react",
-    "jest"
+    "jest",
+    "jsx-a11y",
+    "react"
   ],
   "extends": [
-    "plugin:react/recommended",
-    "plugin:jest/recommended"
+    "plugin:jest/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react/recommended"
   ],
   "rules": {
     "array-bracket-spacing": [2, "never"],
