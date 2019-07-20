@@ -28,6 +28,11 @@
     "plugin:jsx-a11y/recommended",
     "plugin:react/recommended"
   ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "array-bracket-spacing": [2, "never"],
     "brace-style": 2,
