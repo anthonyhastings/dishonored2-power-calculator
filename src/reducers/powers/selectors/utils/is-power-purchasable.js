@@ -12,4 +12,4 @@ export default function isPowerPurchasable (purchases, power, remainingRunes) {
   const hasUnboughtParent = (parentPowerId) ? !isPowerPurchased(purchases, parentPowerId) : false;
 
   return (hasUnboughtParent) ? false : true;
-};
+}

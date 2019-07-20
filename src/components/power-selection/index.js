@@ -5,12 +5,10 @@ import './stylesheets/index.scss';
 
 class PowerSelection extends React.Component {
   componentDidMount () {
-    console.info('is this only called once?');
     this.props.clearPurchases();
   }
 
   render () {
-    console.info('render');
     return (
       <section>
         <header>
@@ -22,7 +20,7 @@ class PowerSelection extends React.Component {
       </section>
     );
   }
-};
+}
 
 PowerSelection.propTypes = {
   clearPurchases: PropTypes.func.isRequired
