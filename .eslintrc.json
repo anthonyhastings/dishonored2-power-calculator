@@ -50,6 +50,7 @@
     "new-cap": [2, {"capIsNewExceptions": ["Immutable.List", "Immutable.Map", "Immutable.Set", "Immutable.OrderedMap"]}],
     "newline-after-var": 2,
     "no-caller": 2,
+    "no-console": 2,
     "no-mixed-spaces-and-tabs": 2,
     "no-multi-str": 2,
     "no-multiple-empty-lines": [2, {"max": 1, "maxEOF": 0}],
@@ -74,5 +75,16 @@
       "requireReturnDescription": false
     }],
     "wrap-iife": [2, "inside"]
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "server/*.js",
+        "webpack/*.js"
+      ],
+      "rules": {
+        "no-console": 0
+      }
+    }
+  ]
 }
