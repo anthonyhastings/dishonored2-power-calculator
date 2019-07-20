@@ -9,8 +9,6 @@
     "jasmine": true,
     "jest/globals": true
   },
-  "globals": {
-  },
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
@@ -25,6 +23,7 @@
     "react"
   ],
   "extends": [
+    "eslint:recommended",
     "plugin:jest/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:react/recommended"

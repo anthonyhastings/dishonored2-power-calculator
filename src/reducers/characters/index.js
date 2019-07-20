@@ -14,45 +14,41 @@ export const defaultState = Immutable.fromJS({
 });
 
 export default function (state = defaultState, action = {}) {
-  let reducedState;
-
   switch (action.type) {
-    case FETCH_CHARACTERS_REQUESTED:
-      reducedState = state
+    case FETCH_CHARACTERS_REQUESTED: {
+      return state
         .set('data', undefined)
         .set('request', Immutable.Map({
           inFlight: true,
           hasErrored: false
         }));
-      break;
-    case FETCH_CHARACTERS_FAILURE:
-      reducedState = state
+    }
+    case FETCH_CHARACTERS_FAILURE: {
+      return state
         .set('data', undefined)
         .set('request', Immutable.Map({
           inFlight: false,
           hasErrored: true
         }));
-      break;
-    case FETCH_CHARACTERS_SUCCESS:
+    }
+    case FETCH_CHARACTERS_SUCCESS: {
       const charactersList = Immutable.fromJS(action.response.data);
       const charactersMap = charactersList.reduce((memo, character) => {
         return memo.set(character.get('id'), character);
       }, Immutable.Map());
 
-      reducedState = state
+      return state
         .set('data', charactersMap)
         .set('request', Immutable.Map({
           inFlight: false,
           hasErrored: false
         }));
-      break;
-    default:
-      reducedState = state;
-      break;
+    }
+    default: {
+      return state;
+    }
   }
-
-  return reducedState;
-};
+}
 
 export const fetchCharacters = function () {
   return async function (dispatch) {

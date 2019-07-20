@@ -22,7 +22,7 @@ class PowerSelection extends React.Component {
       </section>
     );
   }
-};
+}
 
 PowerSelection.propTypes = {
   clearPurchases: PropTypes.func.isRequired

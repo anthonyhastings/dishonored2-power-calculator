@@ -51,7 +51,7 @@ class App extends React.Component {
       </div>
     );
   }
-};
+}
 
 App.namespace = 'app';
 App.propTypes = {
