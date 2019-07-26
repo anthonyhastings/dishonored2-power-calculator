@@ -7,18 +7,14 @@ describe('#purchasesSelector', () => {
   beforeEach(() => {
     state = Immutable.fromJS({
       user: {
-        purchases: [
-          'uuid-01',
-          'uuid-02'
-        ]
+        purchases: ['uuid-01', 'uuid-02']
       }
     });
   });
 
   it('should return appropriate value', () => {
-    expect(purchasesSelector(state)).toEqual(Immutable.fromJS([
-      'uuid-01',
-      'uuid-02'
-    ]));
+    expect(purchasesSelector(state)).toEqual(
+      Immutable.fromJS(['uuid-01', 'uuid-02'])
+    );
   });
 });

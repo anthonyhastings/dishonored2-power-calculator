@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import {transform} from '../data-loaded';
+import { transform } from '../data-loaded';
 
 describe('#dataLoadedTransform', () => {
   describe('when the characters', () => {
@@ -7,7 +7,7 @@ describe('#dataLoadedTransform', () => {
       let result;
 
       beforeEach(() => {
-        const charactersRequest = Immutable.Map({hasErrored: true});
+        const charactersRequest = Immutable.Map({ hasErrored: true });
 
         result = transform(undefined, charactersRequest);
       });
@@ -21,10 +21,15 @@ describe('#dataLoadedTransform', () => {
       let result;
 
       beforeEach(() => {
-        const charactersRequest = Immutable.Map({inFlight: true});
+        const charactersRequest = Immutable.Map({ inFlight: true });
         const powersRequest = Immutable.Map({});
 
-        result = transform(undefined, charactersRequest, undefined, powersRequest);
+        result = transform(
+          undefined,
+          charactersRequest,
+          undefined,
+          powersRequest
+        );
       });
 
       it('returns false', () => {
@@ -36,10 +41,15 @@ describe('#dataLoadedTransform', () => {
       let result;
 
       beforeEach(() => {
-        const charactersRequest = Immutable.Map({inFlight: true});
+        const charactersRequest = Immutable.Map({ inFlight: true });
         const powersRequest = Immutable.Map({});
 
-        result = transform(undefined, charactersRequest, undefined, powersRequest);
+        result = transform(
+          undefined,
+          charactersRequest,
+          undefined,
+          powersRequest
+        );
       });
 
       it('returns false', () => {
@@ -54,9 +64,14 @@ describe('#dataLoadedTransform', () => {
 
       beforeEach(() => {
         const charactersRequest = Immutable.Map({});
-        const powersRequest = Immutable.Map({hasErrored: true});
+        const powersRequest = Immutable.Map({ hasErrored: true });
 
-        result = transform(undefined, charactersRequest, undefined, powersRequest);
+        result = transform(
+          undefined,
+          charactersRequest,
+          undefined,
+          powersRequest
+        );
       });
 
       it('returns an error', () => {
@@ -69,9 +84,14 @@ describe('#dataLoadedTransform', () => {
 
       beforeEach(() => {
         const charactersRequest = Immutable.Map({});
-        const powersRequest = Immutable.Map({inFlight: true});
+        const powersRequest = Immutable.Map({ inFlight: true });
 
-        result = transform(undefined, charactersRequest, undefined, powersRequest);
+        result = transform(
+          undefined,
+          charactersRequest,
+          undefined,
+          powersRequest
+        );
       });
 
       it('returns false', () => {
@@ -86,7 +106,12 @@ describe('#dataLoadedTransform', () => {
         const charactersRequest = Immutable.Map({});
         const powersRequest = Immutable.Map({});
 
-        result = transform(undefined, charactersRequest, undefined, powersRequest);
+        result = transform(
+          undefined,
+          charactersRequest,
+          undefined,
+          powersRequest
+        );
       });
 
       it('returns false', () => {
@@ -100,7 +125,7 @@ describe('#dataLoadedTransform', () => {
 
     beforeEach(() => {
       const charactersRequest = Immutable.Map({});
-      const characters = Immutable.Map({batman: 'Bruce Wayne'});
+      const characters = Immutable.Map({ batman: 'Bruce Wayne' });
       const powersRequest = Immutable.Map({});
       const powers = Immutable.List(['telekinesis']);
 

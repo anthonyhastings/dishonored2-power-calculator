@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import {mapStateToProps, mapDispatchToProps} from '../';
+import { mapStateToProps, mapDispatchToProps } from '../';
 
 describe('Power selection container', () => {
   let state;
@@ -8,7 +8,7 @@ describe('Power selection container', () => {
     state = Immutable.fromJS({
       powers: {
         data: {
-          abc: {id: 'abc', parentPowerId: null, name: 'Power #01'}
+          abc: { id: 'abc', parentPowerId: null, name: 'Power #01' }
         }
       },
       user: {
@@ -22,7 +22,11 @@ describe('Power selection container', () => {
     let stateProps;
 
     beforeEach(() => {
-      const ownProps = {match: {params: {characterId: 'de2351c7-f1c3-409d-8973-414d5c37364c'}}};
+      const ownProps = {
+        match: {
+          params: { characterId: 'de2351c7-f1c3-409d-8973-414d5c37364c' }
+        }
+      };
 
       stateProps = mapStateToProps(state, ownProps);
     });
@@ -90,7 +94,9 @@ describe('Power selection container', () => {
       });
 
       it('that triggers REMOVE_PURCHASES action when called', () => {
-        expect(thunkDispatchFunc.mock.calls[0][0].type).toEqual('REMOVE_PURCHASES');
+        expect(thunkDispatchFunc.mock.calls[0][0].type).toEqual(
+          'REMOVE_PURCHASES'
+        );
       });
     });
   });

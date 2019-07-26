@@ -1,5 +1,6 @@
 const webpackMerge = require('webpack-merge');
-const BundleAnalyzerPlugin =  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -7,12 +8,18 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const baseConfig = require('./base');
 const dependencies = require('../package').dependencies;
 
-const vendorBlacklist = ['@babel/runtime', 'compression', 'cors', 'express', 'normalize.css'];
+const vendorBlacklist = [
+  '@babel/runtime',
+  'compression',
+  'cors',
+  'express',
+  'normalize.css'
+];
 const vendorDependencies = Object.keys(dependencies).filter((dependency) => {
   return vendorBlacklist.includes(dependency) === false;
 });
 
-module.exports = function (env) {
+module.exports = function(env) {
   const productionConfig = webpackMerge(baseConfig(), {
     mode: 'production',
     devtool: 'source-map',

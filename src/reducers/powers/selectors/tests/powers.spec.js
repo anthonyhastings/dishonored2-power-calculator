@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import {transform} from '../powers';
+import { transform } from '../powers';
 
 describe('#powersSelector', () => {
   let powersAndEnhancements;
@@ -27,16 +27,18 @@ describe('#powersSelector', () => {
 
   describe('when called with powers and enhancements', () => {
     it('returns only powers', () => {
-      expect(transform(powersAndEnhancements)).toEqual(Immutable.fromJS({
-        'uuid-03': {
-          type: 'power',
-          name: 'Power #01'
-        },
-        'uuid-04': {
-          type: 'power',
-          name: 'Power #02'
-        }
-      }));
+      expect(transform(powersAndEnhancements)).toEqual(
+        Immutable.fromJS({
+          'uuid-03': {
+            type: 'power',
+            name: 'Power #01'
+          },
+          'uuid-04': {
+            type: 'power',
+            name: 'Power #02'
+          }
+        })
+      );
     });
   });
 });

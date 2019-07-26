@@ -4,13 +4,13 @@ import _ from 'lodash';
 import classNames from 'classnames';
 import './stylesheets/index.scss';
 
-const Loader = function ({children, loadingState}) {
+const Loader = function({ children, loadingState }) {
   if (loadingState === true) {
     return children;
   }
 
   const hasErrored = _.isError(loadingState);
-  const headingText = (hasErrored) ? 'Error while loading' : 'Loading';
+  const headingText = hasErrored ? 'Error while loading' : 'Loading';
   const classes = classNames(Loader.namespace, {
     [`${Loader.namespace}--is-loading`]: !hasErrored
   });

@@ -1,4 +1,4 @@
-const charactersRequestSelector = function (state) {
+const charactersRequestSelector = function(state) {
   return state.getIn(['characters', 'request']);
 };
 

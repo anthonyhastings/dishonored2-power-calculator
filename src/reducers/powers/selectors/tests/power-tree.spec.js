@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import powerTreeSelector from '../power-tree';
-import {transform} from '../power-tree';
+import { transform } from '../power-tree';
 
 describe('#powerTreeSelector', () => {
   let state;
@@ -9,15 +9,31 @@ describe('#powerTreeSelector', () => {
     state = Immutable.fromJS({
       powers: {
         data: {
-          abc: {id: 'abc', parentPowerId: null, name: 'Power with no children'},
-          def: {id: 'def', parentPowerId: null, name: 'Power with one child'},
-          ghi: {id: 'ghi', parentPowerId: 'def', name: 'Power with a parent'},
-          jkl: {id: 'jkl', parentPowerId: null, name: 'Power with multiple children'},
-          mno: {id: 'mno', parentPowerId: 'jkl', name: 'Power with a parent'},
-          pqr: {id: 'pqr', parentPowerId: 'jkl', name: 'Power with a parent'},
-          stu: {id: 'stu', parentPowerId: null, name: 'Power with deeply nested children'},
-          vwx: {id: 'vwx', parentPowerId: 'stu', name: 'Power with one child'},
-          yz: {id: 'yz', parentPowerId: 'vwx', name: 'Power with no children'}
+          abc: {
+            id: 'abc',
+            parentPowerId: null,
+            name: 'Power with no children'
+          },
+          def: { id: 'def', parentPowerId: null, name: 'Power with one child' },
+          ghi: { id: 'ghi', parentPowerId: 'def', name: 'Power with a parent' },
+          jkl: {
+            id: 'jkl',
+            parentPowerId: null,
+            name: 'Power with multiple children'
+          },
+          mno: { id: 'mno', parentPowerId: 'jkl', name: 'Power with a parent' },
+          pqr: { id: 'pqr', parentPowerId: 'jkl', name: 'Power with a parent' },
+          stu: {
+            id: 'stu',
+            parentPowerId: null,
+            name: 'Power with deeply nested children'
+          },
+          vwx: {
+            id: 'vwx',
+            parentPowerId: 'stu',
+            name: 'Power with one child'
+          },
+          yz: { id: 'yz', parentPowerId: 'vwx', name: 'Power with no children' }
         }
       },
       user: {
@@ -151,21 +167,22 @@ describe('#powerTreeSelector', () => {
 describe('#powerTreeTransform', () => {
   describe('when given a non-existent power', () => {
     it('returns an empty list', () => {
-      expect(transform(
-        Immutable.fromJS({}),
-        'abcdef'
-      )).toEqual(Immutable.List([]));
+      expect(transform(Immutable.fromJS({}), 'abcdef')).toEqual(
+        Immutable.List([])
+      );
     });
   });
 
   describe('when a power has no children', () => {
     it('returns an empty list', () => {
-      expect(transform(
-        Immutable.fromJS({
-          abc: {}
-        }),
-        'abc'
-      )).toEqual(Immutable.List([]));
+      expect(
+        transform(
+          Immutable.fromJS({
+            abc: {}
+          }),
+          'abc'
+        )
+      ).toEqual(Immutable.List([]));
     });
   });
 
@@ -175,22 +192,19 @@ describe('#powerTreeTransform', () => {
 
     beforeEach(() => {
       inputState = Immutable.fromJS({
-        abc: {parentPowerId: null, name: 'Parent Power'},
-        def: {parentPowerId: 'abc', name: 'Child Power #01'},
-        ghi: {parentPowerId: 'abc', name: 'Child Power #02'}
+        abc: { parentPowerId: null, name: 'Parent Power' },
+        def: { parentPowerId: 'abc', name: 'Child Power #01' },
+        ghi: { parentPowerId: 'abc', name: 'Child Power #02' }
       });
 
       expectedResponse = Immutable.fromJS([
-        {parentPowerId: 'abc', name: 'Child Power #01', children: []},
-        {parentPowerId: 'abc', name: 'Child Power #02', children: []}
+        { parentPowerId: 'abc', name: 'Child Power #01', children: [] },
+        { parentPowerId: 'abc', name: 'Child Power #02', children: [] }
       ]);
     });
 
     it('returns them in a list', () => {
-      expect(transform(
-        inputState,
-        'abc'
-      )).toEqual(expectedResponse);
+      expect(transform(inputState, 'abc')).toEqual(expectedResponse);
     });
   });
 });

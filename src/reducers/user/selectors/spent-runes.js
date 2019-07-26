@@ -1,4 +1,4 @@
-import {createSelector} from 'reselect';
+import { createSelector } from 'reselect';
 import powersAndEnhancementsSelector from '../../powers/selectors/powers-and-enhancements';
 import purchasesSelector from './purchases';
 

@@ -23,7 +23,9 @@ describe('#isPowerPurchasable', () => {
     });
 
     it('returns false', () => {
-      expect(isPowerPurchasable(purchases, power, remainingRunes)).toEqual(false);
+      expect(isPowerPurchasable(purchases, power, remainingRunes)).toEqual(
+        false
+      );
     });
   });
 
@@ -34,7 +36,9 @@ describe('#isPowerPurchasable', () => {
     });
 
     it('returns false', () => {
-      expect(isPowerPurchasable(purchases, power, remainingRunes)).toEqual(false);
+      expect(isPowerPurchasable(purchases, power, remainingRunes)).toEqual(
+        false
+      );
     });
   });
 
@@ -44,13 +48,17 @@ describe('#isPowerPurchasable', () => {
     });
 
     it('returns false', () => {
-      expect(isPowerPurchasable(purchases, power, remainingRunes)).toEqual(false);
+      expect(isPowerPurchasable(purchases, power, remainingRunes)).toEqual(
+        false
+      );
     });
   });
 
   describe('when the power is eligible for purchase', () => {
     it('returns true', () => {
-      expect(isPowerPurchasable(purchases, power, remainingRunes)).toEqual(true);
+      expect(isPowerPurchasable(purchases, power, remainingRunes)).toEqual(
+        true
+      );
     });
   });
 });

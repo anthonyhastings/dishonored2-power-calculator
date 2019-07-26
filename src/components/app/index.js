@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Switch, Route} from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Async from 'react-code-splitting';
 import 'normalize.css';
 import './stylesheets/index.scss';
@@ -28,16 +28,16 @@ const PowerSelection = (props) => (
 );
 
 class App extends React.Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchCharacters();
     this.props.fetchPowers();
   }
 
-  render () {
+  render() {
     return (
       <div className={App.namespace}>
         <header>
-          <img src={gameLogo} alt='Dishonored 2' />
+          <img src={gameLogo} alt="Dishonored 2" />
           <h1>Power Calculator</h1>
         </header>
         <div className={`${App.namespace}__content`}>
@@ -57,10 +57,8 @@ App.namespace = 'app';
 App.propTypes = {
   fetchCharacters: PropTypes.func.isRequired,
   fetchPowers: PropTypes.func.isRequired,
-  dataLoaded: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.instanceOf(Error)
-  ]).isRequired
+  dataLoaded: PropTypes.oneOfType([PropTypes.bool, PropTypes.instanceOf(Error)])
+    .isRequired
 };
 
 export default App;

@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const paths = require('./paths');
 const baseConfig = require('./base');
 
-module.exports = function () {
+module.exports = function() {
   return webpackMerge(baseConfig(), {
     mode: 'development',
     entry: [

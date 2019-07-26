@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const paths = require('./paths');
 
-module.exports = function () {
+module.exports = function() {
   return {
     mode: 'none',
     entry: null,
@@ -12,10 +12,7 @@ module.exports = function () {
       publicPath: '/'
     },
     module: {
-      noParse: [
-        /node_modules\/immutable/,
-        /node_modules\/underscore/
-      ],
+      noParse: [/node_modules\/immutable/, /node_modules\/underscore/],
       rules: [
         {
           test: /\.jsx?$/,

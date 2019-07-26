@@ -8,10 +8,10 @@ describe('#flattenedPowerTreeIdsSelector', () => {
     state = Immutable.fromJS({
       powers: {
         data: {
-          abc: {id: 'abc', parentPowerId: null, name: 'Power #01'},
-          def: {id: 'def', parentPowerId: 'abc', name: 'Power #02'},
-          ghi: {id: 'ghi', parentPowerId: 'abc', name: 'Power #03'},
-          jkl: {id: 'jkl', parentPowerId: 'def', name: 'Power #04'}
+          abc: { id: 'abc', parentPowerId: null, name: 'Power #01' },
+          def: { id: 'def', parentPowerId: 'abc', name: 'Power #02' },
+          ghi: { id: 'ghi', parentPowerId: 'abc', name: 'Power #03' },
+          jkl: { id: 'jkl', parentPowerId: 'def', name: 'Power #04' }
         }
       },
       user: {
@@ -42,15 +42,10 @@ describe('#flattenedPowerTreeIdsSelector', () => {
     beforeEach(() => {
       selectorReturnValue = flattenedPowerTreeIdsSelector(state, 'abc');
 
-      expectedResponse = Immutable.fromJS([
-        'abc',
-        'def',
-        'jkl',
-        'ghi'
-      ]);
+      expectedResponse = Immutable.fromJS(['abc', 'def', 'jkl', 'ghi']);
     });
 
-    it('returns list with original power id and child power id\'s', () => {
+    it("returns list with original power id and child power id's", () => {
       expect(selectorReturnValue).toEqual(expectedResponse);
     });
   });

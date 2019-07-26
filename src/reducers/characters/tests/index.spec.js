@@ -36,12 +36,12 @@ describe('characters reducer', () => {
 
       inputState = Immutable.fromJS({
         data: 'hello world',
-        request: {inFlight: false, hasErrored: true}
+        request: { inFlight: false, hasErrored: true }
       });
 
       outputState = Immutable.fromJS({
         data: undefined,
-        request: {inFlight: true, hasErrored: false}
+        request: { inFlight: true, hasErrored: false }
       });
     });
 
@@ -60,12 +60,12 @@ describe('characters reducer', () => {
 
       inputState = Immutable.fromJS({
         data: 'hello world',
-        request: {inFlight: true, hasErrored: false}
+        request: { inFlight: true, hasErrored: false }
       });
 
       outputState = Immutable.fromJS({
         data: undefined,
-        request: {inFlight: false, hasErrored: true}
+        request: { inFlight: false, hasErrored: true }
       });
     });
 
@@ -81,23 +81,20 @@ describe('characters reducer', () => {
 
     beforeEach(() => {
       action = fetchCharactersSuccess({
-        data: [
-          {id: 'abc', key: 'value'},
-          {id: 'def', key: 'secret'}
-        ]
+        data: [{ id: 'abc', key: 'value' }, { id: 'def', key: 'secret' }]
       });
 
       inputState = Immutable.fromJS({
         data: undefined,
-        request: {inFlight: true, hasErrored: false}
+        request: { inFlight: true, hasErrored: false }
       });
 
       outputState = Immutable.fromJS({
         data: {
-          abc: {id: 'abc', key: 'value'},
-          def: {id: 'def', key: 'secret'}
+          abc: { id: 'abc', key: 'value' },
+          def: { id: 'def', key: 'secret' }
         },
-        request: {inFlight: false, hasErrored: false}
+        request: { inFlight: false, hasErrored: false }
       });
     });
 
@@ -118,10 +115,7 @@ describe('characters action creators', () => {
       mockStore = configureMockStore([thunk])();
       charactersEndpoint = '/characters.json';
       charactersSuccessResponse = {
-        data: [
-          {id: 'abc', key: 'value'},
-          {id: 'def', key: 'secret'}
-        ]
+        data: [{ id: 'abc', key: 'value' }, { id: 'def', key: 'secret' }]
       };
     });
 
@@ -139,7 +133,9 @@ describe('characters action creators', () => {
 
       it('fires a requested action', () => {
         return mockStore.dispatch(fetchCharacters()).then(() => {
-          expect(mockStore.getActions()[0]).toEqual({type: FETCH_CHARACTERS_REQUESTED});
+          expect(mockStore.getActions()[0]).toEqual({
+            type: FETCH_CHARACTERS_REQUESTED
+          });
         });
       });
     });
@@ -156,8 +152,11 @@ describe('characters action creators', () => {
         it('fires a requested action and a success action', () => {
           return mockStore.dispatch(fetchCharacters()).then(() => {
             expect(mockStore.getActions()).toEqual([
-              {type: FETCH_CHARACTERS_REQUESTED},
-              {type: FETCH_CHARACTERS_SUCCESS, response: charactersSuccessResponse}
+              { type: FETCH_CHARACTERS_REQUESTED },
+              {
+                type: FETCH_CHARACTERS_SUCCESS,
+                response: charactersSuccessResponse
+              }
             ]);
           });
         });
@@ -173,8 +172,8 @@ describe('characters action creators', () => {
         it('fires a requested action and a failure action', () => {
           return mockStore.dispatch(fetchCharacters()).then(() => {
             expect(mockStore.getActions()).toEqual([
-              {type: FETCH_CHARACTERS_REQUESTED},
-              {type: FETCH_CHARACTERS_FAILURE}
+              { type: FETCH_CHARACTERS_REQUESTED },
+              { type: FETCH_CHARACTERS_FAILURE }
             ]);
           });
         });
@@ -216,10 +215,7 @@ describe('characters action creators', () => {
 
     beforeEach(() => {
       response = {
-        data: [
-          {id: 'abc', key: 'value'},
-          {id: 'def', key: 'secret'}
-        ]
+        data: [{ id: 'abc', key: 'value' }, { id: 'def', key: 'secret' }]
       };
 
       action = fetchCharactersSuccess(response);

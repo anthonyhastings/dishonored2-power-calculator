@@ -1,14 +1,16 @@
+/* global module */
+
 import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
-import {BrowserRouter as Router} from 'react-router-dom';
-import {AppContainer} from 'react-hot-loader';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { AppContainer } from 'react-hot-loader';
 import store from './store';
 import App from './components/app/container';
 
 const render = (Component) => {
-  ReactDOM.render((
+  ReactDOM.render(
     <Provider store={store}>
       <Router>
         <AppContainer>
@@ -17,8 +19,9 @@ const render = (Component) => {
           </React.StrictMode>
         </AppContainer>
       </Router>
-    </Provider>
-  ), document.querySelector('#application'));
+    </Provider>,
+    document.querySelector('#application')
+  );
 };
 
 render(App);

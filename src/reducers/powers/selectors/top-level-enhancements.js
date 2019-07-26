@@ -1,9 +1,9 @@
-import {createSelector} from 'reselect';
+import { createSelector } from 'reselect';
 import enhancementsSelector from './enhancements';
 
-export const transform = function (enhancements) {
+export const transform = function(enhancements) {
   return enhancements.filter((enhancement) => {
-    return (enhancement.get('parentPowerId') === null);
+    return enhancement.get('parentPowerId') === null;
   });
 };
 

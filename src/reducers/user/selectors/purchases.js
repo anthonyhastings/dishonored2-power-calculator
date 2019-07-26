@@ -1,3 +1,3 @@
-const purchasesSelector = (state) => (state.getIn(['user', 'purchases']));
+const purchasesSelector = (state) => state.getIn(['user', 'purchases']);
 
 export default purchasesSelector;

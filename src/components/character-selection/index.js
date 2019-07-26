@@ -1,6 +1,6 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const CharacterSelection = (props) => {
   const characterElements = props.characters.valueSeq().map((character) => {
