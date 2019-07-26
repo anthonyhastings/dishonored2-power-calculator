@@ -1,7 +1,7 @@
-import {createSelector} from 'reselect';
+import { createSelector } from 'reselect';
 import powersAndEnhancementsWithPurchaseFlagsSelector from './powers-and-enhancements-with-purchase-flags';
 
-export const transform = function (powersAndEnhancements) {
+export const transform = function(powersAndEnhancements) {
   return powersAndEnhancements.filter((map) => {
     return map.get('type') === 'power';
   });

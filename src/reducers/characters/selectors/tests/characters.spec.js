@@ -16,6 +16,8 @@ describe('#charactersSelector', () => {
   });
 
   it('returns all characters', () => {
-    expect(charactersSelector(state)).toEqual(state.getIn(['characters', 'data']));
+    expect(charactersSelector(state)).toEqual(
+      state.getIn(['characters', 'data'])
+    );
   });
 });

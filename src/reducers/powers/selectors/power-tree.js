@@ -2,7 +2,7 @@ import Immutable from 'immutable';
 import powersAndEnhancementsWithPurchaseFlagsSelector from './powers-and-enhancements-with-purchase-flags';
 import powerSelector from './power';
 
-export const transform = function (powersAndEnhancements, parentId) {
+export const transform = function(powersAndEnhancements, parentId) {
   let childPowers = Immutable.List();
 
   powersAndEnhancements.forEach((power) => {
@@ -19,7 +19,9 @@ export const transform = function (powersAndEnhancements, parentId) {
 };
 
 const powerTreeSelector = (state, powerId) => {
-  const powersAndEnhancements = powersAndEnhancementsWithPurchaseFlagsSelector(state);
+  const powersAndEnhancements = powersAndEnhancementsWithPurchaseFlagsSelector(
+    state
+  );
   const childPowers = transform(powersAndEnhancements, powerId);
   let power = powerSelector(state, powerId);
 

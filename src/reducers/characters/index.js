@@ -13,23 +13,25 @@ export const defaultState = Immutable.fromJS({
   }
 });
 
-export default function (state = defaultState, action = {}) {
+export default function(state = defaultState, action = {}) {
   switch (action.type) {
     case FETCH_CHARACTERS_REQUESTED: {
-      return state
-        .set('data', undefined)
-        .set('request', Immutable.Map({
+      return state.set('data', undefined).set(
+        'request',
+        Immutable.Map({
           inFlight: true,
           hasErrored: false
-        }));
+        })
+      );
     }
     case FETCH_CHARACTERS_FAILURE: {
-      return state
-        .set('data', undefined)
-        .set('request', Immutable.Map({
+      return state.set('data', undefined).set(
+        'request',
+        Immutable.Map({
           inFlight: false,
           hasErrored: true
-        }));
+        })
+      );
     }
     case FETCH_CHARACTERS_SUCCESS: {
       const charactersList = Immutable.fromJS(action.response.data);
@@ -37,12 +39,13 @@ export default function (state = defaultState, action = {}) {
         return memo.set(character.get('id'), character);
       }, Immutable.Map());
 
-      return state
-        .set('data', charactersMap)
-        .set('request', Immutable.Map({
+      return state.set('data', charactersMap).set(
+        'request',
+        Immutable.Map({
           inFlight: false,
           hasErrored: false
-        }));
+        })
+      );
     }
     default: {
       return state;
@@ -50,8 +53,8 @@ export default function (state = defaultState, action = {}) {
   }
 }
 
-export const fetchCharacters = function () {
-  return async function (dispatch) {
+export const fetchCharacters = function() {
+  return async function(dispatch) {
     dispatch(fetchCharactersRequested());
     try {
       const response = await axios.get('/characters.json');

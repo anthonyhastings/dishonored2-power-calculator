@@ -16,9 +16,11 @@ describe('#powersAndEnhancementsSelector', () => {
   });
 
   it('should return appropriate value', () => {
-    expect(powersAndEnhancementsSelector(state)).toEqual(Immutable.fromJS({
-      'uuid-01': 'hello',
-      'uuid-02': 'world'
-    }));
+    expect(powersAndEnhancementsSelector(state)).toEqual(
+      Immutable.fromJS({
+        'uuid-01': 'hello',
+        'uuid-02': 'world'
+      })
+    );
   });
 });

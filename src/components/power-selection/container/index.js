@@ -1,6 +1,6 @@
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
 import Component from '../';
 import topLevelEnhancementsSelector from '../../../reducers/powers/selectors/top-level-enhancements';
 import topLevelPowersByCharacterIdSelector from '../../../reducers/powers/selectors/top-level-powers-by-character-id';
@@ -11,7 +11,7 @@ import {
   removePurchase
 } from '../../../reducers/user';
 
-export const mapStateToProps = function (state, ownProps) {
+export const mapStateToProps = function(state, ownProps) {
   const characterId = ownProps.match.params.characterId;
 
   return {
@@ -20,7 +20,7 @@ export const mapStateToProps = function (state, ownProps) {
   };
 };
 
-export const mapDispatchToProps = function (dispatch) {
+export const mapDispatchToProps = function(dispatch) {
   return {
     clearPurchases: bindActionCreators(clearPurchases, dispatch),
     addPurchase: bindActionCreators(addPurchase, dispatch),
@@ -29,4 +29,9 @@ export const mapDispatchToProps = function (dispatch) {
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Component));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Component)
+);

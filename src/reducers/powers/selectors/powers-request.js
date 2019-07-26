@@ -1,4 +1,4 @@
-const powersRequestSelector = function (state) {
+const powersRequestSelector = function(state) {
   return state.getIn(['powers', 'request']);
 };
 

@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import {transform} from '../powers-and-enhancements-with-purchase-flags';
+import { transform } from '../powers-and-enhancements-with-purchase-flags';
 
 describe('#powersAndEnhancementsWithPurchaseFlagsSelector', () => {
   let remainingRunes;
@@ -31,13 +31,15 @@ describe('#powersAndEnhancementsWithPurchaseFlagsSelector', () => {
     });
 
     expectedPowers = powers.mergeDeep({
-      'uuid-01': {purchasable: false, purchased: true},
-      'uuid-02': {purchasable: true, purchased: false},
-      'uuid-03': {purchasable: false, purchased: false}
+      'uuid-01': { purchasable: false, purchased: true },
+      'uuid-02': { purchasable: true, purchased: false },
+      'uuid-03': { purchasable: false, purchased: false }
     });
   });
 
   it('returns expected structure', () => {
-    expect(transform(powers, purchases, remainingRunes)).toEqual(expectedPowers);
+    expect(transform(powers, purchases, remainingRunes)).toEqual(
+      expectedPowers
+    );
   });
 });

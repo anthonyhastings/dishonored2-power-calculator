@@ -1,3 +1,3 @@
-export default function isPowerPurchased (purchases, powerId) {
+export default function isPowerPurchased(purchases, powerId) {
   return purchases.includes(powerId);
 }

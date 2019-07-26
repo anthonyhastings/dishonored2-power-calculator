@@ -16,9 +16,11 @@ describe('#charactersRequestSelector', () => {
   });
 
   it('returns request node', () => {
-    expect(charactersRequestSelector(state)).toEqual(Immutable.fromJS({
-      inFlight: false,
-      hasErrored: true
-    }));
+    expect(charactersRequestSelector(state)).toEqual(
+      Immutable.fromJS({
+        inFlight: false,
+        hasErrored: true
+      })
+    );
   });
 });

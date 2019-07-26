@@ -13,23 +13,25 @@ export const defaultState = Immutable.fromJS({
   }
 });
 
-export default function (state = defaultState, action = {}) {
+export default function(state = defaultState, action = {}) {
   switch (action.type) {
     case FETCH_POWERS_REQUESTED: {
-      return state
-        .set('data', undefined)
-        .set('request', Immutable.Map({
+      return state.set('data', undefined).set(
+        'request',
+        Immutable.Map({
           inFlight: true,
           hasErrored: false
-        }));
+        })
+      );
     }
     case FETCH_POWERS_FAILURE: {
-      return state
-        .set('data', undefined)
-        .set('request', Immutable.Map({
+      return state.set('data', undefined).set(
+        'request',
+        Immutable.Map({
           inFlight: false,
           hasErrored: true
-        }));
+        })
+      );
     }
     case FETCH_POWERS_SUCCESS: {
       const powersList = Immutable.fromJS(action.response.data);
@@ -37,12 +39,13 @@ export default function (state = defaultState, action = {}) {
         return memo.set(power.get('id'), power);
       }, Immutable.Map());
 
-      return state
-        .set('data', powersMap)
-        .set('request', Immutable.fromJS({
+      return state.set('data', powersMap).set(
+        'request',
+        Immutable.fromJS({
           inFlight: false,
           hasErrored: false
-        }));
+        })
+      );
     }
     default: {
       return state;
@@ -50,8 +53,8 @@ export default function (state = defaultState, action = {}) {
   }
 }
 
-export const fetchPowers = function () {
-  return async function (dispatch) {
+export const fetchPowers = function() {
+  return async function(dispatch) {
     dispatch(fetchPowersRequested());
     try {
       const response = await axios.get('/powers.json');

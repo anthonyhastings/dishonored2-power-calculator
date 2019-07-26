@@ -1,11 +1,13 @@
 import powersSelector from './powers';
 
-export const transform = function (powers, characterId) {
+export const transform = function(powers, characterId) {
   return powers.filter((power) => {
-    const isCharacterPower = (power.get('characterId') === characterId || power.get('characterId') === null);
-    const isTopLevelPower = (power.get('parentPowerId') === null);
+    const isCharacterPower =
+      power.get('characterId') === characterId ||
+      power.get('characterId') === null;
+    const isTopLevelPower = power.get('parentPowerId') === null;
 
-    return (isCharacterPower && isTopLevelPower);
+    return isCharacterPower && isTopLevelPower;
   });
 };
 

@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import configureMockStore from 'redux-mock-store';
-import {middleware} from '../../../store';
+import { middleware } from '../../../store';
 import reducer from '../';
 import {
   clearPurchases,
@@ -79,20 +79,38 @@ describe('user actions', () => {
     let store;
 
     beforeEach(() => {
-      store = mockStore(Immutable.fromJS({
-        powers: {
-          data: {
-            abc: {id: 'abc', parentPowerId: null, name: 'Power with no children'},
-            def: {id: 'def', parentPowerId: null, name: 'Power with one child'},
-            ghi: {id: 'ghi', parentPowerId: 'def', name: 'Power with a parent'},
-            jkl: {id: 'jkl', parentPowerId: 'ghi', name: 'Power with multiple children'}
+      store = mockStore(
+        Immutable.fromJS({
+          powers: {
+            data: {
+              abc: {
+                id: 'abc',
+                parentPowerId: null,
+                name: 'Power with no children'
+              },
+              def: {
+                id: 'def',
+                parentPowerId: null,
+                name: 'Power with one child'
+              },
+              ghi: {
+                id: 'ghi',
+                parentPowerId: 'def',
+                name: 'Power with a parent'
+              },
+              jkl: {
+                id: 'jkl',
+                parentPowerId: 'ghi',
+                name: 'Power with multiple children'
+              }
+            }
+          },
+          user: {
+            totalRunes: 30,
+            purchases: ['abc', 'def']
           }
-        },
-        user: {
-          totalRunes: 30,
-          purchases: ['abc', 'def']
-        }
-      }));
+        })
+      );
     });
 
     describe('when given a power id with no child powers', () => {
@@ -125,11 +143,7 @@ describe('user actions', () => {
         expect(actions).toEqual([
           {
             type: 'REMOVE_PURCHASES',
-            powerIds: Immutable.fromJS([
-              'def',
-              'ghi',
-              'jkl'
-            ])
+            powerIds: Immutable.fromJS(['def', 'ghi', 'jkl'])
           }
         ]);
       });
@@ -146,10 +160,12 @@ describe('user reducer', () => {
     });
 
     it('sets default state', () => {
-      expect(state).toEqual(Immutable.fromJS({
-        totalRunes: 30,
-        purchases: Immutable.List()
-      }));
+      expect(state).toEqual(
+        Immutable.fromJS({
+          totalRunes: 30,
+          purchases: Immutable.List()
+        })
+      );
     });
   });
 
@@ -166,9 +182,11 @@ describe('user reducer', () => {
     });
 
     it('sets purchases to a blank immutable list', () => {
-      expect(state).toEqual(Immutable.fromJS({
-        purchases: []
-      }));
+      expect(state).toEqual(
+        Immutable.fromJS({
+          purchases: []
+        })
+      );
     });
   });
 
@@ -190,9 +208,11 @@ describe('user reducer', () => {
       });
 
       it('updates the purchases list with the new power id', () => {
-        expect(state).toEqual(Immutable.fromJS({
-          purchases: Immutable.List(['example-power-id', 'another-power-id'])
-        }));
+        expect(state).toEqual(
+          Immutable.fromJS({
+            purchases: Immutable.List(['example-power-id', 'another-power-id'])
+          })
+        );
       });
     });
 
@@ -206,9 +226,11 @@ describe('user reducer', () => {
       });
 
       it('does not update the puchases list', () => {
-        expect(state).toEqual(Immutable.fromJS({
-          purchases: Immutable.List(['example-power-id', 'another-power-id'])
-        }));
+        expect(state).toEqual(
+          Immutable.fromJS({
+            purchases: Immutable.List(['example-power-id', 'another-power-id'])
+          })
+        );
       });
     });
   });
@@ -227,9 +249,11 @@ describe('user reducer', () => {
       });
 
       it('does nothing', () => {
-        expect(state).toEqual(Immutable.fromJS({
-          purchases: ['example-power-id']
-        }));
+        expect(state).toEqual(
+          Immutable.fromJS({
+            purchases: ['example-power-id']
+          })
+        );
       });
     });
 
@@ -246,9 +270,11 @@ describe('user reducer', () => {
       });
 
       it('does nothing', () => {
-        expect(state).toEqual(Immutable.fromJS({
-          purchases: ['example-power-id']
-        }));
+        expect(state).toEqual(
+          Immutable.fromJS({
+            purchases: ['example-power-id']
+          })
+        );
       });
     });
 
@@ -256,7 +282,9 @@ describe('user reducer', () => {
       let state;
 
       beforeEach(() => {
-        const action = removePurchases(Immutable.List(['example-power-id', 'another-power-id']));
+        const action = removePurchases(
+          Immutable.List(['example-power-id', 'another-power-id'])
+        );
         const startingState = Immutable.fromJS({
           purchases: ['example-power-id', 'another-power-id', 'super-power-id']
         });
@@ -265,9 +293,11 @@ describe('user reducer', () => {
       });
 
       it('removes that powers from the purchases list', () => {
-        expect(state).toEqual(Immutable.fromJS({
-          purchases: ['super-power-id']
-        }));
+        expect(state).toEqual(
+          Immutable.fromJS({
+            purchases: ['super-power-id']
+          })
+        );
       });
     });
   });

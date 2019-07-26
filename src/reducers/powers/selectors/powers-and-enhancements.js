@@ -1,4 +1,4 @@
-const powersAndEnhancementsSelector = function (state) {
+const powersAndEnhancementsSelector = function(state) {
   return state.getIn(['powers', 'data']);
 };
 

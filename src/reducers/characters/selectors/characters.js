@@ -1,4 +1,4 @@
-const charactersSelector = function (state) {
+const charactersSelector = function(state) {
   return state.getIn(['characters', 'data']);
 };
 
