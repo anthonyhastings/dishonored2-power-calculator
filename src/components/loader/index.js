@@ -4,26 +4,26 @@ import _ from 'lodash';
 import classNames from 'classnames';
 import './stylesheets/index.scss';
 
+const namespace = 'app-loader';
+
 const Loader = function({ children, loadingState }) {
-  if (loadingState === true) {
-    return children;
-  }
+  if (loadingState === true) return children;
 
   const hasErrored = _.isError(loadingState);
   const headingText = hasErrored ? 'Error while loading' : 'Loading';
-  const classes = classNames(Loader.namespace, {
-    [`${Loader.namespace}--is-loading`]: !hasErrored
+  const classes = classNames({
+    [namespace]: true,
+    [`${namespace}--is-loading`]: !hasErrored
   });
 
   return (
     <div className={classes}>
-      <h2 className={`${Loader.namespace}__message`}>{headingText}</h2>
-      <div className={`${Loader.namespace}__icon-container`}></div>
+      <h2 className={`${namespace}__message`}>{headingText}</h2>
+      <div className={`${namespace}__icon-container`}></div>
     </div>
   );
 };
 
-Loader.namespace = 'app-loader';
 Loader.propTypes = {
   children: PropTypes.element,
   loadingState: PropTypes.oneOfType([

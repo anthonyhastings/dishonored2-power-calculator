@@ -1,49 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CharacterSelection component renders correctly 1`] = `
+exports[`CharacterSelection component when rendered renders a heading with sub-areas for each character 1`] = `
 <section
-  class="characterSelection__container"
+  className="characterSelection__container"
 >
   <h1>
     Character Selection
   </h1>
   <div
-    class="character__container"
+    className="character__container"
   >
     <h2
-      class="character__name"
+      className="character__name"
     >
       Adam Jensen
     </h2>
     <p
-      class="character__description"
+      className="character__description"
     >
       Task Force 29 operative.
     </p>
-    <a
-      href="/aj/powers"
+    <MockLink
+      to="/dummy-id/powers"
     >
-      Choose Adam Jensen
-    </a>
+      Choose 
+      Adam Jensen
+    </MockLink>
   </div>
   <div
-    class="character__container"
+    className="character__container"
   >
     <h2
-      class="character__name"
+      className="character__name"
     >
       Scott Ryder
     </h2>
     <p
-      class="character__description"
+      className="character__description"
     >
       The pathfinder.
     </p>
-    <a
-      href="/sr/powers"
+    <MockLink
+      to="/fake-id/powers"
     >
-      Choose Scott Ryder
-    </a>
+      Choose 
+      Scott Ryder
+    </MockLink>
   </div>
 </section>
 `;

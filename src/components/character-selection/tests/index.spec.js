@@ -1,30 +1,45 @@
 import React from 'react';
 import Immutable from 'immutable';
-import { render } from 'enzyme';
-import { MemoryRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
 import CharacterSelection from '../';
 
-const characters = Immutable.fromJS({
-  abc: {
-    id: 'aj',
-    name: 'Adam Jensen',
-    description: 'Task Force 29 operative.'
-  },
-  def: { id: 'sr', name: 'Scott Ryder', description: 'The pathfinder.' }
-});
+jest.mock('react-router-dom', () => ({
+  Link: 'MockLink'
+}));
 
 describe('CharacterSelection component', () => {
-  let wrapper;
+  let testContext;
+
+  const renderComponent = (props = {}) => <CharacterSelection {...props} />;
 
   beforeEach(() => {
-    wrapper = render(
-      <MemoryRouter>
-        <CharacterSelection characters={characters}></CharacterSelection>
-      </MemoryRouter>
-    );
+    testContext = {};
+
+    testContext.defaultProps = {
+      characters: Immutable.fromJS({
+        dummyUuid: {
+          id: 'dummy-id',
+          name: 'Adam Jensen',
+          description: 'Task Force 29 operative.'
+        },
+        fakeUuid: {
+          id: 'fake-id',
+          name: 'Scott Ryder',
+          description: 'The pathfinder.'
+        }
+      })
+    };
   });
 
-  it('renders correctly', () => {
-    expect(wrapper).toMatchSnapshot();
+  describe('when rendered', () => {
+    beforeEach(() => {
+      testContext.component = renderer.create(
+        renderComponent(testContext.defaultProps)
+      );
+    });
+
+    it('renders a heading with sub-areas for each character', () => {
+      expect(testContext.component).toMatchSnapshot();
+    });
   });
 });
