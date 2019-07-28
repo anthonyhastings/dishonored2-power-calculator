@@ -1,3 +1,5 @@
+SHELL:=/bin/bash
+
 help:
 	@echo "start-dev - Starts webpack-dev-server for local development."
 	@echo "start-production - Starts serving production assets via Express.js."
@@ -15,7 +17,8 @@ start-tests:
 	docker-compose run --rm web npm test
 
 start-tests-upload-coverage:
-	docker-compose run --rm web npm run test:upload-coverage
+	$(eval ci_env=$(shell bash <(curl -s https://codecov.io/env)))
+	docker-compose run ${ci_env} --rm web ./scripts/upload_coverage.sh
 
 start-tests-watch:
 	docker-compose run --rm web npm test -- --watchAll

@@ -8,8 +8,8 @@ ARG GOOGLE_SITE_VERIFICATION_TOKEN
 # Create a directory and navigate to it.
 WORKDIR /dishonored2-power-calculator
 
-# Installing bash.
-RUN apk add --no-cache bash
+# Installing bash and curl for code coverage upload.
+RUN apk add --no-cache bash curl
 
 # Copy over the package.json and lock file to the containers working directory.
 COPY ./package.json ./package-lock.json ./
