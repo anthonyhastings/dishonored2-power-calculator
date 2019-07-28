@@ -2,36 +2,36 @@
 
 exports[`Loader component when loading has errored renders the loaders error children 1`] = `
 <div
-  class="app-loader"
+  className="app-loader"
 >
   <h2
-    class="app-loader__message"
+    className="app-loader__message"
   >
     Error while loading
   </h2>
   <div
-    class="app-loader__icon-container"
+    className="app-loader__icon-container"
   />
 </div>
 `;
 
 exports[`Loader component when loading is complete renders the loaders children 1`] = `
 <p>
-  Hello World
+  Hello world.
 </p>
 `;
 
-exports[`Loader component when loading is incomplete renders the loaders default content 1`] = `
+exports[`Loader component when loading is incomplete renders the loader 1`] = `
 <div
-  class="app-loader app-loader--is-loading"
+  className="app-loader app-loader--is-loading"
 >
   <h2
-    class="app-loader__message"
+    className="app-loader__message"
   >
     Loading
   </h2>
   <div
-    class="app-loader__icon-container"
+    className="app-loader__icon-container"
   />
 </div>
 `;

@@ -1,55 +1,68 @@
 import React from 'react';
-import { render } from 'enzyme';
+import renderer from 'react-test-renderer';
 import Loader from '../';
 
-const renderLoader = function(props) {
-  return (
-    <Loader {...props}>
-      <p>Hello World</p>
-    </Loader>
-  );
-};
-
 describe('Loader component', () => {
+  let testContext;
+
+  const renderComponent = (props = {}) => {
+    return (
+      <Loader {...props}>
+        <p>Hello world.</p>
+      </Loader>
+    );
+  };
+
+  beforeEach(() => {
+    testContext = {};
+
+    testContext.defaultProps = {
+      loadingState: true
+    };
+  });
+
   describe('when loading is incomplete', () => {
-    let wrapper;
-
     beforeEach(() => {
-      const loader = renderLoader({ loadingState: false });
-
-      wrapper = render(loader);
+      testContext.component = renderer.create(
+        renderComponent({
+          ...testContext.defaultProps,
+          loadingState: false
+        })
+      );
     });
 
-    it('renders the loaders default content', () => {
-      expect(wrapper).toMatchSnapshot();
+    it('renders the loader', () => {
+      expect(testContext.component).toMatchSnapshot();
     });
   });
 
   describe('when loading is complete', () => {
-    let wrapper;
-
     beforeEach(() => {
-      const loader = renderLoader({ loadingState: true });
-
-      wrapper = render(loader);
+      testContext.component = renderer.create(
+        renderComponent({
+          ...testContext.defaultProps,
+          loadingState: true
+        })
+      );
     });
 
     it('renders the loaders children', () => {
-      expect(wrapper).toMatchSnapshot();
+      expect(testContext.component).toMatchSnapshot();
     });
   });
 
   describe('when loading has errored', () => {
-    let wrapper;
-
     beforeEach(() => {
-      const loader = renderLoader({ loadingState: new Error() });
-
-      wrapper = render(loader);
+      testContext.component = renderer.create(
+        renderComponent({
+          ...testContext.defaultProps,
+          loadingState: new Error()
+        })
+      );
     });
 
     it('renders the loaders error children', () => {
-      expect(wrapper).toMatchSnapshot();
+      expect(testContext.component).toMatchSnapshot();
     });
   });
 });
