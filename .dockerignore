@@ -5,6 +5,7 @@
 !html/
 !images/
 !manifests/
+!scripts/
 !server/
 !src/
 !webpack/
