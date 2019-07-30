@@ -60,7 +60,7 @@
     {
       "files": [
         "server/*.js",
-        "src/test-support/*.js",
+        "test-support/*.js",
         "webpack/*.js"
       ],
       "env": {

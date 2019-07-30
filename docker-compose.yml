@@ -17,5 +17,8 @@ services:
       - ./html:/dishonored2-power-calculator/html
       - ./images:/dishonored2-power-calculator/images
       - ./manifests:/dishonored2-power-calculator/manifests
+      - ./scripts:/dishonored2-power-calculator/scripts
       - ./server:/dishonored2-power-calculator/server
       - ./src:/dishonored2-power-calculator/src
+      - ./test-support:/dishonored2-power-calculator/test-support
+      - ./webpack:/dishonored2-power-calculator/webpack
