@@ -27,4 +27,4 @@ deploy:
     branch: master
 
 after_deploy:
-  - ./heroku-release.sh
+  - ./scripts/heroku-release.sh
