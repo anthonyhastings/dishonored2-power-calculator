@@ -6,26 +6,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const baseConfig = require('./base');
-const dependencies = require('../package').dependencies;
-
-const vendorBlacklist = [
-  '@babel/runtime',
-  'compression',
-  'cors',
-  'express',
-  'normalize.css'
-];
-const vendorDependencies = Object.keys(dependencies).filter((dependency) => {
-  return vendorBlacklist.includes(dependency) === false;
-});
 
 module.exports = function(env) {
   const productionConfig = webpackMerge(baseConfig(), {
     mode: 'production',
     devtool: 'source-map',
     entry: {
-      app: './src/index.js',
-      vendor: vendorDependencies
+      app: './src/index.js'
     },
     optimization: {
       minimizer: [
@@ -61,10 +48,10 @@ module.exports = function(env) {
         cacheGroups: {
           default: false,
           vendor: {
-            chunks: 'all',
+            chunks: 'initial',
             enforce: true,
             name: 'vendor',
-            test: 'vendor'
+            test: /[\\/]node_modules[\\/](?!normalize)/
           }
         }
       },
