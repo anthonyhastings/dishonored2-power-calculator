@@ -4,17 +4,18 @@
       "@babel/preset-env",
       {
         "debug": true,
-        "modules": false
+        "modules": false,
+        "useBuiltIns": "usage",
+        "corejs": {
+          "version": 3
+        }
       }
     ],
     "@babel/preset-react"
   ],
   "plugins": [
     "react-hot-loader/babel",
-    "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-transform-regenerator",
-    "@babel/plugin-transform-runtime",
-    "@babel/plugin-proposal-object-rest-spread"
+    "@babel/plugin-transform-runtime"
   ],
   "env": {
     "test": {
