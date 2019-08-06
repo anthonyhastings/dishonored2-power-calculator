@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import isUndefined from 'lodash/isUndefined';
 import { createSelector } from 'reselect';
 import charactersSelector from '../characters/selectors/characters';
 import charactersRequestSelector from '../characters/selectors/characters-request';
@@ -19,7 +19,7 @@ export const transform = function(
     return false;
   }
 
-  return _.isUndefined(characters) || _.isUndefined(powersAndEnhancements)
+  return isUndefined(characters) || isUndefined(powersAndEnhancements)
     ? false
     : true;
 };
