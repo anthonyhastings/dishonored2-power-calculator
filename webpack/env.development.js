@@ -40,13 +40,18 @@ module.exports = function() {
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
-      new CopyWebpackPlugin([
+      new CopyWebpackPlugin(
+        [
+          {
+            from: paths.server,
+            test: /\.json$/,
+            to: './'
+          }
+        ],
         {
-          from: paths.server,
-          test: /\.json$/,
-          to: './'
+          logLevel: 'debug'
         }
-      ])
+      )
     ],
     devServer: {
       compress: true,
