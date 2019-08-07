@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+import isError from 'lodash/isError';
 import classNames from 'classnames';
 import './stylesheets/index.scss';
 
@@ -9,7 +9,7 @@ const namespace = 'app-loader';
 const Loader = function({ children, loadingState }) {
   if (loadingState === true) return children;
 
-  const hasErrored = _.isError(loadingState);
+  const hasErrored = isError(loadingState);
   const headingText = hasErrored ? 'Error while loading' : 'Loading';
   const classes = classNames({
     [namespace]: true,

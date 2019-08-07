@@ -12,7 +12,6 @@ module.exports = function() {
       publicPath: '/'
     },
     module: {
-      noParse: [/node_modules\/immutable/, /node_modules\/underscore/],
       rules: [
         {
           test: /\.jsx?$/,
