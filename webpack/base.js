@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const paths = require('./paths');
 
 module.exports = function() {
@@ -48,10 +48,8 @@ module.exports = function() {
       ]
     },
     plugins: [
-      new CleanWebpackPlugin([paths.dist], {
-        root: paths.root,
-        verbose: true,
-        dry: false
+      new CleanWebpackPlugin({
+        verbose: true
       }),
       new webpack.HashedModuleIdsPlugin(),
       new HtmlWebpackPlugin({

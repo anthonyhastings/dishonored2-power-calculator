@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const paths = require('./paths');
 const baseConfig = require('./base');
 
@@ -23,7 +24,10 @@ module.exports = function() {
           test: /\.(sa|sc|c)ss$/,
           use: [
             {
-              loader: 'style-loader'
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                hmr: true
+              }
             },
             {
               loader: 'css-loader'
@@ -40,13 +44,22 @@ module.exports = function() {
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
-      new CopyWebpackPlugin([
+      new CopyWebpackPlugin(
+        [
+          {
+            from: paths.server,
+            test: /\.json$/,
+            to: './'
+          }
+        ],
         {
-          from: paths.server,
-          test: /\.json$/,
-          to: './'
+          logLevel: 'debug'
         }
-      ])
+      ),
+      new MiniCssExtractPlugin({
+        chunkFilename: '[name].css',
+        filename: '[id].css'
+      })
     ],
     devServer: {
       compress: true,
