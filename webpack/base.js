@@ -36,7 +36,6 @@ module.exports = function() {
             {
               loader: 'file-loader',
               options: {
-                outputPath: 'manifests/',
                 name: '[name].[hash].[ext]'
               }
             },
