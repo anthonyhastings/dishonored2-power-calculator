@@ -1,8 +1,8 @@
-const path = require('path');
-const express = require('express');
-const compression = require('compression');
-const characters = require('./characters');
-const powers = require('./powers');
+import path from 'path';
+import express from 'express';
+import compression from 'compression';
+import characters from './characters.json';
+import powers from './powers.json';
 
 const app = express();
 
@@ -12,7 +12,7 @@ if (typeof process.env.PORT === 'undefined') {
   throw new Error('Server.js: PORT environment variable not defined.');
 }
 
-app.use(function(request, response, next) {
+app.use((request, response, next) => {
   console.log(`Express - Request: ${request.url}`);
   next();
 });
@@ -21,17 +21,17 @@ app.use(compression());
 
 app.use(express.static('./dist'));
 
-app.get('/characters.json', function(request, response) {
+app.get('/characters.json', (request, response) => {
   response.set('Content-Type', 'application/vnd.api+json');
   response.send(characters);
 });
 
-app.get('/powers.json', function(request, response) {
+app.get('/powers.json', (request, response) => {
   response.set('Content-Type', 'application/vnd.api+json');
   response.send(powers);
 });
 
-app.get('/*', function(request, response) {
+app.get('/*', (request, response) => {
   response.sendFile(indexFilePath);
 });
 

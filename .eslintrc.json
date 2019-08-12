@@ -45,7 +45,7 @@
   "overrides": [
     {
       "files": [
-        "**/*.spec.js"
+        "**/*.spec.{js,mjs}"
       ],
       "env": {
         "jest/globals": true
@@ -59,9 +59,9 @@
     },
     {
       "files": [
-        "server/*.js",
-        "test-support/*.js",
-        "webpack/*.js"
+        "server/*.{js,mjs}",
+        "test-support/*.{js,mjs}",
+        "webpack/*.{js,mjs}"
       ],
       "env": {
         "node": true
