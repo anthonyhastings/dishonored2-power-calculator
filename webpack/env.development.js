@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -8,12 +7,6 @@ const baseConfig = require('./base');
 module.exports = function() {
   return webpackMerge(baseConfig(), {
     mode: 'development',
-    entry: [
-      'react-hot-loader/patch',
-      `webpack-dev-server/client?http://localhost:${Number(process.env.PORT)}`,
-      'webpack/hot/only-dev-server',
-      './src/index.js'
-    ],
     output: {
       chunkFilename: 'js/[name].js',
       filename: 'js/[name].js'
@@ -43,7 +36,6 @@ module.exports = function() {
       ]
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin(),
       new CopyWebpackPlugin(
         [
           {

@@ -6,7 +6,9 @@ const paths = require('./paths');
 module.exports = function() {
   return {
     mode: 'none',
-    entry: null,
+    entry: {
+      app: './src/index.js'
+    },
     output: {
       path: paths.dist,
       publicPath: '/'
