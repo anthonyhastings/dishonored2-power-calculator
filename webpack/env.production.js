@@ -11,9 +11,6 @@ module.exports = function(env) {
   const productionConfig = webpackMerge(baseConfig(), {
     mode: 'production',
     devtool: 'source-map',
-    entry: {
-      app: './src/index.js'
-    },
     optimization: {
       minimizer: [
         new ImageminPlugin({
