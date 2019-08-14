@@ -8,9 +8,13 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const baseConfig = require('./base');
 
 module.exports = function(env) {
-  const productionConfig = webpackMerge(baseConfig(), {
+  const productionConfig = webpackMerge(baseConfig(env), {
     mode: 'production',
     devtool: 'source-map',
+    output: {
+      chunkFilename: 'js/[name].[contenthash].js',
+      filename: 'js/[name].[contenthash].js'
+    },
     optimization: {
       minimizer: [
         new ImageminPlugin({
@@ -56,10 +60,6 @@ module.exports = function(env) {
         name: 'manifest'
       }
     },
-    output: {
-      chunkFilename: 'js/[name].[chunkhash].js',
-      filename: 'js/[name].[chunkhash].js'
-    },
     module: {
       rules: [
         {
@@ -83,8 +83,8 @@ module.exports = function(env) {
     },
     plugins: [
       new MiniCssExtractPlugin({
-        chunkFilename: 'css/[name].[chunkhash].css',
-        filename: 'css/[name].[chunkhash].css'
+        chunkFilename: 'css/[name].[contenthash].css',
+        filename: 'css/[name].[contenthash].css'
       })
     ]
   });

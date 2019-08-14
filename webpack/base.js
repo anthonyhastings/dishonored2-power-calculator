@@ -3,7 +3,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const paths = require('./paths');
 
-module.exports = function() {
+module.exports = function(env) {
+  const isProduction = env.target === 'production';
+
+  const fileOutputName = isProduction
+    ? '[name].[contenthash].[ext]'
+    : '[name].[ext]';
+
   return {
     mode: 'none',
     entry: {
@@ -27,7 +33,7 @@ module.exports = function() {
               loader: 'file-loader',
               options: {
                 outputPath: 'images/',
-                name: '[name].[hash].[ext]'
+                name: fileOutputName
               }
             }
           ]
@@ -38,7 +44,7 @@ module.exports = function() {
             {
               loader: 'file-loader',
               options: {
-                name: '[name].[hash].[ext]'
+                name: fileOutputName
               }
             },
             {

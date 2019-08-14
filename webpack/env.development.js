@@ -4,8 +4,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const paths = require('./paths');
 const baseConfig = require('./base');
 
-module.exports = function() {
-  return webpackMerge(baseConfig(), {
+module.exports = function(env) {
+  return webpackMerge(baseConfig(env), {
     mode: 'development',
     devtool: 'eval-source-map',
     output: {
