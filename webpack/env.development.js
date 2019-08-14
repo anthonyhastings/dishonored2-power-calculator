@@ -3,8 +3,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const paths = require('./paths');
 const baseConfig = require('./base');
 
-module.exports = function(env) {
-  return webpackMerge(baseConfig(env), {
+module.exports = function() {
+  return webpackMerge(baseConfig('development'), {
     mode: 'development',
     devtool: 'eval-source-map',
     output: {

@@ -4,8 +4,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const paths = require('./paths');
 
-module.exports = function(env) {
-  const isDev = env.target === 'development';
+module.exports = function(environment) {
+  const isDev = environment === 'development';
 
   return {
     entry: {

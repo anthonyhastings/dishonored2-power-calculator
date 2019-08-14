@@ -6,8 +6,8 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const baseConfig = require('./base');
 
-module.exports = function(env) {
-  const productionConfig = webpackMerge(baseConfig(env), {
+module.exports = function(env = {}) {
+  const productionConfig = webpackMerge(baseConfig('production'), {
     mode: 'production',
     devtool: 'source-map',
     output: {
