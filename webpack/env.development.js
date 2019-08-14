@@ -7,6 +7,7 @@ const baseConfig = require('./base');
 module.exports = function() {
   return webpackMerge(baseConfig(), {
     mode: 'development',
+    devtool: 'eval-source-map',
     output: {
       chunkFilename: 'js/[name].js',
       filename: 'js/[name].js'
