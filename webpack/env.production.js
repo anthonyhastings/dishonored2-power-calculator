@@ -2,7 +2,6 @@ const webpackMerge = require('webpack-merge');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const baseConfig = require('./base');
@@ -59,34 +58,7 @@ module.exports = function(env) {
       runtimeChunk: {
         name: 'manifest'
       }
-    },
-    module: {
-      rules: [
-        {
-          test: /\.(sa|sc|c)ss$/,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader
-            },
-            {
-              loader: 'css-loader'
-            },
-            {
-              loader: 'postcss-loader'
-            },
-            {
-              loader: 'sass-loader'
-            }
-          ]
-        }
-      ]
-    },
-    plugins: [
-      new MiniCssExtractPlugin({
-        chunkFilename: 'css/[name].[contenthash].css',
-        filename: 'css/[name].[contenthash].css'
-      })
-    ]
+    }
   });
 
   if (env.stats === 'true') {

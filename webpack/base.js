@@ -1,17 +1,13 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const paths = require('./paths');
 
 module.exports = function(env) {
-  const isProduction = env.target === 'production';
-
-  const fileOutputName = isProduction
-    ? '[name].[contenthash].[ext]'
-    : '[name].[ext]';
+  const isDev = env.target === 'development';
 
   return {
-    mode: 'none',
     entry: {
       app: './src/index.js'
     },
@@ -27,13 +23,33 @@ module.exports = function(env) {
           loader: 'babel-loader'
         },
         {
+          test: /\.(sa|sc|c)ss$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                hmr: isDev
+              }
+            },
+            {
+              loader: 'css-loader'
+            },
+            {
+              loader: 'postcss-loader'
+            },
+            {
+              loader: 'sass-loader'
+            }
+          ]
+        },
+        {
           test: /\.(svg|png|jpg|jpeg|gif)$/,
           use: [
             {
               loader: 'file-loader',
               options: {
                 outputPath: 'images/',
-                name: fileOutputName
+                name: isDev ? '[name].[ext]' : '[name].[contenthash].[ext]'
               }
             }
           ]
@@ -44,7 +60,7 @@ module.exports = function(env) {
             {
               loader: 'file-loader',
               options: {
-                name: fileOutputName
+                name: isDev ? '[name].[ext]' : '[name].[contenthash].[ext]'
               }
             },
             {
@@ -71,6 +87,10 @@ module.exports = function(env) {
         ],
         minify: false,
         template: 'html/index.html'
+      }),
+      new MiniCssExtractPlugin({
+        chunkFilename: isDev ? '[name].css' : 'css/[name].[contenthash].css',
+        filename: isDev ? '[id].css' : 'css/[name].[contenthash].css'
       })
     ],
     resolve: {
