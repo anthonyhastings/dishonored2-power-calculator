@@ -1,39 +1,15 @@
 const webpackMerge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const paths = require('./paths');
 const baseConfig = require('./base');
 
 module.exports = function() {
-  return webpackMerge(baseConfig(), {
+  return webpackMerge(baseConfig('development'), {
     mode: 'development',
+    devtool: 'eval-source-map',
     output: {
       chunkFilename: 'js/[name].js',
       filename: 'js/[name].js'
-    },
-    module: {
-      rules: [
-        {
-          test: /\.(sa|sc|c)ss$/,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-              options: {
-                hmr: true
-              }
-            },
-            {
-              loader: 'css-loader'
-            },
-            {
-              loader: 'postcss-loader'
-            },
-            {
-              loader: 'sass-loader'
-            }
-          ]
-        }
-      ]
     },
     plugins: [
       new CopyWebpackPlugin(
@@ -47,11 +23,7 @@ module.exports = function() {
         {
           logLevel: 'debug'
         }
-      ),
-      new MiniCssExtractPlugin({
-        chunkFilename: '[name].css',
-        filename: '[id].css'
-      })
+      )
     ],
     devServer: {
       compress: true,

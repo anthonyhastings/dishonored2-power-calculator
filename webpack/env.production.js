@@ -2,15 +2,18 @@ const webpackMerge = require('webpack-merge');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const baseConfig = require('./base');
 
-module.exports = function(env) {
-  const productionConfig = webpackMerge(baseConfig(), {
+module.exports = function(env = {}) {
+  const productionConfig = webpackMerge(baseConfig('production'), {
     mode: 'production',
     devtool: 'source-map',
+    output: {
+      chunkFilename: 'js/[name].[contenthash].js',
+      filename: 'js/[name].[contenthash].js'
+    },
     optimization: {
       minimizer: [
         new ImageminPlugin({
@@ -35,7 +38,7 @@ module.exports = function(env) {
             }
           }
         }),
-        new UglifyJsPlugin({
+        new TerserPlugin({
           cache: true,
           parallel: true,
           sourceMap: true
@@ -55,38 +58,7 @@ module.exports = function(env) {
       runtimeChunk: {
         name: 'manifest'
       }
-    },
-    output: {
-      chunkFilename: 'js/[name].[chunkhash].js',
-      filename: 'js/[name].[chunkhash].js'
-    },
-    module: {
-      rules: [
-        {
-          test: /\.(sa|sc|c)ss$/,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader
-            },
-            {
-              loader: 'css-loader'
-            },
-            {
-              loader: 'postcss-loader'
-            },
-            {
-              loader: 'sass-loader'
-            }
-          ]
-        }
-      ]
-    },
-    plugins: [
-      new MiniCssExtractPlugin({
-        chunkFilename: 'css/[name].[chunkhash].css',
-        filename: 'css/[name].[chunkhash].css'
-      })
-    ]
+    }
   });
 
   if (env.stats === 'true') {
