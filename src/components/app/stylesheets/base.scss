@@ -1,7 +1,9 @@
 @import 'colours.scss';
 @import 'typography.scss';
 
-*, *:before, *:after {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
@@ -12,11 +14,16 @@ html {
 
 body {
   background-color: map-get($colours, black);
-  font-family: $contentFamily;
   color: map-get($colours, white);
+  font-family: $contentFamily;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $headlineFamily;
   margin: 0;
 }
