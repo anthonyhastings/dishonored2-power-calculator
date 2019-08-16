@@ -2,11 +2,11 @@
   $image-height: 480px;
   $image-width: 488px;
 
+  align-items: center;
   display: flex;
   flex-direction: column-reverse;
   flex-grow: 1;
   justify-content: center;
-  align-items: center;
   text-align: center;
 
   &__message {
@@ -16,8 +16,8 @@
 
   &__icon-container {
     margin: 0 auto;
-    width: 50%;
     max-width: 13rem;
+    width: 50%;
 
     &::before {
       background: url('~imagesRoot/outsiders-mark.svg') no-repeat 0 0;
@@ -37,8 +37,8 @@
 
 @keyframes loader-pulsing-fading {
   0% {
-    opacity: 0.60;
-    transform: scale(1.0);
+    opacity: 0.6;
+    transform: scale(1);
   }
 
   50% {
@@ -47,7 +47,7 @@
   }
 
   100% {
-    opacity: 0.60;
-    transform: scale(1.0);
+    opacity: 0.6;
+    transform: scale(1);
   }
 }
