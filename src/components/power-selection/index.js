@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import './stylesheets/index.scss';
 
 class PowerSelection extends React.Component {
+  static propTypes = {
+    clearPurchases: PropTypes.func.isRequired
+  };
+
   componentDidMount() {
     this.props.clearPurchases();
   }
@@ -21,9 +25,5 @@ class PowerSelection extends React.Component {
     );
   }
 }
-
-PowerSelection.propTypes = {
-  clearPurchases: PropTypes.func.isRequired
-};
 
 export default PowerSelection;

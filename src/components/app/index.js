@@ -7,6 +7,8 @@ import './stylesheets/index.scss';
 import Loader from '../loader';
 import gameLogo from '../../../images/game-logo.png';
 
+const namespace = 'app';
+
 const CharacterSelection = (props) => (
   <Async
     componentProps={props}
@@ -28,6 +30,15 @@ const PowerSelection = (props) => (
 );
 
 class App extends React.Component {
+  static propTypes = {
+    fetchCharacters: PropTypes.func.isRequired,
+    fetchPowers: PropTypes.func.isRequired,
+    dataLoaded: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.instanceOf(Error)
+    ]).isRequired
+  };
+
   componentDidMount() {
     this.props.fetchCharacters();
     this.props.fetchPowers();
@@ -35,12 +46,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className={App.namespace}>
+      <div className={namespace}>
         <header>
           <img src={gameLogo} alt="Dishonored 2" />
           <h1>Power Calculator</h1>
         </header>
-        <div className={`${App.namespace}__content`}>
+        <div className={`${namespace}__content`}>
           <Loader loadingState={this.props.dataLoaded}>
             <Switch>
               <Route exact path="/" component={CharacterSelection} />
@@ -52,13 +63,5 @@ class App extends React.Component {
     );
   }
 }
-
-App.namespace = 'app';
-App.propTypes = {
-  fetchCharacters: PropTypes.func.isRequired,
-  fetchPowers: PropTypes.func.isRequired,
-  dataLoaded: PropTypes.oneOfType([PropTypes.bool, PropTypes.instanceOf(Error)])
-    .isRequired
-};
 
 export default App;
