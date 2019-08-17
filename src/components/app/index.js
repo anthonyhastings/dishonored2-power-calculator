@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
-import Async from 'react-code-splitting';
 import 'normalize.css';
 import './stylesheets/index.scss';
 import Loader from '../loader';
@@ -9,24 +8,18 @@ import gameLogo from '../../../images/game-logo.png';
 
 const namespace = 'app';
 
-const CharacterSelection = (props) => (
-  <Async
-    componentProps={props}
-    load={import(
-      /* webpackChunkName: "character-selection" */
-      '../character-selection/container'
-    )}
-  />
+const CharacterSelection = lazy(() =>
+  import(
+    /* webpackChunkName: "character-selection" */
+    '../character-selection/container'
+  )
 );
 
-const PowerSelection = (props) => (
-  <Async
-    componentProps={props}
-    load={import(
-      /* webpackChunkName: "power-selection" */
-      '../power-selection/container'
-    )}
-  />
+const PowerSelection = lazy(() =>
+  import(
+    /* webpackChunkName: "power-selection" */
+    '../power-selection/container'
+  )
 );
 
 class App extends React.Component {
@@ -53,10 +46,12 @@ class App extends React.Component {
         </header>
         <div className={`${namespace}__content`}>
           <Loader loadingState={this.props.dataLoaded}>
-            <Switch>
-              <Route exact path="/" component={CharacterSelection} />
-              <Route path="/:characterId/powers" component={PowerSelection} />
-            </Switch>
+            <Suspense fallback={<Loader loadingState={false} />}>
+              <Switch>
+                <Route exact path="/" component={CharacterSelection} />
+                <Route path="/:characterId/powers" component={PowerSelection} />
+              </Switch>
+            </Suspense>
           </Loader>
         </div>
       </div>
