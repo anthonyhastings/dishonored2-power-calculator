@@ -13,9 +13,10 @@ html {
 }
 
 body {
+  @extend %font-content;
+
   background-color: map-get($colours, black);
   color: map-get($colours, white);
-  font-family: $contentFamily;
 }
 
 h1,
@@ -24,6 +25,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $headlineFamily;
+  @extend %font-headline;
+
   margin: 0;
 }
