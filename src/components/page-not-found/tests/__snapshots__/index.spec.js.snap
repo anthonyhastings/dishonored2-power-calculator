@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageNotFound component when rendered renders outsiders icon and message 1`] = `
+<div
+  className="page-not-found"
+>
+  <h1
+    className="page-not-found__message"
+  >
+    Page Not Found
+  </h1>
+  <MockOutsidersMark
+    animated={false}
+    className="page-not-found__icon"
+  />
+</div>
+`;
