@@ -4,7 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 import 'normalize.css';
 import './stylesheets/index.scss';
 import Loader from '../loader';
-import gameLogo from '../../../images/game-logo.png';
+import logo660 from 'imagesRoot/logo/660x90.png';
+import logo1320 from 'imagesRoot/logo/1320x180.png';
 
 const namespace = 'app';
 
@@ -40,9 +41,14 @@ class App extends React.Component {
   render() {
     return (
       <div className={namespace}>
-        <header>
-          <img src={gameLogo} alt="Dishonored 2" />
-          <h1>Power Calculator</h1>
+        <header className={`${namespace}__header`}>
+          <h1 className={`${namespace}__title`}>Power Calculator</h1>
+          <img
+            alt="Dishonored 2 logo"
+            className={`${namespace}__logo`}
+            sizes="100vw"
+            srcSet={`${logo660} 660w, ${logo1320} 1320w`}
+          />
         </header>
         <div className={`${namespace}__content`}>
           <Loader loadingState={this.props.dataLoaded}>
