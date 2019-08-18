@@ -1,4 +1,5 @@
 @import 'colours.scss';
+@import 'media.scss';
 @import 'typography.scss';
 
 *,
@@ -8,14 +9,15 @@
 }
 
 html {
-  font-size: 62.5%;
+  font-size: percentage(10 / 16);
   height: 100%;
 }
 
 body {
+  @extend %font-content;
+
   background-color: map-get($colours, black);
   color: map-get($colours, white);
-  font-family: $contentFamily;
 }
 
 h1,
@@ -24,6 +26,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $headlineFamily;
+  @extend %font-headline;
+
   margin: 0;
 }

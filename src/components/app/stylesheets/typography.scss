@@ -1,3 +1,16 @@
-$headlineFamily: 'Carrois Gothic', Arial, sans-serif;
+$fontStack: (
+  content: unquote("'Carrois Gothic', Arial, sans-serif"),
+  headline: unquote("'Carrois Gothic', Arial, sans-serif")
+);
 
-$contentFamily: 'Carrois Gothic', Arial, sans-serif;
+%font-content {
+  font-family: map-get($fontStack, content);
+  font-style: normal;
+  font-weight: 400;
+}
+
+%font-headline {
+  font-family: map-get($fontStack, headline);
+  font-style: normal;
+  font-weight: 700;
+}
