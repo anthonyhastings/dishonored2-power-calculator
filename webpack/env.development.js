@@ -25,6 +25,11 @@ module.exports = function() {
         }
       )
     ],
+    resolve: {
+      alias: {
+        'react-dom': '@hot-loader/react-dom'
+      }
+    },
     devServer: {
       compress: true,
       contentBase: paths.dist,
