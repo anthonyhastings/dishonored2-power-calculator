@@ -23,6 +23,13 @@ const PowerSelection = lazy(() =>
   )
 );
 
+const PageNotFound = lazy(() =>
+  import(
+    /* webpackChunkName: "page-not-found" */
+    '../page-not-found'
+  )
+);
+
 class App extends React.Component {
   static propTypes = {
     fetchCharacters: PropTypes.func.isRequired,
@@ -56,6 +63,7 @@ class App extends React.Component {
               <Switch>
                 <Route exact path="/" component={CharacterSelection} />
                 <Route path="/:characterId/powers" component={PowerSelection} />
+                <Route component={PageNotFound} />
               </Switch>
             </Suspense>
           </Loader>

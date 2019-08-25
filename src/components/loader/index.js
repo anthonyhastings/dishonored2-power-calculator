@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isError from 'lodash/isError';
-import classNames from 'classnames';
 import './stylesheets/index.scss';
+import OutsidersMark from '../outsiders-mark';
 
 const namespace = 'app-loader';
 
@@ -11,15 +11,11 @@ const Loader = function({ children, loadingState }) {
 
   const hasErrored = isError(loadingState);
   const headingText = hasErrored ? 'Error while loading' : 'Loading';
-  const classes = classNames({
-    [namespace]: true,
-    [`${namespace}--is-loading`]: !hasErrored
-  });
 
   return (
-    <div className={classes}>
+    <div className={namespace}>
       <h2 className={`${namespace}__message`}>{headingText}</h2>
-      <div className={`${namespace}__icon-container`}></div>
+      <OutsidersMark animated={!hasErrored} className={`${namespace}__icon`} />
     </div>
   );
 };
