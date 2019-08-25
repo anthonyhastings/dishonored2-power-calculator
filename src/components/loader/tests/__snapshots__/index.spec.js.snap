@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Loader component when loading has errored renders the loaders error children 1`] = `
+exports[`Loader component when loading has errored renders error text and an unanimated OutsidersMark 1`] = `
 <div
   className="app-loader"
 >
@@ -9,29 +9,31 @@ exports[`Loader component when loading has errored renders the loaders error chi
   >
     Error while loading
   </h2>
-  <div
-    className="app-loader__icon-container"
+  <MockOutsidersMark
+    animated={false}
+    className="app-loader__icon"
   />
 </div>
 `;
 
-exports[`Loader component when loading is complete renders the loaders children 1`] = `
+exports[`Loader component when loading is complete renders children 1`] = `
 <p>
   Hello world.
 </p>
 `;
 
-exports[`Loader component when loading is incomplete renders the loader 1`] = `
+exports[`Loader component when loading is incomplete renders loading text and an animated OutsidersMark 1`] = `
 <div
-  className="app-loader app-loader--is-loading"
+  className="app-loader"
 >
   <h2
     className="app-loader__message"
   >
     Loading
   </h2>
-  <div
-    className="app-loader__icon-container"
+  <MockOutsidersMark
+    animated={true}
+    className="app-loader__icon"
   />
 </div>
 `;

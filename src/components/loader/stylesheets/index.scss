@@ -1,7 +1,4 @@
 .app-loader {
-  $image-height: 480px;
-  $image-width: 488px;
-
   align-items: center;
   display: flex;
   flex-direction: column-reverse;
@@ -14,40 +11,9 @@
     margin-top: 2.5rem;
   }
 
-  &__icon-container {
+  &__icon {
     margin: 0 auto;
     max-width: 13rem;
     width: 50%;
-
-    &::before {
-      background: url('~imagesRoot/outsiders-mark.svg') no-repeat 0 0;
-      content: '';
-      display: block;
-      height: 0;
-      padding-bottom: percentage($image-height / $image-width);
-      width: 100%;
-      will-change: transform, opacity;
-    }
-  }
-
-  &--is-loading &__icon-container::before {
-    animation: 1750ms loader-pulsing-fading ease-in-out infinite;
-  }
-}
-
-@keyframes loader-pulsing-fading {
-  0% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-
-  100% {
-    opacity: 0.6;
-    transform: scale(1);
   }
 }

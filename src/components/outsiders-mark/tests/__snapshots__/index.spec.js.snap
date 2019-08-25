@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OutsidersMark component when animated is true renders with modifier class 1`] = `
+<div
+  aria-hidden="true"
+  className="outsiders-mark outsiders-mark--is-animating"
+/>
+`;
+
+exports[`OutsidersMark component when className is provided renders with extra className 1`] = `
+<div
+  aria-hidden="true"
+  className="outsiders-mark hello-world"
+/>
+`;
+
+exports[`OutsidersMark component when rendered renders with no modifier class or provided class 1`] = `
+<div
+  aria-hidden="true"
+  className="outsiders-mark"
+/>
+`;

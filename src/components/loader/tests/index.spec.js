@@ -2,16 +2,16 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Loader from '../';
 
+jest.mock('../../outsiders-mark', () => 'MockOutsidersMark');
+
 describe('Loader component', () => {
   let testContext;
 
-  const renderComponent = (props = {}) => {
-    return (
-      <Loader {...props}>
-        <p>Hello world.</p>
-      </Loader>
-    );
-  };
+  const renderComponent = (props = {}) => (
+    <Loader {...props}>
+      <p>Hello world.</p>
+    </Loader>
+  );
 
   beforeEach(() => {
     testContext = {};
@@ -31,7 +31,7 @@ describe('Loader component', () => {
       );
     });
 
-    it('renders the loader', () => {
+    it('renders loading text and an animated OutsidersMark', () => {
       expect(testContext.component).toMatchSnapshot();
     });
   });
@@ -46,7 +46,7 @@ describe('Loader component', () => {
       );
     });
 
-    it('renders the loaders children', () => {
+    it('renders children', () => {
       expect(testContext.component).toMatchSnapshot();
     });
   });
@@ -61,7 +61,7 @@ describe('Loader component', () => {
       );
     });
 
-    it('renders the loaders error children', () => {
+    it('renders error text and an unanimated OutsidersMark', () => {
       expect(testContext.component).toMatchSnapshot();
     });
   });
