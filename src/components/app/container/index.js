@@ -7,18 +7,14 @@ import { fetchPowers } from '../../../reducers/powers';
 import dataLoadedSelector from '../../../reducers/selectors/data-loaded';
 import Component from '../';
 
-const mapStateToProps = function(state) {
-  return {
-    dataLoaded: dataLoadedSelector(state)
-  };
-};
+const mapStateToProps = (state) => ({
+  dataLoaded: dataLoadedSelector(state)
+});
 
-const mapDispatchToProps = function(dispatch) {
-  return {
-    fetchCharacters: bindActionCreators(fetchCharacters, dispatch),
-    fetchPowers: bindActionCreators(fetchPowers, dispatch)
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  fetchCharacters: bindActionCreators(fetchCharacters, dispatch),
+  fetchPowers: bindActionCreators(fetchPowers, dispatch)
+});
 
 const connectedComponent = withRouter(
   connect(

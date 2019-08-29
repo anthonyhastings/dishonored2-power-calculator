@@ -11,23 +11,20 @@ import {
   removePurchase
 } from '../../../reducers/user';
 
-export const mapStateToProps = function(state, ownProps) {
-  const characterId = ownProps.match.params.characterId;
+export const mapStateToProps = (state, ownProps) => ({
+  topLevelEnhancements: topLevelEnhancementsSelector(state),
+  topLevelPowers: topLevelPowersByCharacterIdSelector(
+    state,
+    ownProps.match.params.characterId
+  )
+});
 
-  return {
-    topLevelEnhancements: topLevelEnhancementsSelector(state),
-    topLevelPowers: topLevelPowersByCharacterIdSelector(state, characterId)
-  };
-};
-
-export const mapDispatchToProps = function(dispatch) {
-  return {
-    clearPurchases: bindActionCreators(clearPurchases, dispatch),
-    addPurchase: bindActionCreators(addPurchase, dispatch),
-    removePurchases: bindActionCreators(removePurchases, dispatch),
-    removePurchase: bindActionCreators(removePurchase, dispatch)
-  };
-};
+export const mapDispatchToProps = (dispatch) => ({
+  clearPurchases: bindActionCreators(clearPurchases, dispatch),
+  addPurchase: bindActionCreators(addPurchase, dispatch),
+  removePurchases: bindActionCreators(removePurchases, dispatch),
+  removePurchase: bindActionCreators(removePurchase, dispatch)
+});
 
 export default withRouter(
   connect(
