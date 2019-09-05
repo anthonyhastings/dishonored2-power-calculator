@@ -3,9 +3,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { combineReducers } from 'redux-immutable';
 import thunk from 'redux-thunk';
-import characters from './reducers/characters';
-import powers from './reducers/powers';
-import user from './reducers/user';
+import characters from 'Reducers/characters';
+import powers from 'Reducers/powers';
+import user from 'Reducers/user';
 
 export const middleware = [thunk];
 

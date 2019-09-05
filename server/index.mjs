@@ -1,15 +1,16 @@
 import path from 'path';
 import express from 'express';
 import compression from 'compression';
+import paths from '../support/paths';
 import characters from './characters.json';
 import powers from './powers.json';
 
 const app = express();
 
-const indexFilePath = path.resolve('./dist/index.html');
+const indexFilePath = path.join(paths.dist, 'index.html');
 
 if (typeof process.env.PORT === 'undefined') {
-  throw new Error('Server.js: PORT environment variable not defined.');
+  throw new Error('Server: PORT environment variable not defined.');
 }
 
 app.use((request, response, next) => {
@@ -19,7 +20,7 @@ app.use((request, response, next) => {
 
 app.use(compression());
 
-app.use(express.static('./dist'));
+app.use(express.static(paths.dist));
 
 app.get('/characters.json', (request, response) => {
   response.set('Content-Type', 'application/vnd.api+json');

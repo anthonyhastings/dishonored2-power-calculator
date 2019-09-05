@@ -1,9 +1,9 @@
 import isUndefined from 'lodash/isUndefined';
 import { createSelector } from 'reselect';
-import charactersSelector from '../characters/selectors/characters';
-import charactersRequestSelector from '../characters/selectors/characters-request';
-import powersAndEnhancementsSelector from '../powers/selectors/powers-and-enhancements';
-import powersRequestSelector from '../powers/selectors/powers-request';
+import charactersSelector from 'Reducers/characters/selectors/characters';
+import charactersRequestSelector from 'Reducers/characters/selectors/characters-request';
+import powersAndEnhancementsSelector from 'Reducers/powers/selectors/powers-and-enhancements';
+import powersRequestSelector from 'Reducers/powers/selectors/powers-request';
 
 export const transform = function(
   characters,

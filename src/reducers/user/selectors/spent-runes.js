@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import powersAndEnhancementsSelector from '../../powers/selectors/powers-and-enhancements';
+import powersAndEnhancementsSelector from 'Reducers/powers/selectors/powers-and-enhancements';
 import purchasesSelector from './purchases';
 
 const calculateTotalSpend = (powersAndEnhancements, purchases) => {

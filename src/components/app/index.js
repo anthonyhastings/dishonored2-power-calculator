@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 import 'normalize.css';
 import './stylesheets/index.scss';
-import Loader from '../loader';
-import logo660 from 'imagesRoot/logo/660x90.png';
-import logo1320 from 'imagesRoot/logo/1320x180.png';
+import Loader from 'Components/loader';
+import logo660 from 'Images/logo/660x90.png';
+import logo1320 from 'Images/logo/1320x180.png';
 
 const namespace = 'app';
 

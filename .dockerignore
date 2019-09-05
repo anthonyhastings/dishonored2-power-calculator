@@ -8,7 +8,7 @@
 !scripts/
 !server/
 !src/
-!test-support/
+!support/
 !webpack/
 !.babelrc
 !.browserslistrc

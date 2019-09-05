@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router';
 import { hot } from 'react-hot-loader/root';
-import { fetchCharacters } from '../../../reducers/characters';
-import { fetchPowers } from '../../../reducers/powers';
-import dataLoadedSelector from '../../../reducers/selectors/data-loaded';
+import { fetchCharacters } from 'Reducers/characters';
+import { fetchPowers } from 'Reducers/powers';
+import dataLoadedSelector from 'Reducers/selectors/data-loaded';
 import Component from '../';
 
 const mapStateToProps = (state) => ({

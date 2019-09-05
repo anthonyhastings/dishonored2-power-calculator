@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import powersAndEnhancementsSelector from './powers-and-enhancements';
-import purchasesSelector from '../../user/selectors/purchases';
-import remainingRunesSelector from '../../user/selectors/remaining-runes';
+import purchasesSelector from 'Reducers/user/selectors/purchases';
+import remainingRunesSelector from 'Reducers/user/selectors/remaining-runes';
 import isPowerPurchased from './utils/is-power-purchased';
 import isPowerPurchasable from './utils/is-power-purchasable';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import PageNotFound from '../';
 
-jest.mock('../../outsiders-mark', () => 'MockOutsidersMark');
+jest.mock('Components/outsiders-mark', () => 'MockOutsidersMark');
 
 describe('PageNotFound component', () => {
   let testContext;

@@ -2,6 +2,7 @@ node_modules/
 dist/
 jest-cache/
 jest-coverage/
+jsconfig.json
 npm-debug.log
 .DS_Store
 .env
