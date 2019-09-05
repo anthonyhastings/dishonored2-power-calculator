@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Component from '../';
-import charactersSelector from '../../../reducers/characters/selectors/characters';
+import charactersSelector from 'Reducers/characters/selectors/characters';
 
 const mapStateToProps = (state) => ({
   characters: charactersSelector(state)

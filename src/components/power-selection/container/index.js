@@ -2,14 +2,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import Component from '../';
-import topLevelEnhancementsSelector from '../../../reducers/powers/selectors/top-level-enhancements';
-import topLevelPowersByCharacterIdSelector from '../../../reducers/powers/selectors/top-level-powers-by-character-id';
+import topLevelEnhancementsSelector from 'Reducers/powers/selectors/top-level-enhancements';
+import topLevelPowersByCharacterIdSelector from 'Reducers/powers/selectors/top-level-powers-by-character-id';
 import {
   clearPurchases,
   addPurchase,
   removePurchases,
   removePurchase
-} from '../../../reducers/user';
+} from 'Reducers/user';
 
 export const mapStateToProps = (state, ownProps) => ({
   topLevelEnhancements: topLevelEnhancementsSelector(state),

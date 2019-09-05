@@ -1,6 +1,6 @@
 import React from 'react';
 import './stylesheets/index.scss';
-import OutsidersMark from '../outsiders-mark';
+import OutsidersMark from 'Components/outsiders-mark';
 
 const namespace = 'page-not-found';
 

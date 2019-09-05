@@ -4,12 +4,14 @@ module.exports = {
   coverageDirectory: './jest-coverage',
   coverageReporters: ['lcov', 'text-summary'],
   moduleNameMapper: {
-    '\\.(css|scss|sass)$': '<rootDir>/test-support/style-mock.js'
+    '^Components(.*)$': '<rootDir>/src/components$1',
+    '^Reducers(.*)$': '<rootDir>/src/reducers$1',
+    '\\.(css|scss|sass)$': '<rootDir>/support/tests/style-mock.js'
   },
   transform: {
     '^.+\\.js$': 'babel-jest',
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/test-support/file-transformer.js'
+      '<rootDir>/support/tests/file-transformer.js'
   },
   verbose: true
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isError from 'lodash/isError';
 import './stylesheets/index.scss';
-import OutsidersMark from '../outsiders-mark';
+import OutsidersMark from 'Components/outsiders-mark';
 
 const namespace = 'app-loader';
 

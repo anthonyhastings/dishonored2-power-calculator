@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import flattenedPowerTreeIdsSelector from '../powers/selectors/flattened-power-tree-ids';
+import flattenedPowerTreeIdsSelector from 'Reducers/powers/selectors/flattened-power-tree-ids';
 
 const CLEAR_PURCHASES = 'CLEAR_PURCHASES';
 const ADD_PURCHASE = 'ADD_PURCHASE';

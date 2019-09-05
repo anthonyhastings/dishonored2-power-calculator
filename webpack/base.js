@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const paths = require('./paths');
+const paths = require('../support/paths');
 
 module.exports = function(environment) {
   const isDev = environment === 'development';
@@ -95,8 +95,9 @@ module.exports = function(environment) {
     ],
     resolve: {
       alias: {
-        imagesRoot: paths.images,
-        powerImages: paths.powerImages
+        Components: paths.components,
+        Images: paths.images,
+        Reducers: paths.reducers
       }
     }
   };

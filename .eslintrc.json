@@ -59,9 +59,11 @@
     },
     {
       "files": [
-        "server/*.{js,mjs}",
-        "test-support/*.{js,mjs}",
-        "webpack/*.{js,mjs}"
+        "server/**/*.{js,mjs}",
+        "support/**/*.{js,mjs}",
+        "webpack/**/*.{js,mjs}",
+        "jest.config.js",
+        "postcss.config.js"
       ],
       "env": {
         "node": true
