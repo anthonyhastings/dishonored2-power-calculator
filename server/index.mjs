@@ -1,7 +1,7 @@
 import path from 'path';
 import express from 'express';
 import compression from 'compression';
-import paths from '../support/paths';
+import paths from '../support/paths.js';
 import characters from './characters.json';
 import powers from './powers.json';
 
