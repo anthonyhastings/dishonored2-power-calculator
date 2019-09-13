@@ -4,6 +4,7 @@ module.exports = {
   coverageDirectory: './jest-coverage',
   coverageReporters: ['lcov', 'text-summary'],
   moduleNameMapper: {
+    '^Api(.*)$': '<rootDir>/src/api$1',
     '^Components(.*)$': '<rootDir>/src/components$1',
     '^Reducers(.*)$': '<rootDir>/src/reducers$1',
     '\\.(css|scss|sass)$': '<rootDir>/support/tests/style-mock.js'
