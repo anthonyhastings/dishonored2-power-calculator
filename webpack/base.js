@@ -97,6 +97,7 @@ module.exports = function(environment) {
       alias: {
         Api: paths.api,
         Components: paths.components,
+        Constants: paths.constants,
         Images: paths.images,
         Reducers: paths.reducers
       }

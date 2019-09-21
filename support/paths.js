@@ -5,6 +5,7 @@ const projectRoot = path.join(__dirname, '../');
 module.exports = {
   api: path.join(projectRoot, 'src/api'),
   components: path.join(projectRoot, 'src/components'),
+  constants: path.join(projectRoot, 'src/constants'),
   dist: path.join(projectRoot, 'dist'),
   images: path.join(projectRoot, 'images'),
   reducers: path.join(projectRoot, 'src/reducers'),

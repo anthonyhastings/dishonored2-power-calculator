@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "id": "fake-uuid-01",
+      "type": "characters",
+      "attributes": {
+        "name": "fake-name-01",
+        "description": "fake-description-01"
+      }
+    },
+    {
+      "id": "fake-uuid-02",
+      "type": "characters",
+      "attributes": {
+        "name": "fake-name-02",
+        "description": "fake-description-02"
+      }
+    }
+  ]
+}

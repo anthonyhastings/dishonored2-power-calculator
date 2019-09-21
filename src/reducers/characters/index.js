@@ -1,80 +1,76 @@
 import Immutable from 'immutable';
-import axios from 'axios';
+import * as api from 'Api/characters';
+import requestStatuses from 'Constants/request-statuses';
 
-export const FETCH_CHARACTERS_REQUESTED = 'FETCH_CHARACTERS_REQUESTED';
-export const FETCH_CHARACTERS_FAILURE = 'FETCH_CHARACTERS_FAILURE';
-export const FETCH_CHARACTERS_SUCCESS = 'FETCH_CHARACTERS_SUCCESS';
+export const GET_CHARACTERS_PENDING = 'GET_CHARACTERS_PENDING';
 
-export const defaultState = Immutable.fromJS({
-  data: undefined,
-  request: {
-    inFlight: false,
-    hasErrored: false
+export const GET_CHARACTERS_FAILURE = 'GET_CHARACTERS_FAILURE';
+
+export const GET_CHARACTERS_SUCCESS = 'GET_CHARACTERS_SUCCESS';
+
+export const getCharactersPending = () => ({
+  type: GET_CHARACTERS_PENDING
+});
+
+export const getCharactersFailure = () => ({
+  type: GET_CHARACTERS_FAILURE,
+  error: true
+});
+
+export const getCharactersSuccess = (characters) => ({
+  type: GET_CHARACTERS_SUCCESS,
+  payload: {
+    characters
   }
+});
+
+export const getCharacters = () => {
+  return async (dispatch) => {
+    dispatch(getCharactersPending());
+
+    try {
+      const response = await api.getCharacters();
+      const data = Immutable.fromJS(response.data.data);
+
+      const characters = data.reduce((memo, character) => {
+        return memo.set(
+          character.get('id'),
+          Immutable.Map({
+            id: character.get('id'),
+            name: character.getIn(['attributes', 'name']),
+            description: character.getIn(['attributes', 'description'])
+          })
+        );
+      }, Immutable.Map());
+
+      dispatch(getCharactersSuccess(characters));
+    } catch (e) {
+      dispatch(getCharactersFailure());
+    }
+  };
+};
+
+const defaultState = Immutable.fromJS({
+  requestStatus: requestStatuses.idle
 });
 
 export default function(state = defaultState, action = {}) {
   switch (action.type) {
-    case FETCH_CHARACTERS_REQUESTED: {
-      return state.set('data', undefined).set(
-        'request',
-        Immutable.Map({
-          inFlight: true,
-          hasErrored: false
-        })
-      );
+    case GET_CHARACTERS_PENDING: {
+      return state.set('requestStatus', requestStatuses.pending);
     }
-    case FETCH_CHARACTERS_FAILURE: {
-      return state.set('data', undefined).set(
-        'request',
-        Immutable.Map({
-          inFlight: false,
-          hasErrored: true
-        })
-      );
+    case GET_CHARACTERS_FAILURE: {
+      return state.set('requestStatus', requestStatuses.failure);
     }
-    case FETCH_CHARACTERS_SUCCESS: {
-      const charactersList = Immutable.fromJS(action.response.data);
-      const charactersMap = charactersList.reduce((memo, character) => {
-        return memo.set(character.get('id'), character);
-      }, Immutable.Map());
-
-      return state.set('data', charactersMap).set(
-        'request',
-        Immutable.Map({
-          inFlight: false,
-          hasErrored: false
-        })
-      );
+    case GET_CHARACTERS_SUCCESS: {
+      return state.withMutations((tempState) => {
+        tempState
+          .set('data', action.payload.characters)
+          .set('requestStatus', requestStatuses.success);
+      });
     }
     default: {
       return state;
     }
   }
 }
-
-export const fetchCharacters = function() {
-  return async function(dispatch) {
-    dispatch(fetchCharactersRequested());
-    try {
-      const response = await axios.get('/characters.json');
-
-      dispatch(fetchCharactersSuccess(response.data));
-    } catch (e) {
-      dispatch(fetchCharactersFailure());
-    }
-  };
-};
-
-export const fetchCharactersRequested = () => ({
-  type: FETCH_CHARACTERS_REQUESTED
-});
-
-export const fetchCharactersFailure = () => ({
-  type: FETCH_CHARACTERS_FAILURE
-});
-
-export const fetchCharactersSuccess = (response) => ({
-  type: FETCH_CHARACTERS_SUCCESS,
-  response
-});

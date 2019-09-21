@@ -6,6 +6,7 @@ module.exports = {
   moduleNameMapper: {
     '^Api(.*)$': '<rootDir>/src/api$1',
     '^Components(.*)$': '<rootDir>/src/components$1',
+    '^Constants(.*)$': '<rootDir>/src/constants$1',
     '^Reducers(.*)$': '<rootDir>/src/reducers$1',
     '\\.(css|scss|sass)$': '<rootDir>/support/tests/style-mock.js'
   },
