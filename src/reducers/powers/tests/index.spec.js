@@ -1,227 +1,200 @@
 import Immutable from 'immutable';
 import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import moxios from 'moxios';
+import getPowersSuccessResponse from 'Api/sample-responses/get-powers-success';
+import requestStatuses from 'Constants/request-statuses';
+import { middleware } from '../../../store';
+import { getPowers as getPowersMock } from 'Api/powers';
 import reducer, {
-  defaultState,
-  FETCH_POWERS_REQUESTED,
-  FETCH_POWERS_FAILURE,
-  FETCH_POWERS_SUCCESS,
-  fetchPowers,
-  fetchPowersRequested,
-  fetchPowersFailure,
-  fetchPowersSuccess
+  GET_POWERS_PENDING,
+  GET_POWERS_FAILURE,
+  GET_POWERS_SUCCESS,
+  getPowers,
+  getPowersPending,
+  getPowersFailure,
+  getPowersSuccess
 } from '../';
 
-describe('powers reducer', () => {
+jest.mock('Api/powers', () => ({
+  getPowers: jest.fn()
+}));
+
+describe('Powers reducer', () => {
+  let testContext;
+
+  beforeEach(() => {
+    testContext = {};
+  });
+
   describe('when given no action', () => {
-    let result;
-
-    beforeEach(() => {
-      result = reducer();
-    });
-
     it('should return default state', () => {
-      expect(result).toEqual(defaultState);
+      expect(reducer()).toEqual(
+        Immutable.Map({
+          requestStatus: requestStatuses.idle
+        })
+      );
     });
   });
 
-  describe('when given FETCH_POWERS_REQUESTED action', () => {
-    let action;
-    let inputState;
-    let outputState;
-
+  describe('when given GET_POWERS_PENDING', () => {
     beforeEach(() => {
-      action = fetchPowersRequested();
-
-      inputState = Immutable.fromJS({
-        data: 'hello world',
-        request: { inFlight: false, hasErrored: true }
-      });
-
-      outputState = Immutable.fromJS({
-        data: undefined,
-        request: { inFlight: true, hasErrored: false }
-      });
+      testContext.state = reducer(Immutable.Map(), getPowersPending());
     });
 
-    it('resets any errors and denotes the request as being in flight', () => {
-      expect(reducer(inputState, action)).toEqual(outputState);
+    it('sets request status to pending', () => {
+      expect(testContext.state).toEqual(
+        Immutable.Map({
+          requestStatus: requestStatuses.pending
+        })
+      );
     });
   });
 
-  describe('when given FETCH_POWERS_FAILURE action', () => {
-    let action;
-    let inputState;
-    let outputState;
-
+  describe('when given GET_POWERS_FAILURE', () => {
     beforeEach(() => {
-      action = fetchPowersFailure();
-
-      inputState = Immutable.fromJS({
-        data: 'hello world',
-        request: { inFlight: true, hasErrored: false }
-      });
-
-      outputState = Immutable.fromJS({
-        data: undefined,
-        request: { inFlight: false, hasErrored: true }
-      });
+      testContext.state = reducer(Immutable.Map(), getPowersFailure());
     });
 
-    it('sets an error in the state and unsets the request from being in flight', () => {
-      expect(reducer(inputState, action)).toEqual(outputState);
+    it('sets request status to failure', () => {
+      expect(testContext.state).toEqual(
+        Immutable.Map({
+          requestStatus: requestStatuses.failure
+        })
+      );
     });
   });
 
-  describe('when given FETCH_POWERS_SUCCESS action', () => {
-    let action;
-    let inputState;
-    let outputState;
-
+  describe('when given GET_POWERS_SUCCESS', () => {
     beforeEach(() => {
-      action = fetchPowersSuccess({
-        data: [{ id: 'abc', key: 'value' }, { id: 'def', key: 'secret' }]
-      });
-
-      inputState = Immutable.fromJS({
-        data: undefined,
-        request: { inFlight: true, hasErrored: false }
-      });
-
-      outputState = Immutable.fromJS({
-        data: {
-          abc: { id: 'abc', key: 'value' },
-          def: { id: 'def', key: 'secret' }
-        },
-        request: { inFlight: false, hasErrored: false }
-      });
+      testContext.state = reducer(
+        Immutable.Map(),
+        getPowersSuccess('hello-world')
+      );
     });
 
-    it('stores data after normalising and unsets the request as being in flight', () => {
-      expect(reducer(inputState, action)).toEqual(outputState);
+    it('stores data and sets request status to success', () => {
+      expect(testContext.state).toEqual(
+        Immutable.Map({
+          data: 'hello-world',
+          requestStatus: requestStatuses.success
+        })
+      );
     });
   });
 });
 
-describe('powers action creators', () => {
-  describe('#fetchPowers', () => {
-    let mockStore;
-    let powersEndpoint;
-    let powersSuccessResponse;
+describe('Powers action creators', () => {
+  let testContext;
 
+  beforeEach(() => {
+    testContext = {};
+  });
+
+  describe('#getPowers', () => {
     beforeEach(() => {
-      moxios.install();
-      mockStore = configureMockStore([thunk])();
-      powersEndpoint = '/powers.json';
-      powersSuccessResponse = {
-        data: [{ id: 'abc', key: 'value' }, { id: 'def', key: 'secret' }]
-      };
+      testContext.mockStore = configureMockStore(middleware)();
     });
 
     afterEach(() => {
-      moxios.uninstall();
+      getPowersMock.mockReset();
     });
 
-    describe('when triggered', () => {
+    describe('when the request triggers', () => {
       beforeEach(() => {
-        moxios.stubRequest(powersEndpoint, {
-          status: 200,
-          response: powersSuccessResponse
-        });
+        getPowersMock.mockReturnValue(Promise.resolve());
+        testContext.mockStore.dispatch(getPowers());
       });
 
       it('fires a requested action', () => {
-        return mockStore.dispatch(fetchPowers()).then(() => {
-          expect(mockStore.getActions()[0]).toEqual({
-            type: FETCH_POWERS_REQUESTED
-          });
+        expect(testContext.mockStore.getActions()[0]).toEqual({
+          type: GET_POWERS_PENDING
         });
       });
     });
 
-    describe('when request completes', () => {
-      describe('and is successful', () => {
-        beforeEach(() => {
-          moxios.stubRequest(powersEndpoint, {
-            status: 200,
-            response: powersSuccessResponse
-          });
-        });
-
-        it('fires a requested action and a success action', () => {
-          return mockStore.dispatch(fetchPowers()).then(() => {
-            expect(mockStore.getActions()).toEqual([
-              { type: FETCH_POWERS_REQUESTED },
-              { type: FETCH_POWERS_SUCCESS, response: powersSuccessResponse }
-            ]);
-          });
-        });
+    describe('when the request succeeds', () => {
+      beforeEach(() => {
+        getPowersMock.mockReturnValue(
+          Promise.resolve({
+            data: getPowersSuccessResponse
+          })
+        );
+        testContext.mockStore.dispatch(getPowers());
       });
 
-      describe('and fails', () => {
-        beforeEach(() => {
-          moxios.stubRequest(powersEndpoint, {
-            status: 500
-          });
-        });
-
-        it('fires a requested action and a failure action', () => {
-          return mockStore.dispatch(fetchPowers()).then(() => {
-            expect(mockStore.getActions()).toEqual([
-              { type: FETCH_POWERS_REQUESTED },
-              { type: FETCH_POWERS_FAILURE }
-            ]);
-          });
-        });
+      it('fires a requested action and a success action', () => {
+        expect(testContext.mockStore.getActions()).toEqual([
+          { type: GET_POWERS_PENDING },
+          {
+            type: GET_POWERS_SUCCESS,
+            payload: {
+              powers: Immutable.fromJS({
+                'fake-uuid-01': {
+                  id: 'fake-uuid-01',
+                  parentPowerId: 'fake-parent-power-id-01',
+                  characterId: 'fake-character-id-01',
+                  type: 'fake-type-01',
+                  name: 'fake-name-01',
+                  description: 'fake-description-01',
+                  cost: 1
+                },
+                'fake-uuid-02': {
+                  id: 'fake-uuid-02',
+                  parentPowerId: 'fake-parent-power-id-02',
+                  characterId: 'fake-character-id-02',
+                  type: 'fake-type-02',
+                  name: 'fake-name-02',
+                  description: 'fake-description-02',
+                  cost: 2
+                }
+              })
+            }
+          }
+        ]);
       });
     });
-  });
 
-  describe('#fetchPowersRequested', () => {
-    let action;
-
-    beforeEach(() => {
-      action = fetchPowersRequested();
-    });
-
-    it('creates an action', () => {
-      expect(action).toEqual({
-        type: FETCH_POWERS_REQUESTED
+    describe('when the request fails', () => {
+      beforeEach(() => {
+        getPowersMock.mockReturnValue(Promise.reject());
+        testContext.mockStore.dispatch(getPowers());
       });
-    });
-  });
 
-  describe('#fetchPowersFailure', () => {
-    let action;
-
-    beforeEach(() => {
-      action = fetchPowersFailure();
-    });
-
-    it('creates an action', () => {
-      expect(action).toEqual({
-        type: FETCH_POWERS_FAILURE
+      it('fires a requested action and a failure action', () => {
+        expect(testContext.mockStore.getActions()).toEqual([
+          { type: GET_POWERS_PENDING },
+          {
+            type: GET_POWERS_FAILURE,
+            error: true
+          }
+        ]);
       });
     });
   });
 
-  describe('#fetchPowersSuccess', () => {
-    let action;
-    let response;
-
-    beforeEach(() => {
-      response = {
-        data: [{ id: 'abc', key: 'value' }, { id: 'def', key: 'secret' }]
-      };
-
-      action = fetchPowersSuccess(response);
-    });
-
+  describe('#getPowersPending', () => {
     it('creates an action', () => {
-      expect(action).toEqual({
-        type: FETCH_POWERS_SUCCESS,
-        response
+      expect(getPowersPending()).toEqual({
+        type: GET_POWERS_PENDING
+      });
+    });
+  });
+
+  describe('#getPowersFailure', () => {
+    it('creates an action', () => {
+      expect(getPowersFailure()).toEqual({
+        type: GET_POWERS_FAILURE,
+        error: true
+      });
+    });
+  });
+
+  describe('#getPowersSuccess', () => {
+    it('creates an action', () => {
+      expect(getPowersSuccess('hello-world')).toEqual({
+        type: GET_POWERS_SUCCESS,
+        payload: {
+          powers: 'hello-world'
+        }
       });
     });
   });

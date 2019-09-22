@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "id": "fake-uuid-01",
+      "type": "powers",
+      "attributes": {
+        "parentPowerId": "fake-parent-power-id-01",
+        "characterId": "fake-character-id-01",
+        "type": "fake-type-01",
+        "name": "fake-name-01",
+        "description": "fake-description-01",
+        "cost": "1"
+      }
+    },
+    {
+      "id": "fake-uuid-02",
+      "type": "powers",
+      "attributes": {
+        "parentPowerId": "fake-parent-power-id-02",
+        "characterId": "fake-character-id-02",
+        "type": "fake-type-02",
+        "name": "fake-name-02",
+        "description": "fake-description-02",
+        "cost": "2"
+      }
+    }
+  ]
+}

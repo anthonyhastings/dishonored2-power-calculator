@@ -1,80 +1,80 @@
 import Immutable from 'immutable';
-import axios from 'axios';
+import * as api from 'Api/powers';
+import requestStatuses from 'Constants/request-statuses';
 
-export const FETCH_POWERS_REQUESTED = 'FETCH_POWERS_REQUESTED';
-export const FETCH_POWERS_FAILURE = 'FETCH_POWERS_FAILURE';
-export const FETCH_POWERS_SUCCESS = 'FETCH_POWERS_SUCCESS';
+export const GET_POWERS_PENDING = 'GET_POWERS_PENDING';
 
-export const defaultState = Immutable.fromJS({
-  data: undefined,
-  request: {
-    inFlight: false,
-    hasErrored: false
+export const GET_POWERS_FAILURE = 'GET_POWERS_FAILURE';
+
+export const GET_POWERS_SUCCESS = 'GET_POWERS_SUCCESS';
+
+export const getPowersPending = () => ({
+  type: GET_POWERS_PENDING
+});
+
+export const getPowersFailure = () => ({
+  type: GET_POWERS_FAILURE,
+  error: true
+});
+
+export const getPowersSuccess = (powers) => ({
+  type: GET_POWERS_SUCCESS,
+  payload: {
+    powers
   }
+});
+
+export const getPowers = () => {
+  return async (dispatch) => {
+    dispatch(getPowersPending());
+
+    try {
+      const response = await api.getPowers();
+      const data = Immutable.fromJS(response.data.data);
+
+      const powers = data.reduce((memo, power) => {
+        return memo.set(
+          power.get('id'),
+          Immutable.Map({
+            id: power.get('id'),
+            parentPowerId: power.getIn(['attributes', 'parentPowerId']),
+            characterId: power.getIn(['attributes', 'characterId']),
+            type: power.getIn(['attributes', 'type']),
+            name: power.getIn(['attributes', 'name']),
+            description: power.getIn(['attributes', 'description']),
+            cost: parseInt(power.getIn(['attributes', 'cost']))
+          })
+        );
+      }, Immutable.Map());
+
+      dispatch(getPowersSuccess(powers));
+    } catch (e) {
+      dispatch(getPowersFailure());
+    }
+  };
+};
+
+const defaultState = Immutable.fromJS({
+  requestStatus: requestStatuses.idle
 });
 
 export default function(state = defaultState, action = {}) {
   switch (action.type) {
-    case FETCH_POWERS_REQUESTED: {
-      return state.set('data', undefined).set(
-        'request',
-        Immutable.Map({
-          inFlight: true,
-          hasErrored: false
-        })
-      );
+    case GET_POWERS_PENDING: {
+      return state.set('requestStatus', requestStatuses.pending);
     }
-    case FETCH_POWERS_FAILURE: {
-      return state.set('data', undefined).set(
-        'request',
-        Immutable.Map({
-          inFlight: false,
-          hasErrored: true
-        })
-      );
+    case GET_POWERS_FAILURE: {
+      return state.set('requestStatus', requestStatuses.failure);
     }
-    case FETCH_POWERS_SUCCESS: {
-      const powersList = Immutable.fromJS(action.response.data);
-      const powersMap = powersList.reduce((memo, power) => {
-        return memo.set(power.get('id'), power);
-      }, Immutable.Map());
-
-      return state.set('data', powersMap).set(
-        'request',
-        Immutable.fromJS({
-          inFlight: false,
-          hasErrored: false
-        })
-      );
+    case GET_POWERS_SUCCESS: {
+      return state.withMutations((tempState) => {
+        tempState
+          .set('data', action.payload.powers)
+          .set('requestStatus', requestStatuses.success);
+      });
     }
     default: {
       return state;
     }
   }
 }
-
-export const fetchPowers = function() {
-  return async function(dispatch) {
-    dispatch(fetchPowersRequested());
-    try {
-      const response = await axios.get('/powers.json');
-
-      dispatch(fetchPowersSuccess(response.data));
-    } catch (e) {
-      dispatch(fetchPowersFailure());
-    }
-  };
-};
-
-export const fetchPowersRequested = () => ({
-  type: FETCH_POWERS_REQUESTED
-});
-
-export const fetchPowersFailure = () => ({
-  type: FETCH_POWERS_FAILURE
-});
-
-export const fetchPowersSuccess = (response) => ({
-  type: FETCH_POWERS_SUCCESS,
-  response
-});
