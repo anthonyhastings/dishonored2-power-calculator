@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 import moxios from 'moxios';
 import configureMockStore from 'redux-mock-store';
-import charactersSuccessResponse from 'Api/sample-responses/characters-success';
+import getCharactersSuccessResponse from 'Api/sample-responses/get-characters-success';
 import requestStatuses from 'Constants/request-statuses';
 import { middleware } from '../../../store';
 import reducer, {
@@ -115,7 +115,7 @@ describe('Characters action creators', () => {
       beforeEach(async () => {
         moxios.stubRequest('/characters.json', {
           status: 200,
-          response: charactersSuccessResponse
+          response: getCharactersSuccessResponse
         });
 
         await testContext.mockStore.dispatch(getCharacters());
