@@ -1,9 +1,9 @@
 import Immutable from 'immutable';
-import moxios from 'moxios';
 import configureMockStore from 'redux-mock-store';
 import getCharactersSuccessResponse from 'Api/sample-responses/get-characters-success';
 import requestStatuses from 'Constants/request-statuses';
 import { middleware } from '../../../store';
+import { getCharacters as getCharactersMock } from 'Api/characters';
 import reducer, {
   GET_CHARACTERS_PENDING,
   GET_CHARACTERS_FAILURE,
@@ -13,6 +13,10 @@ import reducer, {
   getCharactersFailure,
   getCharactersSuccess
 } from '../';
+
+jest.mock('Api/characters', () => ({
+  getCharacters: jest.fn()
+}));
 
 describe('Characters reducer', () => {
   let testContext;
@@ -67,7 +71,7 @@ describe('Characters reducer', () => {
       );
     });
 
-    it('stores data after normalising and sets request status to success', () => {
+    it('stores data and sets request status to success', () => {
       expect(testContext.state).toEqual(
         Immutable.Map({
           data: 'hello-world',
@@ -87,21 +91,17 @@ describe('Characters action creators', () => {
 
   describe('#getCharacters', () => {
     beforeEach(() => {
-      moxios.install();
       testContext.mockStore = configureMockStore(middleware)();
     });
 
     afterEach(() => {
-      moxios.uninstall();
+      getCharactersMock.mockReset();
     });
 
     describe('when the request triggers', () => {
-      beforeEach(async () => {
-        moxios.stubRequest('/characters.json', {
-          status: 200
-        });
-
-        await testContext.mockStore.dispatch(getCharacters());
+      beforeEach(() => {
+        getCharactersMock.mockReturnValue(Promise.resolve());
+        testContext.mockStore.dispatch(getCharacters());
       });
 
       it('fires a requested action', () => {
@@ -112,13 +112,13 @@ describe('Characters action creators', () => {
     });
 
     describe('when the request succeeds', () => {
-      beforeEach(async () => {
-        moxios.stubRequest('/characters.json', {
-          status: 200,
-          response: getCharactersSuccessResponse
-        });
-
-        await testContext.mockStore.dispatch(getCharacters());
+      beforeEach(() => {
+        getCharactersMock.mockReturnValue(
+          Promise.resolve({
+            data: getCharactersSuccessResponse
+          })
+        );
+        testContext.mockStore.dispatch(getCharacters());
       });
 
       it('fires a requested action and a success action', () => {
@@ -146,12 +146,9 @@ describe('Characters action creators', () => {
     });
 
     describe('when the request fails', () => {
-      beforeEach(async () => {
-        moxios.stubRequest('/characters.json', {
-          status: 500
-        });
-
-        await testContext.mockStore.dispatch(getCharacters());
+      beforeEach(() => {
+        getCharactersMock.mockReturnValue(Promise.reject());
+        testContext.mockStore.dispatch(getCharacters());
       });
 
       it('fires a requested action and a failure action', () => {
