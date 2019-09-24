@@ -8,6 +8,18 @@ describe('Characters selectors', () => {
     testContext = {};
   });
 
+  describe('#dataSelector', () => {
+    beforeEach(() => {
+      testContext.state = Immutable.fromJS({
+        data: 'foo-bar'
+      });
+    });
+
+    it('returns value of corresponding key', () => {
+      expect(selectors.dataSelector(testContext.state)).toEqual('foo-bar');
+    });
+  });
+
   describe('#requestStatusSelector', () => {
     beforeEach(() => {
       testContext.state = Immutable.fromJS({

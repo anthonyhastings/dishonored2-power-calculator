@@ -9,6 +9,22 @@ describe('Selectors', () => {
     testContext = {};
   });
 
+  describe('#charactersDataSelector', () => {
+    beforeEach(() => {
+      testContext.state = Immutable.fromJS({
+        characters: {
+          data: 'hello world'
+        }
+      });
+    });
+
+    it('returns expected state', () => {
+      expect(selectors.charactersDataSelector(testContext.state)).toEqual(
+        'hello world'
+      );
+    });
+  });
+
   describe('#isInitialDataLoadingSelector', () => {
     describe('when characters request is pending', () => {
       beforeEach(() => {

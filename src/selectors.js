@@ -9,12 +9,17 @@ const isRequestStatusPending = (requestStatus) =>
 
 const charactersSelector = (state) => state.get('characters', Immutable.Map());
 
-const powersSelector = (state) => state.get('powers', Immutable.Map());
+export const charactersDataSelector = createSelector(
+  charactersSelector,
+  charactersReducerSelectors.dataSelector
+);
 
 const charactersRequestStatusSelector = createSelector(
   charactersSelector,
   charactersReducerSelectors.requestStatusSelector
 );
+
+const powersSelector = (state) => state.get('powers', Immutable.Map());
 
 const powersRequestStatusSelector = createSelector(
   powersSelector,
