@@ -29,5 +29,5 @@ const powersRequestStatusSelector = createSelector(
 export const isInitialDataLoadingSelector = createSelector(
   charactersRequestStatusSelector,
   powersRequestStatusSelector,
-  (...statuses) => statuses.some((status) => isRequestStatusPending(status))
+  (...statuses) => statuses.some(isRequestStatusPending)
 );
