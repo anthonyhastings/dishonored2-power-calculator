@@ -99,7 +99,8 @@ module.exports = function(environment) {
         Components: paths.components,
         Constants: paths.constants,
         Images: paths.images,
-        Reducers: paths.reducers
+        Reducers: paths.reducers,
+        Src: paths.src
       }
     }
   };

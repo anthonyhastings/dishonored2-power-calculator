@@ -1,6 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Loader component when loading has errored renders error text and an unanimated OutsidersMark 1`] = `
+exports[`Loader component when neither showError or showLoader is true renders children 1`] = `
+<p>
+  Hello world.
+</p>
+`;
+
+exports[`Loader component when showError is true renders error text and an inanimate OutsidersMark 1`] = `
 <div
   className="app-loader"
 >
@@ -16,13 +22,7 @@ exports[`Loader component when loading has errored renders error text and an una
 </div>
 `;
 
-exports[`Loader component when loading is complete renders children 1`] = `
-<p>
-  Hello world.
-</p>
-`;
-
-exports[`Loader component when loading is incomplete renders loading text and an animated OutsidersMark 1`] = `
+exports[`Loader component when showLoader is true renders loading text and an animated OutsidersMark 1`] = `
 <div
   className="app-loader"
 >

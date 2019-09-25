@@ -39,6 +39,7 @@
     "no-multi-str": "error",
     "no-undef": "error",
     "no-unused-vars": "error",
+    "react/sort-prop-types": "error",
     "strict": "error",
     "yoda": "error"
   },

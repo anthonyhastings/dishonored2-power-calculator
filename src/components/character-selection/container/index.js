@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import Component from '../';
-import charactersSelector from 'Reducers/characters/selectors/characters';
+import { charactersDataSelector } from 'Src/selectors';
 
 const mapStateToProps = (state) => ({
-  characters: charactersSelector(state)
+  characters: charactersDataSelector(state)
 });
 
 const mapDispatchToProps = () => ({});
