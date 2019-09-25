@@ -1,12 +1,15 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 import { hot } from 'react-hot-loader/root';
 import { getCharacters } from 'Reducers/characters';
 import { getPowers } from 'Reducers/powers';
-import { isInitialDataLoadingSelector } from 'Src/selectors';
+import {
+  isInitialDataLoadingSelector,
+  hasInitialDataFailedSelector
+} from 'Src/selectors';
 import Component from '../';
 
 const mapStateToProps = (state) => ({
+  showError: hasInitialDataFailedSelector(state),
   showLoader: isInitialDataLoadingSelector(state)
 });
 
@@ -17,11 +20,9 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-const connectedComponent = withRouter(
+export default hot(
   connect(
     mapStateToProps,
     mapDispatchToProps
   )(Component)
 );
-
-export default hot(connectedComponent);

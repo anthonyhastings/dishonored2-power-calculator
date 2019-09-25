@@ -7,7 +7,7 @@ jest.mock('Components/outsiders-mark', () => 'MockOutsidersMark');
 describe('Loader component', () => {
   let testContext;
 
-  const renderComponent = (props = {}) => (
+  const renderComponent = (props) => (
     <Loader {...props}>
       <p>Hello world.</p>
     </Loader>
@@ -15,18 +15,27 @@ describe('Loader component', () => {
 
   beforeEach(() => {
     testContext = {};
-
-    testContext.defaultProps = {
-      loadingState: true
-    };
   });
 
-  describe('when loading is incomplete', () => {
+  describe('when showError is true', () => {
     beforeEach(() => {
       testContext.component = renderer.create(
         renderComponent({
-          ...testContext.defaultProps,
-          loadingState: false
+          showError: true
+        })
+      );
+    });
+
+    it('renders error text and an inanimate OutsidersMark', () => {
+      expect(testContext.component).toMatchSnapshot();
+    });
+  });
+
+  describe('when showLoader is true', () => {
+    beforeEach(() => {
+      testContext.component = renderer.create(
+        renderComponent({
+          showLoader: true
         })
       );
     });
@@ -36,32 +45,17 @@ describe('Loader component', () => {
     });
   });
 
-  describe('when loading is complete', () => {
+  describe('when neither showError or showLoader is true', () => {
     beforeEach(() => {
       testContext.component = renderer.create(
         renderComponent({
-          ...testContext.defaultProps,
-          loadingState: true
+          showError: false,
+          showLoader: false
         })
       );
     });
 
     it('renders children', () => {
-      expect(testContext.component).toMatchSnapshot();
-    });
-  });
-
-  describe('when loading has errored', () => {
-    beforeEach(() => {
-      testContext.component = renderer.create(
-        renderComponent({
-          ...testContext.defaultProps,
-          loadingState: new Error()
-        })
-      );
-    });
-
-    it('renders error text and an unanimated OutsidersMark', () => {
       expect(testContext.component).toMatchSnapshot();
     });
   });

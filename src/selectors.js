@@ -7,6 +7,9 @@ import * as powersReducerSelectors from 'Reducers/powers/selectors';
 const isRequestStatusPending = (requestStatus) =>
   requestStatus === requestStatuses.pending;
 
+const hasRequestStatusFailed = (requestStatus) =>
+  requestStatus === requestStatuses.failure;
+
 const charactersSelector = (state) => state.get('characters', Immutable.Map());
 
 export const charactersDataSelector = createSelector(
@@ -30,4 +33,10 @@ export const isInitialDataLoadingSelector = createSelector(
   charactersRequestStatusSelector,
   powersRequestStatusSelector,
   (...statuses) => statuses.some(isRequestStatusPending)
+);
+
+export const hasInitialDataFailedSelector = createSelector(
+  charactersRequestStatusSelector,
+  powersRequestStatusSelector,
+  (...statuses) => statuses.some(hasRequestStatusFailed)
 );

@@ -70,4 +70,50 @@ describe('Selectors', () => {
       });
     });
   });
+
+  describe('#hasInitialDataFailedSelector', () => {
+    describe('when characters request is failure', () => {
+      beforeEach(() => {
+        testContext.state = Immutable.fromJS({
+          characters: {
+            requestStatus: requestStatuses.failure
+          }
+        });
+      });
+
+      it('returns true', () => {
+        expect(
+          selectors.hasInitialDataFailedSelector(testContext.state)
+        ).toEqual(true);
+      });
+    });
+
+    describe('when powers request is failure', () => {
+      beforeEach(() => {
+        testContext.state = Immutable.fromJS({
+          powers: {
+            requestStatus: requestStatuses.failure
+          }
+        });
+      });
+
+      it('returns true', () => {
+        expect(
+          selectors.hasInitialDataFailedSelector(testContext.state)
+        ).toEqual(true);
+      });
+    });
+
+    describe('when neither request has failed', () => {
+      beforeEach(() => {
+        testContext.state = Immutable.Map();
+      });
+
+      it('returns false', () => {
+        expect(
+          selectors.hasInitialDataFailedSelector(testContext.state)
+        ).toEqual(false);
+      });
+    });
+  });
 });
