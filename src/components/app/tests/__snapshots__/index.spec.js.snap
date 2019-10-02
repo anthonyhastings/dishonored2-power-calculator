@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component when rendered renders a header area and top-level routes 1`] = `
+<div
+  className="app"
+>
+  <header
+    className="app__header"
+  >
+    <h1
+      className="app__title"
+    >
+      Power Calculator
+    </h1>
+    <img
+      alt="Dishonored 2 logo"
+      className="app__logo"
+      sizes="100vw"
+      srcSet="660x90.png 660w, 1320x180.png 1320w"
+    />
+  </header>
+  <div
+    className="app__content"
+  >
+    <MockLoader
+      showError={false}
+      showLoader={true}
+    >
+      <MockSwitch>
+        <MockRoute
+          component="MockCharacterSelection"
+          exact={true}
+          path="/"
+        />
+        <MockRoute
+          component="MockPowerSelection"
+          path="/:characterId/powers"
+        />
+        <MockRoute
+          component="MockPageNotFound"
+        />
+      </MockSwitch>
+    </MockLoader>
+  </div>
+</div>
+`;

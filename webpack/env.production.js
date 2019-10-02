@@ -48,7 +48,7 @@ module.exports = function(env = {}) {
         cacheGroups: {
           default: false,
           vendor: {
-            chunks: 'initial',
+            chunks: 'all',
             enforce: true,
             name: 'vendor',
             test: /[\\/]node_modules[\\/](?!normalize)/

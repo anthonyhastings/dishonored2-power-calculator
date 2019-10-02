@@ -1,34 +1,16 @@
-import React, { Suspense, lazy, useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 import 'normalize.css';
 import './stylesheets/index.scss';
+import CharacterSelection from 'Components/character-selection/lazy';
 import Loader from 'Components/loader';
+import PageNotFound from 'Components/page-not-found/lazy';
+import PowerSelection from 'Components/power-selection/lazy';
 import logo660 from 'Images/logo/660x90.png';
 import logo1320 from 'Images/logo/1320x180.png';
 
 const namespace = 'app';
-
-const CharacterSelection = lazy(() =>
-  import(
-    /* webpackChunkName: "character-selection" */
-    '../character-selection/container'
-  )
-);
-
-const PowerSelection = lazy(() =>
-  import(
-    /* webpackChunkName: "power-selection" */
-    '../power-selection/container'
-  )
-);
-
-const PageNotFound = lazy(() =>
-  import(
-    /* webpackChunkName: "page-not-found" */
-    '../page-not-found'
-  )
-);
 
 const App = ({ onComponentDidMount, showError, showLoader }) => {
   useEffect(() => {
