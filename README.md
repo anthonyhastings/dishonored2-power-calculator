@@ -19,6 +19,6 @@ make
 - [ ] Redux requesting powers information via `redux-thunk` and Axios.
 - [ ] Use `validateUUID` to check a valid character uuid has been supplied in the URL.
 - [ ] Hot Module Reloading for JS/SCSS on development environment.
-- [ ] Automation suite using Webdriver.io and Cucumber: https://webdriver.io/docs/frameworks.html#using-cucumber
+- [ ] Automation suite using Webdriver.io, Cucumber and Gherkin (Given/When/Then): https://webdriver.io/docs/frameworks.html#using-cucumber
 - Use a multitude of intermediate "container" components to stop the flood of props. See: https://egghead.io/lessons/javascript-redux-extracting-container-components-filterlink
 - Webpack static assets (images / stylesheets).
