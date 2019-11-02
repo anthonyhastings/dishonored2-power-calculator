@@ -4,6 +4,7 @@
       "id": "fake-uuid-01",
       "type": "characters",
       "attributes": {
+        "slug": "fake-slug-01",
         "name": "fake-name-01",
         "description": "fake-description-01"
       }
@@ -12,6 +13,7 @@
       "id": "fake-uuid-02",
       "type": "characters",
       "attributes": {
+        "slug": "fake-slug-02",
         "name": "fake-name-02",
         "description": "fake-description-02"
       }
