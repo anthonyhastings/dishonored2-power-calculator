@@ -19,11 +19,13 @@ describe('CharacterSelection component', () => {
       characters: Immutable.fromJS({
         dummyUuid: {
           id: 'dummy-id',
+          slug: 'dummy-slug',
           name: 'Adam Jensen',
           description: 'Task Force 29 operative.'
         },
         fakeUuid: {
           id: 'fake-id',
+          slug: 'fake-slug',
           name: 'Scott Ryder',
           description: 'The pathfinder.'
         }

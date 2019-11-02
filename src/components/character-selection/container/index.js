@@ -6,9 +6,4 @@ const mapStateToProps = (state) => ({
   characters: charactersDataSelector(state)
 });
 
-const mapDispatchToProps = () => ({});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Component);
+export default connect(mapStateToProps)(Component);

@@ -37,6 +37,7 @@ export const getCharacters = () => {
           character.get('id'),
           Immutable.Map({
             id: character.get('id'),
+            slug: character.getIn(['attributes', 'slug']),
             name: character.getIn(['attributes', 'name']),
             description: character.getIn(['attributes', 'description'])
           })

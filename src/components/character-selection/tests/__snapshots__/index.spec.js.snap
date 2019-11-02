@@ -21,7 +21,7 @@ exports[`CharacterSelection component when rendered renders a heading with sub-a
       Task Force 29 operative.
     </p>
     <MockLink
-      to="/dummy-id/powers"
+      to="/dummy-slug/powers"
     >
       Choose 
       Adam Jensen
@@ -41,7 +41,7 @@ exports[`CharacterSelection component when rendered renders a heading with sub-a
       The pathfinder.
     </p>
     <MockLink
-      to="/fake-id/powers"
+      to="/fake-slug/powers"
     >
       Choose 
       Scott Ryder

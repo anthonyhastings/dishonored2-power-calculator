@@ -25,7 +25,23 @@ describe('Selectors', () => {
     });
   });
 
-  describe('#isInitialDataLoadingSelector', () => {
+  describe('#isInitialDataIncompleteSelector', () => {
+    describe('when characters request is idle', () => {
+      beforeEach(() => {
+        testContext.state = Immutable.fromJS({
+          characters: {
+            requestStatus: requestStatuses.idle
+          }
+        });
+      });
+
+      it('returns true', () => {
+        expect(
+          selectors.isInitialDataIncompleteSelector(testContext.state)
+        ).toEqual(true);
+      });
+    });
+
     describe('when characters request is pending', () => {
       beforeEach(() => {
         testContext.state = Immutable.fromJS({
@@ -37,7 +53,23 @@ describe('Selectors', () => {
 
       it('returns true', () => {
         expect(
-          selectors.isInitialDataLoadingSelector(testContext.state)
+          selectors.isInitialDataIncompleteSelector(testContext.state)
+        ).toEqual(true);
+      });
+    });
+
+    describe('when powers request is idle', () => {
+      beforeEach(() => {
+        testContext.state = Immutable.fromJS({
+          powers: {
+            requestStatus: requestStatuses.idle
+          }
+        });
+      });
+
+      it('returns true', () => {
+        expect(
+          selectors.isInitialDataIncompleteSelector(testContext.state)
         ).toEqual(true);
       });
     });
@@ -53,19 +85,19 @@ describe('Selectors', () => {
 
       it('returns true', () => {
         expect(
-          selectors.isInitialDataLoadingSelector(testContext.state)
+          selectors.isInitialDataIncompleteSelector(testContext.state)
         ).toEqual(true);
       });
     });
 
-    describe('when neither request is pending', () => {
+    describe('when neither request is pending nor idle', () => {
       beforeEach(() => {
         testContext.state = Immutable.Map();
       });
 
       it('returns false', () => {
         expect(
-          selectors.isInitialDataLoadingSelector(testContext.state)
+          selectors.isInitialDataIncompleteSelector(testContext.state)
         ).toEqual(false);
       });
     });

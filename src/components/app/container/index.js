@@ -3,14 +3,14 @@ import { hot } from 'react-hot-loader/root';
 import { getCharacters } from 'Reducers/characters';
 import { getPowers } from 'Reducers/powers';
 import {
-  isInitialDataLoadingSelector,
+  isInitialDataIncompleteSelector,
   hasInitialDataFailedSelector
 } from 'Src/selectors';
 import Component from '../';
 
 const mapStateToProps = (state) => ({
   showError: hasInitialDataFailedSelector(state),
-  showLoader: isInitialDataLoadingSelector(state)
+  showLoader: isInitialDataIncompleteSelector(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

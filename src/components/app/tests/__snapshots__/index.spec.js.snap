@@ -28,17 +28,19 @@ exports[`App component when rendered renders a header area and top-level routes 
     >
       <MockSwitch>
         <MockRoute
-          component="MockCharacterSelection"
           exact={true}
           path="/"
-        />
+        >
+          <MockCharacterSelection />
+        </MockRoute>
         <MockRoute
-          component="MockPowerSelection"
-          path="/:characterId/powers"
-        />
-        <MockRoute
-          component="MockPageNotFound"
-        />
+          path="/:characterSlug/powers"
+        >
+          <MockPowerSelection />
+        </MockRoute>
+        <MockRoute>
+          <MockPageNotFound />
+        </MockRoute>
       </MockSwitch>
     </MockLoader>
   </div>

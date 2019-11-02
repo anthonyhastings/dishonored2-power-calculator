@@ -130,11 +130,13 @@ describe('Characters action creators', () => {
               characters: Immutable.fromJS({
                 'fake-uuid-01': {
                   id: 'fake-uuid-01',
+                  slug: 'fake-slug-01',
                   name: 'fake-name-01',
                   description: 'fake-description-01'
                 },
                 'fake-uuid-02': {
                   id: 'fake-uuid-02',
+                  slug: 'fake-slug-02',
                   name: 'fake-name-02',
                   description: 'fake-description-02'
                 }

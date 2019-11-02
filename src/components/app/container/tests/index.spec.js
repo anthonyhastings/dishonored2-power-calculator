@@ -16,9 +16,9 @@ jest.mock('Src/selectors', () => ({
   hasInitialDataFailedSelector: jest
     .fn()
     .mockReturnValue('hasInitialDataFailedSelector'),
-  isInitialDataLoadingSelector: jest
+  isInitialDataIncompleteSelector: jest
     .fn()
-    .mockReturnValue('isInitialDataLoadingSelector')
+    .mockReturnValue('isInitialDataIncompleteSelector')
 }));
 
 jest.mock('../../', () => 'MockComponent');
@@ -28,7 +28,7 @@ describe('App container', () => {
     it('returns expected key/value pairings', () => {
       expect(Container.mapStateToProps()).toEqual({
         showError: 'hasInitialDataFailedSelector',
-        showLoader: 'isInitialDataLoadingSelector'
+        showLoader: 'isInitialDataIncompleteSelector'
       });
     });
   });

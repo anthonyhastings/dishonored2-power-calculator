@@ -32,9 +32,15 @@ const App = ({ onComponentDidMount, showError, showLoader }) => {
         <Loader showError={showError} showLoader={showLoader}>
           <Suspense fallback={<Loader showLoader={true} />}>
             <Switch>
-              <Route exact path="/" component={CharacterSelection} />
-              <Route path="/:characterId/powers" component={PowerSelection} />
-              <Route component={PageNotFound} />
+              <Route exact path="/">
+                <CharacterSelection />
+              </Route>
+              <Route path="/:characterSlug/powers">
+                <PowerSelection />
+              </Route>
+              <Route>
+                <PageNotFound />
+              </Route>
             </Switch>
           </Suspense>
         </Loader>
