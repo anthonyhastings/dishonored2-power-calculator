@@ -4,10 +4,10 @@ import requestStatuses from 'Constants/request-statuses';
 import * as charactersReducerSelectors from 'Reducers/characters/selectors';
 import * as powersReducerSelectors from 'Reducers/powers/selectors';
 
-const isRequestStatusPending = (requestStatus) =>
-  requestStatus === requestStatuses.pending;
+const isRequestIncomplete = (requestStatus) =>
+  [requestStatuses.idle, requestStatuses.pending].includes(requestStatus);
 
-const hasRequestStatusFailed = (requestStatus) =>
+const hasRequestFailed = (requestStatus) =>
   requestStatus === requestStatuses.failure;
 
 const charactersSelector = (state) => state.get('characters', Immutable.Map());
@@ -29,14 +29,14 @@ const powersRequestStatusSelector = createSelector(
   powersReducerSelectors.requestStatusSelector
 );
 
-export const isInitialDataLoadingSelector = createSelector(
+export const isInitialDataIncompleteSelector = createSelector(
   charactersRequestStatusSelector,
   powersRequestStatusSelector,
-  (...statuses) => statuses.some(isRequestStatusPending)
+  (...statuses) => statuses.some(isRequestIncomplete)
 );
 
 export const hasInitialDataFailedSelector = createSelector(
   charactersRequestStatusSelector,
   powersRequestStatusSelector,
-  (...statuses) => statuses.some(hasRequestStatusFailed)
+  (...statuses) => statuses.some(hasRequestFailed)
 );
