@@ -15,7 +15,8 @@
   },
   "plugins": [
     "jsx-a11y",
-    "react"
+    "react",
+    "react-hooks"
   ],
   "extends": [
     "eslint:recommended",
@@ -40,6 +41,8 @@
     "no-undef": "error",
     "no-unused-vars": "error",
     "react/sort-prop-types": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error",
     "strict": "error",
     "yoda": "error"
   },
