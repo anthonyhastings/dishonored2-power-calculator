@@ -29,7 +29,6 @@ export const removePurchase = (powerId) => {
 };
 
 export const defaultState = Immutable.fromJS({
-  totalRunes: 30,
   purchases: Immutable.List()
 });
 

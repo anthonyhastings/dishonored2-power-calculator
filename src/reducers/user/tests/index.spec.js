@@ -106,7 +106,6 @@ describe('user actions', () => {
             }
           },
           user: {
-            totalRunes: 30,
             purchases: ['abc', 'def']
           }
         })
@@ -162,7 +161,6 @@ describe('user reducer', () => {
     it('sets default state', () => {
       expect(state).toEqual(
         Immutable.fromJS({
-          totalRunes: 30,
           purchases: Immutable.List()
         })
       );

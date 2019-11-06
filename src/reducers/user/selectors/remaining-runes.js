@@ -1,11 +1,10 @@
 import { createSelector } from 'reselect';
-import totalRunesSelector from './total-runes';
+import totalRunes from 'Constants/total-runes';
 import spentRunesSelector from './spent-runes';
 
 const remainingRunesSelector = createSelector(
-  totalRunesSelector,
   spentRunesSelector,
-  (totalRunes, spentRunes) => totalRunes - spentRunes
+  (spentRunes) => totalRunes - spentRunes
 );
 
 export default remainingRunesSelector;
