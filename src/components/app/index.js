@@ -6,7 +6,7 @@ import './stylesheets/index.scss';
 import CharacterSelection from 'Components/character-selection/lazy';
 import Loader from 'Components/loader';
 import PageNotFound from 'Components/page-not-found/lazy';
-import PowerSelection from 'Components/power-selection/lazy';
+import PowerSelectionRouteValidation from 'Components/power-selection/lazy';
 import logo660 from 'Images/logo/660x90.png';
 import logo1320 from 'Images/logo/1320x180.png';
 
@@ -36,7 +36,7 @@ const App = ({ onComponentDidMount, showError, showLoader }) => {
                 <CharacterSelection />
               </Route>
               <Route path="/:characterSlug/powers">
-                <PowerSelection />
+                <PowerSelectionRouteValidation />
               </Route>
               <Route>
                 <PageNotFound />
