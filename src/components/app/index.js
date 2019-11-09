@@ -15,7 +15,7 @@ const namespace = 'app';
 const App = ({ onComponentDidMount, showError, showLoader }) => {
   useEffect(() => {
     onComponentDidMount();
-  }, []);
+  }, [onComponentDidMount]);
 
   return (
     <div className={namespace}>
