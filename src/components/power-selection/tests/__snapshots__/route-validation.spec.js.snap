@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PowerSelectionRouteValidation component when character is missing renders the PageNotFound component 1`] = `<MockPageNotFound />`;
+
+exports[`PowerSelectionRouteValidation component when character is present renders the PowerSelection component 1`] = `<MockPowerSelection />`;

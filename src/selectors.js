@@ -17,6 +17,11 @@ export const charactersDataSelector = createSelector(
   charactersReducerSelectors.dataSelector
 );
 
+export const characterBySlugSelector = (state, slug) => {
+  const characters = charactersDataSelector(state);
+  return characters.find((character) => character.get('slug') === slug);
+};
+
 const charactersRequestStatusSelector = createSelector(
   charactersSelector,
   charactersReducerSelectors.requestStatusSelector

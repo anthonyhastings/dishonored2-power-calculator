@@ -36,7 +36,7 @@ exports[`App component when rendered renders a header area and top-level routes 
         <MockRoute
           path="/:characterSlug/powers"
         >
-          <MockPowerSelection />
+          <MockPowerSelectionRouteValidation />
         </MockRoute>
         <MockRoute>
           <MockPageNotFound />

@@ -25,6 +25,29 @@ describe('Selectors', () => {
     });
   });
 
+  describe('#characterBySlugSelector', () => {
+    beforeEach(() => {
+      testContext.state = Immutable.fromJS({
+        characters: {
+          data: {
+            testKey: { slug: 'non-matching' },
+            fakeKey: { slug: 'matching' }
+          }
+        }
+      });
+    });
+
+    it('returns relevant record', () => {
+      expect(
+        selectors.characterBySlugSelector(testContext.state, 'matching')
+      ).toEqual(
+        Immutable.Map({
+          slug: 'matching'
+        })
+      );
+    });
+  });
+
   describe('#isInitialDataIncompleteSelector', () => {
     describe('when characters request is idle', () => {
       beforeEach(() => {

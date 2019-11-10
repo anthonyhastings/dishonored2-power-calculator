@@ -17,7 +17,10 @@ jest.mock('Components/loader', () => 'MockLoader');
 
 jest.mock('Components/page-not-found/lazy', () => 'MockPageNotFound');
 
-jest.mock('Components/power-selection/lazy', () => 'MockPowerSelection');
+jest.mock(
+  'Components/power-selection/lazy',
+  () => 'MockPowerSelectionRouteValidation'
+);
 
 describe('App component', () => {
   let testContext;
