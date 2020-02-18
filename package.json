@@ -13,7 +13,7 @@
     "lint:css": "stylelint src/**/*.scss",
     "lint:js": "eslint --ext js --ext mjs server/ src/ support/ webpack/ jest.config.js postcss.config.js",
     "pretest": "npm run lint",
-    "start": "node --experimental-modules server/index.mjs",
+    "start": "node --experimental-json-modules server/index.mjs",
     "test": "jest",
     "webpack:dev-server": "webpack-dev-server --config=webpack/env.development.js",
     "webpack:production": "webpack --config=webpack/env.production.js --colors --progress",
