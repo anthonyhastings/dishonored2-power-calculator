@@ -1,4 +1,4 @@
-FROM node:12.5.0-alpine
+FROM node:13.8.0-alpine
 
 LABEL maintainer="Anthony Hastings <ar.hastings@gmail.com>"
 
