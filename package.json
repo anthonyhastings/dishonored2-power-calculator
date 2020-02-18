@@ -16,7 +16,7 @@
     "start": "node --experimental-json-modules server/index.mjs",
     "test": "jest",
     "webpack:dev-server": "webpack-dev-server --config=webpack/env.development.js",
-    "webpack:production": "webpack --config=webpack/env.production.js --colors --progress",
+    "webpack:production": "webpack --config=webpack/env.production.js",
     "webpack:stats": "npm run webpack:production -- --env.stats=true"
   },
   "husky": {

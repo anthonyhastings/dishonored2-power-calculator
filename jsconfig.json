@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "Api/*": ["src/api/*"],
+      "Components/*": ["src/components/*"],
+      "Constants/*": ["src/constants/*"],
+      "Images/*": ["images/*"],
+      "Reducers/*": ["src/reducers/*"],
+      "Src/*": ["src/*"]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
