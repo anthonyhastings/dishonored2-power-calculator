@@ -22,5 +22,5 @@ make
 - [ ] Use `validateUUID` to check a valid character uuid has been supplied in the URL.
 - [ ] Lighthouse integration in CI.
 - [ ] Progressive Web Application techniques (Web manifest, Service worker, Install prompt).
-- [ ] Automation suite using Webdriver.io, Cucumber and Gherkin (Given/When/Then): https://webdriver.io/docs/frameworks.html#using-cucumber
+- [ ] Automation suite using Cypress, Cucumber and Gherkin (Given/When/Then).
 - [ ] Use a multitude of intermediate "container" components to stop the flood of props. See: https://egghead.io/lessons/javascript-redux-extracting-container-components-filterlink
