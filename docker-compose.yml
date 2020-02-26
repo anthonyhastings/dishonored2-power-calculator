@@ -5,7 +5,7 @@ services:
       context: ./
       args:
         - GOOGLE_SITE_VERIFICATION_TOKEN
-    command: sh -c "npm start"
+    command: sh -c "yarn start"
     container_name: dishonored2-web
     environment:
       - CODECOV_TOKEN
