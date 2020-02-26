@@ -26,7 +26,7 @@ RUN apk add --no-cache --virtual image-build-deps \
     make \
     python \
     nasm \
-    && apk add --no-cache libpng-dev \
+    libpng-dev \
     && yarn install \
     && yarn cache clean \
     && apk del image-build-deps
