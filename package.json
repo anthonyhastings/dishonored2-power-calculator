@@ -7,17 +7,17 @@
   "private": true,
   "main": "server/index.mjs",
   "scripts": {
-    "build": "npm run webpack:production",
+    "build": "yarn run webpack:production",
     "eslint-check": "eslint --print-config src/components/app/container/index.js | eslint-config-prettier-check",
-    "lint": "npm run lint:css && npm run lint:js",
+    "lint": "yarn run lint:css && yarn run lint:js",
     "lint:css": "stylelint src/**/*.scss",
     "lint:js": "eslint --ext js --ext mjs server/ src/ support/ webpack/ jest.config.js postcss.config.js",
-    "pretest": "npm run lint",
+    "pretest": "yarn run lint",
     "start": "node --experimental-json-modules server/index.mjs",
     "test": "jest",
     "webpack:dev-server": "webpack-dev-server --config=webpack/env.development.js",
     "webpack:production": "webpack --config=webpack/env.production.js",
-    "webpack:stats": "npm run webpack:production -- --env.stats=true"
+    "webpack:stats": "yarn run webpack:production -- --env.stats=true"
   },
   "husky": {
     "hooks": {

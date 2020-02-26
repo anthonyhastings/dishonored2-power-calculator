@@ -16,6 +16,6 @@
 !.prettierrc.json
 !.stylelintrc.json
 !jest.config.js
-!package-lock.json
 !package.json
 !postcss.config.js
+!yarn.lock

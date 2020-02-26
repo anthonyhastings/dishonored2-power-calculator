@@ -12,7 +12,7 @@ WORKDIR /dishonored2-power-calculator
 RUN apk add --no-cache bash curl
 
 # Copy over the package.json and lock file to the containers working directory.
-COPY ./package.json ./package-lock.json ./
+COPY ./package.json ./yarn.lock ./
 
 # Install build dependencies (required for imagemin), install packages then delete build dependencies.
 # This is all done in the same command / layer so when it caches, it won't bloat the image size.
@@ -27,14 +27,15 @@ RUN apk add --no-cache --virtual image-build-deps \
     python \
     nasm \
     && apk add --no-cache libpng-dev \
-    && npm install \
+    && yarn install \
+    && yarn cache clean \
     && apk del image-build-deps
 
 # Copy everything (that hasn't been ignored by dockerignore) in the host folder into the working folder.
 COPY . ./
 
 # Build assets for production.
-RUN npm run build
+RUN yarn build
 
 # Run the express server.
-CMD npm start
+CMD yarn start
