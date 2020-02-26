@@ -40,7 +40,7 @@ describe('CharacterSelection component', () => {
       );
     });
 
-    it('renders a heading with sub-areas for each character', () => {
+    it('renders a heading and character grid', () => {
       expect(testContext.component).toMatchSnapshot();
     });
   });

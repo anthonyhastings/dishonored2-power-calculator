@@ -1,51 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CharacterSelection component when rendered renders a heading with sub-areas for each character 1`] = `
+exports[`CharacterSelection component when rendered renders a heading and character grid 1`] = `
 <section
-  className="characterSelection__container"
+  className="character-selection"
 >
-  <h1>
-    Character Selection
+  <h1
+    className="character-selection__title"
+  >
+    Choose your character
   </h1>
   <div
-    className="character__container"
+    className="character-selection__grid"
   >
-    <h2
-      className="character__name"
+    <div
+      className="character-selection__grid-element character"
     >
-      Adam Jensen
-    </h2>
-    <p
-      className="character__description"
+      <img
+        alt="Portrait of Adam Jensen"
+        className="character__portrait"
+        draggable="false"
+      />
+      <div
+        className="character__overlay"
+      >
+        <h2
+          className="character__name"
+        >
+          Adam Jensen
+        </h2>
+        <p
+          className="character__description"
+        >
+          Task Force 29 operative.
+        </p>
+        <MockLink
+          className="character__button"
+          to="/dummy-slug/powers"
+        >
+          Choose 
+          Adam Jensen
+        </MockLink>
+      </div>
+    </div>
+    <div
+      className="character-selection__grid-element character"
     >
-      Task Force 29 operative.
-    </p>
-    <MockLink
-      to="/dummy-slug/powers"
-    >
-      Choose 
-      Adam Jensen
-    </MockLink>
-  </div>
-  <div
-    className="character__container"
-  >
-    <h2
-      className="character__name"
-    >
-      Scott Ryder
-    </h2>
-    <p
-      className="character__description"
-    >
-      The pathfinder.
-    </p>
-    <MockLink
-      to="/fake-slug/powers"
-    >
-      Choose 
-      Scott Ryder
-    </MockLink>
+      <img
+        alt="Portrait of Scott Ryder"
+        className="character__portrait"
+        draggable="false"
+      />
+      <div
+        className="character__overlay"
+      >
+        <h2
+          className="character__name"
+        >
+          Scott Ryder
+        </h2>
+        <p
+          className="character__description"
+        >
+          The pathfinder.
+        </p>
+        <MockLink
+          className="character__button"
+          to="/fake-slug/powers"
+        >
+          Choose 
+          Scott Ryder
+        </MockLink>
+      </div>
+    </div>
   </div>
 </section>
 `;
