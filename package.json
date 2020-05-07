@@ -11,7 +11,7 @@
     "eslint-check": "eslint --print-config src/components/app/container/index.js | eslint-config-prettier-check",
     "lint": "yarn run lint:css && yarn run lint:js",
     "lint:css": "stylelint src/**/*.scss",
-    "lint:js": "eslint --ext js --ext mjs server/ src/ support/ webpack/ jest.config.js postcss.config.js",
+    "lint:js": "eslint --ext js --ext mjs server/ src/ support/ webpack/ jest.config.mjs postcss.config.js",
     "pretest": "yarn run lint",
     "start": "node --experimental-json-modules server/index.mjs",
     "test": "jest",

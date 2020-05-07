@@ -1,4 +1,4 @@
-module.exports = {
+const configuration = {
   cacheDirectory: './jest-cache',
   collectCoverage: true,
   coverageDirectory: './jest-coverage',
@@ -19,3 +19,5 @@ module.exports = {
   },
   verbose: true
 };
+
+export default configuration;
