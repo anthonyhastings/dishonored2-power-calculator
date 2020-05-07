@@ -60,7 +60,11 @@
       ],
       "plugins": [
         "jest"
-      ]
+      ],
+      "rules": {
+        "jest/require-top-level-describe": "error",
+        "jest/valid-title": "error"
+      }
     },
     {
       "files": [
