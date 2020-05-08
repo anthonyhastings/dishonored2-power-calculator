@@ -39,8 +39,6 @@ module.exports = function(env = {}) {
           }
         }),
         new TerserPlugin({
-          cache: true,
-          parallel: true,
           sourceMap: true
         })
       ],
