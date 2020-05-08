@@ -8,7 +8,7 @@
 
   &__header {
     align-items: center;
-    background-color: map-get($colours, mineShaft);
+    background-color: map-get($colours, mine-shaft);
     display: flex;
     flex-direction: column-reverse;
     justify-content: flex-start;
