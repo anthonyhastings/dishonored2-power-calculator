@@ -48,6 +48,7 @@ module.exports = function(environment) {
             {
               loader: 'file-loader',
               options: {
+                esModule: false, // TODO: REMOVE ONCE WEBMANIFEST-LOADER PLUGIN IS REPLACE WITH SOMETHING THAT SUPPORTS ES MODULES.
                 outputPath: 'images/',
                 name: isDev ? '[name].[ext]' : '[name].[contenthash].[ext]'
               }
@@ -60,6 +61,7 @@ module.exports = function(environment) {
             {
               loader: 'file-loader',
               options: {
+                esModule: false, // TODO: REMOVE ONCE WEBMANIFEST-LOADER PLUGIN IS REPLACE WITH SOMETHING THAT SUPPORTS ES MODULES.
                 name: isDev ? '[name].[ext]' : '[name].[contenthash].[ext]'
               }
             },
