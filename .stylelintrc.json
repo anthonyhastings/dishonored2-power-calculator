@@ -10,6 +10,7 @@
     "at-rule-no-unknown": null,
     "color-hex-case": "upper",
     "color-hex-length": "long",
+    "comment-no-empty": true,
     "order/properties-alphabetical-order": true,
     "scss/at-rule-no-unknown": true
   }
