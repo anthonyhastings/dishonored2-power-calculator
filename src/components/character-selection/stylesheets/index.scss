@@ -89,7 +89,7 @@ $characterNamespace: 'character';
   }
 
   &__button {
-    background-color: map-get($colours, mineShaft);
+    background-color: map-get($colours, mine-shaft);
     border: 0.1rem solid map-get($colours, tundora);
     border-radius: 0.25rem;
     color: map-get($colours, white);
@@ -105,7 +105,7 @@ $characterNamespace: 'character';
 
     &:hover {
       background-color: map-get($colours, tundora);
-      border-color: map-get($colours, mineShaft);
+      border-color: map-get($colours, mine-shaft);
     }
   }
 }
