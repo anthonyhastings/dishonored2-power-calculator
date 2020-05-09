@@ -35,7 +35,7 @@ exports[`CharacterSelection component when rendered renders a heading and charac
         </p>
         <MockLink
           className="character__button"
-          to="/dummy-slug/powers"
+          to="/powers/dummy-slug"
         >
           Choose 
           Adam Jensen
@@ -65,7 +65,7 @@ exports[`CharacterSelection component when rendered renders a heading and charac
         </p>
         <MockLink
           className="character__button"
-          to="/fake-slug/powers"
+          to="/powers/fake-slug"
         >
           Choose 
           Scott Ryder

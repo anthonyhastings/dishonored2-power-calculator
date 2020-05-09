@@ -1,16 +1,10 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Link } from 'react-router-dom';
-import corvoPortrait from './images/corvo.jpg';
-import emilyPortrait from './images/emily.jpg';
+import characterSlugToPortrait from 'Constants/character-slug-to-portrait';
 import './stylesheets/index.scss';
 
 const characterNamespace = 'character';
-
-const slugsToPortraits = new Map([
-  ['corvo', corvoPortrait],
-  ['emily', emilyPortrait]
-]);
 
 const CharacterSelection = ({ characters }) => {
   return (
@@ -25,7 +19,7 @@ const CharacterSelection = ({ characters }) => {
             <img
               className={`${characterNamespace}__portrait`}
               draggable="false"
-              src={slugsToPortraits.get(character.get('slug'))}
+              src={characterSlugToPortrait.get(character.get('slug'))}
               alt={`Portrait of ${character.get('name')}`}
             />
             <div className={`${characterNamespace}__overlay`}>
@@ -37,7 +31,7 @@ const CharacterSelection = ({ characters }) => {
               </p>
               <Link
                 className={`${characterNamespace}__button`}
-                to={`/${character.get('slug')}/powers`}
+                to={`/powers/${character.get('slug')}`}
               >
                 Choose {character.get('name')}
               </Link>

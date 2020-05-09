@@ -35,7 +35,7 @@ const App = ({ onComponentDidMount, showError, showLoader }) => {
               <Route exact path="/">
                 <CharacterSelection />
               </Route>
-              <Route path="/:characterSlug/powers">
+              <Route path="/powers/:characterSlug">
                 <PowerSelectionRouteValidation />
               </Route>
               <Route>

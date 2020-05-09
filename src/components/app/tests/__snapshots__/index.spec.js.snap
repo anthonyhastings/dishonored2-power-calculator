@@ -34,7 +34,7 @@ exports[`App component when rendered renders a header area and top-level routes 
           <MockCharacterSelection />
         </MockRoute>
         <MockRoute
-          path="/:characterSlug/powers"
+          path="/powers/:characterSlug"
         >
           <MockPowerSelectionRouteValidation />
         </MockRoute>
