@@ -50,7 +50,7 @@ module.exports = function(environment) {
               loader: 'file-loader',
               options: {
                 outputPath: 'images/',
-                name: isDev ? '[name].[ext]' : '[name].[contenthash].[ext]'
+                name: '[name].[contenthash].[ext]'
               }
             }
           ]
