@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -48,25 +49,9 @@ module.exports = function(environment) {
             {
               loader: 'file-loader',
               options: {
-                esModule: false, // TODO: REMOVE ONCE WEBMANIFEST-LOADER PLUGIN IS REPLACE WITH SOMETHING THAT SUPPORTS ES MODULES.
                 outputPath: 'images/',
                 name: isDev ? '[name].[ext]' : '[name].[contenthash].[ext]'
               }
-            }
-          ]
-        },
-        {
-          test: /\.webmanifest$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                esModule: false, // TODO: REMOVE ONCE WEBMANIFEST-LOADER PLUGIN IS REPLACE WITH SOMETHING THAT SUPPORTS ES MODULES.
-                name: isDev ? '[name].[ext]' : '[name].[contenthash].[ext]'
-              }
-            },
-            {
-              loader: 'webmanifest-loader'
             }
           ]
         }
@@ -93,7 +78,22 @@ module.exports = function(environment) {
       new MiniCssExtractPlugin({
         chunkFilename: isDev ? '[name].css' : 'css/[name].[contenthash].css',
         filename: isDev ? '[id].css' : 'css/[name].[contenthash].css'
-      })
+      }),
+      new CopyWebpackPlugin(
+        [
+          {
+            from: paths.manifests,
+            to: './'
+          },
+          {
+            from: `${paths.images}/manifest`,
+            to: 'images/manifest/'
+          }
+        ],
+        {
+          logLevel: 'debug'
+        }
+      )
     ],
     resolve: {
       alias: {
