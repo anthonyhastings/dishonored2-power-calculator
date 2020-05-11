@@ -7,7 +7,7 @@ export const mapStateToProps = (state, ownProps) => {
   const characterSlug = ownProps.match.params.characterSlug;
 
   return {
-    character: characterBySlugSelector(state, characterSlug)
+    character: characterBySlugSelector(state, characterSlug),
   };
 };
 

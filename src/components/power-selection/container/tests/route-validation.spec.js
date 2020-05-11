@@ -1,7 +1,7 @@
 import Container from '../route-validation';
 
 jest.mock('Src/selectors', () => ({
-  characterBySlugSelector: jest.fn().mockReturnValue('characterBySlugSelector')
+  characterBySlugSelector: jest.fn().mockReturnValue('characterBySlugSelector'),
 }));
 
 jest.mock('../../route-validation', () => 'MockComponent');
@@ -13,12 +13,12 @@ describe('PowerSelectionRouteValidation container', () => {
         Container.mapStateToProps(null, {
           match: {
             params: {
-              characterSlug: 'fake-slug'
-            }
-          }
+              characterSlug: 'fake-slug',
+            },
+          },
         })
       ).toEqual({
-        character: 'characterBySlugSelector'
+        character: 'characterBySlugSelector',
       });
     });
   });

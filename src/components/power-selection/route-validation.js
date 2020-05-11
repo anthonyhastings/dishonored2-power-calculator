@@ -10,7 +10,7 @@ const PowerValidationRouteValidation = ({ character }) => {
 };
 
 PowerValidationRouteValidation.propTypes = {
-  character: ImmutablePropTypes.map
+  character: ImmutablePropTypes.map,
 };
 
 export default PowerValidationRouteValidation;

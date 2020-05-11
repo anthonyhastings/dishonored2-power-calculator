@@ -1,15 +1,15 @@
 import Container from '../';
 
 jest.mock('react-hot-loader/root', () => ({
-  hot: (component) => component
+  hot: (component) => component,
 }));
 
 jest.mock('Reducers/characters', () => ({
-  getCharacters: () => 'MockGetCharactersAction'
+  getCharacters: () => 'MockGetCharactersAction',
 }));
 
 jest.mock('Reducers/powers', () => ({
-  getPowers: () => 'MockGetPowersAction'
+  getPowers: () => 'MockGetPowersAction',
 }));
 
 jest.mock('Src/selectors', () => ({
@@ -18,7 +18,7 @@ jest.mock('Src/selectors', () => ({
     .mockReturnValue('hasInitialDataFailedSelector'),
   isInitialDataIncompleteSelector: jest
     .fn()
-    .mockReturnValue('isInitialDataIncompleteSelector')
+    .mockReturnValue('isInitialDataIncompleteSelector'),
 }));
 
 jest.mock('../../', () => 'MockComponent');
@@ -28,7 +28,7 @@ describe('App container', () => {
     it('returns expected key/value pairings', () => {
       expect(Container.mapStateToProps()).toEqual({
         showError: 'hasInitialDataFailedSelector',
-        showLoader: 'isInitialDataIncompleteSelector'
+        showLoader: 'isInitialDataIncompleteSelector',
       });
     });
   });

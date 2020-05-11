@@ -5,23 +5,23 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const paths = require('../support/paths');
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   const isDev = environment === 'development';
 
   return {
     entry: {
-      app: './src/index.js'
+      app: './src/index.js',
     },
     output: {
       path: paths.dist,
-      publicPath: '/'
+      publicPath: '/',
     },
     module: {
       rules: [
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
-          loader: 'babel-loader'
+          loader: 'babel-loader',
         },
         {
           test: /\.(sa|sc|c)ss$/,
@@ -29,19 +29,19 @@ module.exports = function(environment) {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                hmr: isDev
-              }
+                hmr: isDev,
+              },
             },
             {
-              loader: 'css-loader'
+              loader: 'css-loader',
             },
             {
-              loader: 'postcss-loader'
+              loader: 'postcss-loader',
             },
             {
-              loader: 'sass-loader'
-            }
-          ]
+              loader: 'sass-loader',
+            },
+          ],
         },
         {
           test: /\.(svg|png|jpg|jpeg|gif)$/,
@@ -50,16 +50,16 @@ module.exports = function(environment) {
               loader: 'file-loader',
               options: {
                 outputPath: 'images/',
-                name: '[name].[contenthash].[ext]'
-              }
-            }
-          ]
-        }
-      ]
+                name: '[name].[contenthash].[ext]',
+              },
+            },
+          ],
+        },
+      ],
     },
     plugins: [
       new CleanWebpackPlugin({
-        verbose: true
+        verbose: true,
       }),
       new webpack.HashedModuleIdsPlugin(),
       new HtmlWebpackPlugin({
@@ -69,31 +69,31 @@ module.exports = function(environment) {
         meta: [
           {
             name: 'google-site-verification',
-            content: process.env.GOOGLE_SITE_VERIFICATION_TOKEN
-          }
+            content: process.env.GOOGLE_SITE_VERIFICATION_TOKEN,
+          },
         ],
         minify: false,
-        template: 'html/index.html'
+        template: 'html/index.html',
       }),
       new MiniCssExtractPlugin({
         chunkFilename: isDev ? '[name].css' : 'css/[name].[contenthash].css',
-        filename: isDev ? '[id].css' : 'css/[name].[contenthash].css'
+        filename: isDev ? '[id].css' : 'css/[name].[contenthash].css',
       }),
       new CopyWebpackPlugin(
         [
           {
             from: paths.manifests,
-            to: './'
+            to: './',
           },
           {
             from: `${paths.images}/manifest`,
-            to: 'images/manifest/'
-          }
+            to: 'images/manifest/',
+          },
         ],
         {
-          logLevel: 'debug'
+          logLevel: 'debug',
         }
-      )
+      ),
     ],
     resolve: {
       alias: {
@@ -102,8 +102,8 @@ module.exports = function(environment) {
         Constants: paths.constants,
         Images: paths.images,
         Reducers: paths.reducers,
-        Src: paths.src
-      }
-    }
+        Src: paths.src,
+      },
+    },
   };
 };

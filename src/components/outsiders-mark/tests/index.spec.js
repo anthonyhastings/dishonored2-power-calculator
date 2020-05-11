@@ -25,7 +25,7 @@ describe('OutsidersMark component', () => {
     beforeEach(() => {
       testContext.component = renderer.create(
         renderComponent({
-          animated: true
+          animated: true,
         })
       );
     });
@@ -39,7 +39,7 @@ describe('OutsidersMark component', () => {
     beforeEach(() => {
       testContext.component = renderer.create(
         renderComponent({
-          className: 'hello-world'
+          className: 'hello-world',
         })
       );
     });

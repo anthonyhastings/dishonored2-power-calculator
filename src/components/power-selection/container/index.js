@@ -8,7 +8,7 @@ import {
   clearPurchases,
   addPurchase,
   removePurchases,
-  removePurchase
+  removePurchase,
 } from 'Reducers/user';
 
 export const mapStateToProps = (state, ownProps) => ({
@@ -16,14 +16,14 @@ export const mapStateToProps = (state, ownProps) => ({
   topLevelPowers: topLevelPowersByCharacterIdSelector(
     state,
     ownProps.match.params.characterId
-  )
+  ),
 });
 
 export const mapDispatchToProps = (dispatch) => ({
   clearPurchases: bindActionCreators(clearPurchases, dispatch),
   addPurchase: bindActionCreators(addPurchase, dispatch),
   removePurchases: bindActionCreators(removePurchases, dispatch),
-  removePurchase: bindActionCreators(removePurchase, dispatch)
+  removePurchase: bindActionCreators(removePurchase, dispatch),
 });
 
 export default withRouter(

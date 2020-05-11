@@ -5,7 +5,7 @@ import './stylesheets/index.scss';
 
 class PowerSelection extends React.Component {
   static propTypes = {
-    clearPurchases: PropTypes.func.isRequired
+    clearPurchases: PropTypes.func.isRequired,
   };
 
   componentDidMount() {

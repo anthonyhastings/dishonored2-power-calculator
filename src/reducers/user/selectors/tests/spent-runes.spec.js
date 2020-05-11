@@ -7,20 +7,20 @@ describe('#spentRunesTransform', () => {
   const powersAndEnhancements = Immutable.fromJS({
     'uuid-01': {
       name: 'Power #01',
-      cost: 3
+      cost: 3,
     },
     'uuid-02': {
       name: 'Power #02',
-      cost: 4
+      cost: 4,
     },
     'uuid-03': {
       name: 'Power #03',
-      cost: 5
+      cost: 5,
     },
     'uuid-04': {
       name: 'Enhancement #04',
-      cost: 2
-    }
+      cost: 2,
+    },
   });
 
   beforeEach(() => {
@@ -31,11 +31,11 @@ describe('#spentRunesTransform', () => {
     beforeEach(() => {
       state = Immutable.fromJS({
         powers: {
-          data: powersAndEnhancements
+          data: powersAndEnhancements,
         },
         user: {
-          purchases: []
-        }
+          purchases: [],
+        },
       });
     });
 
@@ -48,11 +48,11 @@ describe('#spentRunesTransform', () => {
     beforeEach(() => {
       state = Immutable.fromJS({
         powers: {
-          data: powersAndEnhancements
+          data: powersAndEnhancements,
         },
         user: {
-          purchases: ['uuid-01', 'uuid-03', 'uuid-04']
-        }
+          purchases: ['uuid-01', 'uuid-03', 'uuid-04'],
+        },
       });
     });
 
@@ -65,11 +65,11 @@ describe('#spentRunesTransform', () => {
     beforeEach(() => {
       state = Immutable.fromJS({
         powers: {
-          data: powersAndEnhancements
+          data: powersAndEnhancements,
         },
         user: {
-          purchases: ['non-existent-id']
-        }
+          purchases: ['non-existent-id'],
+        },
       });
 
       spentRunesSelector(state);

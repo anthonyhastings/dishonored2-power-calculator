@@ -21,7 +21,7 @@ const Loader = ({ children, showError = false, showLoader = false }) => {
 Loader.propTypes = {
   children: PropTypes.element,
   showError: PropTypes.bool,
-  showLoader: PropTypes.bool
+  showLoader: PropTypes.bool,
 };
 
 export default Loader;

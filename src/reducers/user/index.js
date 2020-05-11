@@ -6,21 +6,21 @@ const ADD_PURCHASE = 'ADD_PURCHASE';
 const REMOVE_PURCHASES = 'REMOVE_PURCHASES';
 
 export const clearPurchases = () => ({
-  type: CLEAR_PURCHASES
+  type: CLEAR_PURCHASES,
 });
 
 export const addPurchase = (powerId) => ({
   type: ADD_PURCHASE,
-  powerId
+  powerId,
 });
 
 export const removePurchases = (powerIds = Immutable.List()) => ({
   type: REMOVE_PURCHASES,
-  powerIds
+  powerIds,
 });
 
 export const removePurchase = (powerId) => {
-  return function(dispatch, getState) {
+  return function (dispatch, getState) {
     const state = getState();
     const powerIds = flattenedPowerTreeIdsSelector(state, powerId);
 
@@ -29,10 +29,10 @@ export const removePurchase = (powerId) => {
 };
 
 export const defaultState = Immutable.fromJS({
-  purchases: Immutable.List()
+  purchases: Immutable.List(),
 });
 
-export default function(state = defaultState, action) {
+export default function (state = defaultState, action) {
   switch (action.type) {
     case CLEAR_PURCHASES: {
       return state.set('purchases', defaultState.get('purchases'));

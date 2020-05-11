@@ -21,7 +21,7 @@ describe('Loader component', () => {
     beforeEach(() => {
       testContext.component = renderer.create(
         renderComponent({
-          showError: true
+          showError: true,
         })
       );
     });
@@ -35,7 +35,7 @@ describe('Loader component', () => {
     beforeEach(() => {
       testContext.component = renderer.create(
         renderComponent({
-          showLoader: true
+          showLoader: true,
         })
       );
     });
@@ -50,7 +50,7 @@ describe('Loader component', () => {
       testContext.component = renderer.create(
         renderComponent({
           showError: false,
-          showLoader: false
+          showLoader: false,
         })
       );
     });

@@ -52,7 +52,7 @@ const App = ({ onComponentDidMount, showError, showLoader }) => {
 App.propTypes = {
   onComponentDidMount: PropTypes.func.isRequired,
   showError: PropTypes.bool.isRequired,
-  showLoader: PropTypes.bool.isRequired
+  showLoader: PropTypes.bool.isRequired,
 };
 
 export default App;

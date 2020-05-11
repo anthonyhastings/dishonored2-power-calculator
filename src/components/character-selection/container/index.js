@@ -3,7 +3,7 @@ import Component from '../';
 import { charactersDataSelector } from 'Src/selectors';
 
 const mapStateToProps = (state) => ({
-  characters: charactersDataSelector(state)
+  characters: charactersDataSelector(state),
 });
 
 export default connect(mapStateToProps)(Component);

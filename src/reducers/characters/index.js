@@ -9,19 +9,19 @@ export const GET_CHARACTERS_FAILURE = 'GET_CHARACTERS_FAILURE';
 export const GET_CHARACTERS_SUCCESS = 'GET_CHARACTERS_SUCCESS';
 
 export const getCharactersPending = () => ({
-  type: GET_CHARACTERS_PENDING
+  type: GET_CHARACTERS_PENDING,
 });
 
 export const getCharactersFailure = () => ({
   type: GET_CHARACTERS_FAILURE,
-  error: true
+  error: true,
 });
 
 export const getCharactersSuccess = (characters) => ({
   type: GET_CHARACTERS_SUCCESS,
   payload: {
-    characters
-  }
+    characters,
+  },
 });
 
 export const getCharacters = () => {
@@ -39,7 +39,7 @@ export const getCharacters = () => {
             id: character.get('id'),
             slug: character.getIn(['attributes', 'slug']),
             name: character.getIn(['attributes', 'name']),
-            description: character.getIn(['attributes', 'description'])
+            description: character.getIn(['attributes', 'description']),
           })
         );
       }, Immutable.Map());
@@ -52,10 +52,10 @@ export const getCharacters = () => {
 };
 
 const defaultState = Immutable.fromJS({
-  requestStatus: requestStatuses.idle
+  requestStatus: requestStatuses.idle,
 });
 
-export default function(state = defaultState, action = {}) {
+export default function (state = defaultState, action = {}) {
   switch (action.type) {
     case GET_CHARACTERS_PENDING: {
       return state.set('requestStatus', requestStatuses.pending);

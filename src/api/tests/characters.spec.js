@@ -13,7 +13,7 @@ describe('Characters API requests', () => {
   describe('#getCharacters', () => {
     beforeEach(async () => {
       moxios.stubRequest('/characters.json', {
-        status: 200
+        status: 200,
       });
 
       await api.getCharacters();
@@ -21,7 +21,7 @@ describe('Characters API requests', () => {
 
     it('calls API with correct settings', () => {
       expect(moxios.requests.mostRecent().config).toMatchObject({
-        url: '/characters.json'
+        url: '/characters.json',
       });
     });
   });

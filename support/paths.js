@@ -11,5 +11,5 @@ module.exports = {
   manifests: path.join(projectRoot, 'manifests'),
   reducers: path.join(projectRoot, 'src/reducers'),
   server: path.join(projectRoot, 'server'),
-  src: path.join(projectRoot, 'src')
+  src: path.join(projectRoot, 'src'),
 };

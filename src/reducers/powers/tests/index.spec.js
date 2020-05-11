@@ -11,11 +11,11 @@ import reducer, {
   getPowers,
   getPowersPending,
   getPowersFailure,
-  getPowersSuccess
+  getPowersSuccess,
 } from '../';
 
 jest.mock('Api/powers', () => ({
-  getPowers: jest.fn()
+  getPowers: jest.fn(),
 }));
 
 describe('Powers reducer', () => {
@@ -29,7 +29,7 @@ describe('Powers reducer', () => {
     it('should return default state', () => {
       expect(reducer()).toEqual(
         Immutable.Map({
-          requestStatus: requestStatuses.idle
+          requestStatus: requestStatuses.idle,
         })
       );
     });
@@ -43,7 +43,7 @@ describe('Powers reducer', () => {
     it('sets request status to pending', () => {
       expect(testContext.state).toEqual(
         Immutable.Map({
-          requestStatus: requestStatuses.pending
+          requestStatus: requestStatuses.pending,
         })
       );
     });
@@ -57,7 +57,7 @@ describe('Powers reducer', () => {
     it('sets request status to failure', () => {
       expect(testContext.state).toEqual(
         Immutable.Map({
-          requestStatus: requestStatuses.failure
+          requestStatus: requestStatuses.failure,
         })
       );
     });
@@ -75,7 +75,7 @@ describe('Powers reducer', () => {
       expect(testContext.state).toEqual(
         Immutable.Map({
           data: 'hello-world',
-          requestStatus: requestStatuses.success
+          requestStatus: requestStatuses.success,
         })
       );
     });
@@ -106,7 +106,7 @@ describe('Powers action creators', () => {
 
       it('fires a requested action', () => {
         expect(testContext.mockStore.getActions()[0]).toEqual({
-          type: GET_POWERS_PENDING
+          type: GET_POWERS_PENDING,
         });
       });
     });
@@ -115,7 +115,7 @@ describe('Powers action creators', () => {
       beforeEach(() => {
         getPowersMock.mockReturnValue(
           Promise.resolve({
-            data: getPowersSuccessResponse
+            data: getPowersSuccessResponse,
           })
         );
         testContext.mockStore.dispatch(getPowers());
@@ -135,7 +135,7 @@ describe('Powers action creators', () => {
                   type: 'fake-type-01',
                   name: 'fake-name-01',
                   description: 'fake-description-01',
-                  cost: 1
+                  cost: 1,
                 },
                 'fake-uuid-02': {
                   id: 'fake-uuid-02',
@@ -144,11 +144,11 @@ describe('Powers action creators', () => {
                   type: 'fake-type-02',
                   name: 'fake-name-02',
                   description: 'fake-description-02',
-                  cost: 2
-                }
-              })
-            }
-          }
+                  cost: 2,
+                },
+              }),
+            },
+          },
         ]);
       });
     });
@@ -164,8 +164,8 @@ describe('Powers action creators', () => {
           { type: GET_POWERS_PENDING },
           {
             type: GET_POWERS_FAILURE,
-            error: true
-          }
+            error: true,
+          },
         ]);
       });
     });
@@ -174,7 +174,7 @@ describe('Powers action creators', () => {
   describe('#getPowersPending', () => {
     it('creates an action', () => {
       expect(getPowersPending()).toEqual({
-        type: GET_POWERS_PENDING
+        type: GET_POWERS_PENDING,
       });
     });
   });
@@ -183,7 +183,7 @@ describe('Powers action creators', () => {
     it('creates an action', () => {
       expect(getPowersFailure()).toEqual({
         type: GET_POWERS_FAILURE,
-        error: true
+        error: true,
       });
     });
   });
@@ -193,8 +193,8 @@ describe('Powers action creators', () => {
       expect(getPowersSuccess('hello-world')).toEqual({
         type: GET_POWERS_SUCCESS,
         payload: {
-          powers: 'hello-world'
-        }
+          powers: 'hello-world',
+        },
       });
     });
   });

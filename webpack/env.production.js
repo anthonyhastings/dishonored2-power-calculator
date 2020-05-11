@@ -6,13 +6,13 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const baseConfig = require('./base');
 
-module.exports = function(env = {}) {
+module.exports = function (env = {}) {
   const productionConfig = webpackMerge(baseConfig('production'), {
     mode: 'production',
     devtool: 'source-map',
     output: {
       chunkFilename: 'js/[name].[contenthash].js',
-      filename: 'js/[name].[contenthash].js'
+      filename: 'js/[name].[contenthash].js',
     },
     optimization: {
       minimizer: [
@@ -20,27 +20,27 @@ module.exports = function(env = {}) {
           pngquant: {
             quality: '75-90',
             speed: 4,
-            verbose: true
+            verbose: true,
           },
           svgo: {
             plugins: [
               {
-                removeDimensions: true
-              }
-            ]
-          }
+                removeDimensions: true,
+              },
+            ],
+          },
         }),
         new OptimizeCSSAssetsPlugin({
           cssProcessorOptions: {
             map: {
               annotation: true,
-              inline: false
-            }
-          }
+              inline: false,
+            },
+          },
         }),
         new TerserPlugin({
-          sourceMap: true
-        })
+          sourceMap: true,
+        }),
       ],
       splitChunks: {
         cacheGroups: {
@@ -49,21 +49,21 @@ module.exports = function(env = {}) {
             chunks: 'all',
             enforce: true,
             name: 'vendor',
-            test: /[\\/]node_modules[\\/](?!normalize)/
-          }
-        }
+            test: /[\\/]node_modules[\\/](?!normalize)/,
+          },
+        },
       },
       runtimeChunk: {
-        name: 'manifest'
-      }
-    }
+        name: 'manifest',
+      },
+    },
   });
 
   if (env.stats === 'true') {
     productionConfig.plugins.push(
       new BundleAnalyzerPlugin({
         analyzerMode: 'server',
-        generateStatsFile: true
+        generateStatsFile: true,
       })
     );
   }

@@ -10,7 +10,7 @@ const OutsidersMark = ({ animated = false, className }) => {
   const classes = classNames({
     [namespace]: true,
     [`${namespace}--is-animating`]: animated,
-    [className]: !isEmpty(className)
+    [className]: !isEmpty(className),
   });
 
   return <div aria-hidden="true" className={classes} />;
@@ -18,7 +18,7 @@ const OutsidersMark = ({ animated = false, className }) => {
 
 OutsidersMark.propTypes = {
   animated: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default OutsidersMark;

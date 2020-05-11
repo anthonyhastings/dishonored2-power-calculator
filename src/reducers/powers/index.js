@@ -9,19 +9,19 @@ export const GET_POWERS_FAILURE = 'GET_POWERS_FAILURE';
 export const GET_POWERS_SUCCESS = 'GET_POWERS_SUCCESS';
 
 export const getPowersPending = () => ({
-  type: GET_POWERS_PENDING
+  type: GET_POWERS_PENDING,
 });
 
 export const getPowersFailure = () => ({
   type: GET_POWERS_FAILURE,
-  error: true
+  error: true,
 });
 
 export const getPowersSuccess = (powers) => ({
   type: GET_POWERS_SUCCESS,
   payload: {
-    powers
-  }
+    powers,
+  },
 });
 
 export const getPowers = () => {
@@ -42,7 +42,7 @@ export const getPowers = () => {
             type: power.getIn(['attributes', 'type']),
             name: power.getIn(['attributes', 'name']),
             description: power.getIn(['attributes', 'description']),
-            cost: parseInt(power.getIn(['attributes', 'cost']))
+            cost: parseInt(power.getIn(['attributes', 'cost'])),
           })
         );
       }, Immutable.Map());
@@ -55,10 +55,10 @@ export const getPowers = () => {
 };
 
 const defaultState = Immutable.fromJS({
-  requestStatus: requestStatuses.idle
+  requestStatus: requestStatuses.idle,
 });
 
-export default function(state = defaultState, action = {}) {
+export default function (state = defaultState, action = {}) {
   switch (action.type) {
     case GET_POWERS_PENDING: {
       return state.set('requestStatus', requestStatuses.pending);

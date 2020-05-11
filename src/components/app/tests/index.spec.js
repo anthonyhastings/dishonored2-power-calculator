@@ -5,7 +5,7 @@ import App from '../';
 
 jest.mock('react-router-dom', () => ({
   Switch: 'MockSwitch',
-  Route: 'MockRoute'
+  Route: 'MockRoute',
 }));
 
 jest.mock(
@@ -35,7 +35,7 @@ describe('App component', () => {
     testContext.defaultProps = {
       onComponentDidMount: noop,
       showError: false,
-      showLoader: true
+      showLoader: true,
     };
   });
 
@@ -46,7 +46,7 @@ describe('App component', () => {
       renderer.act(() => {
         testContext.component = renderer.create(
           renderComponent({
-            onComponentDidMount: testContext.onComponentDidMountMock
+            onComponentDidMount: testContext.onComponentDidMountMock,
           })
         );
       });

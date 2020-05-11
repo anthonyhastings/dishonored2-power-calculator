@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import CharacterSelection from '../';
 
 jest.mock('react-router-dom', () => ({
-  Link: 'MockLink'
+  Link: 'MockLink',
 }));
 
 describe('CharacterSelection component', () => {
@@ -21,15 +21,15 @@ describe('CharacterSelection component', () => {
           id: 'dummy-id',
           slug: 'dummy-slug',
           name: 'Adam Jensen',
-          description: 'Task Force 29 operative.'
+          description: 'Task Force 29 operative.',
         },
         fakeUuid: {
           id: 'fake-id',
           slug: 'fake-slug',
           name: 'Scott Ryder',
-          description: 'The pathfinder.'
-        }
-      })
+          description: 'The pathfinder.',
+        },
+      }),
     };
   });
 

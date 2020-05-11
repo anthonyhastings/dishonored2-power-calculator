@@ -44,7 +44,7 @@ const CharacterSelection = ({ characters }) => {
 };
 
 CharacterSelection.propTypes = {
-  characters: ImmutablePropTypes.map.isRequired
+  characters: ImmutablePropTypes.map.isRequired,
 };
 
 export default CharacterSelection;
