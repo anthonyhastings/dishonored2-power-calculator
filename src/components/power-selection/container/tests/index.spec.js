@@ -8,13 +8,13 @@ describe('Power selection container', () => {
     state = Immutable.fromJS({
       powers: {
         data: {
-          abc: { id: 'abc', parentPowerId: null, name: 'Power #01' }
-        }
+          abc: { id: 'abc', parentPowerId: null, name: 'Power #01' },
+        },
       },
       user: {
         totalRunes: 30,
-        purchases: []
-      }
+        purchases: [],
+      },
     });
   });
 
@@ -24,8 +24,8 @@ describe('Power selection container', () => {
     beforeEach(() => {
       const ownProps = {
         match: {
-          params: { characterId: 'de2351c7-f1c3-409d-8973-414d5c37364c' }
-        }
+          params: { characterId: 'de2351c7-f1c3-409d-8973-414d5c37364c' },
+        },
       };
 
       stateProps = mapStateToProps(state, ownProps);

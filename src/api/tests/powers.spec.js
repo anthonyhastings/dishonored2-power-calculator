@@ -13,7 +13,7 @@ describe('Powers API requests', () => {
   describe('#getPowers', () => {
     beforeEach(async () => {
       moxios.stubRequest('/powers.json', {
-        status: 200
+        status: 200,
       });
 
       await api.getPowers();
@@ -21,7 +21,7 @@ describe('Powers API requests', () => {
 
     it('calls API with correct settings', () => {
       expect(moxios.requests.mostRecent().config).toMatchObject({
-        url: '/powers.json'
+        url: '/powers.json',
       });
     });
   });

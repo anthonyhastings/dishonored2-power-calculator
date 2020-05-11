@@ -22,7 +22,7 @@ const storeEnhancer = isProduction
 const rootReducer = combineReducers({
   characters,
   powers,
-  user
+  user,
 });
 
 export default createStore(rootReducer, storeEnhancer);

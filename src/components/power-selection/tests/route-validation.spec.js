@@ -34,7 +34,7 @@ describe('PowerSelectionRouteValidation component', () => {
     beforeEach(() => {
       testContext.component = renderer.create(
         renderComponent({
-          character: Immutable.Map()
+          character: Immutable.Map(),
         })
       );
     });

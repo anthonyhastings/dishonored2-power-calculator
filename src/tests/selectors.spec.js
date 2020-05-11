@@ -13,8 +13,8 @@ describe('Selectors', () => {
     beforeEach(() => {
       testContext.state = Immutable.fromJS({
         characters: {
-          data: 'hello world'
-        }
+          data: 'hello world',
+        },
       });
     });
 
@@ -31,9 +31,9 @@ describe('Selectors', () => {
         characters: {
           data: {
             testKey: { slug: 'non-matching' },
-            fakeKey: { slug: 'matching' }
-          }
-        }
+            fakeKey: { slug: 'matching' },
+          },
+        },
       });
     });
 
@@ -42,7 +42,7 @@ describe('Selectors', () => {
         selectors.characterBySlugSelector(testContext.state, 'matching')
       ).toEqual(
         Immutable.Map({
-          slug: 'matching'
+          slug: 'matching',
         })
       );
     });
@@ -53,8 +53,8 @@ describe('Selectors', () => {
       beforeEach(() => {
         testContext.state = Immutable.fromJS({
           characters: {
-            requestStatus: requestStatuses.idle
-          }
+            requestStatus: requestStatuses.idle,
+          },
         });
       });
 
@@ -69,8 +69,8 @@ describe('Selectors', () => {
       beforeEach(() => {
         testContext.state = Immutable.fromJS({
           characters: {
-            requestStatus: requestStatuses.pending
-          }
+            requestStatus: requestStatuses.pending,
+          },
         });
       });
 
@@ -85,8 +85,8 @@ describe('Selectors', () => {
       beforeEach(() => {
         testContext.state = Immutable.fromJS({
           powers: {
-            requestStatus: requestStatuses.idle
-          }
+            requestStatus: requestStatuses.idle,
+          },
         });
       });
 
@@ -101,8 +101,8 @@ describe('Selectors', () => {
       beforeEach(() => {
         testContext.state = Immutable.fromJS({
           powers: {
-            requestStatus: requestStatuses.pending
-          }
+            requestStatus: requestStatuses.pending,
+          },
         });
       });
 
@@ -131,8 +131,8 @@ describe('Selectors', () => {
       beforeEach(() => {
         testContext.state = Immutable.fromJS({
           characters: {
-            requestStatus: requestStatuses.failure
-          }
+            requestStatus: requestStatuses.failure,
+          },
         });
       });
 
@@ -147,8 +147,8 @@ describe('Selectors', () => {
       beforeEach(() => {
         testContext.state = Immutable.fromJS({
           powers: {
-            requestStatus: requestStatuses.failure
-          }
+            requestStatus: requestStatuses.failure,
+          },
         });
       });
 

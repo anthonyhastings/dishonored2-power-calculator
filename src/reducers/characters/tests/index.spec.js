@@ -11,11 +11,11 @@ import reducer, {
   getCharacters,
   getCharactersPending,
   getCharactersFailure,
-  getCharactersSuccess
+  getCharactersSuccess,
 } from '../';
 
 jest.mock('Api/characters', () => ({
-  getCharacters: jest.fn()
+  getCharacters: jest.fn(),
 }));
 
 describe('Characters reducer', () => {
@@ -29,7 +29,7 @@ describe('Characters reducer', () => {
     it('should return default state', () => {
       expect(reducer()).toEqual(
         Immutable.Map({
-          requestStatus: requestStatuses.idle
+          requestStatus: requestStatuses.idle,
         })
       );
     });
@@ -43,7 +43,7 @@ describe('Characters reducer', () => {
     it('sets request status to pending', () => {
       expect(testContext.state).toEqual(
         Immutable.Map({
-          requestStatus: requestStatuses.pending
+          requestStatus: requestStatuses.pending,
         })
       );
     });
@@ -57,7 +57,7 @@ describe('Characters reducer', () => {
     it('sets request status to failure', () => {
       expect(testContext.state).toEqual(
         Immutable.Map({
-          requestStatus: requestStatuses.failure
+          requestStatus: requestStatuses.failure,
         })
       );
     });
@@ -75,7 +75,7 @@ describe('Characters reducer', () => {
       expect(testContext.state).toEqual(
         Immutable.Map({
           data: 'hello-world',
-          requestStatus: requestStatuses.success
+          requestStatus: requestStatuses.success,
         })
       );
     });
@@ -106,7 +106,7 @@ describe('Characters action creators', () => {
 
       it('fires a requested action', () => {
         expect(testContext.mockStore.getActions()[0]).toEqual({
-          type: GET_CHARACTERS_PENDING
+          type: GET_CHARACTERS_PENDING,
         });
       });
     });
@@ -115,7 +115,7 @@ describe('Characters action creators', () => {
       beforeEach(() => {
         getCharactersMock.mockReturnValue(
           Promise.resolve({
-            data: getCharactersSuccessResponse
+            data: getCharactersSuccessResponse,
           })
         );
         testContext.mockStore.dispatch(getCharacters());
@@ -132,17 +132,17 @@ describe('Characters action creators', () => {
                   id: 'fake-uuid-01',
                   slug: 'fake-slug-01',
                   name: 'fake-name-01',
-                  description: 'fake-description-01'
+                  description: 'fake-description-01',
                 },
                 'fake-uuid-02': {
                   id: 'fake-uuid-02',
                   slug: 'fake-slug-02',
                   name: 'fake-name-02',
-                  description: 'fake-description-02'
-                }
-              })
-            }
-          }
+                  description: 'fake-description-02',
+                },
+              }),
+            },
+          },
         ]);
       });
     });
@@ -158,8 +158,8 @@ describe('Characters action creators', () => {
           { type: GET_CHARACTERS_PENDING },
           {
             type: GET_CHARACTERS_FAILURE,
-            error: true
-          }
+            error: true,
+          },
         ]);
       });
     });
@@ -168,7 +168,7 @@ describe('Characters action creators', () => {
   describe('#getCharactersPending', () => {
     it('creates an action', () => {
       expect(getCharactersPending()).toEqual({
-        type: GET_CHARACTERS_PENDING
+        type: GET_CHARACTERS_PENDING,
       });
     });
   });
@@ -177,7 +177,7 @@ describe('Characters action creators', () => {
     it('creates an action', () => {
       expect(getCharactersFailure()).toEqual({
         type: GET_CHARACTERS_FAILURE,
-        error: true
+        error: true,
       });
     });
   });
@@ -187,8 +187,8 @@ describe('Characters action creators', () => {
       expect(getCharactersSuccess('hello-world')).toEqual({
         type: GET_CHARACTERS_SUCCESS,
         payload: {
-          characters: 'hello-world'
-        }
+          characters: 'hello-world',
+        },
       });
     });
   });

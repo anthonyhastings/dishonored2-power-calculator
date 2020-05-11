@@ -3,13 +3,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const paths = require('../support/paths');
 const baseConfig = require('./base');
 
-module.exports = function() {
+module.exports = function () {
   return webpackMerge(baseConfig('development'), {
     mode: 'development',
     devtool: 'eval-source-map',
     output: {
       chunkFilename: 'js/[name].js',
-      filename: 'js/[name].js'
+      filename: 'js/[name].js',
     },
     plugins: [
       new CopyWebpackPlugin(
@@ -17,18 +17,18 @@ module.exports = function() {
           {
             from: paths.server,
             test: /\.json$/,
-            to: './'
-          }
+            to: './',
+          },
         ],
         {
-          logLevel: 'debug'
+          logLevel: 'debug',
         }
-      )
+      ),
     ],
     resolve: {
       alias: {
-        'react-dom': '@hot-loader/react-dom'
-      }
+        'react-dom': '@hot-loader/react-dom',
+      },
     },
     devServer: {
       compress: true,
@@ -41,7 +41,7 @@ module.exports = function() {
       noInfo: false,
       port: Number(process.env.PORT),
       publicPath: '/',
-      quiet: false
-    }
+      quiet: false,
+    },
   });
 };

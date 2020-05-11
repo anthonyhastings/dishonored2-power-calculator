@@ -3,7 +3,7 @@ import emilyPortrait from 'Images/portraits/emily.jpg';
 
 const slugToPortrait = new Map([
   ['corvo', corvoPortrait],
-  ['emily', emilyPortrait]
+  ['emily', emilyPortrait],
 ]);
 
 export default slugToPortrait;

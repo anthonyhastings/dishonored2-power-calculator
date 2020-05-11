@@ -11,7 +11,7 @@ describe('Characters selectors', () => {
   describe('#dataSelector', () => {
     beforeEach(() => {
       testContext.state = Immutable.fromJS({
-        data: 'foo-bar'
+        data: 'foo-bar',
       });
     });
 
@@ -23,7 +23,7 @@ describe('Characters selectors', () => {
   describe('#requestStatusSelector', () => {
     beforeEach(() => {
       testContext.state = Immutable.fromJS({
-        requestStatus: 'foo-bar'
+        requestStatus: 'foo-bar',
       });
     });
 

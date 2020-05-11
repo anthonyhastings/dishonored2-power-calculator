@@ -11,7 +11,7 @@ describe('Powers selectors', () => {
   describe('#requestStatusSelector', () => {
     beforeEach(() => {
       testContext.state = Immutable.fromJS({
-        requestStatus: 'foo-bar'
+        requestStatus: 'foo-bar',
       });
     });
 

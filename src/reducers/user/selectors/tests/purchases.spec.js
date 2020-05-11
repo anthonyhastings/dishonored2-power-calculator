@@ -7,8 +7,8 @@ describe('#purchasesSelector', () => {
   beforeEach(() => {
     state = Immutable.fromJS({
       user: {
-        purchases: ['uuid-01', 'uuid-02']
-      }
+        purchases: ['uuid-01', 'uuid-02'],
+      },
     });
   });
 
