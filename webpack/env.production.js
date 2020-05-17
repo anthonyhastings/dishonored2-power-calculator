@@ -53,6 +53,7 @@ module.exports = function (env = {}) {
           },
         },
       },
+      moduleIds: 'hashed',
       runtimeChunk: {
         name: 'manifest',
       },
