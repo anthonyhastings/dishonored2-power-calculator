@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -61,7 +60,6 @@ module.exports = function (environment) {
       new CleanWebpackPlugin({
         verbose: true,
       }),
-      new webpack.HashedModuleIdsPlugin(),
       new HtmlWebpackPlugin({
         filename: 'index.html',
         hash: false,
