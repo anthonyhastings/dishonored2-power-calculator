@@ -14,7 +14,6 @@ export const getPowersPending = () => ({
 
 export const getPowersFailure = () => ({
   type: GET_POWERS_FAILURE,
-  error: true,
 });
 
 export const getPowersSuccess = (powers) => ({

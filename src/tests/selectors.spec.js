@@ -25,6 +25,74 @@ describe('Selectors', () => {
     });
   });
 
+  describe('#isInitialDataIncompleteSelector', () => {
+    describe.each([
+      ['characters', 'idle'],
+      ['characters', 'pending'],
+      ['powers', 'idle'],
+      ['powers', 'pending'],
+    ])('when %s request is %s', (dataType, status) => {
+      beforeEach(() => {
+        testContext.state = Immutable.fromJS({
+          [dataType]: {
+            requestStatus: requestStatuses[status],
+          },
+        });
+      });
+
+      it('returns true', () => {
+        expect(
+          selectors.isInitialDataIncompleteSelector(testContext.state)
+        ).toEqual(true);
+      });
+    });
+
+    describe('when neither requests are pending nor idle', () => {
+      beforeEach(() => {
+        testContext.state = Immutable.Map();
+      });
+
+      it('returns false', () => {
+        expect(
+          selectors.isInitialDataIncompleteSelector(testContext.state)
+        ).toEqual(false);
+      });
+    });
+  });
+
+  describe('#hasInitialDataFailedSelector', () => {
+    describe.each([
+      ['characters', 'failure'],
+      ['powers', 'failure'],
+    ])('when %s request is %s', (dataType, status) => {
+      beforeEach(() => {
+        testContext.state = Immutable.fromJS({
+          [dataType]: {
+            requestStatus: requestStatuses[status],
+          },
+        });
+      });
+
+      it('returns true', () => {
+        expect(
+          selectors.hasInitialDataFailedSelector(testContext.state)
+        ).toEqual(true);
+      });
+    });
+
+    describe('when neither request has failed', () => {
+      beforeEach(() => {
+        testContext.state = Immutable.Map();
+      });
+
+      it('returns false', () => {
+        expect(
+          selectors.hasInitialDataFailedSelector(testContext.state)
+        ).toEqual(false);
+      });
+    });
+  });
+
   describe('#characterBySlugSelector', () => {
     beforeEach(() => {
       testContext.state = Immutable.fromJS({
@@ -48,127 +116,118 @@ describe('Selectors', () => {
     });
   });
 
-  describe('#isInitialDataIncompleteSelector', () => {
-    describe('when characters request is idle', () => {
-      beforeEach(() => {
-        testContext.state = Immutable.fromJS({
-          characters: {
-            requestStatus: requestStatuses.idle,
-          },
-        });
-      });
-
-      it('returns true', () => {
-        expect(
-          selectors.isInitialDataIncompleteSelector(testContext.state)
-        ).toEqual(true);
-      });
-    });
-
-    describe('when characters request is pending', () => {
-      beforeEach(() => {
-        testContext.state = Immutable.fromJS({
-          characters: {
-            requestStatus: requestStatuses.pending,
-          },
-        });
-      });
-
-      it('returns true', () => {
-        expect(
-          selectors.isInitialDataIncompleteSelector(testContext.state)
-        ).toEqual(true);
+  describe('#topLevelEnhancementsSelector', () => {
+    beforeEach(() => {
+      testContext.state = Immutable.fromJS({
+        powers: {
+          data: [
+            {
+              id: 1,
+              parentPowerId: null,
+              type: 'enhancement',
+              name: 'Top-level Enhancement',
+            },
+            {
+              id: 2,
+              parentPowerId: 1,
+              type: 'enhancement',
+              name: 'Sub-level Enhancement',
+            },
+            {
+              id: 3,
+              parentPowerId: null,
+              type: 'power',
+              name: 'Top-level Power',
+            },
+          ],
+        },
       });
     });
 
-    describe('when powers request is idle', () => {
-      beforeEach(() => {
-        testContext.state = Immutable.fromJS({
-          powers: {
-            requestStatus: requestStatuses.idle,
+    it('returns Immutable List of top-level enhancements', () => {
+      expect(selectors.topLevelEnhancementsSelector(testContext.state)).toEqual(
+        Immutable.fromJS([
+          {
+            id: 1,
+            parentPowerId: null,
+            type: 'enhancement',
+            name: 'Top-level Enhancement',
           },
-        });
-      });
-
-      it('returns true', () => {
-        expect(
-          selectors.isInitialDataIncompleteSelector(testContext.state)
-        ).toEqual(true);
-      });
-    });
-
-    describe('when powers request is pending', () => {
-      beforeEach(() => {
-        testContext.state = Immutable.fromJS({
-          powers: {
-            requestStatus: requestStatuses.pending,
-          },
-        });
-      });
-
-      it('returns true', () => {
-        expect(
-          selectors.isInitialDataIncompleteSelector(testContext.state)
-        ).toEqual(true);
-      });
-    });
-
-    describe('when neither request is pending nor idle', () => {
-      beforeEach(() => {
-        testContext.state = Immutable.Map();
-      });
-
-      it('returns false', () => {
-        expect(
-          selectors.isInitialDataIncompleteSelector(testContext.state)
-        ).toEqual(false);
-      });
+        ])
+      );
     });
   });
 
-  describe('#hasInitialDataFailedSelector', () => {
-    describe('when characters request is failure', () => {
-      beforeEach(() => {
-        testContext.state = Immutable.fromJS({
-          characters: {
-            requestStatus: requestStatuses.failure,
+  describe('#topLevelPowersByCharacterSlugSelector', () => {
+    beforeEach(() => {
+      testContext.state = Immutable.fromJS({
+        characters: {
+          data: {
+            'character-123': {
+              id: 'character-123',
+              slug: 'fake-character-slug',
+            },
           },
-        });
-      });
-
-      it('returns true', () => {
-        expect(
-          selectors.hasInitialDataFailedSelector(testContext.state)
-        ).toEqual(true);
+        },
+        powers: {
+          data: {
+            'power-1': {
+              id: 'power-1',
+              characterId: null,
+              parentPowerId: null,
+              type: 'power',
+              name: 'Top-level Generic Power',
+            },
+            'power-2': {
+              id: 'power-2',
+              characterId: 'character-123',
+              parentPowerId: null,
+              type: 'power',
+              name: 'Top-level Relevant Power',
+            },
+            'power-3': {
+              id: 'power-3',
+              characterId: 456,
+              parentPowerId: null,
+              type: 'power',
+              name: 'Top-level Irrelevant Power',
+            },
+            'power-4': {
+              id: 'power-4',
+              characterId: null,
+              parentPowerId: null,
+              type: 'enhancement',
+              name: 'Top-level Enhancement',
+            },
+          },
+        },
       });
     });
 
-    describe('when powers request is failure', () => {
-      beforeEach(() => {
-        testContext.state = Immutable.fromJS({
-          powers: {
-            requestStatus: requestStatuses.failure,
+    it('returns Immutable List of top-level owned or generic powers', () => {
+      expect(
+        selectors.topLevelPowersByCharacterSlugSelector(
+          testContext.state,
+          'fake-character-slug'
+        )
+      ).toEqual(
+        Immutable.fromJS([
+          {
+            id: 'power-1',
+            characterId: null,
+            parentPowerId: null,
+            type: 'power',
+            name: 'Top-level Generic Power',
           },
-        });
-      });
-
-      it('returns true', () => {
-        expect(
-          selectors.hasInitialDataFailedSelector(testContext.state)
-        ).toEqual(true);
-      });
-    });
-
-    describe('when neither request has failed', () => {
-      beforeEach(() => {
-        testContext.state = Immutable.Map();
-      });
-
-      it('returns false', () => {
-        expect(
-          selectors.hasInitialDataFailedSelector(testContext.state)
-        ).toEqual(false);
-      });
+          {
+            id: 'power-2',
+            characterId: 'character-123',
+            parentPowerId: null,
+            type: 'power',
+            name: 'Top-level Relevant Power',
+          },
+        ])
+      );
     });
   });
 });
