@@ -164,7 +164,6 @@ describe('Powers action creators', () => {
           { type: GET_POWERS_PENDING },
           {
             type: GET_POWERS_FAILURE,
-            error: true,
           },
         ]);
       });
@@ -183,7 +182,6 @@ describe('Powers action creators', () => {
     it('creates an action', () => {
       expect(getPowersFailure()).toEqual({
         type: GET_POWERS_FAILURE,
-        error: true,
       });
     });
   });

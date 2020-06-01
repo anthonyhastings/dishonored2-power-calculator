@@ -158,7 +158,6 @@ describe('Characters action creators', () => {
           { type: GET_CHARACTERS_PENDING },
           {
             type: GET_CHARACTERS_FAILURE,
-            error: true,
           },
         ]);
       });
@@ -177,7 +176,6 @@ describe('Characters action creators', () => {
     it('creates an action', () => {
       expect(getCharactersFailure()).toEqual({
         type: GET_CHARACTERS_FAILURE,
-        error: true,
       });
     });
   });

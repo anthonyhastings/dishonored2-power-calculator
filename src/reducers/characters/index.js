@@ -14,7 +14,6 @@ export const getCharactersPending = () => ({
 
 export const getCharactersFailure = () => ({
   type: GET_CHARACTERS_FAILURE,
-  error: true,
 });
 
 export const getCharactersSuccess = (characters) => ({
