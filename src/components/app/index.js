@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import 'normalize.css';
 import './stylesheets/index.scss';
 import CharacterSelection from 'Components/character-selection/lazy';
@@ -21,12 +21,14 @@ const App = ({ onComponentDidMount, showError, showLoader }) => {
     <div className={namespace}>
       <header className={`${namespace}__header`}>
         <h1 className={`${namespace}__title`}>Power Calculator</h1>
-        <img
-          alt="Dishonored 2 logo"
-          className={`${namespace}__logo`}
-          sizes="100vw"
-          srcSet={`${logo660} 660w, ${logo1320} 1320w`}
-        />
+        <Link className={`${namespace}__logo-link`} to="/">
+          <img
+            alt="Dishonored 2 logo"
+            className={`${namespace}__logo-graphic`}
+            sizes="100vw"
+            srcSet={`${logo660} 660w, ${logo1320} 1320w`}
+          />
+        </Link>
       </header>
       <div className={`${namespace}__content`}>
         <Loader showError={showError} showLoader={showLoader}>

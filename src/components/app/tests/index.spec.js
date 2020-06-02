@@ -6,6 +6,7 @@ import App from '../';
 jest.mock('react-router-dom', () => ({
   Switch: 'MockSwitch',
   Route: 'MockRoute',
+  Link: 'MockLink',
 }));
 
 jest.mock(

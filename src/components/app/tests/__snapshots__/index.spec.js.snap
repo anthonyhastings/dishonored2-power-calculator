@@ -12,12 +12,17 @@ exports[`App component when rendered renders a header area and top-level routes 
     >
       Power Calculator
     </h1>
-    <img
-      alt="Dishonored 2 logo"
-      className="app__logo"
-      sizes="100vw"
-      srcSet="660x90.png 660w, 1320x180.png 1320w"
-    />
+    <MockLink
+      className="app__logo-link"
+      to="/"
+    >
+      <img
+        alt="Dishonored 2 logo"
+        className="app__logo-graphic"
+        sizes="100vw"
+        srcSet="660x90.png 660w, 1320x180.png 1320w"
+      />
+    </MockLink>
   </header>
   <div
     className="app__content"

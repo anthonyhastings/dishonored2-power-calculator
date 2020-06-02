@@ -29,15 +29,20 @@
     }
   }
 
-  &__logo {
+  &__logo-link {
     display: block;
-    height: auto;
     max-width: 75%;
     width: 100%;
 
     @include mq(medium) {
       width: 30rem;
     }
+  }
+
+  &__logo-graphic {
+    display: block;
+    height: auto;
+    width: 100%;
   }
 
   &__content {
