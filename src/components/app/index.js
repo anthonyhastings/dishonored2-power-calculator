@@ -1,14 +1,32 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, lazy } from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, Link } from 'react-router-dom';
 import 'normalize.css';
 import './stylesheets/index.scss';
-import CharacterSelection from 'Components/character-selection/lazy';
 import Loader from 'Components/loader';
-import PageNotFound from 'Components/page-not-found/lazy';
-import PowerSelectionRouteValidation from 'Components/power-selection/lazy';
 import logo660 from 'Images/logo/660x90.png';
 import logo1320 from 'Images/logo/1320x180.png';
+
+const CharacterSelection = lazy(() =>
+  import(
+    /* webpackChunkName: "character-selection" */
+    'Components/character-selection/container'
+  )
+);
+
+const PageNotFound = lazy(() =>
+  import(
+    /* webpackChunkName: "page-not-found" */
+    'Components/page-not-found'
+  )
+);
+
+const PowerSelectionRouteValidation = lazy(() =>
+  import(
+    /* webpackChunkName: "power-selection" */
+    'Components/power-selection/container/route-validation'
+  )
+);
 
 const namespace = 'app';
 
