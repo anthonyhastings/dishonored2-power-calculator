@@ -3,9 +3,7 @@ import Immutable from 'immutable';
 import renderer from 'react-test-renderer';
 import CharacterSelection from '../';
 
-jest.mock('react-router-dom', () => ({
-  Link: 'MockLink',
-}));
+jest.mock('Components/button', () => 'MockButton');
 
 describe('CharacterSelection component', () => {
   let testContext;

@@ -1,6 +1,6 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { Link } from 'react-router-dom';
+import Button from 'Components/button';
 import characterSlugToPortrait from 'Constants/character-slug-to-portrait';
 import './stylesheets/index.scss';
 
@@ -29,12 +29,9 @@ const CharacterSelection = ({ characters }) => {
               <p className={`${characterNamespace}__description`}>
                 {character.get('description')}
               </p>
-              <Link
-                className={`${characterNamespace}__button`}
-                to={`/powers/${character.get('slug')}`}
-              >
+              <Button href={`/powers/${character.get('slug')}`}>
                 Choose {character.get('name')}
-              </Link>
+              </Button>
             </div>
           </div>
         ))}
