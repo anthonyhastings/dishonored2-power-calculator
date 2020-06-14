@@ -48,6 +48,7 @@
   "overrides": [
     {
       "files": [
+        "support/**/*.{js,mjs}",
         "**/__mocks__/*.{js,mjs}",
         "**/*.spec.{js,mjs}"
       ],
