@@ -31,4 +31,16 @@ describe('Button component', () => {
       expect(testContext.component).toMatchSnapshot();
     });
   });
+
+  describe('when className is provided', () => {
+    it('renders with extra className', () => {
+      expect(renderer.create(renderComponent())).toMatchDiffSnapshot(
+        renderer.create(
+          renderComponent({
+            className: 'hello-world',
+          })
+        )
+      );
+    });
+  });
 });
