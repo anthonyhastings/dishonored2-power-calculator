@@ -3,10 +3,10 @@
   "parser": "babel-eslint",
   "env": {
     "browser": true,
-    "es6": true
+    "es2020": true
   },
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 2020,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true,
@@ -62,8 +62,7 @@
         "jest"
       ],
       "rules": {
-        "jest/require-top-level-describe": "error",
-        "jest/valid-title": "error"
+        "jest/require-top-level-describe": "error"
       }
     },
     {
