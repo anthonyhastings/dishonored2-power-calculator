@@ -9,8 +9,7 @@
     "ecmaVersion": 2020,
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true,
-      "experimentalObjectRestSpread": true
+      "jsx": true
     }
   },
   "plugins": [
@@ -49,7 +48,7 @@
   "overrides": [
     {
       "files": [
-        "**/__mocks__/*.js",
+        "**/__mocks__/*.{js,mjs}",
         "**/*.spec.{js,mjs}"
       ],
       "env": {
