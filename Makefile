@@ -21,4 +21,4 @@ start-tests-upload-coverage:
 	docker-compose run ${ci_env} --rm web ./scripts/upload_coverage.sh
 
 start-tests-watch:
-	docker-compose run --rm web yarn test -- --watchAll
+	docker-compose run --rm web yarn test --watchAll
