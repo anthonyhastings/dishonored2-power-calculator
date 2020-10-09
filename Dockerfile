@@ -1,21 +1,16 @@
-FROM node:14.13.0-alpine
+FROM node:14.13.0-alpine AS base
 
 LABEL maintainer="Anthony Hastings <ar.hastings@gmail.com>"
 
-# Specifying build arguments (only available during image creation/build).
 ARG GOOGLE_SITE_VERIFICATION_TOKEN
 
-# Create a directory and navigate to it.
-WORKDIR /dishonored2-power-calculator
+WORKDIR /dishonored
 
-# Installing bash and curl for code coverage upload.
 RUN apk add --no-cache bash curl
 
-# Copy over the package.json and lock file to the containers working directory.
 COPY ./package.json ./yarn.lock ./
 
-# Install build dependencies (required for imagemin), install packages then delete build dependencies.
-# This is all done in the same command / layer so when it caches, it won't bloat the image size.
+# Install build dependencies (required for imagemin), install packages, clears cache then delete build dependencies.
 RUN apk add --no-cache --virtual image-build-deps \
     autoconf \
     automake \
@@ -31,11 +26,24 @@ RUN apk add --no-cache --virtual image-build-deps \
     && yarn cache clean \
     && apk del image-build-deps
 
-# Copy everything (that hasn't been ignored by dockerignore) in the host folder into the working folder.
 COPY . ./
 
-# Build assets for production.
 RUN yarn build
 
-# Run the express server.
+FROM node:14.13.0-alpine AS server
+
+USER node
+
+WORKDIR /home/node
+
+COPY --from=base --chown=node /dishonored/package.json /dishonored/yarn.lock ./
+
+RUN yarn install --production && yarn cache clean
+
+COPY --from=base --chown=node /dishonored/dist ./dist
+
+COPY --from=base --chown=node /dishonored/server ./server
+
+COPY --from=base --chown=node /dishonored/support ./support
+
 CMD yarn start
