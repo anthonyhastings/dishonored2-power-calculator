@@ -5,8 +5,19 @@ services:
       context: ./
       args:
         - GOOGLE_SITE_VERIFICATION_TOKEN
-    command: sh -c "yarn start"
-    container_name: dishonored2-web
+    environment:
+      - GOOGLE_SITE_VERIFICATION_TOKEN
+      - PORT
+    ports:
+      - ${PORT}:${PORT}
+
+  dev:
+    build:
+      context: ./
+      target: base
+      args:
+        - GOOGLE_SITE_VERIFICATION_TOKEN
+    command: sh -c "yarn run webpack:dev-server"
     environment:
       - CODECOV_TOKEN
       - GOOGLE_SITE_VERIFICATION_TOKEN
@@ -14,11 +25,11 @@ services:
     ports:
       - ${PORT}:${PORT}
     volumes:
-      - ./html:/dishonored2-power-calculator/html
-      - ./images:/dishonored2-power-calculator/images
-      - ./manifests:/dishonored2-power-calculator/manifests
-      - ./scripts:/dishonored2-power-calculator/scripts
-      - ./server:/dishonored2-power-calculator/server
-      - ./src:/dishonored2-power-calculator/src
-      - ./support:/dishonored2-power-calculator/support
-      - ./webpack:/dishonored2-power-calculator/webpack
+      - ./html:/dishonored/html
+      - ./images:/dishonored/images
+      - ./manifests:/dishonored/manifests
+      - ./scripts:/dishonored/scripts
+      - ./server:/dishonored/server
+      - ./src:/dishonored/src
+      - ./support:/dishonored/support
+      - ./webpack:/dishonored/webpack
