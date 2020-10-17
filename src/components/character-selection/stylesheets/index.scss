@@ -23,6 +23,7 @@ $characterNamespace: 'character';
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    width: 100%;
 
     @include mq(large) {
       align-items: flex-start;
@@ -48,6 +49,7 @@ $characterNamespace: 'character';
   max-width: 45rem;
   overflow: hidden;
   position: relative;
+  width: 100%;
 
   &:hover {
     .#{$characterNamespace}__overlay {
@@ -55,9 +57,19 @@ $characterNamespace: 'character';
     }
   }
 
+  &__portrait-wrapper {
+    height: 0;
+    padding-bottom: percentage(901 / 771);
+    position: relative;
+    width: 100%;
+  }
+
   &__portrait {
     display: block;
     height: auto;
+    left: 0;
+    position: absolute;
+    top: 0;
     width: 100%;
   }
 

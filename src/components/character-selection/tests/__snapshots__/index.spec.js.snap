@@ -15,11 +15,15 @@ exports[`CharacterSelection component when rendered renders a heading and charac
     <div
       className="character-selection__grid-element character"
     >
-      <img
-        alt="Portrait of Adam Jensen"
-        className="character__portrait"
-        draggable="false"
-      />
+      <div
+        className="character__portrait-wrapper"
+      >
+        <img
+          alt="Portrait of Adam Jensen"
+          className="character__portrait"
+          draggable="false"
+        />
+      </div>
       <div
         className="character__overlay"
       >
@@ -44,11 +48,15 @@ exports[`CharacterSelection component when rendered renders a heading and charac
     <div
       className="character-selection__grid-element character"
     >
-      <img
-        alt="Portrait of Scott Ryder"
-        className="character__portrait"
-        draggable="false"
-      />
+      <div
+        className="character__portrait-wrapper"
+      >
+        <img
+          alt="Portrait of Scott Ryder"
+          className="character__portrait"
+          draggable="false"
+        />
+      </div>
       <div
         className="character__overlay"
       >

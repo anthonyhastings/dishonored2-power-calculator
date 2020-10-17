@@ -16,12 +16,14 @@ const CharacterSelection = ({ characters }) => {
             className={`character-selection__grid-element ${characterNamespace}`}
             key={character.get('id')}
           >
-            <img
-              className={`${characterNamespace}__portrait`}
-              draggable="false"
-              src={characterSlugToPortrait.get(character.get('slug'))}
-              alt={`Portrait of ${character.get('name')}`}
-            />
+            <div className={`${characterNamespace}__portrait-wrapper`}>
+              <img
+                className={`${characterNamespace}__portrait`}
+                draggable="false"
+                src={characterSlugToPortrait.get(character.get('slug'))}
+                alt={`Portrait of ${character.get('name')}`}
+              />
+            </div>
             <div className={`${characterNamespace}__overlay`}>
               <h2 className={`${characterNamespace}__name`}>
                 {character.get('name')}
