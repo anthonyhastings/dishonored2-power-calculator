@@ -3,6 +3,7 @@ import Immutable from 'immutable';
 import renderer from 'react-test-renderer';
 import CharacterSelection from '../';
 
+jest.mock('Components/avatar', () => 'MockAvatar');
 jest.mock('Components/button', () => 'MockButton');
 
 describe('CharacterSelection component', () => {

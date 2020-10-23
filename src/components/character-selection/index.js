@@ -1,7 +1,7 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import Avatar from 'Components/avatar';
 import Button from 'Components/button';
-import characterSlugToPortrait from 'Constants/character-slug-to-portrait';
 import './stylesheets/index.scss';
 
 const characterNamespace = 'character';
@@ -16,14 +16,7 @@ const CharacterSelection = ({ characters }) => {
             className={`character-selection__grid-element ${characterNamespace}`}
             key={character.get('id')}
           >
-            <div className={`${characterNamespace}__portrait-wrapper`}>
-              <img
-                className={`${characterNamespace}__portrait`}
-                draggable="false"
-                src={characterSlugToPortrait.get(character.get('slug'))}
-                alt={`Portrait of ${character.get('name')}`}
-              />
-            </div>
+            <Avatar name={character.get('name')} slug={character.get('slug')} />
             <div className={`${characterNamespace}__overlay`}>
               <h2 className={`${characterNamespace}__name`}>
                 {character.get('name')}

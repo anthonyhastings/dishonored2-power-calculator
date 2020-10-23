@@ -43,22 +43,6 @@ $characterNamespace: 'character';
     }
   }
 
-  &__portrait-wrapper {
-    height: 0;
-    padding-bottom: percentage(901 / 771);
-    position: relative;
-    width: 100%;
-  }
-
-  &__portrait {
-    display: block;
-    height: auto;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
-
   &__overlay {
     background-color: rgba(0, 0, 0, 0.88);
     bottom: 0;
