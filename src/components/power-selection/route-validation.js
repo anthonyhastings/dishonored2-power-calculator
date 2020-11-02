@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Immutable from 'immutable';
 import Loader from 'Components/loader';

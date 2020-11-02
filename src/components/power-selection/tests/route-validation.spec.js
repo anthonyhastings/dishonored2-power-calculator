@@ -1,4 +1,3 @@
-import React from 'react';
 import Immutable from 'immutable';
 import renderer from 'react-test-renderer';
 import PowerSelectionRouteValidation from '../route-validation';

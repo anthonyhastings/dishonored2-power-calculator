@@ -1,4 +1,3 @@
-import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar from 'Components/avatar';
 import Button from 'Components/button';

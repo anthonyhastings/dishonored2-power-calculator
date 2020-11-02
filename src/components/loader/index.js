@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import './stylesheets/index.scss';
 import OutsidersMark from 'Components/outsiders-mark';
