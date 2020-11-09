@@ -1,28 +1,31 @@
-import moxios from 'moxios';
+import axios from 'axios';
 import * as api from '../characters';
 
+jest.mock('axios');
+
 describe('Characters API requests', () => {
+  let testContext;
+
   beforeEach(() => {
-    moxios.install();
+    testContext = {};
   });
 
   afterEach(() => {
-    moxios.uninstall();
+    jest.resetAllMocks();
   });
 
   describe('#getCharacters', () => {
     beforeEach(async () => {
-      moxios.stubRequest('/characters.json', {
-        status: 200,
-      });
-
-      await api.getCharacters();
+      axios.get.mockResolvedValue('hello-world');
+      testContext.result = await api.getCharacters();
     });
 
-    it('calls API with correct settings', () => {
-      expect(moxios.requests.mostRecent().config).toMatchObject({
-        url: '/characters.json',
-      });
+    it('calls axios with correct options', () => {
+      expect(axios.get).toHaveBeenCalledWith('/characters.json');
+    });
+
+    it('returns expected value', () => {
+      expect(testContext.result).toEqual('hello-world');
     });
   });
 });
