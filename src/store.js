@@ -5,7 +5,6 @@ import { combineReducers } from 'redux-immutable';
 import thunk from 'redux-thunk';
 import characters from 'Reducers/characters';
 import powers from 'Reducers/powers';
-import user from 'Reducers/user';
 
 export const middleware = [thunk];
 
@@ -22,7 +21,6 @@ const storeEnhancer = isProduction
 const rootReducer = combineReducers({
   characters,
   powers,
-  user,
 });
 
 export default createStore(rootReducer, storeEnhancer);
