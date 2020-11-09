@@ -14,9 +14,7 @@ import reducer, {
   getCharactersSuccess,
 } from '../';
 
-jest.mock('Api/characters', () => ({
-  getCharacters: jest.fn(),
-}));
+jest.mock('Api/characters');
 
 describe('Characters reducer', () => {
   let testContext;
@@ -25,163 +23,152 @@ describe('Characters reducer', () => {
     testContext = {};
   });
 
-  describe('when given no action', () => {
-    it('should return default state', () => {
-      expect(reducer()).toEqual(
-        Immutable.Map({
-          requestStatus: requestStatuses.idle,
-        })
-      );
-    });
+  afterEach(() => {
+    jest.resetAllMocks();
   });
 
-  describe('when given GET_CHARACTERS_PENDING', () => {
-    beforeEach(() => {
-      testContext.state = reducer(Immutable.Map(), getCharactersPending());
+  describe('reducer cases', () => {
+    describe('when given no action', () => {
+      it('should return default state', () => {
+        expect(reducer()).toEqual(
+          Immutable.Map({
+            requestStatus: requestStatuses.idle,
+          })
+        );
+      });
     });
 
-    it('sets request status to pending', () => {
-      expect(testContext.state).toEqual(
-        Immutable.Map({
-          requestStatus: requestStatuses.pending,
-        })
-      );
-    });
-  });
-
-  describe('when given GET_CHARACTERS_FAILURE', () => {
-    beforeEach(() => {
-      testContext.state = reducer(Immutable.Map(), getCharactersFailure());
-    });
-
-    it('sets request status to failure', () => {
-      expect(testContext.state).toEqual(
-        Immutable.Map({
-          requestStatus: requestStatuses.failure,
-        })
-      );
-    });
-  });
-
-  describe('when given GET_CHARACTERS_SUCCESS', () => {
-    beforeEach(() => {
-      testContext.state = reducer(
-        Immutable.Map(),
-        getCharactersSuccess('hello-world')
-      );
-    });
-
-    it('stores data and sets request status to success', () => {
-      expect(testContext.state).toEqual(
-        Immutable.Map({
-          data: 'hello-world',
-          requestStatus: requestStatuses.success,
-        })
-      );
-    });
-  });
-});
-
-describe('Characters action creators', () => {
-  let testContext;
-
-  beforeEach(() => {
-    testContext = {};
-  });
-
-  describe('#getCharacters', () => {
-    beforeEach(() => {
-      testContext.mockStore = configureMockStore(middleware)();
-    });
-
-    afterEach(() => {
-      getCharactersMock.mockReset();
-    });
-
-    describe('when the request triggers', () => {
+    describe('when given GET_CHARACTERS_PENDING', () => {
       beforeEach(() => {
-        getCharactersMock.mockReturnValue(Promise.resolve());
-        testContext.mockStore.dispatch(getCharacters());
+        testContext.state = reducer(Immutable.Map(), getCharactersPending());
       });
 
-      it('fires a requested action', () => {
-        expect(testContext.mockStore.getActions()[0]).toEqual({
-          type: GET_CHARACTERS_PENDING,
+      it('sets request status to pending', () => {
+        expect(testContext.state).toEqual(
+          Immutable.Map({
+            requestStatus: requestStatuses.pending,
+          })
+        );
+      });
+    });
+
+    describe('when given GET_CHARACTERS_FAILURE', () => {
+      beforeEach(() => {
+        testContext.state = reducer(Immutable.Map(), getCharactersFailure());
+      });
+
+      it('sets request status to failure', () => {
+        expect(testContext.state).toEqual(
+          Immutable.Map({
+            requestStatus: requestStatuses.failure,
+          })
+        );
+      });
+    });
+
+    describe('when given GET_CHARACTERS_SUCCESS', () => {
+      beforeEach(() => {
+        testContext.state = reducer(
+          Immutable.Map(),
+          getCharactersSuccess('hello-world')
+        );
+      });
+
+      it('stores data and sets request status to success', () => {
+        expect(testContext.state).toEqual(
+          Immutable.Map({
+            data: 'hello-world',
+            requestStatus: requestStatuses.success,
+          })
+        );
+      });
+    });
+  });
+
+  describe('action creators', () => {
+    describe('#getCharacters', () => {
+      beforeEach(() => {
+        testContext.mockStore = configureMockStore(middleware)();
+      });
+
+      describe('when the request triggers', () => {
+        beforeEach(async () => {
+          getCharactersMock.mockResolvedValue();
+          await testContext.mockStore.dispatch(getCharacters());
+        });
+
+        it('fires a requested action', () => {
+          expect(testContext.mockStore.getActions()[0]).toEqual({
+            type: GET_CHARACTERS_PENDING,
+          });
+        });
+      });
+
+      describe('when the request succeeds', () => {
+        beforeEach(async () => {
+          getCharactersMock.mockResolvedValue({
+            data: getCharactersSuccessResponse,
+          });
+
+          await testContext.mockStore.dispatch(getCharacters());
+        });
+
+        it('fires a requested action and a success action', () => {
+          expect(testContext.mockStore.getActions()).toEqual([
+            { type: GET_CHARACTERS_PENDING },
+            {
+              type: GET_CHARACTERS_SUCCESS,
+              payload: {
+                characters: Immutable.fromJS({
+                  'fake-uuid-01': {
+                    id: 'fake-uuid-01',
+                    slug: 'fake-slug-01',
+                    name: 'fake-name-01',
+                    description: 'fake-description-01',
+                  },
+                  'fake-uuid-02': {
+                    id: 'fake-uuid-02',
+                    slug: 'fake-slug-02',
+                    name: 'fake-name-02',
+                    description: 'fake-description-02',
+                  },
+                }),
+              },
+            },
+          ]);
+        });
+      });
+
+      describe('when the request fails', () => {
+        beforeEach(async () => {
+          getCharactersMock.mockRejectedValue();
+          await testContext.mockStore.dispatch(getCharacters());
+        });
+
+        it('fires a requested action and a failure action', () => {
+          expect(testContext.mockStore.getActions()).toEqual([
+            { type: GET_CHARACTERS_PENDING },
+            {
+              type: GET_CHARACTERS_FAILURE,
+            },
+          ]);
         });
       });
     });
 
-    describe('when the request succeeds', () => {
-      beforeEach(() => {
-        getCharactersMock.mockReturnValue(
-          Promise.resolve({
-            data: getCharactersSuccessResponse,
-          })
-        );
-        testContext.mockStore.dispatch(getCharacters());
-      });
-
-      it('fires a requested action and a success action', () => {
-        expect(testContext.mockStore.getActions()).toEqual([
-          { type: GET_CHARACTERS_PENDING },
-          {
-            type: GET_CHARACTERS_SUCCESS,
-            payload: {
-              characters: Immutable.fromJS({
-                'fake-uuid-01': {
-                  id: 'fake-uuid-01',
-                  slug: 'fake-slug-01',
-                  name: 'fake-name-01',
-                  description: 'fake-description-01',
-                },
-                'fake-uuid-02': {
-                  id: 'fake-uuid-02',
-                  slug: 'fake-slug-02',
-                  name: 'fake-name-02',
-                  description: 'fake-description-02',
-                },
-              }),
-            },
-          },
-        ]);
-      });
-    });
-
-    describe('when the request fails', () => {
-      beforeEach(() => {
-        getCharactersMock.mockReturnValue(Promise.reject());
-        testContext.mockStore.dispatch(getCharacters());
-      });
-
-      it('fires a requested action and a failure action', () => {
-        expect(testContext.mockStore.getActions()).toEqual([
-          { type: GET_CHARACTERS_PENDING },
-          {
-            type: GET_CHARACTERS_FAILURE,
-          },
-        ]);
-      });
-    });
-  });
-
-  describe('#getCharactersPending', () => {
-    it('creates an action', () => {
+    test('#getCharactersPending', () => {
       expect(getCharactersPending()).toEqual({
         type: GET_CHARACTERS_PENDING,
       });
     });
-  });
 
-  describe('#getCharactersFailure', () => {
-    it('creates an action', () => {
+    test('#getCharactersFailure', () => {
       expect(getCharactersFailure()).toEqual({
         type: GET_CHARACTERS_FAILURE,
       });
     });
-  });
 
-  describe('#getCharactersSuccess', () => {
-    it('creates an action', () => {
+    test('#getCharactersSuccess', () => {
       expect(getCharactersSuccess('hello-world')).toEqual({
         type: GET_CHARACTERS_SUCCESS,
         payload: {
