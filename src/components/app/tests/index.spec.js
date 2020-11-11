@@ -9,17 +9,29 @@ jest.mock('react-router-dom', () => ({
 }));
 
 jest.mock(
-  'Components/character-selection/lazy',
-  () => 'MockCharacterSelection'
+  'Components/character-selection/container',
+  () =>
+    function MockCharacterSelection() {
+      return <mock-character-selection />;
+    }
 );
 
 jest.mock('Components/loader', () => 'MockLoader');
 
-jest.mock('Components/page-not-found/lazy', () => 'MockPageNotFound');
+jest.mock(
+  'Components/page-not-found',
+  () =>
+    function MockPageNotFound() {
+      return <mock-page-not-found />;
+    }
+);
 
 jest.mock(
-  'Components/power-selection/lazy',
-  () => 'MockPowerSelectionRouteValidation'
+  'Components/power-selection/container/route-validation',
+  () =>
+    function MockPowerSelectionRouteValidation() {
+      return <mock-power-selection-route-validation />;
+    }
 );
 
 describe('App component', () => {
@@ -40,10 +52,10 @@ describe('App component', () => {
   });
 
   describe('when rendered', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       testContext.onComponentDidMountMock = jest.fn();
 
-      renderer.act(() => {
+      await renderer.act(async () => {
         testContext.component = renderer.create(
           renderComponent({
             onComponentDidMount: testContext.onComponentDidMountMock,
