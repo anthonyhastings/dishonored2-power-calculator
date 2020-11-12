@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Avatar component when className is provided renders with extra className 1`] = `
-"Snapshot Diff:
+Snapshot Diff:
 - First value
 + Second value
 
 @@ -1,7 +1,7 @@
   <div
--   className=\\"avatar\\"
-+   className=\\"avatar mock-class\\"
+-   className="avatar"
++   className="avatar mock-class"
   >
     <img
-      alt=\\"Portrait of Fake Name\\"
-      className=\\"avatar__portrait\\"
-      draggable=\\"false\\""
+      alt="Portrait of Fake Name"
+      className="avatar__portrait"
+      draggable="false"
 `;
 
 exports[`Avatar component when rendered renders a wrapping element containing an image 1`] = `
