@@ -13,7 +13,7 @@
     "eslint-check": "eslint --print-config src/components/app/container/index.js | eslint-config-prettier-check",
     "lint": "time npm-run-all --parallel --print-label --continue-on-error lint:*",
     "lint:css": "time stylelint src/**/*.scss",
-    "lint:js": "time eslint --ext js --ext mjs  --max-warnings 0 server/ src/ support/ webpack/ jest.config.mjs postcss.config.js",
+    "lint:js": "time eslint --ext js --ext mjs  --max-warnings 0 __mocks__/ server/ src/ support/ webpack/ jest.config.mjs postcss.config.js",
     "start": "node --experimental-json-modules server/index.mjs",
     "test": "jest",
     "webpack:dev-server": "webpack-dev-server --config=webpack/env.development.js",
