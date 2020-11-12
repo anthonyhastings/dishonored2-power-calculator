@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button component when className is provided renders with extra className 1`] = `
-"Snapshot Diff:
+Snapshot Diff:
 - First value
 + Second value
 
   <MockLink
--   className=\\"button\\"
-+   className=\\"button hello-world\\"
-    to=\\"/fake-link\\"
+-   className="button"
++   className="button hello-world"
+    to="/fake-link"
   >
     Button Text
-  </MockLink>"
+  </MockLink>
 `;
 
 exports[`Button component when rendered renders a Link component with appropriate props and children 1`] = `
