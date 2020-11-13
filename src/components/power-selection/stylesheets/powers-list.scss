@@ -1,0 +1,311 @@
+@import 'Components/app/stylesheets/colours.scss';
+
+.powers-list {
+  width: 100%;
+
+  &__title {
+    font-size: 2.2rem;
+    line-height: (28 / 22);
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(12.8rem, 1fr));
+    place-items: stretch / stretch;
+  }
+
+  &__grid-item {
+    align-items: stretch;
+    border: 0.1rem solid map-get($colours, tundora);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  &__icon {
+    background-position: center;
+    background-size: cover;
+    display: block;
+    width: 100%;
+
+    &::before {
+      content: '';
+      display: block;
+      height: 0;
+      padding-bottom: 100%;
+    }
+
+    &--agility {
+      background-image: url('~Images/powers/39334a1e-2883-4722-af71-d3286d94b6e7.png');
+    }
+
+    &--rapid-sprint {
+      background-image: url('~Images/powers/4499082e-9cdc-4828-8d18-40aea0b2970b.png');
+    }
+
+    &--cat-fall {
+      background-image: url('~Images/powers/6229d272-6b03-467a-82ec-00993c642570.png');
+    }
+
+    &--bend-time {
+      background-image: url('~Images/powers/83834603-de16-41ef-9254-4b43cad0f1e6.png');
+    }
+
+    &--stop-time {
+      background-image: url('~Images/powers/9949e67d-5514-46c1-a86e-5605064b5b75.png');
+    }
+
+    &--relativity {
+      background-image: url('~Images/powers/1d9a9e16-ddb9-4f98-a76f-c8fd4fcc94b0.png');
+    }
+
+    &--lasting-bend-time {
+      background-image: url('~Images/powers/df6d9fae-44e9-4ea0-9d7d-9c37f7ea82cc.png');
+    }
+
+    &--blink {
+      background-image: url('~Images/powers/ba33f829-5fb1-4c25-8fa6-db9581b78ee9.png');
+    }
+
+    &--greater-blink {
+      background-image: url('~Images/powers/057f77b6-4730-4148-817e-8e8a6bb7ab70.png');
+    }
+
+    &--redirective-blink {
+      background-image: url('~Images/powers/c6cc4776-a67d-4364-a21b-fbee309169ba.png');
+    }
+
+    &--blink-assault {
+      background-image: url('~Images/powers/da709264-367d-4dd0-be73-5cae311ffe03.png');
+    }
+
+    &--blood-thirst {
+      background-image: url('~Images/powers/3b2c05e8-5062-45dc-aef0-dc2c9e689f14.png');
+    }
+
+    &--adrenaline-burst {
+      background-image: url('~Images/powers/d8ad66c5-6fdf-4e17-b8e7-c14eaf997e23.png');
+    }
+
+    &--greater-blood-thirst {
+      background-image: url('~Images/powers/8bf34df7-04b8-4a20-84d1-edc6ec72a800.png');
+    }
+
+    &--bonecharm-crafting {
+      background-image: url('~Images/powers/0dc9ca43-a526-4536-b202-0215e8579807.png');
+    }
+
+    &--witch-crafting {
+      background-image: url('~Images/powers/2109302a-7dc1-4356-80e9-43b9d72bc63e.png');
+    }
+
+    &--master-crafting {
+      background-image: url('~Images/powers/6a493c37-f714-4586-9b2e-b5cc43b5b2cc.png');
+    }
+
+    &--craft-runes {
+      background-image: url('~Images/powers/1bdc0e0d-b188-4f19-b556-8be7762deee6.png');
+    }
+
+    &--trait-synergy {
+      background-image: url('~Images/powers/ed159c65-4b65-4dd5-be35-d9e633d0df62.png');
+    }
+
+    &--dark-vision {
+      background-image: url('~Images/powers/3b7eb5ac-bcee-4d0c-8830-6e7438635db8.png');
+    }
+
+    &--greater-dark-vision {
+      background-image: url('~Images/powers/550a6b9a-4913-411e-9b58-1782ef2b9572.png');
+    }
+
+    &--premonition {
+      background-image: url('~Images/powers/a4b18b13-4744-401d-b9d6-bef23736e4ea.png');
+    }
+
+    &--devouring-swarm {
+      background-image: url('~Images/powers/5211fb67-a109-4fe0-9acc-dd0963f398ea.png');
+    }
+
+    &--greater-swarm {
+      background-image: url('~Images/powers/9d92a5a5-3fed-4fa0-b43b-501c40b16e81.png');
+    }
+
+    &--rat-piper {
+      background-image: url('~Images/powers/e223c680-2f9c-40f0-b451-4e5c71fc1979.png');
+    }
+
+    &--twin-swarms {
+      background-image: url('~Images/powers/4f3144e4-5b8f-4d66-9db5-b625d6dd5b8a.png');
+    }
+
+    &--domino {
+      background-image: url('~Images/powers/63b89a2d-0cf7-4243-9f3a-89b8906846c1.png');
+    }
+
+    &--link-three {
+      background-image: url('~Images/powers/f1b6a61f-8556-4774-b49d-cd418d459229.png');
+    }
+
+    &--link-four {
+      background-image: url('~Images/powers/4ed7aa33-c6f8-4600-91c9-8e69501fe6cb.png');
+    }
+
+    &--doppelganger {
+      background-image: url('~Images/powers/549c5a0d-16c1-44c9-aef6-57a12e082145.png');
+    }
+
+    &--baffling-shade {
+      background-image: url('~Images/powers/5de51786-b0a9-472f-8004-d1180cb582c2.png');
+    }
+
+    &--deadly-shade {
+      background-image: url('~Images/powers/8f5cbc1e-86be-41df-85fe-82434ebcdc69.png');
+    }
+
+    &--twin-shades {
+      background-image: url('~Images/powers/54188b40-c014-4bd8-aa89-5453301240a2.png');
+    }
+
+    &--transposition {
+      background-image: url('~Images/powers/2cb21cff-edc5-4a9a-bc03-1fef643e6931.png');
+    }
+
+    &--far-reach {
+      background-image: url('~Images/powers/8c45a602-aa8f-4f74-bb68-620cc9af9694.png');
+    }
+
+    &--pull-objects {
+      background-image: url('~Images/powers/d41e809b-899b-4038-be80-51ed65b2a44c.png');
+    }
+
+    &--pull-enemies {
+      background-image: url('~Images/powers/819019ab-9bc0-4d17-901e-01085fa68a17.png');
+    }
+
+    &--decelerate {
+      background-image: url('~Images/powers/da241db7-768f-451d-8c25-978d0ad5033d.png');
+    }
+
+    &--mesmerize {
+      background-image: url('~Images/powers/3d1ef033-1e9e-437b-b994-da2848368eb5.png');
+    }
+
+    &--mesmerize-three {
+      background-image: url('~Images/powers/341f8206-e5cf-4d20-94d4-3ef88ff81b1d.png');
+    }
+
+    &--mesmerize-four {
+      background-image: url('~Images/powers/9ab61f4c-b5dd-43a5-b412-455855e81469.png');
+    }
+
+    &--lasting-mesmerize {
+      background-image: url('~Images/powers/47f9050a-1906-459b-843b-0ba4619e9abf.png');
+    }
+
+    &--posession {
+      background-image: url('~Images/powers/e2b274c4-d727-44a7-a4ef-32da487bb4b6.png');
+    }
+
+    &--chain-hosts {
+      background-image: url('~Images/powers/6dd8594c-8e1d-45d4-b98d-b28af53982ec.png');
+    }
+
+    &--corpse-posession {
+      background-image: url('~Images/powers/34f79277-2fa4-40a8-9568-40f0bbf359de.png');
+    }
+
+    &--human-posession {
+      background-image: url('~Images/powers/676cb117-268a-4c88-a952-a9cfa7bd9ad6.png');
+    }
+
+    &--lasting-posession {
+      background-image: url('~Images/powers/b7103d3b-a644-4a04-89ea-e3e8f49f2f53.png');
+    }
+
+    &--reflexes {
+      background-image: url('~Images/powers/ae1fbcc3-feb7-40cc-9458-66cd3efff80b.png');
+    }
+
+    &--focused-slide {
+      background-image: url('~Images/powers/400c89bd-ab42-4a44-98af-6a622493a0ec.png');
+    }
+
+    &--superior-deflection {
+      background-image: url('~Images/powers/709adf4e-d164-48f7-bfaa-8f75237097b8.png');
+    }
+
+    &--adept-parry {
+      background-image: url('~Images/powers/0cf39239-72b2-4d24-91a8-26581a27d75f.png');
+    }
+
+    &--snap-reaction {
+      background-image: url('~Images/powers/7856c89a-8408-4776-b373-74a197618ead.png');
+    }
+
+    &--shadow-kill {
+      background-image: url('~Images/powers/fb909e60-c319-4133-9716-bc4a15c645a7.png');
+    }
+
+    &--greater-shadow-kill {
+      background-image: url('~Images/powers/96558f9c-ee1d-4443-9076-786f42784f09.png');
+    }
+
+    &--bloodfly-swarm {
+      background-image: url('~Images/powers/6d4aac82-45ec-4bad-b135-4ec67ac8ef67.png');
+    }
+
+    &--shadow-walk {
+      background-image: url('~Images/powers/e336ff67-6676-4ace-89c1-9f6dbc53e265.png');
+    }
+
+    &--rat-shadows {
+      background-image: url('~Images/powers/eae318de-9173-4fef-b023-53a4098e366a.png');
+    }
+
+    &--improved-shadow-attack {
+      background-image: url('~Images/powers/5d4a2356-fe27-469e-9ab4-25c0e3d06e6d.png');
+    }
+
+    &--greater-shadow-attack {
+      background-image: url('~Images/powers/7c2e2dbf-b1a8-4320-aeba-0a717a7602fc.png');
+    }
+
+    &--shadow-run {
+      background-image: url('~Images/powers/1f5a35f4-5c15-43fd-b8fd-9592e4d0942b.png');
+    }
+
+    &--strength {
+      background-image: url('~Images/powers/5bed80af-6e29-4b12-a875-f7ad2c1cab8d.png');
+    }
+
+    &--greater-strength {
+      background-image: url('~Images/powers/c2ffd997-e0db-4bb8-b69f-df7ae2add66c.png');
+    }
+
+    &--vitality {
+      background-image: url('~Images/powers/506011a0-3d3f-4388-8c4e-03ac73fbe220.png');
+    }
+
+    &--greater-vitality {
+      background-image: url('~Images/powers/9ca448f7-8729-436f-bac8-3f5188193821.png');
+    }
+
+    &--windblast {
+      background-image: url('~Images/powers/b3d3e62b-bd8c-4ebf-9057-a7f42eb3c8be.png');
+    }
+
+    &--greater-windblast {
+      background-image: url('~Images/powers/3c78851c-dd0d-402f-b6d5-b06a85cbbe12.png');
+    }
+
+    &--shockwave {
+      background-image: url('~Images/powers/af21681f-71c1-4e87-a23b-42e792c45f75.png');
+    }
+  }
+}
