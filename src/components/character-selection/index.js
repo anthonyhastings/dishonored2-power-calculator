@@ -1,7 +1,6 @@
-import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { Link } from 'react-router-dom';
-import characterSlugToPortrait from 'Constants/character-slug-to-portrait';
+import Avatar from 'Components/avatar';
+import Button from 'Components/button';
 import './stylesheets/index.scss';
 
 const characterNamespace = 'character';
@@ -16,12 +15,7 @@ const CharacterSelection = ({ characters }) => {
             className={`character-selection__grid-element ${characterNamespace}`}
             key={character.get('id')}
           >
-            <img
-              className={`${characterNamespace}__portrait`}
-              draggable="false"
-              src={characterSlugToPortrait.get(character.get('slug'))}
-              alt={`Portrait of ${character.get('name')}`}
-            />
+            <Avatar name={character.get('name')} slug={character.get('slug')} />
             <div className={`${characterNamespace}__overlay`}>
               <h2 className={`${characterNamespace}__name`}>
                 {character.get('name')}
@@ -29,12 +23,9 @@ const CharacterSelection = ({ characters }) => {
               <p className={`${characterNamespace}__description`}>
                 {character.get('description')}
               </p>
-              <Link
-                className={`${characterNamespace}__button`}
-                to={`/powers/${character.get('slug')}`}
-              >
+              <Button href={`/powers/${character.get('slug')}`}>
                 Choose {character.get('name')}
-              </Link>
+              </Button>
             </div>
           </div>
         ))}

@@ -1,31 +1,22 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import Component from '../';
-import topLevelEnhancementsSelector from 'Reducers/powers/selectors/top-level-enhancements';
-import topLevelPowersByCharacterIdSelector from 'Reducers/powers/selectors/top-level-powers-by-character-id';
 import {
-  clearPurchases,
-  addPurchase,
-  removePurchases,
-  removePurchase,
-} from 'Reducers/user';
+  characterBySlugSelector,
+  topLevelEnhancementsSelector,
+  topLevelPowersByCharacterSlugSelector,
+} from 'Src/selectors';
 
-export const mapStateToProps = (state, ownProps) => ({
-  topLevelEnhancements: topLevelEnhancementsSelector(state),
-  topLevelPowers: topLevelPowersByCharacterIdSelector(
+const mapStateToProps = (state, ownProps) => ({
+  character: characterBySlugSelector(
     state,
-    ownProps.match.params.characterId
+    ownProps.match.params.characterSlug
+  ),
+  topLevelEnhancements: topLevelEnhancementsSelector(state),
+  topLevelPowers: topLevelPowersByCharacterSlugSelector(
+    state,
+    ownProps.match.params.characterSlug
   ),
 });
 
-export const mapDispatchToProps = (dispatch) => ({
-  clearPurchases: bindActionCreators(clearPurchases, dispatch),
-  addPurchase: bindActionCreators(addPurchase, dispatch),
-  removePurchases: bindActionCreators(removePurchases, dispatch),
-  removePurchase: bindActionCreators(removePurchase, dispatch),
-});
-
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(Component)
-);
+export default withRouter(connect(mapStateToProps)(Component));

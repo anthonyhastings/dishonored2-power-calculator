@@ -27,70 +27,60 @@ describe('Selectors', () => {
 
   describe('#isInitialDataIncompleteSelector', () => {
     describe.each([
-      ['characters', 'idle'],
-      ['characters', 'pending'],
-      ['powers', 'idle'],
-      ['powers', 'pending'],
-    ])('when %s request is %s', (dataType, status) => {
-      beforeEach(() => {
-        testContext.state = Immutable.fromJS({
-          [dataType]: {
-            requestStatus: requestStatuses[status],
-          },
+      [requestStatuses.success, requestStatuses.success, false],
+      [requestStatuses.idle, requestStatuses.success, true],
+      [requestStatuses.success, requestStatuses.idle, true],
+      [requestStatuses.idle, requestStatuses.idle, true],
+    ])(
+      'when character request is %s and powers request is %s',
+      (charactersStatus, powersStatus, result) => {
+        beforeEach(() => {
+          testContext.state = Immutable.fromJS({
+            characters: {
+              requestStatus: charactersStatus,
+            },
+            powers: {
+              requestStatus: powersStatus,
+            },
+          });
         });
-      });
 
-      it('returns true', () => {
-        expect(
-          selectors.isInitialDataIncompleteSelector(testContext.state)
-        ).toEqual(true);
-      });
-    });
-
-    describe('when neither requests are pending nor idle', () => {
-      beforeEach(() => {
-        testContext.state = Immutable.Map();
-      });
-
-      it('returns false', () => {
-        expect(
-          selectors.isInitialDataIncompleteSelector(testContext.state)
-        ).toEqual(false);
-      });
-    });
+        it(`returns ${result}`, () => {
+          expect(
+            selectors.isInitialDataIncompleteSelector(testContext.state)
+          ).toEqual(result);
+        });
+      }
+    );
   });
 
   describe('#hasInitialDataFailedSelector', () => {
     describe.each([
-      ['characters', 'failure'],
-      ['powers', 'failure'],
-    ])('when %s request is %s', (dataType, status) => {
-      beforeEach(() => {
-        testContext.state = Immutable.fromJS({
-          [dataType]: {
-            requestStatus: requestStatuses[status],
-          },
+      [requestStatuses.idle, requestStatuses.idle, false],
+      [requestStatuses.failure, requestStatuses.idle, true],
+      [requestStatuses.idle, requestStatuses.failure, true],
+      [requestStatuses.failure, requestStatuses.failure, true],
+    ])(
+      'when character request is %s and powers request is %s',
+      (charactersStatus, powersStatus, result) => {
+        beforeEach(() => {
+          testContext.state = Immutable.fromJS({
+            characters: {
+              requestStatus: charactersStatus,
+            },
+            powers: {
+              requestStatus: powersStatus,
+            },
+          });
         });
-      });
 
-      it('returns true', () => {
-        expect(
-          selectors.hasInitialDataFailedSelector(testContext.state)
-        ).toEqual(true);
-      });
-    });
-
-    describe('when neither request has failed', () => {
-      beforeEach(() => {
-        testContext.state = Immutable.Map();
-      });
-
-      it('returns false', () => {
-        expect(
-          selectors.hasInitialDataFailedSelector(testContext.state)
-        ).toEqual(false);
-      });
-    });
+        it(`returns ${result}`, () => {
+          expect(
+            selectors.hasInitialDataFailedSelector(testContext.state)
+          ).toEqual(result);
+        });
+      }
+    );
   });
 
   describe('#characterBySlugSelector', () => {
@@ -144,7 +134,7 @@ describe('Selectors', () => {
       });
     });
 
-    it('returns Immutable List of top-level enhancements', () => {
+    it('returns Immutable List of top level enhancements', () => {
       expect(selectors.topLevelEnhancementsSelector(testContext.state)).toEqual(
         Immutable.fromJS([
           {
@@ -204,7 +194,7 @@ describe('Selectors', () => {
       });
     });
 
-    it('returns Immutable List of top-level owned or generic powers', () => {
+    it('returns Immutable List of top level owned or generic powers', () => {
       expect(
         selectors.topLevelPowersByCharacterSlugSelector(
           testContext.state,

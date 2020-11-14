@@ -36,15 +36,15 @@ exports[`App component when rendered renders a header area and top-level routes 
           exact={true}
           path="/"
         >
-          <MockCharacterSelection />
+          <mock-character-selection />
         </MockRoute>
         <MockRoute
           path="/powers/:characterSlug"
         >
-          <MockPowerSelectionRouteValidation />
+          <mock-power-selection-route-validation />
         </MockRoute>
         <MockRoute>
-          <MockPageNotFound />
+          <mock-page-not-found />
         </MockRoute>
       </MockSwitch>
     </MockLoader>

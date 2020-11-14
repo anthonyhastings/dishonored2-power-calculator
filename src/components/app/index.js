@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, lazy } from 'react';
+import { Suspense, useEffect, lazy } from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, Link } from 'react-router-dom';
 import 'normalize.css';

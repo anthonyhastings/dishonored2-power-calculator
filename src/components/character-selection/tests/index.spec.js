@@ -1,29 +1,29 @@
-import React from 'react';
 import Immutable from 'immutable';
 import renderer from 'react-test-renderer';
 import CharacterSelection from '../';
 
-jest.mock('react-router-dom', () => ({
-  Link: 'MockLink',
-}));
+jest.mock('Components/avatar', () => 'MockAvatar');
+jest.mock('Components/button', () => 'MockButton');
 
 describe('CharacterSelection component', () => {
   let testContext;
 
-  const renderComponent = (props = {}) => <CharacterSelection {...props} />;
+  const renderComponent = (props = {}) => (
+    <CharacterSelection {...testContext.defaultProps} {...props} />
+  );
 
   beforeEach(() => {
     testContext = {};
 
     testContext.defaultProps = {
       characters: Immutable.fromJS({
-        dummyUuid: {
+        'dummy-id': {
           id: 'dummy-id',
           slug: 'dummy-slug',
           name: 'Adam Jensen',
           description: 'Task Force 29 operative.',
         },
-        fakeUuid: {
+        'fake-id': {
           id: 'fake-id',
           slug: 'fake-slug',
           name: 'Scott Ryder',
@@ -35,9 +35,7 @@ describe('CharacterSelection component', () => {
 
   describe('when rendered', () => {
     beforeEach(() => {
-      testContext.component = renderer.create(
-        renderComponent(testContext.defaultProps)
-      );
+      testContext.component = renderer.create(renderComponent());
     });
 
     it('renders a heading and character grid', () => {

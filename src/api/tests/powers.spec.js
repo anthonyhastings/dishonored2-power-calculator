@@ -1,28 +1,31 @@
-import moxios from 'moxios';
+import axios from 'axios';
 import * as api from '../powers';
 
+jest.mock('axios');
+
 describe('Powers API requests', () => {
+  let testContext;
+
   beforeEach(() => {
-    moxios.install();
+    testContext = {};
   });
 
   afterEach(() => {
-    moxios.uninstall();
+    jest.resetAllMocks();
   });
 
   describe('#getPowers', () => {
     beforeEach(async () => {
-      moxios.stubRequest('/powers.json', {
-        status: 200,
-      });
-
-      await api.getPowers();
+      axios.get.mockResolvedValue('hello-world');
+      testContext.result = await api.getPowers();
     });
 
-    it('calls API with correct settings', () => {
-      expect(moxios.requests.mostRecent().config).toMatchObject({
-        url: '/powers.json',
-      });
+    it('calls axios with correct options', () => {
+      expect(axios.get).toHaveBeenCalledWith('/powers.json');
+    });
+
+    it('returns expected value', () => {
+      expect(testContext.result).toEqual('hello-world');
     });
   });
 });

@@ -19,66 +19,62 @@ $characterNamespace: 'character';
   }
 
   &__grid {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-
-    @include mq(large) {
-      align-items: flex-start;
-      flex-direction: row;
-      justify-content: center;
-    }
-  }
-
-  &__grid-element {
-    &:not(:last-child) {
-      margin: 0 0 2rem 0;
-
-      @include mq(large) {
-        margin: 0 2rem 0 0;
-      }
-    }
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(auto, 45rem));
+    justify-content: center;
+    width: 100%;
   }
 }
 
 .#{$characterNamespace} {
   border: 0.1rem solid map-get($colours, tundora);
   border-radius: 3%;
-  max-width: 45rem;
   overflow: hidden;
   position: relative;
 
   &:hover {
     .#{$characterNamespace}__overlay {
       transform: translateY(0);
+
+      &::before {
+        flex-grow: 1;
+      }
     }
   }
 
-  &__portrait {
-    display: block;
-    height: auto;
-    width: 100%;
-  }
-
   &__overlay {
-    background-color: map-get($colours, black);
+    background-color: rgba(0, 0, 0, 0.88);
     bottom: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     left: 0;
     overflow: hidden;
     padding: 2rem;
     position: absolute;
     right: 0;
     top: 0;
-    transform: translateY(100%);
+    transform: translateY(calc(100% - 6rem));
     transition: transform 300ms ease-in;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      flex: 1 1 auto;
+    }
+
+    &::before {
+      flex-grow: 0;
+      transition: flex 300ms ease-in;
+      will-change: flex;
+    }
   }
 
   &__name {
     font-size: 2.6rem;
+    line-height: (30 / 26);
     margin-bottom: 1rem;
   }
 
@@ -86,26 +82,5 @@ $characterNamespace: 'character';
     font-size: 1.8rem;
     line-height: (22 / 18);
     margin: 0 0 2rem 0;
-  }
-
-  &__button {
-    background-color: map-get($colours, mine-shaft);
-    border: 0.1rem solid map-get($colours, tundora);
-    border-radius: 0.25rem;
-    color: map-get($colours, white);
-    font-size: 1.4rem;
-    font-weight: bold;
-    line-height: (18 / 14);
-    padding: 0.75rem;
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: background-color 300ms, border-color 300ms;
-    width: 100%;
-
-    &:hover {
-      background-color: map-get($colours, tundora);
-      border-color: map-get($colours, mine-shaft);
-    }
   }
 }

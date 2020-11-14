@@ -1,102 +1,59 @@
-import Immutable from 'immutable';
-import { mapStateToProps, mapDispatchToProps } from '../';
+import Container from '../';
+import * as selectors from 'Src/selectors';
 
-describe('Power selection container', () => {
-  let state;
+jest.mock('Src/selectors', () => ({
+  characterBySlugSelector: jest.fn().mockReturnValue('characterBySlugSelector'),
+  topLevelEnhancementsSelector: jest
+    .fn()
+    .mockReturnValue('topLevelEnhancementsSelector'),
+  topLevelPowersByCharacterSlugSelector: jest
+    .fn()
+    .mockReturnValue('topLevelPowersByCharacterSlugSelector'),
+}));
+
+jest.mock('../../', () => 'MockComponent');
+
+describe('PowerSelection container', () => {
+  let testContext;
 
   beforeEach(() => {
-    state = Immutable.fromJS({
-      powers: {
-        data: {
-          abc: { id: 'abc', parentPowerId: null, name: 'Power #01' },
-        },
-      },
-      user: {
-        totalRunes: 30,
-        purchases: [],
-      },
-    });
+    testContext = {};
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   describe('#mapStateToProps', () => {
-    let stateProps;
-
     beforeEach(() => {
-      const ownProps = {
+      testContext.result = Container.mapStateToProps(null, {
         match: {
-          params: { characterId: 'de2351c7-f1c3-409d-8973-414d5c37364c' },
+          params: {
+            characterSlug: 'fake-slug',
+          },
         },
-      };
-
-      stateProps = mapStateToProps(state, ownProps);
-    });
-
-    it('has a topLevelEnhancements prop', () => {
-      expect(stateProps.topLevelEnhancements).toBeDefined();
-    });
-
-    it('has a topLevelPowers prop', () => {
-      expect(stateProps.topLevelPowers).toBeDefined();
-    });
-  });
-
-  describe('#mapDispatchToProps', () => {
-    let dispatch;
-    let dispatchProps;
-
-    beforeEach(() => {
-      dispatch = jest.fn();
-      dispatchProps = mapDispatchToProps(dispatch);
-    });
-
-    describe('has a clearPurchases prop', () => {
-      beforeEach(() => {
-        dispatchProps.clearPurchases();
-      });
-
-      it('that triggers CLEAR_PURCHASES action when called', () => {
-        expect(dispatch.mock.calls[0][0].type).toEqual('CLEAR_PURCHASES');
       });
     });
 
-    describe('has an addPurchase prop', () => {
-      beforeEach(() => {
-        dispatchProps.addPurchase();
-      });
-
-      it('triggers an ADD_PURCHASE action', () => {
-        expect(dispatch.mock.calls[0][0].type).toEqual('ADD_PURCHASE');
-      });
+    it('calls character selector with slug', () => {
+      expect(selectors.characterBySlugSelector).toHaveBeenNthCalledWith(
+        1,
+        null,
+        'fake-slug'
+      );
     });
 
-    describe('has a removePurchases prop', () => {
-      beforeEach(() => {
-        dispatchProps.removePurchases();
-      });
-
-      it('that triggers REMOVE_PURCHASES action when called', () => {
-        expect(dispatch.mock.calls[0][0].type).toEqual('REMOVE_PURCHASES');
-      });
+    it('calls powers by character selector with slug', () => {
+      expect(
+        selectors.topLevelPowersByCharacterSlugSelector
+      ).toHaveBeenNthCalledWith(1, null, 'fake-slug');
     });
 
-    describe('has a removePurchase prop', () => {
-      let thunkFunc;
-      let thunkDispatchFunc;
-      let thunkGetStateFunc;
-
-      beforeEach(() => {
-        dispatchProps.removePurchase('abc');
-        thunkFunc = dispatch.mock.calls[0][0];
-
-        thunkDispatchFunc = jest.fn();
-        thunkGetStateFunc = jest.fn(() => state);
-        thunkFunc(thunkDispatchFunc, thunkGetStateFunc);
-      });
-
-      it('that triggers REMOVE_PURCHASES action when called', () => {
-        expect(thunkDispatchFunc.mock.calls[0][0].type).toEqual(
-          'REMOVE_PURCHASES'
-        );
+    it('returns expected key/value pairings', () => {
+      expect(testContext.result).toEqual({
+        character: 'characterBySlugSelector',
+        topLevelEnhancements: 'topLevelEnhancementsSelector',
+        topLevelPowers: 'topLevelPowersByCharacterSlugSelector',
       });
     });
   });

@@ -39,6 +39,8 @@
     "no-multi-str": "error",
     "no-undef": "error",
     "no-unused-vars": "error",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
     "react/sort-prop-types": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error",
@@ -48,6 +50,7 @@
   "overrides": [
     {
       "files": [
+        "support/**/*.{js,mjs}",
         "**/__mocks__/*.{js,mjs}",
         "**/*.spec.{js,mjs}"
       ],

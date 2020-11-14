@@ -15,10 +15,9 @@ exports[`CharacterSelection component when rendered renders a heading and charac
     <div
       className="character-selection__grid-element character"
     >
-      <img
-        alt="Portrait of Adam Jensen"
-        className="character__portrait"
-        draggable="false"
+      <MockAvatar
+        name="Adam Jensen"
+        slug="dummy-slug"
       />
       <div
         className="character__overlay"
@@ -33,22 +32,20 @@ exports[`CharacterSelection component when rendered renders a heading and charac
         >
           Task Force 29 operative.
         </p>
-        <MockLink
-          className="character__button"
-          to="/powers/dummy-slug"
+        <MockButton
+          href="/powers/dummy-slug"
         >
           Choose 
           Adam Jensen
-        </MockLink>
+        </MockButton>
       </div>
     </div>
     <div
       className="character-selection__grid-element character"
     >
-      <img
-        alt="Portrait of Scott Ryder"
-        className="character__portrait"
-        draggable="false"
+      <MockAvatar
+        name="Scott Ryder"
+        slug="fake-slug"
       />
       <div
         className="character__overlay"
@@ -63,13 +60,12 @@ exports[`CharacterSelection component when rendered renders a heading and charac
         >
           The pathfinder.
         </p>
-        <MockLink
-          className="character__button"
-          to="/powers/fake-slug"
+        <MockButton
+          href="/powers/fake-slug"
         >
           Choose 
           Scott Ryder
-        </MockLink>
+        </MockButton>
       </div>
     </div>
   </div>

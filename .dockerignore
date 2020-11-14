@@ -2,6 +2,7 @@
 *
 
 # White list only the required files and folders.
+!__mocks__/
 !html/
 !images/
 !manifests/
@@ -15,7 +16,7 @@
 !.eslintrc.json
 !.prettierrc.json
 !.stylelintrc.json
-!jest.config.js
+!jest.config.mjs
 !package.json
 !postcss.config.js
 !yarn.lock
