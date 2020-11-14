@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import characters from 'Reducers/characters';
 import powers from 'Reducers/powers';
 
-export const middleware = [thunk];
+const middleware = [thunk];
 
 const appliedMiddleware = applyMiddleware(...middleware);
 
