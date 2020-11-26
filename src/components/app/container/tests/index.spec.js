@@ -1,9 +1,5 @@
 import Container from '../';
 
-jest.mock('react-hot-loader/root', () => ({
-  hot: (component) => component,
-}));
-
 jest.mock('Reducers/characters', () => ({
   getCharacters: () => 'MockGetCharactersAction',
 }));

@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { hot } from 'react-hot-loader/root';
 import { getCharacters } from 'Reducers/characters';
 import { getPowers } from 'Reducers/powers';
 import {
@@ -20,4 +19,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default hot(connect(mapStateToProps, mapDispatchToProps)(Component));
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

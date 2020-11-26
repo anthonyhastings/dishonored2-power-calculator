@@ -20,7 +20,16 @@ module.exports = function (environment) {
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
-          loader: 'babel-loader',
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                plugins: [
+                  isDev && require.resolve('react-refresh/babel'),
+                ].filter(Boolean),
+              },
+            },
+          ],
         },
         {
           test: /\.(sa|sc|c)ss$/,
