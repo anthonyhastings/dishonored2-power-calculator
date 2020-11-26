@@ -1,5 +1,6 @@
 const webpackMerge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const paths = require('../support/paths');
 const baseConfig = require('./base');
 
@@ -24,12 +25,8 @@ module.exports = function () {
           logLevel: 'debug',
         }
       ),
+      new ReactRefreshWebpackPlugin(),
     ],
-    resolve: {
-      alias: {
-        'react-dom': '@hot-loader/react-dom',
-      },
-    },
     devServer: {
       compress: true,
       contentBase: paths.dist,
