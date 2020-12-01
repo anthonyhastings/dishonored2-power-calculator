@@ -6,6 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run tests and output coverage
-        run: echo hello
+        run: echo hello && ls -al && pwd
       - run: docker --version
       - run: docker-compose --version
