@@ -5,7 +5,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Debugging
+        run: |
+          ls -al
+          pwd
+          docker --version
+          docker-compose --version
+      - name: Lint source files
+        run: docker-compose run --rm dev yarn run lint
       - name: Run tests and output coverage
-        run: echo hello && ls -al && pwd
-      - run: docker --version
-      - run: docker-compose --version
+        run: echo ???
