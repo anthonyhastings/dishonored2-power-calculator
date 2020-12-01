@@ -16,7 +16,7 @@ jobs:
           docker-compose --version
 
       - name: Lint source files
-        run: docker-compose run --rm dev yarn run lint
+        run: docker-compose run --rm dev yarn lint
 
       - name: Run tests and output coverage
         run: echo ???
