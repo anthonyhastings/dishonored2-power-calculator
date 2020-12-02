@@ -17,12 +17,6 @@ jobs:
       - name: Run tests and output coverage
         run: docker-compose run --rm --volume "$(pwd)"/jest-coverage:/dishonored/jest-coverage dev yarn test
 
-      - name: Debugging
-        run: |
-          ls -al
-          ls -al ./jest-coverage
-          pwd
-
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
