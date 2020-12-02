@@ -3,6 +3,7 @@ name: test-and-release
 on: [push]
 
 env:
+  GOOGLE_SITE_VERIFICATION_TOKEN: cj8IJgpHPbgqe4Xs9_dAAUzO07qGnnnz5SlSN32fOnA
   PORT: 8080
 
 jobs:
