@@ -6,7 +6,7 @@ ARG GOOGLE_SITE_VERIFICATION_TOKEN
 
 WORKDIR /dishonored
 
-RUN apk add --no-cache bash curl
+RUN apk add --no-cache bash
 
 COPY ./package.json ./yarn.lock ./
 
