@@ -19,7 +19,6 @@ services:
         - GOOGLE_SITE_VERIFICATION_TOKEN
     command: sh -c "yarn run webpack:dev-server"
     environment:
-      - CODECOV_TOKEN
       - GOOGLE_SITE_VERIFICATION_TOKEN
       - PORT
     ports:
@@ -28,7 +27,6 @@ services:
       - ./html:/dishonored/html
       - ./images:/dishonored/images
       - ./manifests:/dishonored/manifests
-      - ./scripts:/dishonored/scripts
       - ./server:/dishonored/server
       - ./src:/dishonored/src
       - ./support:/dishonored/support
