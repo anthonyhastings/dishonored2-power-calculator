@@ -46,7 +46,7 @@ jobs:
         run: heroku container:login
 
       - name: Build and push image to Heroku registry
-        run: heroku container:push web --app=$HEROKU_APP_NAME
+        run: heroku container:push web --app=$HEROKU_APP_NAME --arg GOOGLE_SITE_VERIFICATION_TOKEN=$GOOGLE_SITE_VERIFICATION_TOKEN
 
       - name: Release image to Heroku application
         run: heroku container:release web --app=$HEROKU_APP_NAME
