@@ -1,0 +1,52 @@
+name: test-and-release
+
+on: [push]
+
+env:
+  GOOGLE_SITE_VERIFICATION_TOKEN: cj8IJgpHPbgqe4Xs9_dAAUzO07qGnnnz5SlSN32fOnA
+  PORT: 8080
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Build dev container image
+        run: docker-compose build dev
+
+      - name: Lint source files
+        run: docker-compose run --rm dev yarn lint
+
+      - name: Run tests and output coverage
+        run: docker-compose run --rm --volume "$(pwd)"/jest-coverage:/dishonored/jest-coverage dev yarn test
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          directory: ./jest-coverage/
+          fail_ci_if_error: true
+          flags: unittests
+          token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: false
+
+  release:
+    runs-on: ubuntu-latest
+    needs: [test]
+    if: github.ref == 'refs/heads/master'
+    env:
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      HEROKU_APP_NAME: dishonored2-power-calculator
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Login to Heroku
+        run: heroku container:login
+
+      - name: Build and push image to Heroku registry
+        run: heroku container:push web --app=$HEROKU_APP_NAME
+
+      - name: Release image to Heroku application
+        run: heroku container:release web --app=$HEROKU_APP_NAME
