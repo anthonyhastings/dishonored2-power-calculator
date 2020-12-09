@@ -3,7 +3,7 @@ SHELL:=/bin/bash
 help:
 	@echo "start-dev - Starts webpack-dev-server for local development."
 	@echo "start-production - Starts serving production assets via Express.js."
-	@echo "start-tests - Runs linting."
+	@echo "start-lint - Runs linting."
 	@echo "start-tests - Runs the test suite."
 	@echo "start-tests-watch - Runs the test suite in watch mode."
 
