@@ -1,5 +1,5 @@
-[![TravisCI Badge](https://travis-ci.org/anthonyhastings/dishonored2-power-calculator.svg?branch=master "TravisCI Badge")](https://travis-ci.org/anthonyhastings/dishonored2-power-calculator)
-[![Coverage Status](https://codecov.io/gh/anthonyhastings/dishonored2-power-calculator/branch/master/graph/badge.svg)](https://codecov.io/gh/anthonyhastings/dishonored2-power-calculator)
+[![Build Status](https://github.com/anthonyhastings/dishonored2-power-calculator/workflows/test-and-release/badge.svg?branch=master "Build Status")](https://github.com/anthonyhastings/dishonored2-power-calculator/actions?query=workflow%3Atest-and-release+branch%3Amaster)
+[![Coverage Status](https://codecov.io/gh/anthonyhastings/dishonored2-power-calculator/branch/master/graph/badge.svg "Coverage Status")](https://codecov.io/gh/anthonyhastings/dishonored2-power-calculator)
 
 ## Instructions
 
