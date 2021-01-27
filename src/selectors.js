@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { createSelector } from 'reselect';
+import { createSelector } from '@reduxjs/toolkit';
 import requestStatuses from 'Constants/request-statuses';
 import * as charactersReducerSelectors from 'Reducers/characters/selectors';
 import * as powersReducerSelectors from 'Reducers/powers/selectors';
