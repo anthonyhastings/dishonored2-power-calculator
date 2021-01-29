@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { getCharacters } from 'Reducers/characters';
-import { getPowers } from 'Reducers/powers';
+import { fetchCharacters } from 'Slices/characters';
+import { fetchPowers } from 'Slices/powers';
 import {
   isInitialDataIncompleteSelector,
   hasInitialDataFailedSelector,
@@ -14,8 +14,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onComponentDidMount() {
-    dispatch(getCharacters());
-    dispatch(getPowers());
+    dispatch(fetchCharacters());
+    dispatch(fetchPowers());
   },
 });
 

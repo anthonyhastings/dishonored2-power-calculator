@@ -108,7 +108,7 @@ module.exports = function (environment) {
         Components: paths.components,
         Constants: paths.constants,
         Images: paths.images,
-        Reducers: paths.reducers,
+        Slices: paths.slices,
         Src: paths.src,
       },
     },

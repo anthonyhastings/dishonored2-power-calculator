@@ -1,8 +1,8 @@
 /* global process */
 
 import { configureStore } from '@reduxjs/toolkit';
-import characters from 'Reducers/characters';
-import powers from 'Reducers/powers';
+import characters from 'Slices/characters';
+import powers from 'Slices/powers';
 
 export default configureStore({
   devTools: {
