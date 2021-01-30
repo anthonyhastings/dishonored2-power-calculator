@@ -1,13 +1,13 @@
 import { Suspense, lazy } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import Immutable from 'immutable';
+import PropTypes from 'prop-types';
+import isObject from 'lodash/isObject';
 import Loader from 'Components/loader';
 import PowerSelection from './container';
 
 const PageNotFound = lazy(() => import('Components/page-not-found'));
 
 const PowerValidationRouteValidation = ({ character }) => {
-  if (Immutable.Map.isMap(character)) return <PowerSelection />;
+  if (isObject(character)) return <PowerSelection />;
   return (
     <Suspense fallback={<Loader showLoader={true} />}>
       <PageNotFound />
@@ -16,7 +16,7 @@ const PowerValidationRouteValidation = ({ character }) => {
 };
 
 PowerValidationRouteValidation.propTypes = {
-  character: ImmutablePropTypes.map,
+  character: PropTypes.object,
 };
 
 export default PowerValidationRouteValidation;

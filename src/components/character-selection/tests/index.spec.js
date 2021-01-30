@@ -1,4 +1,3 @@
-import Immutable from 'immutable';
 import renderer from 'react-test-renderer';
 import CharacterSelection from '../';
 
@@ -16,7 +15,7 @@ describe('CharacterSelection component', () => {
     testContext = {};
 
     testContext.defaultProps = {
-      characters: Immutable.fromJS({
+      characters: {
         'dummy-id': {
           id: 'dummy-id',
           slug: 'dummy-slug',
@@ -29,7 +28,7 @@ describe('CharacterSelection component', () => {
           name: 'Scott Ryder',
           description: 'The pathfinder.',
         },
-      }),
+      },
     };
   });
 

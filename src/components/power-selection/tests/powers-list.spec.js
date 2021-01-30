@@ -1,5 +1,4 @@
 import renderer from 'react-test-renderer';
-import Immutable from 'immutable';
 import PowersList from '../powers-list';
 
 describe('PowersList component', () => {
@@ -14,10 +13,10 @@ describe('PowersList component', () => {
 
     testContext.defaultProps = {
       children: 'Test Title',
-      powers: Immutable.fromJS([
+      powers: [
         { id: 'test-id-01', name: 'Test Name 01' },
         { id: 'test-id-02', name: 'Test Name 02' },
-      ]),
+      ],
     };
   });
 
