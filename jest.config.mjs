@@ -8,7 +8,7 @@ const configuration = {
     '^Components(.*)$': '<rootDir>/src/components$1',
     '^Constants(.*)$': '<rootDir>/src/constants$1',
     '^Images(.*)$': '<rootDir>/images$1',
-    '^Reducers(.*)$': '<rootDir>/src/reducers$1',
+    '^Slices(.*)$': '<rootDir>/src/slices$1',
     '^Src(.*)$': '<rootDir>/src$1',
     '\\.(css|scss|sass)$': '<rootDir>/support/tests/style-mock.js',
   },

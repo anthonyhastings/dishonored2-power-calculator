@@ -1,4 +1,3 @@
-import Immutable from 'immutable';
 import renderer from 'react-test-renderer';
 import PowerSelectionRouteValidation from '../route-validation';
 
@@ -55,7 +54,7 @@ describe('PowerSelectionRouteValidation component', () => {
     beforeEach(() => {
       testContext.component = renderer.create(
         renderComponent({
-          character: Immutable.Map(),
+          character: {},
         })
       );
     });

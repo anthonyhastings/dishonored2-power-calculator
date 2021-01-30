@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import kebabCase from 'lodash/kebabCase';
@@ -19,12 +18,12 @@ const PowersList = ({ children, className, powers }) => {
       <div className={`${namespace}__grid`}>
         {powers.map((power) => {
           return (
-            <div className={`${namespace}__grid-item`} key={power.get('id')}>
-              <h1>{power.get('name')}</h1>
+            <div className={`${namespace}__grid-item`} key={power.id}>
+              <h1>{power.name}</h1>
               <span
-                alt={`Symbol for ${power.get('name')}`}
+                alt={`Symbol for ${power.name}`}
                 className={`${namespace}__icon ${namespace}__icon--${kebabCase(
-                  power.get('name')
+                  power.name
                 )}`}
               />
             </div>
@@ -38,7 +37,7 @@ const PowersList = ({ children, className, powers }) => {
 PowersList.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  powers: ImmutablePropTypes.list.isRequired,
+  powers: PropTypes.array.isRequired,
 };
 
 export default PowersList;

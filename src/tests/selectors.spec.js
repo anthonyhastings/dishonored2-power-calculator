@@ -1,4 +1,3 @@
-import Immutable from 'immutable';
 import * as selectors from '../selectors';
 import requestStatuses from 'Constants/request-statuses';
 
@@ -11,11 +10,11 @@ describe('Selectors', () => {
 
   describe('#charactersDataSelector', () => {
     beforeEach(() => {
-      testContext.state = Immutable.fromJS({
+      testContext.state = {
         characters: {
           data: 'hello world',
         },
-      });
+      };
     });
 
     it('returns expected state', () => {
@@ -35,14 +34,14 @@ describe('Selectors', () => {
       'when character request is %s and powers request is %s',
       (charactersStatus, powersStatus, result) => {
         beforeEach(() => {
-          testContext.state = Immutable.fromJS({
+          testContext.state = {
             characters: {
               requestStatus: charactersStatus,
             },
             powers: {
               requestStatus: powersStatus,
             },
-          });
+          };
         });
 
         it(`returns ${result}`, () => {
@@ -64,14 +63,14 @@ describe('Selectors', () => {
       'when character request is %s and powers request is %s',
       (charactersStatus, powersStatus, result) => {
         beforeEach(() => {
-          testContext.state = Immutable.fromJS({
+          testContext.state = {
             characters: {
               requestStatus: charactersStatus,
             },
             powers: {
               requestStatus: powersStatus,
             },
-          });
+          };
         });
 
         it(`returns ${result}`, () => {
@@ -85,72 +84,70 @@ describe('Selectors', () => {
 
   describe('#characterBySlugSelector', () => {
     beforeEach(() => {
-      testContext.state = Immutable.fromJS({
+      testContext.state = {
         characters: {
           data: {
             testKey: { slug: 'non-matching' },
             fakeKey: { slug: 'matching' },
           },
         },
-      });
+      };
     });
 
     it('returns relevant record', () => {
       expect(
         selectors.characterBySlugSelector(testContext.state, 'matching')
-      ).toEqual(
-        Immutable.Map({
-          slug: 'matching',
-        })
-      );
+      ).toEqual({
+        slug: 'matching',
+      });
     });
   });
 
   describe('#topLevelEnhancementsSelector', () => {
     beforeEach(() => {
-      testContext.state = Immutable.fromJS({
+      testContext.state = {
         powers: {
-          data: [
-            {
-              id: 1,
+          data: {
+            testKey: {
+              id: 'testKey',
               parentPowerId: null,
               type: 'enhancement',
               name: 'Top-level Enhancement',
             },
-            {
-              id: 2,
-              parentPowerId: 1,
+            fakeKey: {
+              id: 'fakeKey',
+              parentPowerId: 'testKey',
               type: 'enhancement',
               name: 'Sub-level Enhancement',
             },
-            {
-              id: 3,
+            dummyKey: {
+              id: 'dummyKey',
               parentPowerId: null,
               type: 'power',
               name: 'Top-level Power',
             },
-          ],
+          },
         },
-      });
+      };
     });
 
-    it('returns Immutable List of top level enhancements', () => {
+    it('returns an array of top level enhancements', () => {
       expect(selectors.topLevelEnhancementsSelector(testContext.state)).toEqual(
-        Immutable.fromJS([
+        [
           {
-            id: 1,
+            id: 'testKey',
             parentPowerId: null,
             type: 'enhancement',
             name: 'Top-level Enhancement',
           },
-        ])
+        ]
       );
     });
   });
 
   describe('#topLevelPowersByCharacterSlugSelector', () => {
     beforeEach(() => {
-      testContext.state = Immutable.fromJS({
+      testContext.state = {
         characters: {
           data: {
             'character-123': {
@@ -191,33 +188,31 @@ describe('Selectors', () => {
             },
           },
         },
-      });
+      };
     });
 
-    it('returns Immutable List of top level owned or generic powers', () => {
+    it('returns an array of top level or generic powers', () => {
       expect(
         selectors.topLevelPowersByCharacterSlugSelector(
           testContext.state,
           'fake-character-slug'
         )
-      ).toEqual(
-        Immutable.fromJS([
-          {
-            id: 'power-1',
-            characterId: null,
-            parentPowerId: null,
-            type: 'power',
-            name: 'Top-level Generic Power',
-          },
-          {
-            id: 'power-2',
-            characterId: 'character-123',
-            parentPowerId: null,
-            type: 'power',
-            name: 'Top-level Relevant Power',
-          },
-        ])
-      );
+      ).toEqual([
+        {
+          id: 'power-1',
+          characterId: null,
+          parentPowerId: null,
+          type: 'power',
+          name: 'Top-level Generic Power',
+        },
+        {
+          id: 'power-2',
+          characterId: 'character-123',
+          parentPowerId: null,
+          type: 'power',
+          name: 'Top-level Relevant Power',
+        },
+      ]);
     });
   });
 });

@@ -1,11 +1,11 @@
 import Container from '../';
 
-jest.mock('Reducers/characters', () => ({
-  getCharacters: () => 'MockGetCharactersAction',
+jest.mock('Slices/characters', () => ({
+  fetchCharacters: () => 'MockGetCharactersAction',
 }));
 
-jest.mock('Reducers/powers', () => ({
-  getPowers: () => 'MockGetPowersAction',
+jest.mock('Slices/powers', () => ({
+  fetchPowers: () => 'MockGetPowersAction',
 }));
 
 jest.mock('Src/selectors', () => ({

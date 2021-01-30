@@ -1,5 +1,4 @@
 import renderer from 'react-test-renderer';
-import Immutable from 'immutable';
 import PowerSelection from '../';
 
 jest.mock('Components/avatar', () => 'MockAvatar');
@@ -19,9 +18,9 @@ describe('PowerSelection component', () => {
     testContext = {};
 
     testContext.defaultProps = {
-      character: Immutable.Map({ name: 'Mock Name', slug: 'mock-slug' }),
-      topLevelEnhancements: Immutable.List(['mock-top-level-enhancements']),
-      topLevelPowers: Immutable.List(['mock-top-level-powers']),
+      character: { name: 'Mock Name', slug: 'mock-slug' },
+      topLevelEnhancements: ['mock-top-level-enhancements'],
+      topLevelPowers: ['mock-top-level-powers'],
     };
   });
 

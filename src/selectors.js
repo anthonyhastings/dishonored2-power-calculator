@@ -1,21 +1,24 @@
-import Immutable from 'immutable';
-import { createSelector } from 'reselect';
+import { createSelector } from '@reduxjs/toolkit';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import includes from 'lodash/includes';
+import some from 'lodash/some';
 import requestStatuses from 'Constants/request-statuses';
-import * as charactersReducerSelectors from 'Reducers/characters/selectors';
-import * as powersReducerSelectors from 'Reducers/powers/selectors';
+import * as charactersReducerSelectors from 'Slices/characters/selectors';
+import * as powersReducerSelectors from 'Slices/powers/selectors';
 
 const isRequestIncomplete = (requestStatus) =>
-  [requestStatuses.idle, requestStatuses.pending].includes(requestStatus);
+  includes([requestStatuses.idle, requestStatuses.pending], requestStatus);
 
 const hasRequestFailed = (requestStatus) =>
   requestStatus === requestStatuses.failure;
 
 const filterTopLeverPowersList = (records) =>
-  records.filter((record) => record.get('parentPowerId') === null).toList();
+  filter(records, (record) => record.parentPowerId === null);
 
-const charactersSelector = (state) => state.get('characters', Immutable.Map());
+const charactersSelector = (state) => state.characters ?? {};
 
-const powersSelector = (state) => state.get('powers', Immutable.Map());
+const powersSelector = (state) => state.powers ?? {};
 
 export const charactersDataSelector = createSelector(
   charactersSelector,
@@ -40,26 +43,26 @@ const powersDataSelector = createSelector(
 export const isInitialDataIncompleteSelector = createSelector(
   charactersRequestStatusSelector,
   powersRequestStatusSelector,
-  (...statuses) => statuses.some(isRequestIncomplete)
+  (...statuses) => some(statuses, isRequestIncomplete)
 );
 
 export const hasInitialDataFailedSelector = createSelector(
   charactersRequestStatusSelector,
   powersRequestStatusSelector,
-  (...statuses) => statuses.some(hasRequestFailed)
+  (...statuses) => some(statuses, hasRequestFailed)
 );
 
 export const characterBySlugSelector = (state, slug) => {
   const characters = charactersDataSelector(state);
-  return characters.find((character) => character.get('slug') === slug);
+  return find(characters, (character) => character.slug === slug);
 };
 
 const enhancementRecordsSelector = createSelector(powersDataSelector, (data) =>
-  data.filter((record) => record.get('type') === 'enhancement')
+  filter(data, (record) => record.type === 'enhancement')
 );
 
 const powerRecordsSelector = createSelector(powersDataSelector, (data) =>
-  data.filter((record) => record.get('type') === 'power')
+  filter(data, (record) => record.type === 'power')
 );
 
 export const topLevelEnhancementsSelector = createSelector(
@@ -74,12 +77,11 @@ const topLevelPowersSelector = createSelector(
 
 export const topLevelPowersByCharacterSlugSelector = (state, characterSlug) => {
   const character = characterBySlugSelector(state, characterSlug);
+  const topLevelPowers = topLevelPowersSelector(state);
 
-  return topLevelPowersSelector(state)
-    .filter((power) => {
-      const belongsTo = power.get('characterId') === character.get('id');
-      const belongsToAll = power.get('characterId') === null;
-      return belongsTo || belongsToAll;
-    })
-    .toList();
+  return filter(topLevelPowers, (power) => {
+    const belongsTo = power.characterId === character.id;
+    const belongsToAll = power.characterId === null;
+    return belongsTo || belongsToAll;
+  });
 };

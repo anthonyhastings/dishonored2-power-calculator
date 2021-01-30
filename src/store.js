@@ -1,26 +1,15 @@
 /* global process */
 
-import { createStore, applyMiddleware, compose } from 'redux';
-import { combineReducers } from 'redux-immutable';
-import thunk from 'redux-thunk';
-import characters from 'Reducers/characters';
-import powers from 'Reducers/powers';
+import { configureStore } from '@reduxjs/toolkit';
+import characters from 'Slices/characters';
+import powers from 'Slices/powers';
 
-const middleware = [thunk];
-
-const appliedMiddleware = applyMiddleware(...middleware);
-
-const isProduction = process.env.NODE_ENV === 'production';
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const storeEnhancer = isProduction
-  ? appliedMiddleware
-  : composeEnhancers(appliedMiddleware);
-
-const rootReducer = combineReducers({
-  characters,
-  powers,
+export default configureStore({
+  devTools: {
+    ...(process.env.NODE_ENV === 'production' && { features: {} }),
+  },
+  reducer: {
+    characters,
+    powers,
+  },
 });
-
-export default createStore(rootReducer, storeEnhancer);

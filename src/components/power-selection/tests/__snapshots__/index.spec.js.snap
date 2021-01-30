@@ -26,7 +26,7 @@ exports[`PowerSelection component when rendered renders a header area and catego
     <MockPowersList
       className="power-selection__category"
       powers={
-        Immutable.List [
+        Array [
           "mock-top-level-powers",
         ]
       }
@@ -36,7 +36,7 @@ exports[`PowerSelection component when rendered renders a header area and catego
     <MockPowersList
       className="power-selection__category"
       powers={
-        Immutable.List [
+        Array [
           "mock-top-level-enhancements",
         ]
       }
