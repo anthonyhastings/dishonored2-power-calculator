@@ -18,6 +18,7 @@ make
 - [X] Replace enzyme usage with Jest snapshotting.
 - [X] Use Redux to manage application state.
 - [X] Use React-Router to manage the URL within the application.
+- [X] Convert redux usage to utilize redux-toolkit.
 - [ ] Redux requesting powers information via `redux-thunk` and Axios.
 - [ ] Use `validateUUID` to check a valid character uuid has been supplied in the URL.
 - [ ] Lighthouse integration in CI.
