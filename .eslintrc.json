@@ -33,7 +33,7 @@
     "camelcase": "error",
     "dot-notation": "error",
     "eqeqeq": ["error", "allow-null"],
-    "new-cap": ["error", {"capIsNewExceptions": ["Immutable.List", "Immutable.Map", "Immutable.Set", "Immutable.OrderedMap"]}],
+    "new-cap": "error",
     "no-caller": "error",
     "no-console": "error",
     "no-multi-str": "error",
