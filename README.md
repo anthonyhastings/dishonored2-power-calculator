@@ -9,6 +9,8 @@ Interact via Makefile commands; see list by executing the following:
 make
 ```
 
+When making changes to this repository, be aware that commit messages are expected to follow the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
+
 
 ## TODO
 - [X] Implement CI flow via Docker, TravisCI, Coveralls and Heroku.
