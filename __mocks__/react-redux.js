@@ -6,14 +6,13 @@ afterEach(() => {
 });
 /* eslint-enable jest/require-top-level-describe */
 
-export const connect = (mapStateToProps, mapDispatchToProps) => (
-  Component
-) => ({
-  mapStateToProps,
-  mapDispatchToProps: (dispatch = mockDispatch, ownProps) =>
-    mapDispatchToProps(dispatch, ownProps),
-  Component,
-  mockDispatch,
-});
+export const connect =
+  (mapStateToProps, mapDispatchToProps) => (Component) => ({
+    mapStateToProps,
+    mapDispatchToProps: (dispatch = mockDispatch, ownProps) =>
+      mapDispatchToProps(dispatch, ownProps),
+    Component,
+    mockDispatch,
+  });
 
 export const Provider = ({ children }) => children;
