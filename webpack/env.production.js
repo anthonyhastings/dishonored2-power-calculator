@@ -60,7 +60,7 @@ module.exports = function (env = {}) {
     },
   });
 
-  if (env.stats === 'true') {
+  if (env.stats === true) {
     productionConfig.plugins.push(
       new BundleAnalyzerPlugin({
         analyzerMode: 'server',
