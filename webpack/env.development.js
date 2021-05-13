@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const { merge: webpackMerge } = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
@@ -17,8 +18,11 @@ module.exports = function () {
       new CopyWebpackPlugin(
         [
           {
-            from: paths.server,
-            test: /\.json$/,
+            from: path.join(paths.server, '/characters.json'),
+            to: './',
+          },
+          {
+            from: path.join(paths.server, '/powers.json'),
             to: './',
           },
         ],
