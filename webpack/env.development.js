@@ -15,8 +15,8 @@ module.exports = function () {
       filename: 'js/[name].js',
     },
     plugins: [
-      new CopyWebpackPlugin(
-        [
+      new CopyWebpackPlugin({
+        patterns: [
           {
             from: path.join(paths.server, '/characters.json'),
             to: './',
@@ -26,10 +26,7 @@ module.exports = function () {
             to: './',
           },
         ],
-        {
-          logLevel: 'debug',
-        }
-      ),
+      }),
       new ReactRefreshWebpackPlugin(),
     ],
     devServer: {

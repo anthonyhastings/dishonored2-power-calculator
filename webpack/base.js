@@ -86,8 +86,8 @@ module.exports = function (environment) {
         chunkFilename: isDev ? '[name].css' : 'css/[name].[contenthash].css',
         filename: isDev ? '[id].css' : 'css/[name].[contenthash].css',
       }),
-      new CopyWebpackPlugin(
-        [
+      new CopyWebpackPlugin({
+        patterns: [
           {
             from: paths.manifests,
             to: './',
@@ -97,10 +97,7 @@ module.exports = function (environment) {
             to: 'images/manifest/',
           },
         ],
-        {
-          logLevel: 'debug',
-        }
-      ),
+      }),
     ],
     resolve: {
       alias: {
