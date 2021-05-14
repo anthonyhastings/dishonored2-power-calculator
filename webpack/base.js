@@ -36,9 +36,6 @@ module.exports = function (environment) {
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
-              options: {
-                hmr: isDev,
-              },
             },
             {
               loader: 'css-loader',
