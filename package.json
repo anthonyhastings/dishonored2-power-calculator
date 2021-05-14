@@ -17,7 +17,7 @@
     "lint:js": "time yarn run eslint:base __mocks__/ server/ src/ support/ webpack/ jest.config.mjs postcss.config.js",
     "start": "node --experimental-json-modules server/index.mjs",
     "test": "jest",
-    "webpack:dev-server": "webpack-dev-server --config=webpack/env.development.js",
+    "webpack:dev-server": "webpack serve --config=webpack/env.development.js",
     "webpack:production": "webpack --config=webpack/env.production.js",
     "webpack:stats": "yarn run webpack:production --env stats"
   },
