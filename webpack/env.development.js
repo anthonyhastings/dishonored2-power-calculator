@@ -30,17 +30,15 @@ module.exports = function () {
       new ReactRefreshWebpackPlugin(),
     ],
     devServer: {
+      devMiddleware: {
+        publicPath: '/',
+      },
       compress: true,
-      contentBase: paths.dist,
-      disableHostCheck: true,
-      historyApiFallback: true,
       host: '0.0.0.0',
-      hot: true,
-      inline: true,
-      noInfo: false,
+      static: paths.dist,
+      firewall: false,
+      historyApiFallback: true,
       port: Number(process.env.PORT),
-      publicPath: '/',
-      quiet: false,
     },
   });
 };
