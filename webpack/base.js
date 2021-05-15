@@ -1,6 +1,5 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const paths = require('../support/paths');
 
@@ -12,6 +11,7 @@ module.exports = function (environment) {
       app: './src/index.js',
     },
     output: {
+      clean: true,
       path: paths.dist,
       publicPath: '/',
     },
@@ -63,9 +63,6 @@ module.exports = function (environment) {
       ],
     },
     plugins: [
-      new CleanWebpackPlugin({
-        verbose: true,
-      }),
       new HtmlWebpackPlugin({
         filename: 'index.html',
         hash: false,
