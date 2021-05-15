@@ -2,14 +2,17 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const paths = require('../support/paths');
+const path = require('path');
 
 module.exports = function (environment) {
   const isDev = environment === 'development';
+  const browserslistConfig = path.join(paths.projectRoot, '/.browserslistrc');
 
   return {
     entry: {
-      app: './src/index.js',
+      main: ['./src/index.js'],
     },
+    target: `browserslist:${browserslistConfig}`,
     output: {
       clean: true,
       path: paths.dist,
@@ -50,15 +53,10 @@ module.exports = function (environment) {
         },
         {
           test: /\.(svg|png|jpg|jpeg|gif)$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                outputPath: 'images/',
-                name: '[name].[contenthash].[ext]',
-              },
-            },
-          ],
+          type: 'asset/resource',
+          generator: {
+            filename: 'images/[name].[hash][ext][query]',
+          },
         },
       ],
     },
@@ -73,7 +71,7 @@ module.exports = function (environment) {
             content: process.env.GOOGLE_SITE_VERIFICATION_TOKEN,
           },
         ],
-        minify: false,
+        minify: true,
         template: 'html/index.html',
       }),
       new MiniCssExtractPlugin({

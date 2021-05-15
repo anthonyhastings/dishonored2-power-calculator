@@ -9,6 +9,7 @@ module.exports = {
   dist: path.join(projectRoot, 'dist'),
   images: path.join(projectRoot, 'images'),
   manifests: path.join(projectRoot, 'manifests'),
+  projectRoot,
   slices: path.join(projectRoot, 'src/slices'),
   server: path.join(projectRoot, 'server'),
   src: path.join(projectRoot, 'src'),
