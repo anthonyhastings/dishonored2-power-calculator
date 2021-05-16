@@ -3,8 +3,7 @@ const { merge: webpackMerge } = require('webpack-merge');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const baseConfig = require('./base');
 
 module.exports = function (env = {}) {
@@ -17,6 +16,7 @@ module.exports = function (env = {}) {
     },
     optimization: {
       minimizer: [
+        '...',
         new ImageMinimizerPlugin({
           minimizerOptions: {
             plugins: [
@@ -25,30 +25,8 @@ module.exports = function (env = {}) {
             ],
           },
         }),
-        new OptimizeCSSAssetsPlugin({
-          cssProcessorOptions: {
-            map: {
-              annotation: true,
-              inline: false,
-            },
-          },
-        }),
-        new TerserPlugin({
-          sourceMap: true,
-        }),
+        new CssMinimizerPlugin(),
       ],
-      splitChunks: {
-        cacheGroups: {
-          default: false,
-          vendor: {
-            chunks: 'all',
-            enforce: true,
-            name: 'vendor',
-            test: /[\\/]node_modules[\\/](?!normalize)/,
-          },
-        },
-      },
-      moduleIds: 'hashed',
       runtimeChunk: {
         name: 'manifest',
       },
