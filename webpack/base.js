@@ -62,16 +62,13 @@ module.exports = function (environment) {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        filename: 'index.html',
-        hash: false,
         inject: false,
-        meta: [
-          {
-            name: 'google-site-verification',
-            content: process.env.GOOGLE_SITE_VERIFICATION_TOKEN,
-          },
-        ],
+        meta: {
+          'google-site-verification':
+            process.env.GOOGLE_SITE_VERIFICATION_TOKEN,
+        },
         minify: true,
+        scriptLoading: 'blocking',
         template: 'html/index.html',
       }),
       new MiniCssExtractPlugin({

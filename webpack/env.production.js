@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { merge: webpackMerge } = require('webpack-merge');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
