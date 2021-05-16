@@ -12,6 +12,9 @@ module.exports = function (environment) {
     entry: {
       main: ['./src/index.js'],
     },
+    infrastructureLogging: {
+      level: 'log',
+    },
     target: `browserslist:${browserslistConfig}`,
     output: {
       clean: true,
