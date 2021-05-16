@@ -1,7 +1,7 @@
 const { merge: webpackMerge } = require('webpack-merge');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const baseConfig = require('./base');
@@ -16,17 +16,11 @@ module.exports = function (env = {}) {
     },
     optimization: {
       minimizer: [
-        new ImageminPlugin({
-          pngquant: {
-            quality: '75-90',
-            speed: 4,
-            verbose: true,
-          },
-          svgo: {
+        new ImageMinimizerPlugin({
+          minimizerOptions: {
             plugins: [
-              {
-                removeDimensions: true,
-              },
+              ['mozjpeg', { quality: 75 }],
+              ['optipng', { optimizationLevel: 5 }],
             ],
           },
         }),
