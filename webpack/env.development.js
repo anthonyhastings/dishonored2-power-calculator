@@ -34,11 +34,11 @@ module.exports = function () {
         publicPath: '/',
       },
       compress: true,
-      host: '0.0.0.0',
-      static: paths.dist,
       firewall: false,
       historyApiFallback: true,
+      host: '0.0.0.0',
       port: Number(process.env.PORT),
+      static: paths.dist,
     },
   });
 };
