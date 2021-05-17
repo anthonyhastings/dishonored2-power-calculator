@@ -1,17 +1,23 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const paths = require('../support/paths');
+const path = require('path');
 
 module.exports = function (environment) {
   const isDev = environment === 'development';
+  const browserslistConfig = path.join(paths.projectRoot, '/.browserslistrc');
 
   return {
     entry: {
-      app: './src/index.js',
+      main: ['./src/index.js'],
     },
+    infrastructureLogging: {
+      level: 'log',
+    },
+    target: `browserslist:${browserslistConfig}`,
     output: {
+      clean: true,
       path: paths.dist,
       publicPath: '/',
     },
@@ -36,9 +42,6 @@ module.exports = function (environment) {
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
-              options: {
-                hmr: isDev,
-              },
             },
             {
               loader: 'css-loader',
@@ -52,42 +55,31 @@ module.exports = function (environment) {
           ],
         },
         {
-          test: /\.(svg|png|jpg|jpeg|gif)$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                outputPath: 'images/',
-                name: '[name].[contenthash].[ext]',
-              },
-            },
-          ],
+          test: /\.(svg|png|jpg|jpeg)$/,
+          type: 'asset/resource',
+          generator: {
+            filename: 'images/[name].[contenthash][ext][query]',
+          },
         },
       ],
     },
     plugins: [
-      new CleanWebpackPlugin({
-        verbose: true,
-      }),
       new HtmlWebpackPlugin({
-        filename: 'index.html',
-        hash: false,
         inject: false,
-        meta: [
-          {
-            name: 'google-site-verification',
-            content: process.env.GOOGLE_SITE_VERIFICATION_TOKEN,
-          },
-        ],
-        minify: false,
+        meta: {
+          'google-site-verification':
+            process.env.GOOGLE_SITE_VERIFICATION_TOKEN,
+        },
+        minify: true,
+        scriptLoading: 'blocking',
         template: 'html/index.html',
       }),
       new MiniCssExtractPlugin({
         chunkFilename: isDev ? '[name].css' : 'css/[name].[contenthash].css',
         filename: isDev ? '[id].css' : 'css/[name].[contenthash].css',
       }),
-      new CopyWebpackPlugin(
-        [
+      new CopyWebpackPlugin({
+        patterns: [
           {
             from: paths.manifests,
             to: './',
@@ -97,10 +89,7 @@ module.exports = function (environment) {
             to: 'images/manifest/',
           },
         ],
-        {
-          logLevel: 'debug',
-        }
-      ),
+      }),
     ],
     resolve: {
       alias: {

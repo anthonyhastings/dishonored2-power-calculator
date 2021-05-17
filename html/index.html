@@ -3,27 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Determine the perfect build for your Dishonored 2 character before spending runes." /><%
-    if (Array.isArray(htmlWebpackPlugin.options.meta)) {
-      for (item of htmlWebpackPlugin.options.meta) { %>
-    <meta<% for (key in item) { %> <%= key %>="<%= item[key] %>"<% } %> /><%
-      }
-    } %>
+    <meta name="description" content="Determine the perfect build for your Dishonored 2 character before spending runes." />
     <title>Dishonored 2: Power Calculator</title>
-    <link rel="icon" type="image/png" href="<%= require('../images/favicons/16x16.png').default %>" sizes="16x16" />
-    <link rel="icon" type="image/png" href="<%= require('../images/favicons/32x32.png').default %>" sizes="32x32" />
-    <link rel="icon" type="image/png" href="<%= require('../images/favicons/96x96.png').default %>" sizes="96x96" />
-    <link rel="icon" type="image/png" href="<%= require('../images/favicons/192x192.png').default %>" sizes="192x192" />
+    <link rel="icon" type="image/png" href="<%= require('../images/favicons/16x16.png') %>" sizes="16x16" />
+    <link rel="icon" type="image/png" href="<%= require('../images/favicons/32x32.png') %>" sizes="32x32" />
+    <link rel="icon" type="image/png" href="<%= require('../images/favicons/96x96.png') %>" sizes="96x96" />
+    <link rel="icon" type="image/png" href="<%= require('../images/favicons/192x192.png') %>" sizes="192x192" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Carrois+Gothic&display=swap" />
-    <% for (var stylesheet of htmlWebpackPlugin.files.css) { %>
-      <link rel="stylesheet" href="<%= stylesheet %>" />
-    <% } %>
+    <%= htmlWebpackPlugin.tags.headTags %>
   </head>
   <body>
     <div id="application"></div>
-    <% for (var script of htmlWebpackPlugin.files.js) { %>
-      <script src="<%= script %>"></script>
-    <% } %>
+    <%= htmlWebpackPlugin.tags.bodyTags %>
   </body>
 </html>

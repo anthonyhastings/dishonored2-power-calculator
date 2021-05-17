@@ -1,9 +1,9 @@
-const webpackMerge = require('webpack-merge');
+require('dotenv').config();
+const { merge: webpackMerge } = require('webpack-merge');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const baseConfig = require('./base');
 
 module.exports = function (env = {}) {
@@ -16,51 +16,33 @@ module.exports = function (env = {}) {
     },
     optimization: {
       minimizer: [
-        new ImageminPlugin({
-          pngquant: {
-            quality: '75-90',
-            speed: 4,
-            verbose: true,
-          },
-          svgo: {
+        '...',
+        new ImageMinimizerPlugin({
+          minimizerOptions: {
             plugins: [
-              {
-                removeDimensions: true,
-              },
+              ['mozjpeg', { quality: 75 }],
+              ['optipng', { optimizationLevel: 5 }],
+              [
+                'svgo',
+                {
+                  plugins: [
+                    { name: 'removeViewBox', active: false },
+                    { name: 'removeDimensions', active: true },
+                  ],
+                },
+              ],
             ],
           },
         }),
-        new OptimizeCSSAssetsPlugin({
-          cssProcessorOptions: {
-            map: {
-              annotation: true,
-              inline: false,
-            },
-          },
-        }),
-        new TerserPlugin({
-          sourceMap: true,
-        }),
+        new CssMinimizerPlugin(),
       ],
-      splitChunks: {
-        cacheGroups: {
-          default: false,
-          vendor: {
-            chunks: 'all',
-            enforce: true,
-            name: 'vendor',
-            test: /[\\/]node_modules[\\/](?!normalize)/,
-          },
-        },
-      },
-      moduleIds: 'hashed',
       runtimeChunk: {
         name: 'manifest',
       },
     },
   });
 
-  if (env.stats === 'true') {
+  if (env.stats === true) {
     productionConfig.plugins.push(
       new BundleAnalyzerPlugin({
         analyzerMode: 'server',

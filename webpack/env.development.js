@@ -1,5 +1,6 @@
 require('dotenv').config();
-const webpackMerge = require('webpack-merge');
+const path = require('path');
+const { merge: webpackMerge } = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const paths = require('../support/paths');
@@ -14,32 +15,30 @@ module.exports = function () {
       filename: 'js/[name].js',
     },
     plugins: [
-      new CopyWebpackPlugin(
-        [
+      new CopyWebpackPlugin({
+        patterns: [
           {
-            from: paths.server,
-            test: /\.json$/,
+            from: path.join(paths.server, '/characters.json'),
+            to: './',
+          },
+          {
+            from: path.join(paths.server, '/powers.json'),
             to: './',
           },
         ],
-        {
-          logLevel: 'debug',
-        }
-      ),
+      }),
       new ReactRefreshWebpackPlugin(),
     ],
     devServer: {
+      devMiddleware: {
+        publicPath: '/',
+      },
       compress: true,
-      contentBase: paths.dist,
-      disableHostCheck: true,
+      firewall: false,
       historyApiFallback: true,
       host: '0.0.0.0',
-      hot: true,
-      inline: true,
-      noInfo: false,
       port: Number(process.env.PORT),
-      publicPath: '/',
-      quiet: false,
+      static: paths.dist,
     },
   });
 };
