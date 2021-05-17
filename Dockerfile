@@ -6,7 +6,7 @@ ARG GOOGLE_SITE_VERIFICATION_TOKEN
 
 WORKDIR /dishonored
 
-RUN apt-get update && apt-get install bash -y && apt-get clean
+RUN apt-get update && apt-get install bash time -y && apt-get clean
 
 COPY ./package.json ./yarn.lock ./
 
