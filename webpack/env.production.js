@@ -22,6 +22,15 @@ module.exports = function (env = {}) {
             plugins: [
               ['mozjpeg', { quality: 75 }],
               ['optipng', { optimizationLevel: 5 }],
+              [
+                'svgo',
+                {
+                  plugins: [
+                    { name: 'removeViewBox', active: false },
+                    { name: 'removeDimensions', active: true },
+                  ],
+                },
+              ],
             ],
           },
         }),

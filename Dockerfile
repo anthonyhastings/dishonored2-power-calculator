@@ -1,4 +1,4 @@
-FROM node:14.13.0-alpine AS base
+FROM node:14.17.0-slim AS base
 
 LABEL maintainer="Anthony Hastings <ar.hastings@gmail.com>"
 
@@ -6,31 +6,19 @@ ARG GOOGLE_SITE_VERIFICATION_TOKEN
 
 WORKDIR /dishonored
 
-RUN apk add --no-cache bash
+RUN apt-get update && apt-get install bash -y && apt-get clean
 
 COPY ./package.json ./yarn.lock ./
 
-# Install build dependencies (required for imagemin), install packages, clears cache then delete build dependencies.
-RUN apk add --no-cache --virtual image-build-deps \
-    autoconf \
-    automake \
-    gcc \
-    g++ \
-    libc-dev \
-    libtool \
-    make \
-    python \
-    nasm \
-    libpng-dev \
-    && yarn install \
-    && yarn cache clean \
-    && apk del image-build-deps
+RUN yarn install && yarn cache clean
 
 COPY . ./
 
 RUN yarn build
 
-FROM node:14.13.0-alpine AS server
+FROM node:14.17.0-alpine AS server
+
+RUN apk add --no-cache bash
 
 USER node
 
