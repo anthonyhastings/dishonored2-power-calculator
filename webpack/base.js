@@ -58,7 +58,7 @@ module.exports = function (environment) {
           test: /\.(svg|png|jpg|jpeg)$/,
           type: 'asset/resource',
           generator: {
-            filename: 'images/[name].[hash][ext][query]',
+            filename: 'images/[name].[contenthash][ext][query]',
           },
         },
       ],
