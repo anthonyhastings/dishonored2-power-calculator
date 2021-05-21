@@ -28,17 +28,12 @@
   }
 
   &__icon {
-    background-position: center;
+    aspect-ratio: 1 / 1;
+    background-position: 0 0;
+    background-repeat: no-repeat;
     background-size: cover;
     display: block;
     width: 100%;
-
-    &::before {
-      content: '';
-      display: block;
-      height: 0;
-      padding-bottom: 100%;
-    }
 
     &--agility {
       background-image: url('Images/powers/39334a1e-2883-4722-af71-d3286d94b6e7.png');
