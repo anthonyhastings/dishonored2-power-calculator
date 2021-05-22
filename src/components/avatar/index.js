@@ -7,19 +7,15 @@ import './stylesheets/index.scss';
 const namespace = 'avatar';
 
 const Avatar = ({ className, name, slug }) => (
-  <div
+  <img
     className={classNames({
       [namespace]: true,
       [className]: !isEmpty(className),
     })}
-  >
-    <img
-      className={`${namespace}__portrait`}
-      draggable="false"
-      src={characterSlugToPortrait.get(slug)}
-      alt={`Portrait of ${name}`}
-    />
-  </div>
+    draggable="false"
+    src={characterSlugToPortrait.get(slug)}
+    alt={`Portrait of ${name}`}
+  />
 );
 
 Avatar.propTypes = {

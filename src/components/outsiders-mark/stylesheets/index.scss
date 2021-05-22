@@ -1,19 +1,11 @@
 .outsiders-mark {
-  $image-height: 480px;
-  $image-width: 488px;
+  aspect-ratio: 1 / 1;
+  background: url('Images/outsiders-mark.svg') no-repeat 0 0;
+  background-size: cover;
+  display: block;
+  will-change: transform, opacity;
 
-  &::before {
-    background: url('Images/outsiders-mark.svg') no-repeat 0 0;
-    background-size: cover;
-    content: '';
-    display: block;
-    height: 0;
-    padding-bottom: percentage($image-height / $image-width);
-    width: 100%;
-    will-change: transform, opacity;
-  }
-
-  &--is-animating::before {
+  &--is-animating {
     animation: 1750ms loader-pulsing-fading ease-in-out infinite;
   }
 }
