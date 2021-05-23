@@ -43,8 +43,11 @@ const App = ({ onComponentDidMount, showError, showLoader }) => {
           <img
             alt="Dishonored 2 logo"
             className={`${namespace}__logo-graphic`}
+            draggable="false"
             sizes="100vw"
             srcSet={`${logo660} 660w, ${logo1320} 1320w`}
+            width="660"
+            height="90"
           />
         </Link>
       </header>

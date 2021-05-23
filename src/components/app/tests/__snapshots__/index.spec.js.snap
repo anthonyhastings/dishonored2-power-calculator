@@ -19,8 +19,11 @@ exports[`App component when rendered renders a header area and top-level routes 
       <img
         alt="Dishonored 2 logo"
         className="app__logo-graphic"
+        draggable="false"
+        height="90"
         sizes="100vw"
         srcSet="660x90.png 660w, 1320x180.png 1320w"
+        width="660"
       />
     </MockLink>
   </header>
