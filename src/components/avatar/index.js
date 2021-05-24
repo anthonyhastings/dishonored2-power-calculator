@@ -15,6 +15,9 @@ const Avatar = ({ className, name, slug }) => (
     draggable="false"
     src={characterSlugToPortrait.get(slug)}
     alt={`Portrait of ${name}`}
+    width="771"
+    height="901"
+    loading="lazy"
   />
 );
 
