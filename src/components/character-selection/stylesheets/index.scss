@@ -70,6 +70,14 @@ $characterNamespace: 'character';
       transition: flex 300ms ease-in;
       will-change: flex;
     }
+
+    @media (prefers-reduced-motion) {
+      transition: none;
+
+      &::before {
+        transition: none;
+      }
+    }
   }
 
   &__name {
