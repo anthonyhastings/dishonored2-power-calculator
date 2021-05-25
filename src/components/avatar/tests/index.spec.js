@@ -2,7 +2,7 @@ import renderer from 'react-test-renderer';
 import Avatar from '../';
 
 jest.mock(
-  'Constants/character-slug-to-portrait',
+  'constants/character-slug-to-portrait',
   () => new Map([['mock-slug', 'mock-src']])
 );
 

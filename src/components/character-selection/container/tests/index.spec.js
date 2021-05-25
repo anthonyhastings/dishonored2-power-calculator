@@ -1,6 +1,6 @@
 import Container from '../';
 
-jest.mock('Src/selectors', () => ({
+jest.mock('selectors', () => ({
   charactersDataSelector: jest.fn().mockReturnValue('charactersDataSelector'),
 }));
 

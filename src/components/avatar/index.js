@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
-import characterSlugToPortrait from 'Constants/character-slug-to-portrait';
+import characterSlugToPortrait from 'constants/character-slug-to-portrait';
 import './stylesheets/index.scss';
 
 const namespace = 'avatar';

@@ -1,14 +1,14 @@
 import Container from '../';
 
-jest.mock('Slices/characters', () => ({
+jest.mock('slices/characters', () => ({
   fetchCharacters: () => 'MockGetCharactersAction',
 }));
 
-jest.mock('Slices/powers', () => ({
+jest.mock('slices/powers', () => ({
   fetchPowers: () => 'MockGetPowersAction',
 }));
 
-jest.mock('Src/selectors', () => ({
+jest.mock('selectors', () => ({
   hasInitialDataFailedSelector: jest
     .fn()
     .mockReturnValue('hasInitialDataFailedSelector'),

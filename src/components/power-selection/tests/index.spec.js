@@ -1,9 +1,9 @@
 import renderer from 'react-test-renderer';
 import PowerSelection from '../';
 
-jest.mock('Components/avatar', () => 'MockAvatar');
+jest.mock('components/avatar', () => 'MockAvatar');
 
-jest.mock('Components/button', () => 'MockButton');
+jest.mock('components/button', () => 'MockButton');
 
 jest.mock('../powers-list', () => 'MockPowersList');
 

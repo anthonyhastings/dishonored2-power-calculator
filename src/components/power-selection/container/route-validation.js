@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { characterBySlugSelector } from 'Src/selectors';
+import { characterBySlugSelector } from 'selectors';
 import Component from '../route-validation';
 
 export const mapStateToProps = (state, ownProps) => {

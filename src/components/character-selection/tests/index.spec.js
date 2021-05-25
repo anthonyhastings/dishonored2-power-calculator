@@ -1,8 +1,8 @@
 import renderer from 'react-test-renderer';
 import CharacterSelection from '../';
 
-jest.mock('Components/avatar', () => 'MockAvatar');
-jest.mock('Components/button', () => 'MockButton');
+jest.mock('components/avatar', () => 'MockAvatar');
+jest.mock('components/button', () => 'MockButton');
 
 describe('CharacterSelection component', () => {
   let testContext;

@@ -3,9 +3,9 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 import includes from 'lodash/includes';
 import some from 'lodash/some';
-import requestStatuses from 'Constants/request-statuses';
-import * as charactersReducerSelectors from 'Slices/characters/selectors';
-import * as powersReducerSelectors from 'Slices/powers/selectors';
+import requestStatuses from 'constants/request-statuses';
+import * as charactersReducerSelectors from 'slices/characters/selectors';
+import * as powersReducerSelectors from 'slices/powers/selectors';
 
 const isRequestIncomplete = (requestStatus) =>
   includes([requestStatuses.idle, requestStatuses.pending], requestStatus);

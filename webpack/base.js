@@ -92,14 +92,7 @@ module.exports = function (environment) {
       }),
     ],
     resolve: {
-      alias: {
-        Api: paths.api,
-        Components: paths.components,
-        Constants: paths.constants,
-        Images: paths.images,
-        Slices: paths.slices,
-        Src: paths.src,
-      },
+      modules: ['node_modules', 'src'],
     },
   };
 };

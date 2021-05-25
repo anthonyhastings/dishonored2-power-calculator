@@ -1,10 +1,10 @@
 import { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import isObject from 'lodash/isObject';
-import Loader from 'Components/loader';
+import Loader from 'components/loader';
 import PowerSelection from './container';
 
-const PageNotFound = lazy(() => import('Components/page-not-found'));
+const PageNotFound = lazy(() => import('components/page-not-found'));
 
 const PowerValidationRouteValidation = ({ character }) => {
   if (isObject(character)) return <PowerSelection />;

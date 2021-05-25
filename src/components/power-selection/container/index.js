@@ -5,7 +5,7 @@ import {
   characterBySlugSelector,
   topLevelEnhancementsSelector,
   topLevelPowersByCharacterSlugSelector,
-} from 'Src/selectors';
+} from 'selectors';
 
 const mapStateToProps = (state, ownProps) => ({
   character: characterBySlugSelector(

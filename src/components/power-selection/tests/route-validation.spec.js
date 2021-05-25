@@ -1,10 +1,10 @@
 import renderer from 'react-test-renderer';
 import PowerSelectionRouteValidation from '../route-validation';
 
-jest.mock('Components/loader', () => 'MockLoader');
+jest.mock('components/loader', () => 'MockLoader');
 
 jest.mock(
-  'Components/page-not-found',
+  'components/page-not-found',
   () =>
     function MockPageNotFound() {
       return <mock-page-not-found />;

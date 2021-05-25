@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import * as api from 'Api/powers';
-import requestStatuses from 'Constants/request-statuses';
+import * as api from 'api/powers';
+import requestStatuses from 'constants/request-statuses';
 
 const getDefaultState = () => ({
   requestStatus: requestStatuses.idle,
