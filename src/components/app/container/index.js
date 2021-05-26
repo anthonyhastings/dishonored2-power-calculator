@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import { fetchCharacters } from 'Slices/characters';
-import { fetchPowers } from 'Slices/powers';
+import { fetchCharacters } from 'slices/characters';
+import { fetchPowers } from 'slices/powers';
 import {
   isInitialDataIncompleteSelector,
   hasInitialDataFailedSelector,
-} from 'Src/selectors';
+} from 'selectors';
 import Component from '../';
 
 const mapStateToProps = (state) => ({

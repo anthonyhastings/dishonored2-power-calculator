@@ -9,17 +9,17 @@ jest.mock('react-router-dom', () => ({
 }));
 
 jest.mock(
-  'Components/character-selection/container',
+  'components/character-selection/container',
   () =>
     function MockCharacterSelection() {
       return <mock-character-selection />;
     }
 );
 
-jest.mock('Components/loader', () => 'MockLoader');
+jest.mock('components/loader', () => 'MockLoader');
 
 jest.mock(
-  'Components/page-not-found',
+  'components/page-not-found',
   () =>
     function MockPageNotFound() {
       return <mock-page-not-found />;
@@ -27,7 +27,7 @@ jest.mock(
 );
 
 jest.mock(
-  'Components/power-selection/container/route-validation',
+  'components/power-selection/container/route-validation',
   () =>
     function MockPowerSelectionRouteValidation() {
       return <mock-power-selection-route-validation />;

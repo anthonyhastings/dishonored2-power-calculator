@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import './stylesheets/index.scss';
-import OutsidersMark from 'Components/outsiders-mark';
+import OutsidersMark from 'components/outsiders-mark';
 
 const namespace = 'app-loader';
 

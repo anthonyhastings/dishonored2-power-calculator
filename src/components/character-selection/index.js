@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import values from 'lodash/values';
-import Avatar from 'Components/avatar';
-import Button from 'Components/button';
+import Avatar from 'components/avatar';
+import Button from 'components/button';
 import './stylesheets/index.scss';
 
 const characterNamespace = 'character';

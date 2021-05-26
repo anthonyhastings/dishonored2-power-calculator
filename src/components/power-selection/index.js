@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import Avatar from 'Components/avatar';
-import Button from 'Components/button';
+import Avatar from 'components/avatar';
+import Button from 'components/button';
 import './stylesheets/index.scss';
 import PowersList from './powers-list';
 

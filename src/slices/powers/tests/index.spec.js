@@ -1,9 +1,9 @@
-import getPowersSuccessResponse from 'Api/sample-responses/get-powers-success';
-import requestStatuses from 'Constants/request-statuses';
-import { getPowers as getPowersMock } from 'Api/powers';
+import getPowersSuccessResponse from 'api/sample-responses/get-powers-success';
+import requestStatuses from 'constants/request-statuses';
+import { getPowers as getPowersMock } from 'api/powers';
 import reducer, { fetchPowers } from '../';
 
-jest.mock('Api/powers');
+jest.mock('api/powers');
 
 describe('Powers slice', () => {
   let testContext;

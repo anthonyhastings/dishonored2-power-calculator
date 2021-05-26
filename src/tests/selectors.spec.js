@@ -1,5 +1,5 @@
 import * as selectors from '../selectors';
-import requestStatuses from 'Constants/request-statuses';
+import requestStatuses from 'constants/request-statuses';
 
 describe('Selectors', () => {
   let testContext;

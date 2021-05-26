@@ -3,28 +3,28 @@ import PropTypes from 'prop-types';
 import { Switch, Route, Link } from 'react-router-dom';
 import 'normalize.css';
 import './stylesheets/index.scss';
-import Loader from 'Components/loader';
-import logo660 from 'Images/logo/660x90.png';
-import logo1320 from 'Images/logo/1320x180.png';
+import Loader from 'components/loader';
+import logo660 from 'images/logo/660x90.png';
+import logo1320 from 'images/logo/1320x180.png';
 
 const CharacterSelection = lazy(() =>
   import(
     /* webpackChunkName: "character-selection" */
-    'Components/character-selection/container'
+    'components/character-selection/container'
   )
 );
 
 const PageNotFound = lazy(() =>
   import(
     /* webpackChunkName: "page-not-found" */
-    'Components/page-not-found'
+    'components/page-not-found'
   )
 );
 
 const PowerSelectionRouteValidation = lazy(() =>
   import(
     /* webpackChunkName: "power-selection" */
-    'Components/power-selection/container/route-validation'
+    'components/power-selection/container/route-validation'
   )
 );
 

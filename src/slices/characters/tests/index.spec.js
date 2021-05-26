@@ -1,9 +1,9 @@
-import getCharactersSuccessResponse from 'Api/sample-responses/get-characters-success';
-import requestStatuses from 'Constants/request-statuses';
-import { getCharacters as getCharactersMock } from 'Api/characters';
+import getCharactersSuccessResponse from 'api/sample-responses/get-characters-success';
+import requestStatuses from 'constants/request-statuses';
+import { getCharacters as getCharactersMock } from 'api/characters';
 import reducer, { fetchCharacters } from '../';
 
-jest.mock('Api/characters');
+jest.mock('api/characters');
 
 describe('Characters slice', () => {
   let testContext;

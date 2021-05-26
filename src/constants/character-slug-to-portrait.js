@@ -1,5 +1,5 @@
-import corvoPortrait from 'Images/portraits/corvo.jpg';
-import emilyPortrait from 'Images/portraits/emily.jpg';
+import corvoPortrait from 'images/portraits/corvo.jpg';
+import emilyPortrait from 'images/portraits/emily.jpg';
 
 const slugToPortrait = new Map([
   ['corvo', corvoPortrait],
