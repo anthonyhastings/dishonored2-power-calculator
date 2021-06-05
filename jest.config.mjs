@@ -3,7 +3,7 @@ const configuration = {
   collectCoverage: true,
   coverageDirectory: './jest-coverage',
   coverageReporters: ['lcov', 'text-summary'],
-  modulePaths: ['src'],
+  moduleDirectories: ['node_modules', 'src'],
   moduleNameMapper: {
     '\\.(css|scss|sass)$': '<rootDir>/support/tests/style-mock.js',
   },
