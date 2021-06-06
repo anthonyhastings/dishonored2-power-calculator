@@ -14,7 +14,7 @@
 !.eslintrc.json
 !.prettierrc.json
 !.stylelintrc.json
-!jest.config.mjs
+!jest.config.ts
 !package.json
 !postcss.config.js
 !tsconfig.json
