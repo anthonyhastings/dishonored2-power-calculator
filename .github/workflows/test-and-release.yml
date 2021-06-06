@@ -17,7 +17,10 @@ jobs:
         run: docker-compose build dev
 
       - name: Lint source files
-        run: docker-compose run --rm dev yarn lint
+        run: docker-compose run --rm dev yarn run lint
+
+      - name: Run types check
+        run: docker-compose run --rm dev yarn run types:check
 
       - name: Run tests and output coverage
         run: docker-compose run --rm --volume "$(pwd)"/jest-coverage:/dishonored/jest-coverage dev yarn test

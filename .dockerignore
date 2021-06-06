@@ -17,4 +17,5 @@
 !jest.config.mjs
 !package.json
 !postcss.config.js
+!tsconfig.json
 !yarn.lock
