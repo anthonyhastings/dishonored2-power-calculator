@@ -1,6 +1,6 @@
 {
   "root": true,
-  "parser": "@babel/eslint-parser",
+  "parser": "@typescript-eslint/parser",
   "env": {
     "browser": true,
     "es2020": true
@@ -13,12 +13,13 @@
     }
   },
   "plugins": [
+    "@typescript-eslint",
     "jsx-a11y",
     "react",
     "react-hooks"
   ],
   "extends": [
-    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended"
@@ -36,10 +37,10 @@
     "no-caller": "error",
     "no-console": "error",
     "no-multi-str": "error",
-    "no-undef": "error",
-    "no-unused-vars": "error",
+    "no-unused-vars": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
     "react/sort-prop-types": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error",
@@ -49,9 +50,9 @@
   "overrides": [
     {
       "files": [
-        "support/**/*.{js,mjs}",
-        "**/__mocks__/*.{js,mjs}",
-        "**/*.spec.{js,mjs}"
+        "support/**/*.{js,mjs,ts,tsx}",
+        "**/__mocks__/*.{js,mjs,ts,tsx}",
+        "**/*.spec.{js,mjs,ts,tsx}"
       ],
       "env": {
         "jest/globals": true
@@ -63,22 +64,25 @@
         "jest"
       ],
       "rules": {
-        "jest/require-top-level-describe": "error"
+        "jest/require-top-level-describe": "error",
+        "@typescript-eslint/no-explicit-any": "off"
       }
     },
     {
       "files": [
-        "server/**/*.{js,mjs}",
-        "support/**/*.{js,mjs}",
-        "webpack/**/*.{js,mjs}",
-        "jest.config.js",
+        "server/**/*.{js,mjs,ts,tsx}",
+        "support/**/*.{js,mjs,ts,tsx}",
+        "webpack/**/*.ts",
+        "jest.config.mjs",
         "postcss.config.js"
       ],
       "env": {
         "node": true
       },
       "rules": {
-        "no-console": "off"
+        "no-console": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-var-requires": "off"
       }
     }
   ]
