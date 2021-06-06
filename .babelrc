@@ -16,7 +16,8 @@
       {
         "runtime": "automatic"
       }
-    ]
+    ],
+    "@babel/preset-typescript"
   ],
   "plugins": [
     "@babel/plugin-transform-runtime"
@@ -37,7 +38,8 @@
           {
             "runtime": "automatic"
           }
-        ]
+        ],
+        "@babel/preset-typescript"
       ]
     }
   }
