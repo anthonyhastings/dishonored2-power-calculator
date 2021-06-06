@@ -24,7 +24,7 @@ module.exports = function (environment) {
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
+          test: /\.(ts|js)x?$/i,
           exclude: /node_modules/,
           use: [
             {
@@ -92,6 +92,7 @@ module.exports = function (environment) {
       }),
     ],
     resolve: {
+      extensions: ['.tsx', '.ts', '...'],
       modules: ['node_modules', 'src'],
     },
   };
