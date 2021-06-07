@@ -18,8 +18,8 @@
     "start": "node --experimental-json-modules server/index.mjs",
     "test": "jest",
     "types:check": "npx tsc --project tsconfig.json",
-    "webpack:dev-server": "webpack serve --config=webpack/env.development.js",
-    "webpack:production": "webpack --config=webpack/env.production.js",
+    "webpack:dev-server": "webpack serve --config=webpack/env.development.ts",
+    "webpack:production": "webpack --config=webpack/env.production.ts",
     "webpack:stats": "yarn run webpack:production --env stats"
   },
   "husky": {

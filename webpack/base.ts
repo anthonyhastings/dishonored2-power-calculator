@@ -1,10 +1,13 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const paths = require('../support/paths');
-const path = require('path');
+import path from 'path';
+import type { Configuration } from 'webpack';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import paths from '../support/paths';
 
-module.exports = function (environment) {
+type Environment = 'development' | 'production';
+
+export default (environment: Environment): Configuration => {
   const isDev = environment === 'development';
   const browserslistConfig = path.join(paths.projectRoot, '/.browserslistrc');
 
@@ -68,7 +71,7 @@ module.exports = function (environment) {
         inject: false,
         meta: {
           'google-site-verification':
-            process.env.GOOGLE_SITE_VERIFICATION_TOKEN,
+            process.env.GOOGLE_SITE_VERIFICATION_TOKEN ?? '',
         },
         minify: true,
         scriptLoading: 'blocking',
@@ -89,7 +92,7 @@ module.exports = function (environment) {
             to: 'images/manifest/',
           },
         ],
-      }),
+      }) as { apply(...args: any[]): void },
     ],
     resolve: {
       extensions: ['.tsx', '.ts', '...'],

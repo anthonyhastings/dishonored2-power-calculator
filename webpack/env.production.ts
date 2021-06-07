@@ -1,12 +1,16 @@
-require('dotenv').config();
-const { merge: webpackMerge } = require('webpack-merge');
-const BundleAnalyzerPlugin =
-  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const baseConfig = require('./base');
+import 'dotenv/config.js';
+import type { Configuration } from 'webpack';
+import { merge as webpackMerge } from 'webpack-merge';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import baseConfig from './base';
 
-module.exports = function (env = {}) {
+interface EnvOptions {
+  stats?: boolean;
+}
+
+export default (env: EnvOptions = {}): Configuration => {
   const productionConfig = webpackMerge(baseConfig('production'), {
     mode: 'production',
     devtool: 'source-map',
@@ -34,7 +38,7 @@ module.exports = function (env = {}) {
             ],
           },
         }),
-        new CssMinimizerPlugin(),
+        new CssMinimizerPlugin() as { apply(...args: any[]): void },
       ],
       runtimeChunk: {
         name: 'manifest',
@@ -43,11 +47,11 @@ module.exports = function (env = {}) {
   });
 
   if (env.stats === true) {
-    productionConfig.plugins.push(
+    productionConfig.plugins?.push(
       new BundleAnalyzerPlugin({
         analyzerMode: 'server',
         generateStatsFile: true,
-      })
+      }) as { apply(...args: any[]): void }
     );
   }
 
