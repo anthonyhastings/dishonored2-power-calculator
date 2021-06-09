@@ -25,7 +25,6 @@ services:
       - ${PORT}:${PORT}
     volumes:
       - ./html:/dishonored/html
-      - ./images:/dishonored/images
       - ./manifests:/dishonored/manifests
       - ./server:/dishonored/server
       - ./src:/dishonored/src
