@@ -73,8 +73,7 @@
         "server/**/*.{js,mjs,ts,tsx}",
         "support/**/*.{js,mjs,ts,tsx}",
         "webpack/**/*.ts",
-        "jest.config.ts",
-        "postcss.config.js"
+        "jest.config.ts"
       ],
       "env": {
         "node": true

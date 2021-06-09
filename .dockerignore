@@ -12,10 +12,10 @@
 !.babelrc
 !.browserslistrc
 !.eslintrc.json
+!.postcssrc.json
 !.prettierrc.json
 !.stylelintrc.json
 !jest.config.ts
 !package.json
-!postcss.config.js
 !tsconfig.json
 !yarn.lock
