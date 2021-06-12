@@ -3,8 +3,8 @@ import path from 'path';
 import express from 'express';
 import expressWinston from 'express-winston';
 import compression from 'compression';
-import logger from './logger.mjs';
-import paths from '../support/paths.js';
+import logger from './logger';
+import paths from '../support/paths';
 import characters from './characters.json';
 import powers from './powers.json';
 
@@ -40,6 +40,6 @@ app.get('/*', (request, response) => {
   response.sendFile(path.join(paths.dist, 'index.html'));
 });
 
-app.listen(process.env.PORT, '0.0.0.0', function () {
-  logger.info(`Listening on port 0.0.0.0:${this.address().port}`);
+app.listen(Number(process.env.PORT), '0.0.0.0', () => {
+  logger.info(`Listening on port 0.0.0.0:${process.env.PORT}`);
 });

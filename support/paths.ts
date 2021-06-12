@@ -1,6 +1,6 @@
 import path from 'path';
 
-const projectRoot = path.join(__dirname, '../');
+const projectRoot = process.cwd();
 
 const paths = {
   dist: path.join(projectRoot, 'dist'),

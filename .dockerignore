@@ -18,4 +18,5 @@
 !jest.config.ts
 !package.json
 !tsconfig.json
+!tsconfig.server.json
 !yarn.lock
