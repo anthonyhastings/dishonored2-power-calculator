@@ -13,18 +13,30 @@ Snapshot Diff:
     draggable="false"
     height="901"
     loading="lazy"
-    src="mock-src"
+    src="corvo.jpg"
     width="771"
 `;
 
-exports[`Avatar component when rendered renders a wrapping element containing an image 1`] = `
+exports[`Avatar component when slug is corvo renders an image specific to Corvo 1`] = `
 <img
   alt="Portrait of Fake Name"
   className="avatar"
   draggable="false"
   height="901"
   loading="lazy"
-  src="mock-src"
+  src="corvo.jpg"
+  width="771"
+/>
+`;
+
+exports[`Avatar component when slug is emily renders an image specific to Emily 1`] = `
+<img
+  alt="Portrait of Fake Name"
+  className="avatar"
+  draggable="false"
+  height="901"
+  loading="lazy"
+  src="emily.jpg"
   width="771"
 />
 `;

@@ -1,0 +1,1 @@
+type CharacterSlugs = 'corvo' | 'emily';

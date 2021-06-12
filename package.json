@@ -11,7 +11,7 @@
     "browserslist:debug": "browserslist --config=.browserslistrc",
     "browserslist:update": "npx browserslist@latest --update-db && yarn list caniuse-lite",
     "eslint:base": "eslint --ext .js,.mjs,.ts,.tsx --max-warnings 0",
-    "eslint:check": "eslint-config-prettier src/components/app/container/index.js",
+    "eslint:check": "eslint-config-prettier src/components/app/avatar/index.ts",
     "preexpress:build": "rimraf dist-server/",
     "express:build": "tsc --project tsconfig.server.json",
     "express:dev-server": "ts-node-dev server/index.ts",
