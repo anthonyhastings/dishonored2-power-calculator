@@ -1,5 +1,5 @@
-import getCharactersSuccessResponse from 'api/sample-responses/get-characters-success';
 import requestStatuses from 'constants/request-statuses';
+import getCharactersSuccessResponse from 'api/sample-responses/get-characters-success';
 import { getCharacters as getCharactersMock } from 'api/characters';
 import reducer, { fetchCharacters } from '../';
 

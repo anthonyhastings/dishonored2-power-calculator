@@ -1,5 +1,5 @@
-import Container from '../route-validation';
 import * as selectors from 'selectors';
+import Container from '../route-validation';
 
 jest.mock('selectors', () => ({
   characterBySlugSelector: jest.fn().mockReturnValue('characterBySlugSelector'),

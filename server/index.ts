@@ -3,8 +3,8 @@ import path from 'path';
 import express from 'express';
 import expressWinston from 'express-winston';
 import compression from 'compression';
-import logger from './logger';
 import paths from '../support/paths';
+import logger from './logger';
 import characters from './characters.json';
 import powers from './powers.json';
 

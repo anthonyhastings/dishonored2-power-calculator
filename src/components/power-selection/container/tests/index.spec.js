@@ -1,5 +1,5 @@
-import Container from '../';
 import * as selectors from 'selectors';
+import Container from '../';
 
 jest.mock('selectors', () => ({
   characterBySlugSelector: jest.fn().mockReturnValue('characterBySlugSelector'),

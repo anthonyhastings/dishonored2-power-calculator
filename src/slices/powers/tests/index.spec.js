@@ -1,5 +1,5 @@
-import getPowersSuccessResponse from 'api/sample-responses/get-powers-success';
 import requestStatuses from 'constants/request-statuses';
+import getPowersSuccessResponse from 'api/sample-responses/get-powers-success';
 import { getPowers as getPowersMock } from 'api/powers';
 import reducer, { fetchPowers } from '../';
 

@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import Component from '../';
 import {
   characterBySlugSelector,
   topLevelEnhancementsSelector,
   topLevelPowersByCharacterSlugSelector,
 } from 'selectors';
+import Component from '../';
 
 const mapStateToProps = (state, ownProps) => ({
   character: characterBySlugSelector(
