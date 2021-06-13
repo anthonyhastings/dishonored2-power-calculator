@@ -4,7 +4,9 @@ import PageNotFound from '../';
 jest.mock('components/outsiders-mark', () => 'MockOutsidersMark');
 
 describe('PageNotFound component', () => {
-  let testContext;
+  let testContext: {
+    component?: renderer.ReactTestRenderer;
+  };
 
   const renderComponent = (props = {}) => <PageNotFound {...props} />;
 
