@@ -1,23 +1,27 @@
 import renderer from 'react-test-renderer';
 import Button from '../';
+import type { ButtonProps } from '../';
 
 jest.mock('react-router-dom', () => ({
   Link: 'MockLink',
 }));
 
 describe('Button component', () => {
-  let testContext;
+  let testContext: {
+    component?: renderer.ReactTestRenderer;
+    defaultProps: ButtonProps;
+  };
 
   const renderComponent = (props = {}) => (
     <Button {...testContext.defaultProps} {...props} />
   );
 
   beforeEach(() => {
-    testContext = {};
-
-    testContext.defaultProps = {
-      children: 'Button Text',
-      href: '/fake-link',
+    testContext = {
+      defaultProps: {
+        children: 'Button Text',
+        href: '/fake-link',
+      },
     };
   });
 
