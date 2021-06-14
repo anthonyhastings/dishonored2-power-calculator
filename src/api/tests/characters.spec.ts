@@ -1,10 +1,14 @@
 import axios from 'axios';
+import type { AxiosResponse } from 'axios';
 import * as api from '../characters';
 
 jest.mock('axios');
 
 describe('Characters API requests', () => {
-  let testContext;
+  const mockedAxios = axios as jest.Mocked<typeof axios>;
+  let testContext: {
+    result?: AxiosResponse;
+  };
 
   beforeEach(() => {
     testContext = {};
@@ -16,12 +20,12 @@ describe('Characters API requests', () => {
 
   describe('#getCharacters', () => {
     beforeEach(async () => {
-      axios.get.mockResolvedValue('hello-world');
+      mockedAxios.get.mockResolvedValue('hello-world');
       testContext.result = await api.getCharacters();
     });
 
     it('calls axios with correct options', () => {
-      expect(axios.get).toHaveBeenCalledWith('/characters.json');
+      expect(mockedAxios.get).toHaveBeenCalledWith('/characters.json');
     });
 
     it('returns expected value', () => {

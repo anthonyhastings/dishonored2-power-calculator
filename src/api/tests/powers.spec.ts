@@ -1,10 +1,14 @@
 import axios from 'axios';
+import type { AxiosResponse } from 'axios';
 import * as api from '../powers';
 
 jest.mock('axios');
 
 describe('Powers API requests', () => {
-  let testContext;
+  const mockedAxios = axios as jest.Mocked<typeof axios>;
+  let testContext: {
+    result?: AxiosResponse;
+  };
 
   beforeEach(() => {
     testContext = {};
@@ -16,7 +20,7 @@ describe('Powers API requests', () => {
 
   describe('#getPowers', () => {
     beforeEach(async () => {
-      axios.get.mockResolvedValue('hello-world');
+      mockedAxios.get.mockResolvedValue('hello-world');
       testContext.result = await api.getPowers();
     });
 
