@@ -52,7 +52,7 @@
     "prop-types": "15.7.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-redux": "7.2.0",
+    "react-redux": "7.2.4",
     "react-router-dom": "5.2.0",
     "regenerator-runtime": "0.13.5",
     "winston": "3.3.3"

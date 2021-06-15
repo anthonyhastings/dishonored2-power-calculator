@@ -1,10 +1,8 @@
-/* global process */
-
 import { configureStore } from '@reduxjs/toolkit';
 import characters from 'slices/characters';
 import powers from 'slices/powers';
 
-export default configureStore({
+const store = configureStore({
   devTools: {
     ...(process.env.NODE_ENV === 'production' && { features: {} }),
   },
@@ -13,3 +11,9 @@ export default configureStore({
     powers,
   },
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;
+
+export default store;
