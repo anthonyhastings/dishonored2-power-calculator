@@ -2,11 +2,24 @@ import requestStatuses from 'constants/request-statuses';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from 'api/powers';
 
-const getDefaultState = () => ({
+export interface PowerData {
+  [key: string]: Power;
+}
+
+export interface PowersState {
+  requestStatus: requestStatuses;
+  data?: PowerData;
+}
+
+export const getDefaultState = (): PowersState => ({
   requestStatus: requestStatuses.idle,
 });
 
-export const fetchPowers = createAsyncThunk('powers/fetchPowers', async () => {
+export const fetchPowers = createAsyncThunk<
+  PowerData,
+  void,
+  { rejectValue: Error }
+>('powers/fetchPowers', async () => {
   let response;
 
   try {
@@ -15,7 +28,7 @@ export const fetchPowers = createAsyncThunk('powers/fetchPowers', async () => {
     throw new Error();
   }
 
-  return response.data.data.reduce((memo, power) => {
+  return response.data.data.reduce<PowerData>((memo, power) => {
     memo[power.id] = {
       id: power.id,
       parentPowerId: power.attributes.parentPowerId,
@@ -33,17 +46,20 @@ export const fetchPowers = createAsyncThunk('powers/fetchPowers', async () => {
 const powersSlice = createSlice({
   name: 'powers',
   initialState: getDefaultState(),
-  extraReducers: {
-    [fetchPowers.pending]: (state) => {
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchPowers.pending, (state) => {
       state.requestStatus = requestStatuses.pending;
-    },
-    [fetchPowers.fulfilled]: (state, action) => {
+    });
+
+    builder.addCase(fetchPowers.fulfilled, (state, action) => {
       state.requestStatus = requestStatuses.success;
       state.data = action.payload;
-    },
-    [fetchPowers.rejected]: (state) => {
+    });
+
+    builder.addCase(fetchPowers.rejected, (state) => {
       state.requestStatus = requestStatuses.failure;
-    },
+    });
   },
 });
 
