@@ -1,11 +1,18 @@
-import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 import classNames from 'classnames';
 import './stylesheets/index.scss';
 
+export interface OutsidersMarkProps {
+  animated?: boolean;
+  className?: string;
+}
+
 const namespace = 'outsiders-mark';
 
-const OutsidersMark = ({ animated = false, className }) => {
+const OutsidersMark: React.FC<OutsidersMarkProps> = ({
+  animated = false,
+  className = '',
+}): JSX.Element => {
   const classes = classNames({
     [namespace]: true,
     [`${namespace}--is-animating`]: animated,
@@ -13,11 +20,6 @@ const OutsidersMark = ({ animated = false, className }) => {
   });
 
   return <div aria-hidden="true" className={classes} />;
-};
-
-OutsidersMark.propTypes = {
-  animated: PropTypes.bool,
-  className: PropTypes.string,
 };
 
 export default OutsidersMark;

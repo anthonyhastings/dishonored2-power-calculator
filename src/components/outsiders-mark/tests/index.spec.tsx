@@ -2,7 +2,9 @@ import renderer from 'react-test-renderer';
 import OutsidersMark from '../';
 
 describe('OutsidersMark component', () => {
-  let testContext;
+  let testContext: {
+    component?: renderer.ReactTestRenderer;
+  };
 
   const renderComponent = (props = {}) => <OutsidersMark {...props} />;
 
