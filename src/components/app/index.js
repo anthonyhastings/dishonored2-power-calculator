@@ -10,7 +10,7 @@ import logo1320 from 'images/logo/1320x180.png';
 const CharacterSelection = lazy(() =>
   import(
     /* webpackChunkName: "character-selection" */
-    'components/character-selection/container'
+    'components/character-selection'
   )
 );
 

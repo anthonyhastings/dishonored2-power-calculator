@@ -17,7 +17,7 @@ exports[`CharacterSelection component when rendered renders a heading and charac
     >
       <MockAvatar
         name="Adam Jensen"
-        slug="dummy-slug"
+        slug="corvo"
       />
       <div
         className="character__overlay"
@@ -33,7 +33,7 @@ exports[`CharacterSelection component when rendered renders a heading and charac
           Task Force 29 operative.
         </p>
         <MockButton
-          href="/powers/dummy-slug"
+          href="/powers/corvo"
         >
           Choose 
           Adam Jensen
@@ -45,7 +45,7 @@ exports[`CharacterSelection component when rendered renders a heading and charac
     >
       <MockAvatar
         name="Scott Ryder"
-        slug="fake-slug"
+        slug="emily"
       />
       <div
         className="character__overlay"
@@ -61,7 +61,7 @@ exports[`CharacterSelection component when rendered renders a heading and charac
           The pathfinder.
         </p>
         <MockButton
-          href="/powers/fake-slug"
+          href="/powers/emily"
         >
           Choose 
           Scott Ryder
