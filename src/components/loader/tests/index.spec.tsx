@@ -4,9 +4,11 @@ import Loader from '../';
 jest.mock('components/outsiders-mark', () => 'MockOutsidersMark');
 
 describe('Loader component', () => {
-  let testContext;
+  let testContext: {
+    component?: renderer.ReactTestRenderer;
+  };
 
-  const renderComponent = (props) => (
+  const renderComponent = (props = {}) => (
     <Loader {...props}>
       <p>Hello world.</p>
     </Loader>

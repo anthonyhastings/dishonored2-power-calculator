@@ -1,10 +1,20 @@
-import PropTypes from 'prop-types';
+import React from 'react';
 import './stylesheets/index.scss';
 import OutsidersMark from 'components/outsiders-mark';
 
+interface LoaderProps {
+  children?: JSX.Element;
+  showError?: boolean;
+  showLoader?: boolean;
+}
+
 const namespace = 'app-loader';
 
-const Loader = ({ children, showError = false, showLoader = false }) => {
+const Loader: React.FC<LoaderProps> = ({
+  children = <React.Fragment></React.Fragment>,
+  showError = false,
+  showLoader = false,
+}): JSX.Element => {
   if (!showError && !showLoader) return children;
 
   return (
@@ -15,12 +25,6 @@ const Loader = ({ children, showError = false, showLoader = false }) => {
       <OutsidersMark animated={showLoader} className={`${namespace}__icon`} />
     </div>
   );
-};
-
-Loader.propTypes = {
-  children: PropTypes.element,
-  showError: PropTypes.bool,
-  showLoader: PropTypes.bool,
 };
 
 export default Loader;
