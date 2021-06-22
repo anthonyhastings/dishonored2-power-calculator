@@ -24,7 +24,7 @@ const PageNotFound = lazy(() =>
 const PowerSelectionRouteValidation = lazy(() =>
   import(
     /* webpackChunkName: "power-selection" */
-    'components/power-selection/container/route-validation'
+    'components/power-selection'
   )
 );
 

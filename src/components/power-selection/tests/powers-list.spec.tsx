@@ -1,22 +1,33 @@
 import renderer from 'react-test-renderer';
+import type { PowersListProps } from '../powers-list';
 import PowersList from '../powers-list';
 
 describe('PowersList component', () => {
-  let testContext;
+  let testContext: {
+    component?: renderer.ReactTestRenderer;
+    defaultProps: PowersListProps;
+  };
 
   const renderComponent = (props = {}) => (
     <PowersList {...testContext.defaultProps} {...props} />
   );
 
   beforeEach(() => {
-    testContext = {};
-
-    testContext.defaultProps = {
-      children: 'Test Title',
-      powers: [
-        { id: 'test-id-01', name: 'Test Name 01' },
-        { id: 'test-id-02', name: 'Test Name 02' },
-      ],
+    testContext = {
+      defaultProps: {
+        children: 'Test Title',
+        powers: [
+          {
+            id: 'enhancement-id',
+            parentPowerId: null,
+            characterId: 'character-id',
+            type: 'enhancement',
+            name: 'Top-level Enhancement',
+            description: 'Description for a top-level enhancement',
+            cost: 1,
+          },
+        ],
+      },
     };
   });
 

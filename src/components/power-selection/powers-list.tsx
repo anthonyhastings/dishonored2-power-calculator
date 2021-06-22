@@ -1,12 +1,21 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import kebabCase from 'lodash/kebabCase';
 import './stylesheets/powers-list.scss';
 
+export interface PowersListProps {
+  children: React.ReactNode;
+  className?: string;
+  powers: Power[];
+}
+
 const namespace = 'powers-list';
 
-const PowersList = ({ children, className, powers }) => {
+const PowersList: React.FC<PowersListProps> = ({
+  children,
+  className = '',
+  powers,
+}): JSX.Element => {
   const classes = classNames({
     [namespace]: true,
     [className]: !isEmpty(className),
@@ -21,7 +30,7 @@ const PowersList = ({ children, className, powers }) => {
             <div className={`${namespace}__grid-item`} key={power.id}>
               <h1>{power.name}</h1>
               <span
-                alt={`Symbol for ${power.name}`}
+                aria-label={`Symbol for ${power.name}`}
                 className={`${namespace}__icon ${namespace}__icon--${kebabCase(
                   power.name
                 )}`}
@@ -32,12 +41,6 @@ const PowersList = ({ children, className, powers }) => {
       </div>
     </section>
   );
-};
-
-PowersList.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-  powers: PropTypes.array.isRequired,
 };
 
 export default PowersList;

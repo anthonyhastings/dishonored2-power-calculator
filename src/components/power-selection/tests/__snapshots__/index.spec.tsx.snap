@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PowerSelection component when character is missing when PageNotFound component has finished loading renders the PageNotFound component 1`] = `
+<p>
+  Page Not Found
+</p>
+`;
+
+exports[`PowerSelection component when character is missing when PageNotFound component is still loading renders the Loader component 1`] = `
+<MockLoader
+  showLoader={true}
+/>
+`;
+
+exports[`PowerSelection component when character is present renders the header, footer and power lists 1`] = `
+<section
+  className="power-selection"
+>
+  <header
+    className="power-selection__header"
+  >
+    <h1
+      className="power-selection__title"
+    >
+      Test Character
+      <br />
+      Select your powers
+    </h1>
+    <MockAvatar
+      className="power-selection__avatar"
+      name="Test Character"
+      slug="corvo"
+    />
+  </header>
+  <div
+    className="power-selection__categories"
+  >
+    <MockPowersList
+      className="power-selection__category"
+      powers={
+        Array [
+          Object {
+            "characterId": "character-id",
+            "cost": 1,
+            "description": "Description for a top-level power",
+            "id": "power-id",
+            "name": "Top-level Power",
+            "parentPowerId": null,
+            "type": "power",
+          },
+        ]
+      }
+    >
+      Top-level Powers
+    </MockPowersList>
+    <MockPowersList
+      className="power-selection__category"
+      powers={
+        Array [
+          Object {
+            "characterId": "character-id",
+            "cost": 1,
+            "description": "Description for a top-level enhancement",
+            "id": "enhancement-id",
+            "name": "Top-level Enhancement",
+            "parentPowerId": null,
+            "type": "enhancement",
+          },
+        ]
+      }
+    >
+      Top-level Enhancements
+    </MockPowersList>
+  </div>
+  <footer
+    className="power-selection__footer"
+  >
+    <MockButton
+      className="power-selection__back-cta"
+      href="/"
+    >
+      Back to character selection
+    </MockButton>
+  </footer>
+</section>
+`;
