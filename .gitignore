@@ -1,5 +1,6 @@
 node_modules/
 dist/
+dist-server/
 jest-cache/
 jest-coverage/
 npm-debug.log

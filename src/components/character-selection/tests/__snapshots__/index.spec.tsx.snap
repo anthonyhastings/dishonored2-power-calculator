@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CharacterSelection component when rendered renders a heading and character grid 1`] = `
+<section
+  className="character-selection"
+>
+  <h1
+    className="character-selection__title"
+  >
+    Choose your character
+  </h1>
+  <div
+    className="character-selection__grid"
+  >
+    <div
+      className="character-selection__grid-element character"
+    >
+      <MockAvatar
+        name="Adam Jensen"
+        slug="corvo"
+      />
+      <div
+        className="character__overlay"
+      >
+        <h2
+          className="character__name"
+        >
+          Adam Jensen
+        </h2>
+        <p
+          className="character__description"
+        >
+          Task Force 29 operative.
+        </p>
+        <MockButton
+          href="/powers/corvo"
+        >
+          Choose 
+          Adam Jensen
+        </MockButton>
+      </div>
+    </div>
+    <div
+      className="character-selection__grid-element character"
+    >
+      <MockAvatar
+        name="Scott Ryder"
+        slug="emily"
+      />
+      <div
+        className="character__overlay"
+      >
+        <h2
+          className="character__name"
+        >
+          Scott Ryder
+        </h2>
+        <p
+          className="character__description"
+        >
+          The pathfinder.
+        </p>
+        <MockButton
+          href="/powers/emily"
+        >
+          Choose 
+          Scott Ryder
+        </MockButton>
+      </div>
+    </div>
+  </div>
+</section>
+`;

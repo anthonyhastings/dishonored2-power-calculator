@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PowersList component when className is provided renders with extra className 1`] = `
+Snapshot Diff:
+- First value
++ Second value
+
+@@ -1,7 +1,7 @@
+  <section
+-   className="powers-list"
++   className="powers-list mock-class"
+  >
+    <h1
+      className="powers-list__title"
+    >
+      Test Title
+`;
+
+exports[`PowersList component when rendered renders a title and grid of powers 1`] = `
+<section
+  className="powers-list"
+>
+  <h1
+    className="powers-list__title"
+  >
+    Test Title
+  </h1>
+  <div
+    className="powers-list__grid"
+  >
+    <div
+      className="powers-list__grid-item"
+    >
+      <h1>
+        Top-level Enhancement
+      </h1>
+      <span
+        aria-label="Symbol for Top-level Enhancement"
+        className="powers-list__icon powers-list__icon--top-level-enhancement"
+      />
+    </div>
+  </div>
+</section>
+`;

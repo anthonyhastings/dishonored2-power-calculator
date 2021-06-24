@@ -14,6 +14,8 @@ RUN yarn install && yarn cache clean
 
 COPY . ./
 
+RUN yarn express:build
+
 RUN yarn build
 
 FROM node:14.17.0-alpine AS server
@@ -30,7 +32,7 @@ RUN yarn install --production && yarn cache clean
 
 COPY --from=base --chown=node /dishonored/dist ./dist
 
-COPY --from=base --chown=node /dishonored/server ./server
+COPY --from=base --chown=node /dishonored/dist-server ./dist-server
 
 COPY --from=base --chown=node /dishonored/support ./support
 

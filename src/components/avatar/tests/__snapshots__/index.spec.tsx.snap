@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar component when className is provided renders with extra className 1`] = `
+Snapshot Diff:
+- First value
++ Second value
+
+@@ -1,8 +1,8 @@
+  <img
+    alt="Portrait of Fake Name"
+-   className="avatar"
++   className="avatar mock-class"
+    draggable="false"
+    height="901"
+    loading="lazy"
+    src="corvo.jpg"
+    width="771"
+`;
+
+exports[`Avatar component when slug is corvo renders an image specific to Corvo 1`] = `
+<img
+  alt="Portrait of Fake Name"
+  className="avatar"
+  draggable="false"
+  height="901"
+  loading="lazy"
+  src="corvo.jpg"
+  width="771"
+/>
+`;
+
+exports[`Avatar component when slug is emily renders an image specific to Emily 1`] = `
+<img
+  alt="Portrait of Fake Name"
+  className="avatar"
+  draggable="false"
+  height="901"
+  loading="lazy"
+  src="emily.jpg"
+  width="771"
+/>
+`;
