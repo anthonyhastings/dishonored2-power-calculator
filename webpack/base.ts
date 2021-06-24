@@ -13,7 +13,7 @@ export default (environment: Environment): Configuration => {
 
   return {
     entry: {
-      main: ['./src/index.js'],
+      main: ['./src/index.tsx'],
     },
     infrastructureLogging: {
       level: 'log',
