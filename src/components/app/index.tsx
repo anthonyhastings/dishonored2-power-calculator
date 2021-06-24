@@ -1,39 +1,53 @@
 import { Suspense, useEffect, lazy } from 'react';
-import PropTypes from 'prop-types';
 import { Switch, Route, Link } from 'react-router-dom';
+import {
+  hasInitialDataFailedSelector,
+  isInitialDataIncompleteSelector,
+} from 'selectors';
+import { useAppSelector, useAppDispatch } from 'store-hooks';
+import { fetchCharacters } from 'slices/characters';
+import { fetchPowers } from 'slices/powers';
 import 'normalize.css';
 import './stylesheets/index.scss';
 import Loader from 'components/loader';
 import logo660 from 'images/logo/660x90.png';
 import logo1320 from 'images/logo/1320x180.png';
 
-const CharacterSelection = lazy(() =>
-  import(
-    /* webpackChunkName: "character-selection" */
-    'components/character-selection'
-  )
+const CharacterSelection = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "character-selection" */
+      'components/character-selection'
+    )
 );
 
-const PageNotFound = lazy(() =>
-  import(
-    /* webpackChunkName: "page-not-found" */
-    'components/page-not-found'
-  )
+const PageNotFound = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "page-not-found" */
+      'components/page-not-found'
+    )
 );
 
-const PowerSelectionRouteValidation = lazy(() =>
-  import(
-    /* webpackChunkName: "power-selection" */
-    'components/power-selection'
-  )
+const PowerSelectionRouteValidation = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "power-selection" */
+      'components/power-selection'
+    )
 );
 
 const namespace = 'app';
 
-const App = ({ onComponentDidMount, showError, showLoader }) => {
+const App: React.FC = (): JSX.Element => {
+  const showError = useAppSelector(hasInitialDataFailedSelector);
+  const showLoader = useAppSelector(isInitialDataIncompleteSelector);
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
-    onComponentDidMount();
-  }, [onComponentDidMount]);
+    dispatch(fetchCharacters());
+    dispatch(fetchPowers());
+  }, [dispatch]);
 
   return (
     <div className={namespace}>
@@ -70,12 +84,6 @@ const App = ({ onComponentDidMount, showError, showLoader }) => {
       </div>
     </div>
   );
-};
-
-App.propTypes = {
-  onComponentDidMount: PropTypes.func.isRequired,
-  showError: PropTypes.bool.isRequired,
-  showLoader: PropTypes.bool.isRequired,
 };
 
 export default App;
