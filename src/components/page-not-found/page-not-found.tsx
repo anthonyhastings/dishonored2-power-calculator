@@ -1,4 +1,4 @@
-import './stylesheets/index.scss';
+import './stylesheets/page-not-found.scss';
 import OutsidersMark from 'components/outsiders-mark';
 
 const namespace = 'page-not-found';

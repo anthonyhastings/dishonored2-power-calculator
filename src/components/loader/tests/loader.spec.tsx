@@ -1,5 +1,5 @@
 import renderer from 'react-test-renderer';
-import Loader from '../';
+import Loader from '../loader';
 
 jest.mock('components/outsiders-mark', () => 'MockOutsidersMark');
 

@@ -1,6 +1,6 @@
 import renderer from 'react-test-renderer';
 import * as selectors from 'selectors';
-import CharacterSelection from '../';
+import CharacterSelection from '../character-selection';
 
 jest.mock('store-hooks', () => ({
   useAppSelector: (fn: () => void) => fn(),

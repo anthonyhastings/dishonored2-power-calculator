@@ -1,6 +1,6 @@
 import renderer from 'react-test-renderer';
 import * as selectors from 'selectors';
-import PowerSelection from '../';
+import PowerSelection from '../power-selection';
 
 jest.mock('react-router', () => ({
   useParams: jest.fn().mockReturnValue({ characterSlug: 'corvo' }),

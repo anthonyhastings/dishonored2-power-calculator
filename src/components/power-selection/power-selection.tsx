@@ -11,7 +11,7 @@ import isUndefined from 'lodash/isUndefined';
 import Avatar from 'components/avatar';
 import Button from 'components/button';
 import Loader from 'components/loader';
-import './stylesheets/index.scss';
+import './stylesheets/power-selection.scss';
 import PowersList from './powers-list';
 
 interface RouteParams {

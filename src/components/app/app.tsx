@@ -8,7 +8,7 @@ import { useAppSelector, useAppDispatch } from 'store-hooks';
 import { fetchCharacters } from 'slices/characters';
 import { fetchPowers } from 'slices/powers';
 import 'normalize.css';
-import './stylesheets/index.scss';
+import './stylesheets/app.scss';
 import Loader from 'components/loader';
 import logo660 from 'images/logo/660x90.png';
 import logo1320 from 'images/logo/1320x180.png';
