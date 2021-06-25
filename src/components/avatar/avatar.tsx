@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import corvoPortrait from 'images/portraits/corvo.jpg';
 import emilyPortrait from 'images/portraits/emily.jpg';
-import './stylesheets/index.scss';
+import './stylesheets/avatar.scss';
 
 export interface AvatarProps {
   className?: string;

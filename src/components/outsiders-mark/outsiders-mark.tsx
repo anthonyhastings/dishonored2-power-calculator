@@ -1,6 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import classNames from 'classnames';
-import './stylesheets/index.scss';
+import './stylesheets/outsiders-mark.scss';
 
 export interface OutsidersMarkProps {
   animated?: boolean;

@@ -3,7 +3,7 @@ import Avatar from 'components/avatar';
 import Button from 'components/button';
 import { useAppSelector } from 'store-hooks';
 import { charactersDataSelector } from 'selectors';
-import './stylesheets/index.scss';
+import './stylesheets/character-selection.scss';
 
 const characterNamespace = 'character';
 

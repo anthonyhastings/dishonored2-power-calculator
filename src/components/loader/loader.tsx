@@ -1,8 +1,8 @@
 import React from 'react';
-import './stylesheets/index.scss';
+import './stylesheets/loader.scss';
 import OutsidersMark from 'components/outsiders-mark';
 
-interface LoaderProps {
+export interface LoaderProps {
   children?: JSX.Element;
   showError?: boolean;
   showLoader?: boolean;

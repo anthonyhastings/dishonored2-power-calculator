@@ -1,5 +1,5 @@
 import renderer from 'react-test-renderer';
-import PageNotFound from '../';
+import PageNotFound from '../page-not-found';
 
 jest.mock('components/outsiders-mark', () => 'MockOutsidersMark');
 

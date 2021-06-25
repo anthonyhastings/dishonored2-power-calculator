@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import isEmpty from 'lodash/isEmpty';
-import './stylesheets/index.scss';
+import './stylesheets/button.scss';
 
 export interface ButtonProps {
   children: React.ReactNode;

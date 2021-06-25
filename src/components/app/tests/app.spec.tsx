@@ -1,6 +1,6 @@
 import renderer from 'react-test-renderer';
 import { useAppDispatch } from 'store-hooks';
-import App from '../';
+import App from '../app';
 
 jest.mock('react-router-dom', () => ({
   Switch: 'MockSwitch',
