@@ -51,8 +51,8 @@
   "overrides": [
     {
       "files": [
-        "support/**/*.{js,mjs,ts,tsx}",
-        "**/*.spec.{js,mjs,ts,tsx}"
+        "support/**/*.{js,ts}",
+        "**/*.spec.{ts,tsx}"
       ],
       "env": {
         "jest/globals": true
@@ -70,8 +70,8 @@
     },
     {
       "files": [
-        "server/**/*.{js,mjs,ts,tsx}",
-        "support/**/*.{js,mjs,ts,tsx}",
+        "server/**/*.ts",
+        "support/**/*.{js,ts}",
         "webpack/**/*.ts",
         "jest.config.ts"
       ],
