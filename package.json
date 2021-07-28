@@ -5,6 +5,7 @@
   "author": "Anthony Hastings <ar.hastings@gmail.com> (https://antwan1986.github.io/)",
   "license": "MIT",
   "private": true,
+  "repository": "github:anthonyhastings/dishonored2-power-calculator",
   "main": "server/index.ts",
   "scripts": {
     "build": "yarn run webpack:production",
@@ -114,6 +115,7 @@
     "rimraf": "3.0.2",
     "sass": "1.32.13",
     "sass-loader": "11.1.1",
+    "semantic-release": "17.4.4",
     "snapshot-diff": "0.8.0",
     "stylelint": "13.13.1",
     "stylelint-config-standard": "22.0.0",

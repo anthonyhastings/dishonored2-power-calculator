@@ -20,6 +20,9 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v2
 
+      - name: Trigger semantic release
+        run: npx semantic-release --dry-run
+
       - name: Login to Heroku
         run: heroku container:login
 
