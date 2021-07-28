@@ -13,6 +13,7 @@
 !.eslintrc.json
 !.postcssrc.json
 !.prettierrc.json
+!.releaserc.json
 !.stylelintrc.json
 !jest.config.ts
 !package.json
