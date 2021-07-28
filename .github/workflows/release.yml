@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Trigger semantic release
-        run: npx semantic-release --dry-run
+        run: npx semantic-release
 
       - name: Login to Heroku
         run: heroku container:login
