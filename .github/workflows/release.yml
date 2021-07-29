@@ -39,3 +39,4 @@ jobs:
       run : "echo $CONTENT"
     - name : machine echo steps
       env : { CONTENT : "${{ toJson(steps) }}" }
+      run : "echo $CONTENT"
