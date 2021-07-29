@@ -1,9 +1,13 @@
 name: Release
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: ["Test"]
-    types: [completed]
+    branches:
+      - master
+    types:
+      - completed
 
 env:
   GOOGLE_SITE_VERIFICATION_TOKEN: cj8IJgpHPbgqe4Xs9_dAAUzO07qGnnnz5SlSN32fOnA
@@ -12,8 +16,9 @@ env:
 jobs:
   release:
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/master' && github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
       HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       HEROKU_APP_NAME: dishonored2-power-calculator
     steps:
