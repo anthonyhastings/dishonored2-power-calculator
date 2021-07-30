@@ -9,21 +9,20 @@ Interact via Makefile commands; see list by executing the following:
 make
 ```
 
-When making changes to this repository, be aware that commit messages are expected to follow the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
+When making changes to this repository, be aware that commit messages (including merge commits) are expected to follow the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
 
 
 ## TODO
-- [X] Implement CI flow via Docker, TravisCI, Coveralls and Heroku.
+- [X] Implement CI flow via Docker, Github Actions, Codecov and Heroku.
+- [X] Use conventional commits to power semantic releases.
 - [X] Setup assets pipeline in Webpack to minify imagery and stylesheets.
-- [X] Implement HMR (Hot Module Reloading).
+- [X] Implement Fast Refresh for React.
 - [X] Use Jest for code coverage, mocks, stubs to implement unit tests.
 - [X] Replace enzyme usage with Jest snapshotting.
-- [X] Use Redux to manage application state.
+- [X] Use Redux to manage application state, and Axios / Thunks for requests.
 - [X] Use React-Router to manage the URL within the application.
 - [X] Convert redux usage to utilize redux-toolkit.
-- [ ] Redux requesting powers information via `redux-thunk` and Axios.
 - [ ] Use `validateUUID` to check a valid character uuid has been supplied in the URL.
 - [ ] Lighthouse integration in CI.
 - [ ] Progressive Web Application techniques (Web manifest, Service worker, Install prompt).
 - [ ] Automation suite using Cypress, Cucumber and Gherkin (Given/When/Then).
-- [ ] Use a multitude of intermediate "container" components to stop the flood of props. See: https://egghead.io/lessons/javascript-redux-extracting-container-components-filterlink
