@@ -10,17 +10,16 @@ on:
       - completed
 
 env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
   GOOGLE_SITE_VERIFICATION_TOKEN: cj8IJgpHPbgqe4Xs9_dAAUzO07qGnnnz5SlSN32fOnA
+  HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+  HEROKU_APP_NAME: dishonored2-power-calculator
   PORT: 8080
 
 jobs:
   release:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    env:
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      HEROKU_APP_NAME: dishonored2-power-calculator
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Clone repository
         uses: actions/checkout@v2
