@@ -1,11 +1,10 @@
 import 'dotenv/config.js';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import express from 'express';
 import expressWinston from 'express-winston';
 import compression from 'compression';
-import logger from './logger';
-import characters from './characters.json';
-import powers from './powers.json';
+import logger from './logger.mjs';
 
 if (typeof process.env.PORT === 'undefined') {
   throw new Error('Server: PORT environment variable not defined.');
@@ -13,6 +12,7 @@ if (typeof process.env.PORT === 'undefined') {
 
 const app = express();
 const distFolder = path.join(process.cwd(), 'dist');
+const serverFolder = path.dirname(fileURLToPath(import.meta.url));
 
 app.use(
   expressWinston.logger({
@@ -28,12 +28,12 @@ app.use(express.static(distFolder));
 
 app.get('/characters.json', (request, response) => {
   response.set('Content-Type', 'application/vnd.api+json');
-  response.send(characters);
+  response.sendFile(path.join(serverFolder, 'characters.json'));
 });
 
 app.get('/powers.json', (request, response) => {
   response.set('Content-Type', 'application/vnd.api+json');
-  response.send(powers);
+  response.sendFile(path.join(serverFolder, 'powers.json'));
 });
 
 app.get('/*', (request, response) => {
