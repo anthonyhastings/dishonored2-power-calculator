@@ -3,7 +3,6 @@ import path from 'path';
 import express from 'express';
 import expressWinston from 'express-winston';
 import compression from 'compression';
-import paths from '../support/paths';
 import logger from './logger';
 import characters from './characters.json';
 import powers from './powers.json';
@@ -13,6 +12,7 @@ if (typeof process.env.PORT === 'undefined') {
 }
 
 const app = express();
+const distFolder = path.join(process.cwd(), 'dist');
 
 app.use(
   expressWinston.logger({
@@ -24,7 +24,7 @@ app.use(
 
 app.use(compression());
 
-app.use(express.static(paths.dist));
+app.use(express.static(distFolder));
 
 app.get('/characters.json', (request, response) => {
   response.set('Content-Type', 'application/vnd.api+json');
@@ -37,7 +37,7 @@ app.get('/powers.json', (request, response) => {
 });
 
 app.get('/*', (request, response) => {
-  response.sendFile(path.join(paths.dist, 'index.html'));
+  response.sendFile(path.join(distFolder, 'index.html'));
 });
 
 app.listen(Number(process.env.PORT), '0.0.0.0', () => {
