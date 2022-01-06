@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "outDir": "../dist-server/",
+    "target": "esnext"
+  },
+  "include": [
+    "index.mts",
+    "*.json",
+  ],
+  "exclude": [
+    "tsconfig.json"
+  ]
+}
