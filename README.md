@@ -25,4 +25,5 @@ When making changes to this repository, be aware that commit messages (including
 - [ ] Use `validateUUID` to check a valid character uuid has been supplied in the URL.
 - [ ] Lighthouse integration in CI.
 - [ ] Progressive Web Application techniques (Web manifest, Service worker, Install prompt).
-- [ ] Automation suite using Cypress, Cucumber and Gherkin (Given/When/Then).
+- [ ] Component tests with Jest and React Testing Library.
+- [ ] End-to-end test suite using Cypress.
