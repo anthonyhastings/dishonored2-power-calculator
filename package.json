@@ -22,7 +22,7 @@
     "lint:js": "time yarn run eslint:base server/ src/ support/ webpack/ jest.config.ts",
     "start": "yarn run express:production",
     "test": "jest",
-    "types:check": "npx tsc --project tsconfig.json",
+    "types:check": "npx tsc --project tsconfig.json && npx tsc --project tsconfig.server.json",
     "webpack:dev-server": "webpack serve --config=webpack/env.development.ts",
     "webpack:production": "webpack --config=webpack/env.production.ts",
     "webpack:stats": "yarn run webpack:production --env stats"

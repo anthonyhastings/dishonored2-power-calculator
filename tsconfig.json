@@ -21,7 +21,6 @@
     "strict": true,
   },
   "include": [
-    "server",
     "src",
     "support",
     "webpack",
