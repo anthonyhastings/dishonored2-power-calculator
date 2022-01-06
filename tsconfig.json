@@ -14,7 +14,6 @@
       "esnext"
     ],
     "moduleResolution": "node",
-    "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
@@ -25,8 +24,5 @@
     "support",
     "webpack",
     "jest.config.ts"
-  ],
-  "exclude": [
-    "node_modules"
   ]
 }
