@@ -26,4 +26,4 @@ When making changes to this repository, be aware that commit messages (including
 - [ ] Lighthouse integration in CI.
 - [ ] Progressive Web Application techniques (Web manifest, Service worker, Install prompt).
 - [ ] Component tests with Jest and React Testing Library.
-- [ ] End-to-end test suite using Cypress.
+- [ ] End-to-end test suite using Cypress running against locally spun up service.
