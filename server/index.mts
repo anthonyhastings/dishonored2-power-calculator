@@ -1,6 +1,6 @@
 import 'dotenv/config.js';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import express from 'express';
 import expressWinston from 'express-winston';
 import compression from 'compression';

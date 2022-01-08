@@ -1,5 +1,5 @@
 import 'dotenv/config.js';
-import path from 'path';
+import path from 'node:path';
 import type { Configuration } from 'webpack';
 import { merge as webpackMerge } from 'webpack-merge';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
