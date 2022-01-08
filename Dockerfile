@@ -1,4 +1,4 @@
-FROM node:14.17.0-slim AS base
+FROM node:14.18.0-slim AS base
 
 LABEL maintainer="Anthony Hastings <ar.hastings@gmail.com>"
 
