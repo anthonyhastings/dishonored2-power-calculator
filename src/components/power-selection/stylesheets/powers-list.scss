@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import 'components/app/stylesheets/colours.scss';
 
 .powers-list {
@@ -19,7 +20,7 @@
 
   &__grid-item {
     align-items: stretch;
-    border: 0.1rem solid map-get($colours, tundora);
+    border: 0.1rem solid map.get($colours, tundora);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
