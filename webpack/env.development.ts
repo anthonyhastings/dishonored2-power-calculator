@@ -1,4 +1,4 @@
-import 'dotenv/config.js';
+import 'dotenv/config';
 import path from 'node:path';
 import type { Configuration } from 'webpack';
 import { merge as webpackMerge } from 'webpack-merge';
