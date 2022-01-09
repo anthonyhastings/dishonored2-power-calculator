@@ -14,16 +14,12 @@ import Loader from 'components/loader';
 import './stylesheets/power-selection.scss';
 import PowersList from './powers-list';
 
-interface RouteParams {
-  characterSlug: CharacterSlugs;
-}
-
 const PageNotFound = lazy(() => import('components/page-not-found'));
 
 const namespace = 'power-selection';
 
 const PowerSelection: React.FC = (): JSX.Element => {
-  const { characterSlug } = useParams<RouteParams>();
+  const { characterSlug } = useParams() as { characterSlug: CharacterSlugs };
   const topLevelEnhancements = useAppSelector(topLevelEnhancementsSelector);
   const topLevelPowers = useAppSelector((state: RootState) =>
     topLevelPowersByCharacterSlugSelector(state, characterSlug)
