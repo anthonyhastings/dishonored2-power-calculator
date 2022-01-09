@@ -1,17 +1,16 @@
 {
   "extends": [
-    "stylelint-config-standard"
+    "stylelint-config-standard-scss"
   ],
   "plugins": [
-    "stylelint-order",
-    "stylelint-scss"
+    "stylelint-order"
   ],
   "rules": {
-    "at-rule-no-unknown": null,
     "color-hex-case": "upper",
     "color-hex-length": "long",
     "comment-no-empty": true,
     "order/properties-alphabetical-order": true,
-    "scss/at-rule-no-unknown": true
+    "scss/at-import-partial-extension": "always",
+    "string-quotes": "single"
   }
 }

@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import 'components/app/stylesheets/colours.scss';
 
 .power-selection {
@@ -13,7 +14,7 @@
 
   &__header {
     align-items: center;
-    border-bottom: 0.1rem solid map-get($colours, tundora);
+    border-bottom: 0.1rem solid map.get($colours, tundora);
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
@@ -38,14 +39,14 @@
   }
 
   &__category:not(:last-of-type) {
-    border-bottom: 0.1rem solid map-get($colours, tundora);
+    border-bottom: 0.1rem solid map.get($colours, tundora);
     margin-bottom: 2rem;
     padding-bottom: 2rem;
   }
 
   &__footer {
     align-items: center;
-    border-top: 0.1rem solid map-get($colours, tundora);
+    border-top: 0.1rem solid map.get($colours, tundora);
     display: flex;
     flex-direction: row;
     justify-content: center;
