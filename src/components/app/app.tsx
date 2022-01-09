@@ -1,5 +1,5 @@
 import { Suspense, useEffect, lazy } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import {
   hasInitialDataFailedSelector,
   isInitialDataIncompleteSelector,
@@ -68,17 +68,14 @@ const App: React.FC = (): JSX.Element => {
       <div className={`${namespace}__content`}>
         <Loader showError={showError} showLoader={showLoader}>
           <Suspense fallback={<Loader showLoader={true} />}>
-            <Switch>
-              <Route exact path="/">
-                <CharacterSelection />
-              </Route>
-              <Route path="/powers/:characterSlug">
-                <PowerSelectionRouteValidation />
-              </Route>
-              <Route>
-                <PageNotFound />
-              </Route>
-            </Switch>
+            <Routes>
+              <Route path="*" element={<PageNotFound />} />
+              <Route path="/" element={<CharacterSelection />} />
+              <Route
+                path="/powers/:characterSlug"
+                element={<PowerSelectionRouteValidation />}
+              />
+            </Routes>
           </Suspense>
         </Loader>
       </div>

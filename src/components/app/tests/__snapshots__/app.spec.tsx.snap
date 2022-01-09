@@ -34,28 +34,29 @@ exports[`App component when rendered renders a header area and top-level routes 
       showError={false}
       showLoader={true}
     >
-      <MockSwitch>
-        <MockRoute
-          exact={true}
+      <MockRoutes>
+        <span
+          path="*"
+        >
+          <p>
+            Page Not Found
+          </p>
+        </span>
+        <span
           path="/"
         >
           <p>
             Mock Character Selection
           </p>
-        </MockRoute>
-        <MockRoute
+        </span>
+        <span
           path="/powers/:characterSlug"
         >
           <p>
             Mock Power Selection
           </p>
-        </MockRoute>
-        <MockRoute>
-          <p>
-            Page Not Found
-          </p>
-        </MockRoute>
-      </MockSwitch>
+        </span>
+      </MockRoutes>
     </MockLoader>
   </div>
 </div>

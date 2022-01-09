@@ -3,8 +3,11 @@ import { useAppDispatch } from 'store-hooks';
 import App from '../app';
 
 jest.mock('react-router-dom', () => ({
-  Switch: 'MockSwitch',
-  Route: 'MockRoute',
+  Routes: 'MockRoutes',
+  Route: function MockRoute(props: { element: React.ReactNode }) {
+    const { element: Element, ...otherProps } = props;
+    return <span {...otherProps}>{Element}</span>;
+  },
   Link: 'MockLink',
 }));
 

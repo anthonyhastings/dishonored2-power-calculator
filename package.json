@@ -52,7 +52,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-redux": "7.2.4",
-    "react-router-dom": "5.2.0",
+    "react-router-dom": "6.2.1",
     "regenerator-runtime": "0.13.5",
     "winston": "3.3.3"
   },
@@ -75,7 +75,6 @@
     "@types/react": "17.0.38",
     "@types/react-dom": "17.0.11",
     "@types/react-redux": "7.1.16",
-    "@types/react-router-dom": "5.1.7",
     "@types/react-test-renderer": "17.0.1",
     "@types/webpack-bundle-analyzer": "^4.4.0",
     "@types/webpack-dev-server": "3.11.4",
