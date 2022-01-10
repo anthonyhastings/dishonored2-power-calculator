@@ -35,13 +35,12 @@ export default (): Configuration => {
     }
   );
 
-  const experimentalDevServerSettings = {
+  const devServerSettings = {
     devServer: {
       devMiddleware: {
         publicPath: '/',
       },
       compress: true,
-      firewall: false,
       historyApiFallback: true,
       host: '0.0.0.0',
       port: Number(process.env.PORT),
@@ -51,7 +50,7 @@ export default (): Configuration => {
 
   const finalConfig: { [key: string]: any } = {
     ...developmentConfig,
-    ...experimentalDevServerSettings,
+    ...devServerSettings,
   };
 
   return finalConfig;
