@@ -41,7 +41,7 @@ export default (env: EnvOptions = {}): Configuration => {
             },
           },
         }),
-        new CssMinimizerPlugin() as { apply(...args: any[]): void },
+        new CssMinimizerPlugin(),
       ],
       runtimeChunk: {
         name: 'manifest',
