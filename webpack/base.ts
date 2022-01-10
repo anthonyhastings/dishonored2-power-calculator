@@ -80,7 +80,7 @@ export default (environment: Environment): Configuration => {
       new MiniCssExtractPlugin({
         chunkFilename: isDev ? '[name].css' : 'css/[name].[contenthash].css',
         filename: isDev ? '[id].css' : 'css/[name].[contenthash].css',
-      }),
+      }) as { apply(...args: any[]): void },
       new CopyWebpackPlugin({
         patterns: [
           {
@@ -92,7 +92,7 @@ export default (environment: Environment): Configuration => {
             to: 'images/manifest/',
           },
         ],
-      }) as { apply(...args: any[]): void },
+      }),
     ],
     resolve: {
       extensions: ['.tsx', '.ts', '...'],

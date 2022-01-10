@@ -29,7 +29,7 @@ export default (): Configuration => {
               to: './',
             },
           ],
-        }) as { apply(...args: any[]): void },
+        }),
         new ReactRefreshWebpackPlugin(),
       ],
     }
