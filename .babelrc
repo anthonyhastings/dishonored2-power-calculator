@@ -6,9 +6,7 @@
         "debug": false,
         "modules": false,
         "useBuiltIns": "usage",
-        "corejs": {
-          "version": 3
-        }
+        "corejs": "3.20"
       }
     ],
     [
