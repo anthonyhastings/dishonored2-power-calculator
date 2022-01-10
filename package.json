@@ -34,7 +34,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,mjs,mts}": "yarn run eslint:base",
+    "*.{js,ts,tsx,mts}": "yarn run eslint:base",
     "*.scss": "stylelint"
   },
   "dependencies": {
@@ -99,7 +99,7 @@
     "imagemin-optipng": "8.0.0",
     "imagemin-svgo": "9.0.0",
     "jest": "27.4.7",
-    "lint-staged": "10.2.2",
+    "lint-staged": "12.1.7",
     "mini-css-extract-plugin": "2.4.6",
     "nodemon": "2.0.15",
     "npm-run-all": "4.1.5",
