@@ -20,18 +20,13 @@
     "lint": "time npm-run-all --parallel --print-label --continue-on-error lint:*",
     "lint:css": "time stylelint src/**/*.scss",
     "lint:js": "time yarn run eslint:base server/ src/ support/ webpack/ jest.config.ts",
+    "prepare": "husky install",
     "start": "yarn run express:production",
     "test": "jest",
     "types:check": "npx tsc --noEmit --project tsconfig.json && npx tsc --noEmit --project server/tsconfig.json",
     "webpack:dev-server": "webpack serve --config=webpack/env.development.ts",
     "webpack:production": "webpack --config=webpack/env.production.ts",
     "webpack:stats": "yarn run webpack:production --env stats"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{js,ts,tsx,mts}": "yarn run eslint:base",
@@ -93,7 +88,7 @@
     "eslint-plugin-react": "7.23.2",
     "eslint-plugin-react-hooks": "4.2.0",
     "html-webpack-plugin": "5.3.1",
-    "husky": "4.2.5",
+    "husky": "7.0.4",
     "image-minimizer-webpack-plugin": "3.2.2",
     "imagemin": "8.0.1",
     "imagemin-mozjpeg": "10.0.0",
