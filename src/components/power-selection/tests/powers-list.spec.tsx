@@ -1,6 +1,5 @@
 import renderer from 'react-test-renderer';
-import type { PowersListProps } from '../powers-list';
-import PowersList from '../powers-list';
+import PowersList, { type PowersListProps } from '../powers-list';
 
 describe('PowersList component', () => {
   let testContext: {

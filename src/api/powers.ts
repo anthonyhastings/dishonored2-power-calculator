@@ -1,5 +1,4 @@
-import axios from 'axios';
-import type { AxiosResponse } from 'axios';
+import axios, { type AxiosResponse } from 'axios';
 
 type APIResponse = JSONResponse<
   {

@@ -22,23 +22,26 @@ export default (env: EnvOptions = {}): Configuration => {
       minimizer: [
         '...',
         new ImageMinimizerPlugin({
-          minimizerOptions: {
-            plugins: [
-              ['mozjpeg', { quality: 75 }],
-              ['optipng', { optimizationLevel: 5 }],
-              [
-                'svgo',
-                {
-                  plugins: [
-                    { name: 'removeViewBox', active: false },
-                    { name: 'removeDimensions', active: true },
-                  ],
-                },
+          minimizer: {
+            implementation: ImageMinimizerPlugin.imageminMinify,
+            options: {
+              plugins: [
+                ['mozjpeg', { quality: 75 }],
+                ['optipng', { optimizationLevel: 5 }],
+                [
+                  'svgo',
+                  {
+                    plugins: [
+                      { name: 'removeViewBox', active: false },
+                      { name: 'removeDimensions', active: true },
+                    ],
+                  },
+                ],
               ],
-            ],
+            },
           },
         }),
-        new CssMinimizerPlugin() as { apply(...args: any[]): void },
+        new CssMinimizerPlugin(),
       ],
       runtimeChunk: {
         name: 'manifest',
