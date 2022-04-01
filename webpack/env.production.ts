@@ -2,6 +2,7 @@ import 'dotenv/config';
 import type { Configuration } from 'webpack';
 import { merge as webpackMerge } from 'webpack-merge';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import TerserPlugin from 'terser-webpack-plugin';
 import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import baseConfig from './base';
@@ -20,7 +21,14 @@ export default (env: EnvOptions = {}): Configuration => {
     },
     optimization: {
       minimizer: [
-        '...',
+        new TerserPlugin({
+          extractComments: false,
+          terserOptions: {
+            compress: {
+              passes: 2,
+            },
+          },
+        }),
         new ImageMinimizerPlugin({
           minimizer: {
             implementation: ImageMinimizerPlugin.imageminMinify,
