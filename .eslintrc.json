@@ -62,10 +62,14 @@
       ],
       "plugins": [
         "jest"
+      ]
+    },
+    {
+      "files": [
+        "**/*.spec.{ts,tsx}"
       ],
       "rules": {
-        "jest/require-top-level-describe": "error",
-        "@typescript-eslint/no-explicit-any": "off"
+        "jest/require-top-level-describe": "error"
       }
     },
     {
