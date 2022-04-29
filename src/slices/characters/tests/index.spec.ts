@@ -1,14 +1,11 @@
 import requestStatuses from 'constants/request-statuses';
-import getCharactersSuccessResponse from 'api/sample-responses/get-characters-success.json';
-import { getCharacters } from 'api/characters';
 import type { AnyAction } from '@reduxjs/toolkit';
+import { server, rest } from '../../../../support/tests/mock-server';
 import reducer, {
   getDefaultState,
   CharactersState,
   fetchCharacters,
 } from '../';
-
-jest.mock('api/characters');
 
 describe('Characters slice', () => {
   let testContext: {
@@ -18,10 +15,6 @@ describe('Characters slice', () => {
 
   beforeEach(() => {
     testContext = {};
-  });
-
-  afterEach(() => {
-    jest.resetAllMocks();
   });
 
   describe('reducer cases', () => {
@@ -99,15 +92,10 @@ describe('Characters slice', () => {
   });
 
   describe('action creators', () => {
-    const mockedGetCharacters = getCharacters as jest.Mock;
-
     describe('#fetchCharacters', () => {
       describe('when the request succeeds', () => {
         beforeEach(async () => {
           testContext.mockDispatch = jest.fn();
-          mockedGetCharacters.mockResolvedValue({
-            data: getCharactersSuccessResponse,
-          });
 
           await fetchCharacters()(
             testContext.mockDispatch,
@@ -147,7 +135,12 @@ describe('Characters slice', () => {
       describe('when the request fails', () => {
         beforeEach(async () => {
           testContext.mockDispatch = jest.fn();
-          mockedGetCharacters.mockRejectedValue('fail');
+
+          server.use(
+            rest.get(/\/characters.json/, async (req, res, ctx) => {
+              return res(ctx.status(500));
+            })
+          );
 
           await fetchCharacters()(
             testContext.mockDispatch,

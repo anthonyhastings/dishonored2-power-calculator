@@ -1,10 +1,7 @@
 import requestStatuses from 'constants/request-statuses';
-import getPowersSuccessResponse from 'api/sample-responses/get-powers-success.json';
-import { getPowers } from 'api/powers';
 import type { AnyAction } from '@reduxjs/toolkit';
+import { server, rest } from '../../../../support/tests/mock-server';
 import reducer, { fetchPowers, getDefaultState, PowersState } from '../';
-
-jest.mock('api/powers');
 
 describe('Powers slice', () => {
   let testContext: {
@@ -14,10 +11,6 @@ describe('Powers slice', () => {
 
   beforeEach(() => {
     testContext = {};
-  });
-
-  afterEach(() => {
-    jest.resetAllMocks();
   });
 
   describe('reducer cases', () => {
@@ -98,15 +91,10 @@ describe('Powers slice', () => {
   });
 
   describe('action creators', () => {
-    const mockedGetPowers = getPowers as jest.Mock;
-
     describe('#fetchPowers', () => {
       describe('when the request succeeds', () => {
         beforeEach(async () => {
           testContext.mockDispatch = jest.fn();
-          mockedGetPowers.mockResolvedValue({
-            data: getPowersSuccessResponse,
-          });
 
           await fetchPowers()(testContext.mockDispatch, () => 'get-state', '');
         });
@@ -148,7 +136,12 @@ describe('Powers slice', () => {
       describe('when the request fails', () => {
         beforeEach(async () => {
           testContext.mockDispatch = jest.fn();
-          mockedGetPowers.mockRejectedValue('fail');
+
+          server.use(
+            rest.get(/\/powers.json/, async (req, res, ctx) => {
+              return res(ctx.status(500));
+            })
+          );
 
           await fetchPowers()(testContext.mockDispatch, () => 'get-state', '');
         });
