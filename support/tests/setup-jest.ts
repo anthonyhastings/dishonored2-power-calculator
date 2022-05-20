@@ -1,4 +1,5 @@
 import snapshotDiff, { toMatchDiffSnapshot } from 'snapshot-diff';
+import '@testing-library/jest-dom';
 import { server } from './mock-server';
 
 expect.addSnapshotSerializer(snapshotDiff.getSnapshotDiffSerializer());

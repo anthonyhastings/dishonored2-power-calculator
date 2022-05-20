@@ -11,6 +11,7 @@ const configuration: Config.InitialOptions = {
   },
   preset: 'ts-jest',
   setupFilesAfterEnv: ['<rootDir>/support/tests/setup-jest.ts'],
+  testEnvironment: 'jsdom',
   transform: {
     '^.+\\.(ts|tsx)?$': 'ts-jest',
     '^.+\\.js$': 'babel-jest',
