@@ -18,7 +18,7 @@ RUN yarn express:build
 
 RUN yarn build
 
-FROM node:14.17.0-alpine AS server
+FROM node:14.18.0-alpine AS server
 
 RUN apk add --no-cache bash
 
