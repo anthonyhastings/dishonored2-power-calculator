@@ -16,6 +16,7 @@
 !.releaserc.json
 !.stylelintrc.json
 !jest.config.ts
+!nodemon.json
 !package.json
 !tsconfig.json
 !yarn.lock

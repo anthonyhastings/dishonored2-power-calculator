@@ -1,0 +1,5 @@
+{
+  "execMap": {
+    "mts": "ts-node --esm"
+  }
+}
