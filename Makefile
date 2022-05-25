@@ -13,7 +13,7 @@ start-dev:
 	docker-compose run --rm --service-ports dev
 
 start-express-dev:
-	docker-compose run --rm --service-ports yarn express:dev-server
+	docker-compose run --rm --service-ports dev yarn express:dev-server
 
 start-production:
 	docker-compose up web
