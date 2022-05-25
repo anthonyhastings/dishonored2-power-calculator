@@ -15,7 +15,7 @@
     "eslint:check": "eslint-config-prettier src/components/app/avatar/index.ts",
     "preexpress:build": "rimraf dist-server/",
     "express:build": "tsc --project ./server/tsconfig.json",
-    "express:dev-server": "nodemon server/index.mts",
+    "express:dev-server": "nodemon --exec ts-node --esm server/index.mts",
     "express:production": "node dist-server/index.mjs",
     "lint": "time npm-run-all --parallel --print-label --continue-on-error lint:*",
     "lint:css": "time stylelint src/**/*.scss",
