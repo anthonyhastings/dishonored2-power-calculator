@@ -60,8 +60,6 @@ const App: React.FC = (): JSX.Element => {
             draggable="false"
             sizes="100vw"
             srcSet={`${logo660} 660w, ${logo1320} 1320w`}
-            width="660"
-            height="90"
           />
         </Link>
       </header>

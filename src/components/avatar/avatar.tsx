@@ -25,8 +25,6 @@ const Avatar: React.FC<AvatarProps> = ({
     draggable="false"
     src={slug === 'corvo' ? corvoPortrait : emilyPortrait}
     alt={`Portrait of ${name}`}
-    width="771"
-    height="901"
     loading="lazy"
   />
 );
