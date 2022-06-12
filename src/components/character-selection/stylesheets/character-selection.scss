@@ -34,16 +34,6 @@ $character-namespace: 'character';
   overflow: hidden;
   position: relative;
 
-  &:hover {
-    .#{$character-namespace}__overlay {
-      transform: translateY(0);
-
-      &::before {
-        flex-grow: 1;
-      }
-    }
-  }
-
   &__overlay {
     background-color: rgb(0 0 0 / 88%);
     display: flex;
@@ -56,8 +46,6 @@ $character-namespace: 'character';
     overflow: hidden;
     padding: 2rem;
     position: absolute;
-    transform: translateY(calc(100% - 6rem));
-    transition: transform 300ms ease-in;
 
     &::before,
     &::after {
@@ -65,18 +53,35 @@ $character-namespace: 'character';
       display: block;
       flex: 1 1 auto;
     }
+  }
 
-    &::before {
-      flex-grow: 0;
-      transition: flex 300ms ease-in;
-      will-change: flex;
-    }
-
-    @media (prefers-reduced-motion) {
-      transition: none;
+  @media (hover: hover) {
+    &__overlay {
+      transform: translateY(calc(100% - 6rem));
+      transition: transform 300ms ease-in;
 
       &::before {
+        flex-grow: 0;
+        transition: flex 300ms ease-in;
+        will-change: flex;
+      }
+
+      @media (prefers-reduced-motion) {
         transition: none;
+
+        &::before {
+          transition: none;
+        }
+      }
+    }
+
+    &:hover {
+      .#{$character-namespace}__overlay {
+        transform: translateY(0);
+
+        &::before {
+          flex-grow: 1;
+        }
       }
     }
   }
