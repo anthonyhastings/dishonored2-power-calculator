@@ -23,17 +23,16 @@
 
   &__title {
     font-size: 2.4rem;
-    margin-top: 1.5rem;
+    margin-block-start: 1.5rem;
 
     @include mq(medium) {
-      margin-top: 0;
+      margin-block-start: 0;
     }
   }
 
   &__logo-link {
     display: block;
-    max-width: 75%;
-    width: 100%;
+    width: min(40rem, 100%);
 
     @include mq(medium) {
       width: 30rem;

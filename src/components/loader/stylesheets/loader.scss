@@ -8,12 +8,10 @@
 
   &__message {
     font-size: 2rem;
-    margin-top: 2.5rem;
+    margin-block-start: 2.5rem;
   }
 
   &__icon {
-    margin: 0 auto;
-    max-width: 13rem;
-    width: 50%;
+    width: min(13rem, 50%);
   }
 }
