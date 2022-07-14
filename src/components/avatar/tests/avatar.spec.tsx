@@ -1,15 +1,11 @@
-import renderer from 'react-test-renderer';
+import { render, screen } from '@testing-library/react';
 import Avatar, { type AvatarProps } from '../avatar';
 
 describe('Avatar component', () => {
-  let testContext: {
-    component?: renderer.ReactTestRenderer;
-    defaultProps: AvatarProps;
-  };
+  let testContext: { defaultProps: AvatarProps };
 
-  const renderComponent = (props = {}) => (
-    <Avatar {...testContext.defaultProps} {...props} />
-  );
+  const renderComponent = (props = {}) =>
+    render(<Avatar {...testContext.defaultProps} {...props} />);
 
   beforeEach(() => {
     testContext = {
@@ -20,41 +16,30 @@ describe('Avatar component', () => {
     };
   });
 
-  describe('when slug is corvo', () => {
+  describe('when name/slug is corvo', () => {
     beforeEach(() => {
-      testContext.component = renderer.create(
-        renderComponent({ slug: 'corvo' })
-      );
+      renderComponent({ name: 'Corvo', slug: 'corvo' });
     });
 
     it('renders an image specific to Corvo', () => {
-      expect(testContext.component).toMatchSnapshot();
+      expect(screen.getByAltText('Portrait of Corvo')).toBeVisible();
     });
   });
 
-  describe('when slug is emily', () => {
+  describe('when name/slug is emily', () => {
     beforeEach(() => {
-      testContext.component = renderer.create(
-        renderComponent({
-          slug: 'emily',
-        })
-      );
+      renderComponent({ name: 'Emily', slug: 'emily' });
     });
 
     it('renders an image specific to Emily', () => {
-      expect(testContext.component).toMatchSnapshot();
+      expect(screen.getByAltText('Portrait of Emily')).toBeVisible();
     });
   });
 
   describe('when className is provided', () => {
     it('renders with extra className', () => {
-      expect(renderer.create(renderComponent())).toMatchDiffSnapshot(
-        renderer.create(
-          renderComponent({
-            className: 'mock-class',
-          })
-        )
-      );
+      const { container } = renderComponent({ className: 'mock-class' });
+      expect(container.querySelectorAll('.mock-class').length).toEqual(1);
     });
   });
 });
