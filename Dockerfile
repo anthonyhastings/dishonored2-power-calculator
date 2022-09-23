@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install bash time automake libtool make nasm pkgco
 
 COPY ./package.json ./yarn.lock ./
 
-RUN yarn install && yarn cache clean
+RUN yarn install --frozen-lockfile && yarn cache clean
 
 COPY . ./
 
@@ -28,7 +28,7 @@ WORKDIR /home/node
 
 COPY --from=base --chown=node /dishonored/package.json /dishonored/yarn.lock ./
 
-RUN yarn install --production && yarn cache clean
+RUN yarn install --frozen-lockfile --production && yarn cache clean
 
 COPY --from=base --chown=node /dishonored/dist ./dist
 
