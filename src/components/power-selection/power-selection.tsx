@@ -1,20 +1,20 @@
 import { Suspense, lazy } from 'react';
 import { useParams } from 'react-router';
-import { useAppSelector } from 'store-hooks';
-import type { RootState } from 'store';
+import isUndefined from 'lodash/isUndefined';
+import './stylesheets/power-selection.scss';
+import PowersList from './powers-list';
+import Avatar from '@/components/avatar';
+import Button from '@/components/button';
+import Loader from '@/components/loader';
 import {
   characterBySlugSelector,
   topLevelEnhancementsSelector,
   topLevelPowersByCharacterSlugSelector,
-} from 'selectors';
-import isUndefined from 'lodash/isUndefined';
-import Avatar from 'components/avatar';
-import Button from 'components/button';
-import Loader from 'components/loader';
-import './stylesheets/power-selection.scss';
-import PowersList from './powers-list';
+} from '@/selectors';
+import type { RootState } from '@/store';
+import { useAppSelector } from '@/store-hooks';
 
-const PageNotFound = lazy(() => import('components/page-not-found'));
+const PageNotFound = lazy(() => import('@/components/page-not-found'));
 
 const namespace = 'power-selection';
 

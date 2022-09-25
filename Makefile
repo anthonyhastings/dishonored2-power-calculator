@@ -1,21 +1,21 @@
 SHELL:=/bin/bash
 
 help:
-	@echo "start-dev - Starts webpack-dev-server for local development."
-	@echo "start-express-dev - Starts serving production assets via Express.js & ts-node-dev (hot reloading upon changes)"
-	@echo "start-production - Starts serving production assets via Express.js & Node.js."
+	@echo "start-client-dev - Starts vite dev server for local development."
+	@echo "start-server-dev - Starts serving production assets via Express.js & ts-node / nodemon (hot reloading upon changes)"
+	@echo "start-server - Starts serving production assets via Express.js & Node.js."
 	@echo "start-lint - Runs linting."
 	@echo "start-types-check - Runs type checking."
 	@echo "start-tests - Runs the test suite."
 	@echo "start-tests-watch - Runs the test suite in watch mode."
 
-start-dev:
+start-client-dev:
 	docker-compose run --rm --service-ports dev
 
-start-express-dev:
-	docker-compose run --rm --service-ports dev yarn express:dev-server
+start-server-dev:
+	docker-compose run --rm --service-ports dev yarn run server:dev
 
-start-production:
+start-server:
 	docker-compose up web
 
 start-lint:

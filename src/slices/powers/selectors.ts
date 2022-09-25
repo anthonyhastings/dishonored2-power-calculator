@@ -1,5 +1,5 @@
-import type { requestStatuses } from 'constants/request-statuses';
 import type { PowersState, PowerData } from './';
+import type { requestStatuses } from '@/constants/request-statuses';
 
 export const dataSelector = (state: PowersState): PowerData | undefined =>
   state.data;

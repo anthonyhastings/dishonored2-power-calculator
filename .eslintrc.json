@@ -75,8 +75,7 @@
     {
       "files": [
         "server/**/*.mts",
-        "support/**/*.{js,ts}",
-        "webpack/**/*.ts",
+        "support/**/*.ts",
         "jest.config.ts"
       ],
       "env": {

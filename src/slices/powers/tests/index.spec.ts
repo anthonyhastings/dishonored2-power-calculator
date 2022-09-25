@@ -1,7 +1,7 @@
-import requestStatuses from 'constants/request-statuses';
 import type { AnyAction } from '@reduxjs/toolkit';
 import { server, rest } from '../../../../support/tests/mock-server';
 import reducer, { fetchPowers, getDefaultState, PowersState } from '../';
+import requestStatuses from '@/constants/request-statuses';
 
 describe('Powers slice', () => {
   let testContext: {

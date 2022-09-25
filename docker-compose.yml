@@ -8,6 +8,7 @@ services:
     environment:
       - GOOGLE_SITE_VERIFICATION_TOKEN
       - PORT
+    platform: "linux/amd64"
     ports:
       - ${PORT}:${PORT}
 
@@ -17,16 +18,16 @@ services:
       target: base
       args:
         - GOOGLE_SITE_VERIFICATION_TOKEN
-    command: sh -c "yarn run webpack:dev-server"
+    command: sh -c "yarn run client:dev"
     environment:
       - GOOGLE_SITE_VERIFICATION_TOKEN
       - PORT
+    platform: "linux/amd64"
     ports:
       - ${PORT}:${PORT}
     volumes:
-      - ./html:/dishonored/html
-      - ./manifests:/dishonored/manifests
+      - ./public:/dishonored/public
       - ./server:/dishonored/server
       - ./src:/dishonored/src
       - ./support:/dishonored/support
-      - ./webpack:/dishonored/webpack
+      - ./index.html:/dishonored/index.html

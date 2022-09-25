@@ -1,6 +1,6 @@
 import renderer from 'react-test-renderer';
-import { useAppDispatch } from 'store-hooks';
 import App from '../app';
+import { useAppDispatch } from '@/store-hooks';
 
 jest.mock('react-router-dom', () => ({
   Routes: 'MockRoutes',

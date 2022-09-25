@@ -1,40 +1,26 @@
 import { Suspense, useEffect, lazy } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
+import 'normalize.css';
+import './stylesheets/app.scss';
+import logo660 from './images/logo/660x90.png';
+import logo1320 from './images/logo/1320x180.png';
+import Loader from '@/components/loader';
+import { fetchCharacters } from '@/slices/characters';
+import { fetchPowers } from '@/slices/powers';
+import { useAppSelector, useAppDispatch } from '@/store-hooks';
 import {
   hasInitialDataFailedSelector,
   isInitialDataIncompleteSelector,
-} from 'selectors';
-import { useAppSelector, useAppDispatch } from 'store-hooks';
-import { fetchCharacters } from 'slices/characters';
-import { fetchPowers } from 'slices/powers';
-import 'normalize.css';
-import './stylesheets/app.scss';
-import Loader from 'components/loader';
-import logo660 from 'images/logo/660x90.png';
-import logo1320 from 'images/logo/1320x180.png';
+} from '@/selectors';
 
 const CharacterSelection = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "character-selection" */
-      'components/character-selection'
-    )
+  () => import('@/components/character-selection')
 );
 
-const PageNotFound = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "page-not-found" */
-      'components/page-not-found'
-    )
-);
+const PageNotFound = lazy(() => import('@/components/page-not-found'));
 
 const PowerSelectionRouteValidation = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "power-selection" */
-      'components/power-selection'
-    )
+  () => import('@/components/power-selection')
 );
 
 const namespace = 'app';

@@ -1,7 +1,7 @@
-import requestStatuses from 'constants/request-statuses';
 import produce from 'immer';
-import type { RootState } from 'store';
-import * as selectors from '../selectors';
+import * as selectors from '@/selectors';
+import requestStatuses from '@/constants/request-statuses';
+import type { RootState } from '@/store';
 
 describe('Selectors', () => {
   let storeState: RootState;

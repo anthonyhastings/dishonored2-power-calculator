@@ -1,8 +1,9 @@
-node_modules/
 dist/
 dist-server/
 jest-cache/
 jest-coverage/
+node_modules/
+build-stats.html
 npm-debug.log
 package-lock.json
 yarn-error.log

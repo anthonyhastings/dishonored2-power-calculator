@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
-import corvoPortrait from 'images/portraits/corvo.jpg';
-import emilyPortrait from 'images/portraits/emily.jpg';
+import corvoPortrait from './images/corvo.jpg';
+import emilyPortrait from './images/emily.jpg';
 import './stylesheets/avatar.scss';
 
 export interface AvatarProps {

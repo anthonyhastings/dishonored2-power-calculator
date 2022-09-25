@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import characters from 'slices/characters';
-import powers from 'slices/powers';
+import characters from '@/slices/characters';
+import powers from '@/slices/powers';
 
 const store = configureStore({
   devTools: {

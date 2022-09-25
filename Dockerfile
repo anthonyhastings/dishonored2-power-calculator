@@ -14,8 +14,6 @@ RUN yarn install --frozen-lockfile && yarn cache clean
 
 COPY . ./
 
-RUN yarn express:build
-
 RUN yarn build
 
 FROM node:14.18.0-alpine AS server
@@ -33,7 +31,5 @@ RUN yarn install --frozen-lockfile --production && yarn cache clean
 COPY --from=base --chown=node /dishonored/dist ./dist
 
 COPY --from=base --chown=node /dishonored/dist-server ./dist-server
-
-COPY --from=base --chown=node /dishonored/support ./support
 
 CMD yarn start

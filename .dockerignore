@@ -2,20 +2,18 @@
 *
 
 # White list only the required files and folders.
-!html/
-!manifests/
+!public/
 !server/
 !src/
 !support/
-!webpack/
-!.babelrc
-!.browserslistrc
 !.eslintrc.json
 !.postcssrc.json
 !.prettierrc.json
 !.releaserc.json
 !.stylelintrc.json
+!index.html
 !jest.config.ts
 !package.json
 !tsconfig.json
+!vite.config.ts
 !yarn.lock

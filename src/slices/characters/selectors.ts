@@ -1,5 +1,5 @@
-import type { requestStatuses } from 'constants/request-statuses';
 import type { CharactersState, CharacterData } from './';
+import type { requestStatuses } from '@/constants/request-statuses';
 
 export const dataSelector = (
   state: CharactersState
