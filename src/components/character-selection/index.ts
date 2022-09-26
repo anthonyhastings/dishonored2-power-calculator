@@ -1,1 +1,4 @@
-export { default } from './character-selection';
+export {
+  CharacterSelection,
+  CharacterSelection as default,
+} from './character-selection';

@@ -1,5 +1,5 @@
 import renderer from 'react-test-renderer';
-import Avatar, { type AvatarProps } from '../avatar';
+import { Avatar, type AvatarProps } from '../';
 
 describe('Avatar component', () => {
   let testContext: {

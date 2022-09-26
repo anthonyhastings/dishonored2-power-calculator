@@ -11,7 +11,7 @@ export interface ButtonProps {
 
 const namespace = 'button';
 
-const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<ButtonProps> = ({
   children,
   className = '',
   href,
@@ -27,5 +27,3 @@ const Button: React.FC<ButtonProps> = ({
     </Link>
   );
 };
-
-export default Button;

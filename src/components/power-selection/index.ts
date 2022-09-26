@@ -1,1 +1,1 @@
-export { default } from './power-selection';
+export { PowerSelection, PowerSelection as default } from './power-selection';

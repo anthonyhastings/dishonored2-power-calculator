@@ -1,6 +1,6 @@
 import React from 'react';
 import './stylesheets/loader.scss';
-import OutsidersMark from '@/components/outsiders-mark';
+import { OutsidersMark } from '@/components/outsiders-mark';
 
 export interface LoaderProps {
   children?: JSX.Element;
@@ -10,7 +10,7 @@ export interface LoaderProps {
 
 const namespace = 'app-loader';
 
-const Loader: React.FC<LoaderProps> = ({
+export const Loader: React.FC<LoaderProps> = ({
   children = <React.Fragment></React.Fragment>,
   showError = false,
   showLoader = false,
@@ -26,5 +26,3 @@ const Loader: React.FC<LoaderProps> = ({
     </div>
   );
 };
-
-export default Loader;

@@ -1,5 +1,5 @@
 import renderer from 'react-test-renderer';
-import PowerSelection from '../power-selection';
+import { PowerSelection } from '../';
 import * as selectors from '@/selectors';
 
 jest.mock('react-router', () => ({
@@ -12,11 +12,17 @@ jest.mock('store-hooks', () => ({
 
 jest.mock('selectors');
 
-jest.mock('components/avatar', () => 'MockAvatar');
+jest.mock('components/avatar', () => ({
+  Avatar: 'MockAvatar',
+}));
 
-jest.mock('components/button', () => 'MockButton');
+jest.mock('components/button', () => ({
+  Button: 'MockButton',
+}));
 
-jest.mock('components/loader', () => 'MockLoader');
+jest.mock('components/loader', () => ({
+  Loader: 'MockLoader',
+}));
 
 jest.mock(
   'components/page-not-found',
@@ -26,7 +32,9 @@ jest.mock(
     }
 );
 
-jest.mock('../powers-list', () => 'MockPowersList');
+jest.mock('../powers-list', () => ({
+  PowersList: 'MockPowersList',
+}));
 
 describe('PowerSelection component', () => {
   let testContext: {

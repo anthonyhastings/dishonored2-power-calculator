@@ -1,5 +1,5 @@
 import renderer from 'react-test-renderer';
-import Button, { type ButtonProps } from '../button';
+import { Button, type ButtonProps } from '../';
 
 jest.mock('react-router-dom', () => ({
   Link: 'MockLink',

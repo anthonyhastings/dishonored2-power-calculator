@@ -1,3 +1,1 @@
-const totalRunes = 30;
-
-export default totalRunes;
+export const totalRunes = 30;

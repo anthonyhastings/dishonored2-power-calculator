@@ -4,5 +4,3 @@ export enum requestStatuses {
   failure = 'FAILURE',
   success = 'SUCCESS',
 }
-
-export default requestStatuses;

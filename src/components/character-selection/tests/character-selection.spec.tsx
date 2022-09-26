@@ -1,13 +1,17 @@
 import renderer from 'react-test-renderer';
-import CharacterSelection from '../character-selection';
+import { CharacterSelection } from '../';
 import * as selectors from '@/selectors';
 
 jest.mock('store-hooks', () => ({
   useAppSelector: (fn: () => void) => fn(),
 }));
 jest.mock('selectors');
-jest.mock('components/avatar', () => 'MockAvatar');
-jest.mock('components/button', () => 'MockButton');
+jest.mock('components/avatar', () => ({
+  Avatar: 'MockAvatar',
+}));
+jest.mock('components/button', () => ({
+  Button: 'MockButton',
+}));
 
 describe('CharacterSelection component', () => {
   let testContext: {

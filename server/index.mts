@@ -3,7 +3,7 @@ import path from 'node:path';
 import express from 'express';
 import expressWinston from 'express-winston';
 import compression from 'compression';
-import logger from './logger.mjs';
+import { logger } from './logger.mjs';
 
 if (typeof process.env.PORT === 'undefined') {
   throw new Error('Server: PORT environment variable not defined.');

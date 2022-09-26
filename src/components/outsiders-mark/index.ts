@@ -1,1 +1,1 @@
-export { default, type OutsidersMarkProps } from './outsiders-mark';
+export { OutsidersMark, type OutsidersMarkProps } from './outsiders-mark';

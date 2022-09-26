@@ -11,7 +11,7 @@ export interface PowersListProps {
 
 const namespace = 'powers-list';
 
-const PowersList: React.FC<PowersListProps> = ({
+export const PowersList: React.FC<PowersListProps> = ({
   children,
   className = '',
   powers,
@@ -42,5 +42,3 @@ const PowersList: React.FC<PowersListProps> = ({
     </section>
   );
 };
-
-export default PowersList;

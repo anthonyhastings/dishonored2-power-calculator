@@ -1,11 +1,12 @@
 import type { AnyAction } from '@reduxjs/toolkit';
 import { server, rest } from '../../../../support/tests/mock-server';
-import reducer, {
+import {
+  reducer,
   getDefaultState,
   CharactersState,
   fetchCharacters,
 } from '../';
-import requestStatuses from '@/constants/request-statuses';
+import { requestStatuses } from '@/constants/request-statuses';
 
 describe('Characters slice', () => {
   let testContext: {

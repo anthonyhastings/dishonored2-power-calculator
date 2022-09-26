@@ -1,5 +1,5 @@
 import renderer from 'react-test-renderer';
-import OutsidersMark from '../outsiders-mark';
+import { OutsidersMark } from '../';
 
 describe('OutsidersMark component', () => {
   let testContext: {

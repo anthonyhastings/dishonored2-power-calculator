@@ -4,7 +4,7 @@ import 'normalize.css';
 import './stylesheets/app.scss';
 import logo660 from './images/logo/660x90.png';
 import logo1320 from './images/logo/1320x180.png';
-import Loader from '@/components/loader';
+import { Loader } from '@/components/loader';
 import { fetchCharacters } from '@/slices/characters';
 import { fetchPowers } from '@/slices/powers';
 import { useAppSelector, useAppDispatch } from '@/store-hooks';
@@ -25,7 +25,7 @@ const PowerSelectionRouteValidation = lazy(
 
 const namespace = 'app';
 
-const App: React.FC = (): JSX.Element => {
+export const App: React.FC = (): JSX.Element => {
   const showError = useAppSelector(hasInitialDataFailedSelector);
   const showLoader = useAppSelector(isInitialDataIncompleteSelector);
   const dispatch = useAppDispatch();
@@ -66,5 +66,3 @@ const App: React.FC = (): JSX.Element => {
     </div>
   );
 };
-
-export default App;
