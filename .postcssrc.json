@@ -1,6 +1,7 @@
 {
   "plugins": {
     "postcss-preset-env": {
+      "browsers": "> 1%, last 2 versions, not IE > 0, not dead",
       "stage": 3
     }
   }

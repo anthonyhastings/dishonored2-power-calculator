@@ -1,8 +1,8 @@
 import values from 'lodash/values';
-import Avatar from 'components/avatar';
-import Button from 'components/button';
-import { useAppSelector } from 'store-hooks';
-import { charactersDataSelector } from 'selectors';
+import Avatar from '@/components/avatar';
+import Button from '@/components/button';
+import { charactersDataSelector } from '@/selectors';
+import { useAppSelector } from '@/store-hooks';
 import './stylesheets/character-selection.scss';
 
 const characterNamespace = 'character';

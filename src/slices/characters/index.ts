@@ -1,6 +1,6 @@
-import requestStatuses from 'constants/request-statuses';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import * as api from 'api/characters';
+import * as api from '@/api/characters';
+import requestStatuses from '@/constants/request-statuses';
 
 export interface CharacterData {
   [key: string]: Character;

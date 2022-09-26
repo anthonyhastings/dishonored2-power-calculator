@@ -1,6 +1,5 @@
 import 'dotenv/config';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import express from 'express';
 import expressWinston from 'express-winston';
 import compression from 'compression';
@@ -12,7 +11,6 @@ if (typeof process.env.PORT === 'undefined') {
 
 const app = express();
 const distFolder = path.join(process.cwd(), 'dist');
-const serverFolder = path.dirname(fileURLToPath(import.meta.url));
 
 app.use(
   expressWinston.logger({
@@ -25,16 +23,6 @@ app.use(
 app.use(compression());
 
 app.use(express.static(distFolder));
-
-app.get('/characters.json', (request, response) => {
-  response.set('Content-Type', 'application/vnd.api+json');
-  response.sendFile(path.join(serverFolder, 'characters.json'));
-});
-
-app.get('/powers.json', (request, response) => {
-  response.set('Content-Type', 'application/vnd.api+json');
-  response.sendFile(path.join(serverFolder, 'powers.json'));
-});
 
 app.get('/*', (request, response) => {
   response.sendFile(path.join(distFolder, 'index.html'));

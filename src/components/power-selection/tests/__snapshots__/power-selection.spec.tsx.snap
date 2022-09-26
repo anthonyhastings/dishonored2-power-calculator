@@ -38,8 +38,8 @@ exports[`PowerSelection component when character is present renders the header, 
     <MockPowersList
       className="power-selection__category"
       powers={
-        Array [
-          Object {
+        [
+          {
             "characterId": "character-id",
             "cost": 1,
             "description": "Description for a top-level power",
@@ -56,8 +56,8 @@ exports[`PowerSelection component when character is present renders the header, 
     <MockPowersList
       className="power-selection__category"
       powers={
-        Array [
-          Object {
+        [
+          {
             "characterId": "character-id",
             "cost": 1,
             "description": "Description for a top-level enhancement",

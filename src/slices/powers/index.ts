@@ -1,6 +1,6 @@
-import requestStatuses from 'constants/request-statuses';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import * as api from 'api/powers';
+import * as api from '@/api/powers';
+import requestStatuses from '@/constants/request-statuses';
 
 export interface PowerData {
   [key: string]: Power;

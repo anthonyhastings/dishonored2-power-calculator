@@ -7,15 +7,15 @@ const configuration: Config.InitialOptions = {
   coverageReporters: ['lcov', 'text-summary'],
   moduleDirectories: ['node_modules', 'src'],
   moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
     '\\.(css|scss|sass)$': '<rootDir>/support/tests/style-mock.ts',
   },
   preset: 'ts-jest',
   setupFilesAfterEnv: ['<rootDir>/support/tests/setup-jest.ts'],
   transform: {
     '^.+\\.(ts|tsx)?$': 'ts-jest',
-    '^.+\\.js$': 'babel-jest',
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/support/tests/file-transformer.js',
+      '<rootDir>/support/tests/file-transformer.ts',
   },
   verbose: true,
 };

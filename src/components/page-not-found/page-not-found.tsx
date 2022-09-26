@@ -1,5 +1,5 @@
 import './stylesheets/page-not-found.scss';
-import OutsidersMark from 'components/outsiders-mark';
+import OutsidersMark from '@/components/outsiders-mark';
 
 const namespace = 'page-not-found';
 

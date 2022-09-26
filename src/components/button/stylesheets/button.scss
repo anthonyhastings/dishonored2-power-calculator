@@ -1,5 +1,5 @@
 @use 'sass:map';
-@import 'components/app/stylesheets/colours.scss';
+@import '@/components/app/stylesheets/colours.scss';
 
 .button {
   background-color: map.get($colours, mine-shaft);

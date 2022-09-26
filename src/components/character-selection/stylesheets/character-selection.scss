@@ -1,6 +1,6 @@
 @use 'sass:map';
-@import 'components/app/stylesheets/colours.scss';
-@import 'components/app/stylesheets/media.scss';
+@import '@/components/app/stylesheets/colours.scss';
+@import '@/components/app/stylesheets/media.scss';
 
 $character-namespace: 'character';
 
