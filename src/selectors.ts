@@ -3,7 +3,7 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 import includes from 'lodash/includes';
 import some from 'lodash/some';
-import requestStatuses from '@/constants/request-statuses';
+import { requestStatuses } from '@/constants/request-statuses';
 import * as charactersReducerSelectors from '@/slices/characters/selectors';
 import * as powersReducerSelectors from '@/slices/powers/selectors';
 import type { RootState } from '@/store';

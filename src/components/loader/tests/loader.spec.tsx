@@ -1,7 +1,9 @@
 import renderer from 'react-test-renderer';
-import Loader from '../loader';
+import { Loader } from '../';
 
-jest.mock('components/outsiders-mark', () => 'MockOutsidersMark');
+jest.mock('components/outsiders-mark', () => ({
+  OutsidersMark: 'MockOutsidersMark',
+}));
 
 describe('Loader component', () => {
   let testContext: {

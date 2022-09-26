@@ -1,5 +1,5 @@
 import renderer from 'react-test-renderer';
-import App from '../app';
+import { App } from '../';
 import { useAppDispatch } from '@/store-hooks';
 
 jest.mock('react-router-dom', () => ({
@@ -29,7 +29,9 @@ jest.mock('slices/powers', () => ({
   fetchPowers: () => 'MockFetchPowersAction',
 }));
 
-jest.mock('components/loader', () => 'MockLoader');
+jest.mock('components/loader', () => ({
+  Loader: 'MockLoader',
+}));
 
 jest.mock(
   'components/character-selection',

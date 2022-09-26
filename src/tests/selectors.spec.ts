@@ -1,6 +1,6 @@
 import produce from 'immer';
 import * as selectors from '@/selectors';
-import requestStatuses from '@/constants/request-statuses';
+import { requestStatuses } from '@/constants/request-statuses';
 import type { RootState } from '@/store';
 
 describe('Selectors', () => {

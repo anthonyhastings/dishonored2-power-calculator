@@ -12,7 +12,7 @@ export interface AvatarProps {
 
 const namespace = 'avatar';
 
-const Avatar: React.FC<AvatarProps> = ({
+export const Avatar: React.FC<AvatarProps> = ({
   className = '',
   name,
   slug,
@@ -28,5 +28,3 @@ const Avatar: React.FC<AvatarProps> = ({
     loading="lazy"
   />
 );
-
-export default Avatar;

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '@/api/powers';
-import requestStatuses from '@/constants/request-statuses';
+import { requestStatuses } from '@/constants/request-statuses';
 
 export interface PowerData {
   [key: string]: Power;
@@ -63,4 +63,4 @@ const powersSlice = createSlice({
   },
 });
 
-export default powersSlice.reducer;
+export const reducer = powersSlice.reducer;

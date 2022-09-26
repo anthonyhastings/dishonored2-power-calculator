@@ -1,19 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
-import characters from '@/slices/characters';
-import powers from '@/slices/powers';
+import { reducer as charactersReducer } from '@/slices/characters';
+import { reducer as powersReducer } from '@/slices/powers';
 
-const store = configureStore({
+export const store = configureStore({
   devTools: {
     ...(process.env.NODE_ENV === 'production' && { features: {} }),
   },
   reducer: {
-    characters,
-    powers,
+    characters: charactersReducer,
+    powers: powersReducer,
   },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
-
-export default store;

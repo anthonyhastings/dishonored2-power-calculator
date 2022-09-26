@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '@/api/characters';
-import requestStatuses from '@/constants/request-statuses';
+import { requestStatuses } from '@/constants/request-statuses';
 
 export interface CharacterData {
   [key: string]: Character;
@@ -60,4 +60,4 @@ const charactersSlice = createSlice({
   },
 });
 
-export default charactersSlice.reducer;
+export const reducer = charactersSlice.reducer;

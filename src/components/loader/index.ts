@@ -1,1 +1,1 @@
-export { default, type LoaderProps } from './loader';
+export { Loader, type LoaderProps } from './loader';

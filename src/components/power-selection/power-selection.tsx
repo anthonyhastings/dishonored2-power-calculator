@@ -2,10 +2,10 @@ import { Suspense, lazy } from 'react';
 import { useParams } from 'react-router';
 import isUndefined from 'lodash/isUndefined';
 import './stylesheets/power-selection.scss';
-import PowersList from './powers-list';
-import Avatar from '@/components/avatar';
-import Button from '@/components/button';
-import Loader from '@/components/loader';
+import { PowersList } from './powers-list';
+import { Avatar } from '@/components/avatar';
+import { Button } from '@/components/button';
+import { Loader } from '@/components/loader';
 import {
   characterBySlugSelector,
   topLevelEnhancementsSelector,
@@ -18,7 +18,7 @@ const PageNotFound = lazy(() => import('@/components/page-not-found'));
 
 const namespace = 'power-selection';
 
-const PowerSelection: React.FC = (): JSX.Element => {
+export const PowerSelection: React.FC = (): JSX.Element => {
   const { characterSlug } = useParams() as { characterSlug: CharacterSlugs };
   const topLevelEnhancements = useAppSelector(topLevelEnhancementsSelector);
   const topLevelPowers = useAppSelector((state: RootState) =>
@@ -74,5 +74,3 @@ const PowerSelection: React.FC = (): JSX.Element => {
     </section>
   );
 };
-
-export default PowerSelection;

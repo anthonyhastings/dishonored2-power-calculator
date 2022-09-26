@@ -9,7 +9,7 @@ export interface OutsidersMarkProps {
 
 const namespace = 'outsiders-mark';
 
-const OutsidersMark: React.FC<OutsidersMarkProps> = ({
+export const OutsidersMark: React.FC<OutsidersMarkProps> = ({
   animated = false,
   className = '',
 }): JSX.Element => {
@@ -21,5 +21,3 @@ const OutsidersMark: React.FC<OutsidersMarkProps> = ({
 
   return <div aria-hidden="true" className={classes} />;
 };
-
-export default OutsidersMark;
