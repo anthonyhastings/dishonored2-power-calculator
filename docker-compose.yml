@@ -8,10 +8,8 @@ services:
     environment:
       - GOOGLE_SITE_VERIFICATION_TOKEN
       - PORT
-    platform: "linux/amd64"
     ports:
       - ${PORT}:${PORT}
-
   dev:
     build:
       context: ./
@@ -22,7 +20,6 @@ services:
     environment:
       - GOOGLE_SITE_VERIFICATION_TOKEN
       - PORT
-    platform: "linux/amd64"
     ports:
       - ${PORT}:${PORT}
     volumes:
