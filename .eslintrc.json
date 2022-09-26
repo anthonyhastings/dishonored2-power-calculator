@@ -51,7 +51,7 @@
   "overrides": [
     {
       "files": [
-        "support/**/*.{js,ts}",
+        "support/**/*.{ts,tsx}",
         "**/*.spec.{ts,tsx}"
       ],
       "env": {
@@ -75,8 +75,9 @@
     {
       "files": [
         "server/**/*.mts",
-        "support/**/*.ts",
-        "jest.config.ts"
+        "support/**/*.{ts,tsx}",
+        "jest.config.ts",
+        "vite.config.ts"
       ],
       "env": {
         "node": true
