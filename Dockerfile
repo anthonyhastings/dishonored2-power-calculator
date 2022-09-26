@@ -1,4 +1,4 @@
-FROM node:14.18.0-slim AS base
+FROM node:16.17.1-slim AS base
 
 LABEL maintainer="Anthony Hastings <ar.hastings@gmail.com>"
 
@@ -16,7 +16,7 @@ COPY . ./
 
 RUN yarn build
 
-FROM node:14.18.0-alpine AS server
+FROM node:16.17.1-alpine AS server
 
 RUN apk add --no-cache bash
 
