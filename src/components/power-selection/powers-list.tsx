@@ -1,6 +1,5 @@
 import classNames from 'classnames';
-import isEmpty from 'lodash/isEmpty';
-import kebabCase from 'lodash/kebabCase';
+import { toKebabCase } from '@/utilities/to-kebab-case';
 import './stylesheets/powers-list.scss';
 
 export interface PowersListProps {
@@ -18,7 +17,7 @@ export const PowersList: React.FC<PowersListProps> = ({
 }): JSX.Element => {
   const classes = classNames({
     [namespace]: true,
-    [className]: !isEmpty(className),
+    [className]: Boolean(className),
   });
 
   return (
@@ -31,7 +30,7 @@ export const PowersList: React.FC<PowersListProps> = ({
               <h1>{power.name}</h1>
               <span
                 aria-label={`Symbol for ${power.name}`}
-                className={`${namespace}__icon ${namespace}__icon--${kebabCase(
+                className={`${namespace}__icon ${namespace}__icon--${toKebabCase(
                   power.name
                 )}`}
               />

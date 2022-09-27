@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import isEmpty from 'lodash/isEmpty';
 import corvoPortrait from './images/corvo.jpg';
 import emilyPortrait from './images/emily.jpg';
 import './stylesheets/avatar.scss';
@@ -20,7 +19,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   <img
     className={classNames({
       [namespace]: true,
-      [className]: !isEmpty(className),
+      [className]: Boolean(className),
     })}
     draggable="false"
     src={slug === 'corvo' ? corvoPortrait : emilyPortrait}

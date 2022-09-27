@@ -1,4 +1,3 @@
-import isEmpty from 'lodash/isEmpty';
 import classNames from 'classnames';
 import './stylesheets/outsiders-mark.scss';
 
@@ -16,7 +15,7 @@ export const OutsidersMark: React.FC<OutsidersMarkProps> = ({
   const classes = classNames({
     [namespace]: true,
     [`${namespace}--is-animating`]: animated,
-    [className]: !isEmpty(className),
+    [className]: Boolean(className),
   });
 
   return <div aria-hidden="true" className={classes} />;

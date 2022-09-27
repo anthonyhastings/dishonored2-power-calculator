@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-import isEmpty from 'lodash/isEmpty';
 import './stylesheets/button.scss';
 
 export interface ButtonProps {
@@ -18,7 +17,7 @@ export const Button: React.FC<ButtonProps> = ({
 }): JSX.Element => {
   const classes = classNames({
     [namespace]: true,
-    [className]: !isEmpty(className),
+    [className]: Boolean(className),
   });
 
   return (

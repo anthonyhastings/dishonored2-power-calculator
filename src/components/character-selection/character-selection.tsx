@@ -1,4 +1,3 @@
-import values from 'lodash/values';
 import { Avatar } from '@/components/avatar';
 import { Button } from '@/components/button';
 import { charactersDataSelector } from '@/selectors';
@@ -14,7 +13,7 @@ export const CharacterSelection: React.FC = (): JSX.Element => {
     <section className="character-selection">
       <h1 className="character-selection__title">Choose your character</h1>
       <div className="character-selection__grid">
-        {values(characters).map((character) => (
+        {Object.values(characters || {}).map((character) => (
           <div
             className={`character-selection__grid-element ${characterNamespace}`}
             key={character.id}
