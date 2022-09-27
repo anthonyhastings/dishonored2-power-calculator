@@ -1,6 +1,5 @@
 import { Suspense, lazy } from 'react';
 import { useParams } from 'react-router';
-import isUndefined from 'lodash/isUndefined';
 import './stylesheets/power-selection.scss';
 import { PowersList } from './powers-list';
 import { Avatar } from '@/components/avatar';
@@ -28,7 +27,7 @@ export const PowerSelection: React.FC = (): JSX.Element => {
     characterBySlugSelector(state, characterSlug)
   );
 
-  if (isUndefined(character)) {
+  if (character === undefined) {
     return (
       <Suspense fallback={<Loader showLoader={true} />}>
         <PageNotFound />
