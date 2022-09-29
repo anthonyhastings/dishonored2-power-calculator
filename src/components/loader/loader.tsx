@@ -10,11 +10,11 @@ export interface LoaderProps {
 
 const namespace = 'app-loader';
 
-export const Loader: React.FC<LoaderProps> = ({
+export const Loader = ({
   children = <React.Fragment></React.Fragment>,
   showError = false,
   showLoader = false,
-}): JSX.Element => {
+}: LoaderProps) => {
   if (!showError && !showLoader) return children;
 
   return (

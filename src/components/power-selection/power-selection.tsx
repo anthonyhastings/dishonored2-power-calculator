@@ -17,7 +17,7 @@ const PageNotFound = lazy(() => import('@/components/page-not-found'));
 
 const namespace = 'power-selection';
 
-export const PowerSelection: React.FC = (): JSX.Element => {
+export const PowerSelection = () => {
   const { characterSlug } = useParams() as { characterSlug: CharacterSlugs };
   const topLevelEnhancements = useAppSelector(topLevelEnhancementsSelector);
   const topLevelPowers = useAppSelector((state: RootState) =>

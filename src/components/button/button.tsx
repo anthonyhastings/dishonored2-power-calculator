@@ -10,11 +10,7 @@ export interface ButtonProps {
 
 const namespace = 'button';
 
-export const Button: React.FC<ButtonProps> = ({
-  children,
-  className = '',
-  href,
-}): JSX.Element => {
+export const Button = ({ children, className = '', href }: ButtonProps) => {
   const classes = classNames({
     [namespace]: true,
     [className]: Boolean(className),
