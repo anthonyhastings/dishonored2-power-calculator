@@ -6,7 +6,7 @@ import './stylesheets/character-selection.scss';
 
 const characterNamespace = 'character';
 
-export const CharacterSelection: React.FC = (): JSX.Element => {
+export const CharacterSelection = () => {
   const characters = useAppSelector(charactersDataSelector);
 
   return (

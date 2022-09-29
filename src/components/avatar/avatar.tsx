@@ -11,11 +11,7 @@ export interface AvatarProps {
 
 const namespace = 'avatar';
 
-export const Avatar: React.FC<AvatarProps> = ({
-  className = '',
-  name,
-  slug,
-}): JSX.Element => (
+export const Avatar = ({ className = '', name, slug }: AvatarProps) => (
   <img
     className={classNames({
       [namespace]: true,

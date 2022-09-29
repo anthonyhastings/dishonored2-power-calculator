@@ -8,10 +8,10 @@ export interface OutsidersMarkProps {
 
 const namespace = 'outsiders-mark';
 
-export const OutsidersMark: React.FC<OutsidersMarkProps> = ({
+export const OutsidersMark = ({
   animated = false,
   className = '',
-}): JSX.Element => {
+}: OutsidersMarkProps) => {
   const classes = classNames({
     [namespace]: true,
     [`${namespace}--is-animating`]: animated,

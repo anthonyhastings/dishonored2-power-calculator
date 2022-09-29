@@ -25,7 +25,7 @@ const PowerSelectionRouteValidation = lazy(
 
 const namespace = 'app';
 
-export const App: React.FC = (): JSX.Element => {
+export const App = () => {
   const showError = useAppSelector(hasInitialDataFailedSelector);
   const showLoader = useAppSelector(isInitialDataIncompleteSelector);
   const dispatch = useAppDispatch();

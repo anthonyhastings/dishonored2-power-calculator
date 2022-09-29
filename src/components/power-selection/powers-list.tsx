@@ -10,11 +10,11 @@ export interface PowersListProps {
 
 const namespace = 'powers-list';
 
-export const PowersList: React.FC<PowersListProps> = ({
+export const PowersList = ({
   children,
   className = '',
   powers,
-}): JSX.Element => {
+}: PowersListProps) => {
   const classes = classNames({
     [namespace]: true,
     [className]: Boolean(className),
