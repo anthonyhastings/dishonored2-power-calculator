@@ -19,11 +19,11 @@ export const fetchPowers = createAsyncThunk<
   PowerData,
   void,
   { rejectValue: Error }
->('powers/fetchPowers', async () => {
+>('powers/fetchPowers', async (_, thunkAPI) => {
   let response;
 
   try {
-    response = await api.getPowers();
+    response = await api.getPowers({ abortSignal: thunkAPI.signal });
   } catch (e) {
     throw new Error();
   }

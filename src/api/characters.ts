@@ -12,5 +12,11 @@ type APIResponse = JSONResponse<
   }[]
 >;
 
-export const getCharacters = (): Promise<AxiosResponse<APIResponse>> =>
-  axios.get('/characters.json');
+export const getCharacters = ({
+  abortSignal,
+}: {
+  abortSignal?: AbortSignal;
+} = {}): Promise<AxiosResponse<APIResponse>> =>
+  axios.get('/characters.json', {
+    ...(abortSignal && { signal: abortSignal }),
+  });

@@ -19,11 +19,11 @@ export const fetchCharacters = createAsyncThunk<
   CharacterData,
   void,
   { rejectValue: Error }
->('characters/fetchCharacters', async () => {
+>('characters/fetchCharacters', async (_, thunkAPI) => {
   let response;
 
   try {
-    response = await api.getCharacters();
+    response = await api.getCharacters({ abortSignal: thunkAPI.signal });
   } catch (e) {
     throw new Error();
   }

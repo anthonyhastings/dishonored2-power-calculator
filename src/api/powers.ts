@@ -15,5 +15,11 @@ type APIResponse = JSONResponse<
   }[]
 >;
 
-export const getPowers = (): Promise<AxiosResponse<APIResponse>> =>
-  axios.get('/powers.json');
+export const getPowers = ({
+  abortSignal,
+}: {
+  abortSignal?: AbortSignal;
+} = {}): Promise<AxiosResponse<APIResponse>> =>
+  axios.get('/powers.json', {
+    ...(abortSignal && { signal: abortSignal }),
+  });

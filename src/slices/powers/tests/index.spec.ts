@@ -155,6 +155,32 @@ describe('Powers slice', () => {
           );
         });
       });
+
+      it('fires a pending action then rejected action when the thunk is aborted', async () => {
+        testContext.mockDispatch = jest.fn();
+
+        const thunkPromise = fetchPowers()(
+          testContext.mockDispatch,
+          () => 'get-state',
+          ''
+        );
+
+        thunkPromise.abort();
+
+        await expect(thunkPromise).resolves.toMatchObject(
+          expect.objectContaining({
+            error: { name: 'AbortError', message: 'Aborted' },
+            type: fetchPowers.rejected.type,
+          })
+        );
+
+        expect(testContext.mockDispatch?.mock.calls).toEqual(
+          expect.arrayContaining([
+            [expect.objectContaining({ type: fetchPowers.pending.type })],
+            [expect.objectContaining({ type: fetchPowers.rejected.type })],
+          ])
+        );
+      });
     });
   });
 });
