@@ -3,7 +3,7 @@ import './stylesheets/loader.scss';
 import { OutsidersMark } from '@/components/outsiders-mark';
 
 export interface LoaderProps {
-  children?: JSX.Element;
+  children?: React.ReactNode;
   showError?: boolean;
   showLoader?: boolean;
 }
@@ -15,7 +15,7 @@ export const Loader = ({
   showError = false,
   showLoader = false,
 }: LoaderProps) => {
-  if (!showError && !showLoader) return children;
+  if (!showError && !showLoader) return <>{children}</>;
 
   return (
     <div className={namespace}>

@@ -60,41 +60,68 @@ jest.mock(
 describe('App component', () => {
   let testContext: {
     component?: renderer.ReactTestRenderer;
-    dispatch: jest.Mock;
   };
-
-  const mockedUseAppDispatch = useAppDispatch as jest.Mock;
 
   const renderComponent = () => <App />;
 
   beforeEach(() => {
-    testContext = {
-      dispatch: jest.fn(),
-    };
-
-    mockedUseAppDispatch.mockReturnValue(testContext.dispatch);
+    testContext = {};
   });
 
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  describe('when rendered', () => {
-    beforeEach(async () => {
-      await renderer.act(async () => {
-        testContext.component = renderer.create(renderComponent());
-      });
+  it('triggers calls for initial fetching of data when rendered', async () => {
+    const dispatch = jest.fn();
+    (useAppDispatch as jest.Mock).mockReturnValue(dispatch);
+
+    await renderer.act(async () => {
+      testContext.component = renderer.create(renderComponent());
     });
 
-    it('triggers calls for initial fetching of data', () => {
-      expect(testContext.dispatch.mock.calls).toEqual([
-        ['MockFetchCharactersAction'],
-        ['MockFetchPowersAction'],
-      ]);
+    expect(dispatch.mock.calls).toEqual([
+      ['MockFetchCharactersAction'],
+      ['MockFetchPowersAction'],
+    ]);
+  });
+
+  it('renders a header area and top-level routes', async () => {
+    const dispatch = jest.fn();
+    (useAppDispatch as jest.Mock).mockReturnValue(dispatch);
+
+    await renderer.act(async () => {
+      testContext.component = renderer.create(renderComponent());
     });
 
-    it('renders a header area and top-level routes', () => {
-      expect(testContext.component).toMatchSnapshot();
+    expect(testContext.component).toMatchSnapshot();
+  });
+
+  it('aborts thunks when unmounted', async () => {
+    const charactersDispatchMock = jest.fn();
+    const powersDispatchMock = jest.fn();
+
+    const dispatch = jest
+      .fn()
+      .mockReturnValueOnce({ abort: charactersDispatchMock })
+      .mockReturnValueOnce({ abort: powersDispatchMock });
+
+    (useAppDispatch as jest.Mock).mockReturnValue(dispatch);
+
+    await renderer.act(async () => {
+      testContext.component = renderer.create(renderComponent());
     });
+
+    expect(dispatch.mock.calls).toEqual([
+      ['MockFetchCharactersAction'],
+      ['MockFetchPowersAction'],
+    ]);
+
+    await renderer.act(async () => {
+      testContext.component?.unmount();
+    });
+
+    expect(charactersDispatchMock).toHaveBeenCalledTimes(1);
+    expect(powersDispatchMock).toHaveBeenCalledTimes(1);
   });
 });

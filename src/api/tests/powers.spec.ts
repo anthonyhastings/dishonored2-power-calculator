@@ -12,12 +12,23 @@ describe('Powers API requests', () => {
   });
 
   describe('#getPowers', () => {
-    beforeEach(async () => {
-      testContext.result = await api.getPowers();
+    describe('when given a valid response', () => {
+      beforeEach(async () => {
+        testContext.result = await api.getPowers();
+      });
+
+      it('returns expected value', () => {
+        expect(testContext.result?.data).toEqual(powersData);
+      });
     });
 
-    it('returns expected value', () => {
-      expect(testContext.result?.data).toEqual(powersData);
+    it('aborts when instructed', async () => {
+      const controller = new AbortController();
+      controller.abort();
+
+      await expect(
+        api.getPowers({ abortSignal: controller.signal })
+      ).rejects.toMatchObject({ message: 'canceled' });
     });
   });
 });

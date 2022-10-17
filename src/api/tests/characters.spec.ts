@@ -12,12 +12,23 @@ describe('Characters API requests', () => {
   });
 
   describe('#getCharacters', () => {
-    beforeEach(async () => {
-      testContext.result = await api.getCharacters();
+    describe('when given a valid response', () => {
+      beforeEach(async () => {
+        testContext.result = await api.getCharacters();
+      });
+
+      it('returns expected value', () => {
+        expect(testContext.result?.data).toEqual(charactersData);
+      });
     });
 
-    it('returns expected value', () => {
-      expect(testContext.result?.data).toEqual(charactersData);
+    it('aborts when instructed', async () => {
+      const controller = new AbortController();
+      controller.abort();
+
+      await expect(
+        api.getCharacters({ abortSignal: controller.signal })
+      ).rejects.toMatchObject({ message: 'canceled' });
     });
   });
 });

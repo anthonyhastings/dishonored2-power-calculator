@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App component when rendered renders a header area and top-level routes 1`] = `
+exports[`App component renders a header area and top-level routes 1`] = `
 <div
   className="app"
 >

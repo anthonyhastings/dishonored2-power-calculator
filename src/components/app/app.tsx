@@ -31,8 +31,13 @@ export const App = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchCharacters());
-    dispatch(fetchPowers());
+    const charactersPromise = dispatch(fetchCharacters());
+    const powersPromise = dispatch(fetchPowers());
+
+    return () => {
+      charactersPromise.abort();
+      powersPromise.abort();
+    };
   }, [dispatch]);
 
   return (

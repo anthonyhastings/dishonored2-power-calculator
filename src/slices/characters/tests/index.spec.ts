@@ -167,6 +167,32 @@ describe('Characters slice', () => {
           );
         });
       });
+
+      it('fires a pending action then rejected action when the thunk is aborted', async () => {
+        testContext.mockDispatch = jest.fn();
+
+        const thunkPromise = fetchCharacters()(
+          testContext.mockDispatch,
+          () => 'get-state',
+          ''
+        );
+
+        thunkPromise.abort();
+
+        await expect(thunkPromise).resolves.toMatchObject(
+          expect.objectContaining({
+            error: { name: 'AbortError', message: 'Aborted' },
+            type: fetchCharacters.rejected.type,
+          })
+        );
+
+        expect(testContext.mockDispatch?.mock.calls).toEqual(
+          expect.arrayContaining([
+            [expect.objectContaining({ type: fetchCharacters.pending.type })],
+            [expect.objectContaining({ type: fetchCharacters.rejected.type })],
+          ])
+        );
+      });
     });
   });
 });
