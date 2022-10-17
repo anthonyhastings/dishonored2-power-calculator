@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import charactersData from '../../src/api/sample-responses/get-characters-success.json';
-import powersData from '../../src/api/sample-responses/get-powers-success.json';
+import charactersData from '../fixtures/get-characters-success.json';
+import powersData from '../fixtures/get-powers-success.json';
 
 const handlers = [
   rest.get(/\/characters.json/, async (req, res, ctx) => {
