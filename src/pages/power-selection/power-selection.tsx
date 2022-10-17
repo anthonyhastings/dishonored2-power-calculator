@@ -13,7 +13,7 @@ import {
 import type { RootState } from '@/store';
 import { useAppSelector } from '@/store-hooks';
 
-const PageNotFound = lazy(() => import('@/components/page-not-found'));
+const PageNotFound = lazy(() => import('@/pages/page-not-found'));
 
 const namespace = 'power-selection';
 

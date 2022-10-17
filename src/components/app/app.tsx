@@ -13,14 +13,12 @@ import {
   isInitialDataIncompleteSelector,
 } from '@/selectors';
 
-const CharacterSelection = lazy(
-  () => import('@/components/character-selection')
-);
+const CharacterSelection = lazy(() => import('@/pages/character-selection'));
 
-const PageNotFound = lazy(() => import('@/components/page-not-found'));
+const PageNotFound = lazy(() => import('@/pages/page-not-found'));
 
 const PowerSelectionRouteValidation = lazy(
-  () => import('@/components/power-selection')
+  () => import('@/pages/power-selection')
 );
 
 const namespace = 'app';
