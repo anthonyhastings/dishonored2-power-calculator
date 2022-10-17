@@ -34,7 +34,7 @@ jest.mock('components/loader', () => ({
 }));
 
 jest.mock(
-  'components/character-selection',
+  'pages/character-selection',
   () =>
     function MockCharacterSelection() {
       return <p>Mock Character Selection</p>;
@@ -42,7 +42,7 @@ jest.mock(
 );
 
 jest.mock(
-  'components/page-not-found',
+  'pages/page-not-found',
   () =>
     function MockPageNotFound() {
       return <p>Page Not Found</p>;
@@ -50,7 +50,7 @@ jest.mock(
 );
 
 jest.mock(
-  'components/power-selection',
+  'pages/power-selection',
   () =>
     function MockPowerSelection() {
       return <p>Mock Power Selection</p>;

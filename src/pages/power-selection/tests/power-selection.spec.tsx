@@ -25,7 +25,7 @@ jest.mock('components/loader', () => ({
 }));
 
 jest.mock(
-  'components/page-not-found',
+  'pages/page-not-found',
   () =>
     function MockPageNotFound() {
       return <p>Page Not Found</p>;
