@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import './stylesheets/outsiders-mark.scss';
+import { ReactComponent as MarkSVG } from './images/outsiders-mark.svg';
 
 export interface OutsidersMarkProps {
   animated?: boolean;
@@ -18,5 +19,5 @@ export const OutsidersMark = ({
     [className]: Boolean(className),
   });
 
-  return <div aria-hidden="true" className={classes} />;
+  return <MarkSVG aria-hidden="true" className={classes} />;
 };
