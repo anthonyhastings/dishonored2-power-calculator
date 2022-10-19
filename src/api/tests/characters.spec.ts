@@ -1,6 +1,6 @@
 import type { AxiosResponse } from 'axios';
 import * as api from '../characters';
-import charactersData from '../sample-responses/get-characters-success.json';
+import charactersData from '../../../support/fixtures/get-characters-success.json';
 
 describe('Characters API requests', () => {
   let testContext: {

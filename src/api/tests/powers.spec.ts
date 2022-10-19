@@ -1,6 +1,6 @@
 import type { AxiosResponse } from 'axios';
 import * as api from '../powers';
-import powersData from '../sample-responses/get-powers-success.json';
+import powersData from '../../../support/fixtures/get-powers-success.json';
 
 describe('Powers API requests', () => {
   let testContext: {
