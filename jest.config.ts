@@ -14,8 +14,9 @@ const configuration: Config.InitialOptions = {
   setupFilesAfterEnv: ['<rootDir>/support/tests/setup-jest.ts'],
   transform: {
     '^.+\\.(ts|tsx)?$': 'ts-jest',
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/support/tests/file-transformer.ts',
+    '\\.svg$': '<rootDir>/support/tests/svg-transformer.ts',
   },
   verbose: true,
 };
