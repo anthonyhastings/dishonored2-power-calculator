@@ -28,6 +28,7 @@
     "vite.config.ts"
   ],
   "exclude": [
-    "support/tests/file-transformer.ts"
+    "support/tests/file-transformer.ts",
+    "support/tests/svg-transformer.ts"
   ]
 }

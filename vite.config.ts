@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import viteImagemin from 'vite-plugin-imagemin';
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
@@ -22,6 +23,11 @@ export default defineConfig(({ command, mode }) => {
     },
     plugins: [
       react(),
+      svgr({
+        svgrOptions: {
+          dimensions: false,
+        },
+      }),
       createHtmlPlugin({
         minify: true,
         inject: {
