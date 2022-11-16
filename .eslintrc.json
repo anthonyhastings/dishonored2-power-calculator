@@ -23,7 +23,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    "prettier"
   ],
   "settings": {
     "react": {
@@ -50,24 +50,15 @@
   },
   "overrides": [
     {
-      "files": [
-        "support/**/*.{ts,tsx}",
-        "**/*.spec.{ts,tsx}"
-      ],
+      "files": ["support/**/*.{ts,tsx}", "**/*.spec.{ts,tsx}"],
       "env": {
         "jest/globals": true
       },
-      "extends": [
-        "plugin:jest/recommended"
-      ],
-      "plugins": [
-        "jest"
-      ]
+      "extends": ["plugin:jest/recommended"],
+      "plugins": ["jest"]
     },
     {
-      "files": [
-        "**/*.spec.{ts,tsx}"
-      ],
+      "files": ["**/*.spec.{ts,tsx}"],
       "rules": {
         "jest/require-top-level-describe": "error"
       }

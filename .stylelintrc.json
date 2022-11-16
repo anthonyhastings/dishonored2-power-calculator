@@ -1,12 +1,7 @@
 {
-  "extends": [
-    "stylelint-config-standard-scss"
-  ],
-  "plugins": [
-    "stylelint-order"
-  ],
+  "extends": ["stylelint-config-standard-scss", "stylelint-config-prettier"],
+  "plugins": ["stylelint-order"],
   "rules": {
-    "color-hex-case": "upper",
     "color-hex-length": "long",
     "comment-no-empty": true,
     "order/properties-alphabetical-order": true,

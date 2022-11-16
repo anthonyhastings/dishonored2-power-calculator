@@ -8,6 +8,7 @@
 !support/
 !.eslintrc.json
 !.postcssrc.json
+!.prettierignore
 !.prettierrc.json
 !.releaserc.json
 !.stylelintignore
