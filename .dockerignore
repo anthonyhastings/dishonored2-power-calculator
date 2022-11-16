@@ -10,6 +10,7 @@
 !.postcssrc.json
 !.prettierrc.json
 !.releaserc.json
+!.stylelintignore
 !.stylelintrc.json
 !index.html
 !jest.config.ts
