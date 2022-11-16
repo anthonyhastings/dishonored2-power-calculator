@@ -3,7 +3,7 @@
 $breakpoints: (
   medium: 800px,
   large: 1000px,
-  x-large: 1200px
+  x-large: 1200px,
 );
 
 @mixin mq($mq-breakpoint, $mq-breakpoints: $breakpoints) {

@@ -6,10 +6,6 @@
     "outDir": "../dist-server/",
     "target": "ESNext"
   },
-  "include": [
-    "index.mts",
-  ],
-  "exclude": [
-    "tsconfig.json"
-  ]
+  "include": ["index.mts"],
+  "exclude": ["tsconfig.json"]
 }

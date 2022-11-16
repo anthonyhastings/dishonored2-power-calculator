@@ -7,11 +7,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "paths": {
@@ -19,14 +15,9 @@
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": true
   },
-  "include": [
-    "src",
-    "support",
-    "jest.config.ts",
-    "vite.config.ts"
-  ],
+  "include": ["src", "support", "jest.config.ts", "vite.config.ts"],
   "exclude": [
     "support/tests/file-transformer.ts",
     "support/tests/svg-transformer.ts"
