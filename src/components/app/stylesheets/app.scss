@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  min-height: 100vh;
+  min-block-size: 100vh;
 
   &__header {
     align-items: center;
@@ -32,10 +32,10 @@
 
   &__logo-link {
     display: block;
-    width: min(40rem, 100%);
+    inline-size: min(40rem, 100%);
 
     @include mq(medium) {
-      width: 30rem;
+      inline-size: 30rem;
     }
   }
 
@@ -44,7 +44,7 @@
     display: block;
     filter: drop-shadow(0.1rem 0.1rem 0.2rem map.get($colours, white));
     height: auto;
-    width: 100%;
+    inline-size: 100%;
   }
 
   &__content {
