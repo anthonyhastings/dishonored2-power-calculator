@@ -6,10 +6,10 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  inline-size: min(92rem, 100%);
   justify-content: flex-start;
   margin-inline: auto;
   padding: 2rem;
-  width: min(92rem, 100%);
 
   &__header {
     align-items: center;
@@ -29,7 +29,7 @@
     border: 0.1rem solid #4a4a4a;
     border-radius: 3%;
     margin-inline-end: 1rem;
-    max-width: 5rem;
+    max-inline-size: 5rem;
   }
 
   &__categories {
@@ -52,6 +52,6 @@
   }
 
   &__back-cta {
-    max-width: 40rem;
+    max-inline-size: 40rem;
   }
 }

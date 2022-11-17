@@ -2,7 +2,7 @@
 @import '@/components/app/stylesheets/colours.scss';
 
 .powers-list {
-  width: 100%;
+  inline-size: 100%;
 
   &__title {
     font-size: 2.2rem;
@@ -14,7 +14,7 @@
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(auto-fill, minmax(12.8rem, 1fr));
-    place-items: stretch / stretch;
+    place-items: stretch stretch;
   }
 
   &__grid-item {
@@ -33,7 +33,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     display: block;
-    width: 100%;
+    inline-size: 100%;
 
     &--agility {
       background-image: url('../images/powers/39334a1e-2883-4722-af71-d3286d94b6e7.png');
