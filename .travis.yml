@@ -1,13 +1,10 @@
 sudo: required
-language: javascript
 services:
 - docker
 before_install:
-- docker build -t anthonyhastings:dishonored2-express ./
+- docker build -t $DOCKER_REGISTRY/dishonored2-power-calculator/web ./
 script:
 - docker-compose run --rm express npm test
-deploy:
-  on: master
-  app: dishonored2-power-calculator
-  api_key:
-    secure: UQXiVAnNLfrzIzf7MyJCU9Pu9uusxfQ/onc9kNJz/Md9uceUQx+mglSpLcnG10ZGbEUF+Opn1vMzhAAszxaEgQxBStR/hOJvTGRlxQMis9uu+lsqBQWNdPD3e2EpcA/yf66o5xJtf6if+yYraEz/d5hmJmQxiCJbAXuNNWk6SABoO5uA+LkbS0yDQluSp4JEw/VFN+r2fPsjhe3ssA5O+mbDHMwHFNYEYBlsbOZ9HVJWVE2FayoNH0x7L+AkScyp+EmPHcWhgzkrJn2K7KwS82vUD7/cior/Qxv+lipS8rFrOsZ+0mK5Tq/cbyeyfw8YNzy5FI3YMfB2x7c1Vyibk/Zwu+Y9LkErSedgvG+NjbicoEiYIguyoyZ2mun+fD5bJ7UiPsZCV7hlBc/heY/DfSP/A5RtY2GP+qgsaaTQxgeA9YGTxLSKWh40syhHReylNUd0+G1brfkvcBiI/NY9thhay3vOC/j668qhFtDvnIpS9MjUgIh/5omDdcF7B6Y5PNkH4lY3QVlqCPjoGHTK0H7V/19rvZgKZ4zYfmNyIsuzq7omt/1xs6zu6xX0k7ilAG7DKF1q2dZJaqY56YBupVOlbH4HovVh5yOUIyxJIBhU2AXTLtSTdAWfLQxvfQi+jKlbs3R8lzzPehGGYxJ73uSh5UyYC9Rmk7IPzeMWHOo=
+after_success:
+- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" $DOCKER_REGISTRY
+- docker push $DOCKER_REGISTRY/dishonored2-power-calculator/web
